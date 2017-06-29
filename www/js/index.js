@@ -49,6 +49,9 @@ var app = {
             window.location.href = "Login.html";
             
         }
+		else{
+			window.location.href = "index3.html";
+		}
 		
 		
 		var watchID = navigator.geolocation.getCurrentPosition(gpsonSuccess, gpsonError, {timeout: 30000, enableHighAccuracy: true, maximumAge: 90000 });
@@ -529,6 +532,10 @@ function playAudio2(id) {
 	setTimeout(function() {
 			   my_media2.stop();
 			   }, 10000);
+	
+}
+
+function alertDismissed() {
 	
 }
 
