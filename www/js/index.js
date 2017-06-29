@@ -35,7 +35,6 @@ var app = {
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
         
-        alert("ciao")
         
     },
     // Update DOM on a Received Event
@@ -49,9 +48,6 @@ var app = {
             window.location.href = "Login.html";
             
         }
-		else{
-			window.location.href = "index3.html";
-		}
 		
 		
 		var watchID = navigator.geolocation.getCurrentPosition(gpsonSuccess, gpsonError, {timeout: 30000, enableHighAccuracy: true, maximumAge: 90000 });
@@ -101,17 +97,26 @@ var app = {
 					   
 					   });
 
+
 		
-        var myScroll2;
-        
-        myScroll2 = new IScroll('#wrapper', { click: true });
-        setTimeout (function(){
-            myScroll2.refresh();
-        }, 1700);
-        
-        document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 300); }, false);
-        
-        document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+		   var myScroll;
+		   
+		   myScroll = new iScroll('wrapper', {
+										//zoom: true,
+										click: true
+										/*hScrollbar: false,
+										vScrollbar: false,
+										zoomMin:1,
+										zoomMax:2,
+										zoomStart:1*/
+								  });
+		   
+		   
+		   setTimeout (function(){
+					   
+				myScroll.refresh();
+					   
+			}, 2000);
         
     }
 };
@@ -444,7 +449,7 @@ $(document).on("touchstart", "#registra", function(e){
 			   // Record audio
 			   //
 			   
-			   var src = "documents://beer.wav";
+			   var src = "beer.wav";
 			   var mediaRec = new Media(src,
 										// success callback
 										function() {
@@ -516,7 +521,7 @@ $(document).on("touchstart", "#play", function(e){
 
 function playAudio2(id) {
 	var audioElement = document.getElementById(id);
-	var url = "documents://beer.wav"//audioElement.getAttribute('src');
+	var url = "beer.wav"//audioElement.getAttribute('src');
 	
 	var my_media2 = new Media(url,
 							  // success callback
