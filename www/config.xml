@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<widget xmlns = "http://www.w3.org/ns/widgets"
+		xmlns:gap = "http://phonegap.com/ns/1.0"
+		id        = "com.microverba"
+		versionCode="1"
+		version   = "1">
+		<name>Microverba</name>
+		<description>Microverba, parole e foto</description>
+		<author href="http://mondoweb.it" email="info@mondoweb.it">
+			Mondoweb s.r.l
+		</author>
+		<preference name="phonegap-version" value="cli-6.5.0" />
+		<preference name="orientation" value="portrait" />
+		<preference name="android-windowSoftInputMode" value="adjustResize" />
+		<preference name="fullscreen" value="false" />
+		<preference name="target-device" value="universal" />
+		<preference name="webviewbounce" value="true" />
+		<preference name="prerendered-icon" value="true" />
+		<preference name="stay-in-webview" value="true" />
+		<preference name="ios-statusbarstyle" value="black-opaque" />
+		<preference name="detect-data-types" value="true" />
+		<preference name="exit-on-suspend" value="true" />
+		<preference name="show-splash-screen-spinner" value="true" />
+		<preference name="auto-hide-splash-screen" value="true" />
+		<preference name="EnableViewportScale" value="true" />
+		<preference name="MediaPlaybackRequiresUserAction" value="true" />
+		<preference name="AllowInlineMediaPlayback" value="true" />
+		<preference name="BackupWebStorage" value="cloud" />
+		<preference name="TopActivityIndicator" value="gray" />
+		<preference name="KeyboardDisplayRequiresUserAction" value="true" />
+		<preference name="HideKeyboardFormAccessoryBar" value="true" />
+		<preference name="SuppressesIncrementalRendering" value="true" />
+		<preference name="android-minSdkVersion" value="15" />
+		<preference name="android-targetSdkVersion" value="15" />
+		<preference name="android-installLocation" value="auto" />
+		<preference name="SplashScreen" value="splash" />
+		<preference name="SplashScreenDelay" value="10000" />
+		<preference name="SplashMaintainAspectRatio" value="false" />
+		<preference name="ErrorUrl" value="http://www.msop.it"/>
+		<preference name="BackgroundColor" value="#edebe7"/>
+		<preference name="KeepRunning" value="true"/>
+		<preference name="DisallowOverscroll" value="true"/> 
+		<preference name="LoadUrlTimeoutValue" value="20000" />
+		<preference name="disable-cursor" value="true" />
+		<preference name="StatusBarOverlaysWebView" value="true" />
+		<preference name="GapBetweenPages" value="0" />
+		<preference name="android-build-tool" value="gradle" />
+		<preference name="CrosswalkAnimatable" value="true" />
+		<gap:platform name="android" />
+		<feature name="http://api.phonegap.com/1.0/battery"/>
+		<feature name="http://api.phonegap.com/1.0/geolocation"/>
+		<feature name="http://api.phonegap.com/1.0/media"/>
+		<feature name="http://api.phonegap.com/1.0/network"/>
+		<feature name="http://api.phonegap.com/1.0/notification"/>
+		
+		<plugin name="cordova-plugin-battery-status"      source="npm" />
+		<plugin name="cordova-plugin-camera"              source="npm" />
+		<plugin name="cordova-plugin-media-capture"       source="npm" />
+		<plugin name="cordova-plugin-console"             source="npm" />
+		<plugin name="cordova-plugin-contacts"            source="npm" />
+		<plugin name="cordova-plugin-device"              source="npm" />
+		<plugin name="cordova-plugin-device-motion"       source="npm" />
+		<plugin name="cordova-plugin-device-orientation"  source="npm" />
+		<plugin name="cordova-plugin-dialogs"             source="npm" />
+		<plugin name="cordova-plugin-file"                source="npm" />
+		<plugin name="cordova-plugin-file-transfer"       source="npm" />
+		<plugin name="cordova-plugin-geolocation"         source="npm" />
+		<plugin name="cordova-plugin-globalization"       source="npm" />
+		<plugin name="cordova-plugin-inappbrowser"        source="npm" />
+		<plugin name="cordova-plugin-media"               source="npm" />
+		<plugin name="cordova-plugin-network-information" source="npm" />
+		<plugin name="cordova-plugin-splashscreen"        source="npm" />
+		<plugin name="cordova-plugin-statusbar"           source="npm" />
+		<plugin name="cordova-plugin-vibration"           source="npm" />
+		<plugin name="cordova-plugin-whitelist"           source="npm" />
+		
+		
+		<!--<plugin name="cordova.plugins.diagnostic" source="npm" />
+		
+		<plugin name="cordova-plugin-cache" source="npm" />
+		
+		<plugin name="cordova-plugin-mauron85-background-geolocation" source="npm"/>
+		
+		cordova-plugin-ionic-keyboard
+
+		-->
+		
+		
+		<plugin name="cordova-plugin-cache" source="npm" />
+		<plugin name="cordova-plugin-pushplugin" source="npm" />
+		<plugin name="cordova-plugin-datepicker" source="npm" />
+		<plugin name="cordova-plugin-insomnia" source="npm" />
+		
+		<plugin spec="https://github.com/katzer/cordova-plugin-email-composer.git#0.8.2" source="git" />
+		
+		<plugin name="ionic-plugin-keyboard"  source="npm" />
+		<plugin name="cordova-plugin-request-location-accuracy" source="npm" />
+		<!--<plugin name="cordova-plugin-mauron85-background-geolocation" version="2.2.0"/>-->
+		
+		<plugin name="com.darktalker.cordova.screenshot" source="npm" />
+		<!--<gap:plugin name="cordova-plugin-admobpro" source="npm" />-->
+		<gap:plugin name="cordova-plugin-nativeaudio" source="npm" />
+		<gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />
+		
+		
+		<icon src="res/icon/ios/icon-57.png" gap:platform="ios" width="57" height="57" />
+		<icon src="res/icon/ios/icon-72.png" gap:platform="ios" width="72" height="72" />
+		<icon src="res/icon/ios/icon-57-2x.png" gap:platform="ios" width="114" height="114" />
+		<icon src="res/icon/ios/icon-72-2x.png" gap:platform="ios" width="144" height="144" />
+		<icon src="36x36.png" gap:platform="android" gap:density="ldpi" />
+		<icon src="48x48.png" gap:platform="android" gap:density="mdpi" />
+		<icon src="72x72.png" gap:platform="android" gap:density="hdpi" />
+		<icon src="96x96.png" gap:platform="android" gap:density="xhdpi" />
+		<icon src="144x144.png" gap:platform="android" gap:density="xxhdpi" />
+		<icon src="192x192.png" gap:platform="android" gap:density="xxxhdpi" />
+		<icon src="res/icon/windows-phone/icon-48.png" gap:platform="winphone" />
+		<icon src="res/icon/windows-phone/icon-173.png" gap:platform="winphone" gap:role="background" />
+		<icon src="res/icon/blackberry/icon-80.png" gap:platform="blackberry" />
+		<icon src="res/icon/webos/icon-64.png" gap:platform="webos" />
+		<icon src="64x64.png" />
+		<gap:splash src="res/screen/ios/screen-iphone-portrait.png" gap:platform="ios" width="320" height="480" />
+		<gap:splash src="res/screen/ios/screen-iphone-portrait-2x.png" gap:platform="ios" width="640" height="960" />
+		<gap:splash src="res/screen/ios/screen-iphone-portrait-568h-2x.png" gap:platform="ios" width="640" height="1136" />
+		<gap:splash src="res/screen/ios/screen-ipad-portrait.png" gap:platform="ios" width="768" height="1024 " />
+		<gap:splash src="res/screen/ios/screen-ipad-landscape.png" gap:platform="ios" width="1024" height="768" />
+		<gap:splash src="LDPI.png" gap:platform="android" gap:density="ldpi" />
+		<gap:splash src="MDPI.png" gap:platform="android" gap:density="mdpi" />
+		<gap:splash src="HDPI.png" gap:platform="android" gap:density="hdpi" />
+		<gap:splash src="XHDPI.png" gap:platform="android" gap:density="xhdpi" />
+		<gap:splash src="XXHDPI.png" gap:platform="android" gap:density="xxhdpi" />
+		<gap:splash src="XXXHDPI.png" gap:platform="android" gap:density="xxxhdpi" />
+		<gap:splash src="res/screen/blackberry/screen-225.png" gap:platform="blackberry" />
+		<gap:splash src="res/screen/windows-phone/screen-portrait.jpg" gap:platform="winphone" />
+		<gap:splash src="splash.png" />
+		<access origin="*" />
+		<access origin="content:///*" />
+		<access origin="http://google.com" subdomains="true"  />
+		<access origin="http://google.com" subdomains="true"  />
+		<access origin="https://googleapis.com" subdomains="true"  />
+		<access origin="http://gstatic.com" subdomains="true"  />
+		<access origin="https://gstatic.com" subdomains="true"  />
+		<access origin="http://googleapis.com" subdomains="true"  />
+		<access origin="http://google.com" subdomains="true"  />
+		<access origin="http://google.com" subdomains="true"  />
+		<access origin="https://googleapis.com" subdomains="true"  />
+		<access origin="http://gstatic.com" subdomains="true"  />
+		<access origin="https://gstatic.com" subdomains="true"  />
+		<access origin="http://googleapis.com" subdomains="true"  />
+		
+		<allow-intent href="http://*/*" />
+		<allow-intent href="https://*/*" />
+		<allow-intent href="tel:*" />
+		<allow-intent href="sms:*" />
+		<allow-intent href="mailto:*" />
+		<allow-intent href="geo:*" />
+		<platform name="android">
+			<allow-intent href="market:*" />
+		</platform>
+		
+		<gap:config-file platform="android" parent="/manifest" mode="add" xmlns:android="http://schemas.android.com/apk/res/android">
+			android:windowSoftInputMode="adjustResize"
+			<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    		<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    		<uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+			<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+			<uses-permission android:name="android.permission.GET_ACCOUNTS" />
+			<uses-permission android:name="android.permission.CAMERA" />
+			<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+			<uses-feature android:name="android.hardware.camera" />  
+			<uses-feature android:name="android.hardware.camera.autofocus" />
+		</gap:config-file>
+		
+	</widget>

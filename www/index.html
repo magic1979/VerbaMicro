@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+		
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<link rel="stylesheet" href="font.css">
+			
+			<link rel="stylesheet" href="themes/jquery.mobile.structure-1.4.2.min.css" />
+			<link rel="stylesheet" href="themes/microverva.css" />
+			<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+			<link rel="stylesheet" href="css/spinner.css" />
+			
+			<script src="jquery-1.10.2.min.js"></script>
+			<script src="js/jquery-ui.min.js"></script>
+			<script src="js/jquery.mobile-1.4.2.min.js"></script>
+			<script src="js/jquery.base64.min.js"></script>
+			
+			
+		<script type="text/javascript" src="js/iscroll.js"></script>
+
+
+<style type="text/css" media="all">
+    
+    
+    body,ul,li {
+        padding:10px;
+        margin:0;
+    }
+
+body {
+    font-size:12px;
+    -webkit-user-select:none;
+    -webkit-text-size-adjust:none;
+    font-family:helvetica;
+}
+
+
+#wrapper {
+    position: absolute;
+    z-index: 1;
+    top: 5px;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    overflow: hidden;
+}
+
+#wrapper2 {
+    position: absolute;
+    z-index: 1;
+    top: 5px;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    overflow: hidden;
+}
+
+#scroller {
+    position: absolute;
+    z-index: 1;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    width: 100%;
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+    -o-text-size-adjust: none;
+    text-size-adjust: none;
+}
+
+#scroller ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    text-align: left;
+}
+
+#scroller li {
+    padding: 0 10px;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #fff;
+    border-top: 1px solid #fff;
+    background-color: #fff;
+    font-size: 14px;
+}
+
+
+.Large {
+    font-size: 20pt;
+}
+
+
+    </style>
+
+<style>
+    
+    
+    .ui-mobile, .ui-mobile .ui-page, .ui-mobile [data-role="page"],
+    .ui-mobile [data-role="dialog"], .ui-page, .ui-mobile .ui-page-active {
+        overflow: hidden;
+        -webkit-backface-visibility: hidden;
+    }
+
+.div1 {
+    background-color: #FFFFFF;
+    height: 52px;
+    border: none;
+                
+    vertical-align: middle;
+}
+.div2 {
+        background-color: #FFFFFF;
+}
+.div3 {
+    background-color: #37b658;
+    border: none;
+    margin:0 auto;
+    height: 10px;
+    
+}
+.div4 {
+    background: rgb(125,126,125); /* Old browsers */
+    background: -moz-linear-gradient(45deg, rgba(125,126,125,1) 0%, rgba(14,14,14,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,rgba(125,126,125,1)), color-stop(100%,rgba(14,14,14,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(45deg, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(45deg, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(45deg, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* IE10+ */
+    background: linear-gradient(45deg, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#0e0e0e',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+.trBorderCell
+{
+    height: 30px;
+    width: 320px;
+    background: rgba(0,0,0,.6);
+    
+}
+
+.margine
+{
+    margin:0 auto;
+}
+
+.arrotondamento
+{
+    border-radius: 8px;
+    -moz-border-radius: 8px; /* firefox */
+    -webkit-border-radius: 8px; /* safari, chrome */
+}
+.custom-btn {
+    text-decoration: none;
+    text-shadow:0 0 0;
+    
+    width: 300px;
+}
+
+.custom-btn2 {
+    width: 280px;
+}
+
+.custom-btn3 {
+    width: 100px;
+    
+}
+
+.big { height: 80px;}
+.big .ui-btn-inner { padding-top:25px; }
+
+table.tablesorter {
+    font-family:arial;
+    background-color: #f0f0f0;
+    margin:10px 0pt 15px;
+    font-size: 8pt;
+    width: 95%;
+    text-align: left;
+    border: 0px solid #FFF;
+    
+    border-radius: 5px;
+    -moz-border-radius: 5px; /* firefox */
+    -webkit-border-radius: 5px; /* safari, chrome */
+    
+}
+table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+    background-color: #B40431;
+    border: 1px solid #FFF;
+    font-size: 8pt;
+    padding: 4px;
+    width: 55%;
+    
+    border-radius: 5px;
+    -moz-border-radius: 5px; /* firefox */
+    -webkit-border-radius: 5px; /* safari, chrome */
+    
+}
+table.tablesorter thead tr .header {
+    background-image: url(bg.gif);
+    background-repeat: no-repeat;
+    background-position: center right;
+    cursor: pointer;
+}
+table.tablesorter tbody td {
+    color: #B40431;
+    padding: 4px;
+    background-color: #FFF;
+    vertical-align: top;
+    
+}
+table.tablesorter tbody tr.odd td {
+    background-color:#000000;
+}
+table.tablesorter thead tr .headerSortUp {
+    background-image: url(asc.gif);
+}
+table.tablesorter thead tr .headerSortDown {
+    background-image: url(desc.gif);
+}
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+    background-color: #B40431;
+    
+}
+
+
+.circolare {
+    width: 30px;
+    height: 30px;
+    border-radius:999em;
+    -moz-border-radius:999em;
+    -webkit-border-radius:999em;
+    -o-border-radius: 999em;
+    
+    -webkit-box-shadow: 0px 0px 0.5px 0.5px #000;
+    -moz-box-shadow: 0px 0px 0.5px 0.5px #000;
+    box-shadow: 0px 0px 0.5px 0.5px #000;
+}
+
+a {text-decoration:none;}
+
+.styled-select select {
+    background: transparent;
+    width: 268px;
+    padding: 5px;
+    font-size: 16px;
+    line-height: 1;
+    border: 0;
+    border-radius: 0;
+    height: 34px;
+    -webkit-appearance: none;
+}
+
+.banner {
+    left:110px;
+    bottom:20px;
+    position: fixed;
+    
+    margin-left: auto ;
+    margin-right: auto ;
+    
+}
+
+hr.style-six {
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.mynav .ui-select, .mynav .ui-btn {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 2px;
+    margin-right: 2px !important;
+}
+.conn {
+    font-size: 9pt;
+    color:#FFF;
+    background-color: #FFF;
+}
+
+.visione {
+    color:#000;
+    font-size: 9pt;
+    text-decoration: none;
+    text-shadow:0 0 0;
+}
+
+.scrivo {
+    display: block;
+    width: 90%;
+    margin: 0px;
+    border: solid 0.5px #dcdcdc;
+    font-family: sans-serif;
+    font-size: 20px;
+    appearance: none;
+    box-shadow: none;
+    border-radius: none;
+    
+    -webkit-appearance: none;
+    -webkit-border-radius:0px;
+    @include border-radius(0);
+}
+
+
+
+    </style>
+
+
+</head>
+
+<body>
+	
+    <div id="page" data-role="page" class="div2" >
+	<audio id="successSound" src="sound/pool.mp3" type="audio/mpeg" ></audio>
+		
+      <div data-role="header" data-theme="c" data-position="fixed" data-tap-toggle="false" class="div1" data-add-back-btn="true" >
+         <table align="center" width="100%" valign="center" border="0"><tr><td></td></tr><tr><td align="center" valign="center"><img src="img/logo.png"  height="36px"></td></tr>
+         </table>
+      </div>
+    
+    <div id="wrapper">
+        <div id="scroller">
+	<br><br><br>
+	<img id="imgutente2" src="foto.png" height="200">
+		
+	<br><br>
+	<img id="biliard" src="foto.png" height="200">
+		
+	<br><br>
+	<a id="esci">ESCI</a>
+    
+    <br><br>
+    <a id="video">VIDEO</a>
+    
+    <br><br>
+    <a id="audio">AUDIO</a>  |  <a id="stop">STOP</a>  |  <a id="pause">PAUSE</a>  <a id="play">PLAY</a>
+	
+	<br><br>
+	<a id="registra">REC</a>
+    
+    <br><br>
+	<p id="audio_position"></p>
+	
+	<br><br>
+	<a id="page3">PAGE3</a>
+	
+	
+	<br><br>
+	<div id="lati"></div>
+	
+	
+    <br><br>ciccio ciccio ciccio<br><br>ciccio ciccio ciccio<br><br>ciccio ciccio ciccio<br><br>ciccio ciccio ciccio<br><br>ciccio ciccio ciccio<br><br>ciccio ciccio ciccio<br><br>ciccio ciccio ciccio<br><br>ciccio ciccio ciccio<br><br>ciccio ciccio ciccio<br><br>ciccio ciccio ciccio<br><br>ciccio ciccio ciccio<br><br>ciccio ciccio ciccio<br><br>ciccio ciccio ciccio<br><br>ciccio ciccio ciccio<br><br>ciccio ciccio ciccio<br><br>ciccio ciccio ciccio<br><br>ciccio ciccio ciccio<br><br>ciccio ciccio ciccio
+    
+        </div>
+    </div>
+
+
+    </div>
+    
+	
+	<script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+</body>
+
+</html>

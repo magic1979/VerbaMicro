@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta charset="utf-8" />
+  <title>msop</title>
+  <link rel="stylesheet" href="css/main.css" type="text/css" />
+  <link rel="stylesheet" href="css/demos.css" type="text/css" />
+  <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+  
+  <link rel="stylesheet" href="css/jquery.Jcrop.min.css" type="text/css" />
+  <!--<script src="js/jquery.min.js"></script>-->
+  
+   <script src="jquery-1.10.2.min.js"></script>
+   <script src="js/jquery.mobile-1.4.2.min.js"></script>
+   <script src="js/jquery.base64.min.js"></script>
+   <!--<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>-->
+  
+  <script src="js/jquery.Jcrop.min.js"></script>
+  <script src="js/jquery.Jcrop.js"></script>
+  
+  <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+  
+  <script>
+	  
+	  
+	  var crop_max_width = 400;
+	  var crop_max_height = 400;
+	  var jcrop_api;
+	  var canvas;
+	  var context;
+	  var image;
+	  
+	  $(document).on("touchstart", "#fotomia", function(e){
+					 
+					 
+			 navigator.camera.getPicture(uploadPhoto, onFail, { quality: 50,
+												 allowEdit: true,
+												 destinationType: Camera.DestinationType.FILE_URI,
+												 sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+												 targetWidth: 400,
+												 targetHeight: 400
+			});
+					 
+		
+					 
+	});
+	
+	
+	
+	$(document).on("touchstart", "#scatta", function(e){
+				   
+		navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 30,
+											   allowEdit: true,
+											   destinationType: Camera.DestinationType.DATA_URL,
+											   encodingType: Camera.EncodingType.PNG,
+											   targetWidth: 400,
+											   targetHeight: 400
+		});
+				   
+				   
+	});
+	
+	
+	function paperino() {
+		
+		navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 30,
+									allowEdit: true,
+									destinationType: Camera.DestinationType.DATA_URL,
+									encodingType: Camera.EncodingType.PNG,
+									targetWidth: 400,
+									targetHeight: 400
+	}
+	
+						
+				
+
+	  $(document).on("touchstart", "#ciccio1", function(e){
+					 
+		  ciccio();
+					 
+	   });
+	   
+	   
+	   function uploadPhoto(imageURI) {
+		   
+
+
+		   // Convert image
+		   getFileContentAsBase64(imageURI,function(base64Image){
+								  
+								  console.log(base64Image.replace("data:image/jpeg;base64,",""));
+								  // Then you'll be able to handle the myimage.png file as base64
+								  
+								  localStorage.setItem("imgutente2", base64Image);
+								  localStorage.setItem("imgutente3", base64Image.replace("data:image/jpeg;base64,",""));
+								  
+
+								  
+								  //POST
+
+								  
+			});
+								  
+								  
+								  
+	   }
+  
+  
+  function onPhotoDataSuccess(imageData) {
+	  
+	  localStorage.setItem("biliard", "data:image/png;base64," + imageData);
+	  
+	  canvas = null;
+		  
+	  image = new Image();
+	  image.onload = validateImage;
+	  image.src = localStorage.getItem("biliard");
+	  
+			 
+  }
+  
+	
+	
+	function onFail(message) {
+		navigator.notification.alert(
+									 message,  // message
+									 alertDismissed,         // callback
+									 'Foto',            // title
+									 'OK'                  // buttonName
+									 );
+	}
+  
+  
+  function getFileContentAsBase64(path,callback){
+	  window.resolveLocalFileSystemURL(path, gotFile, fail);
+	  
+	  function fail(e) {
+		  alert('Cannot found requested file');
+	  }
+	  
+	  function gotFile(fileEntry) {
+		  fileEntry.file(function(file) {
+						 var reader = new FileReader();
+						 canvas = null;
+						 reader.onloadend = function(e) {
+						 var content = this.result;
+						 
+						 image = new Image();
+						 image.onload = validateImage;
+						 image.src = this.result;
+						 
+						 callback(content);
+						 };
+						 // The most important point, use the readAsDatURL Method from the file plugin
+						 reader.readAsDataURL(file);
+						 });
+	  }
+	  
+	  
+  }
+  
+  
+	  
+  </script>
+  
+  
+</head>
+<body>
+
+<form id="form">
+	
+  <input id="file" type="file" />
+  <img id="fotomia" src="foto.png" height="100"> <img id="scatta" src="foto.png" height="100">
+  
+  <h2>Image cropper (Jcrop)</h2>
+  
+  <button id="cropbutton" type="button">Crop</button>
+  <!--<button id="scalebutton" type="button">Scale</button>
+  <button id="rotatebutton" type="button">Rotate</button>
+  <button id="hflipbutton" type="button">H-flip</button>
+  <button id="vflipbutton" type="button">V-flip</button>-->
+  <br>
+  
+  <div id="views"></div>
+  
+  <input type="submit" value="Upload form data and image" />
+  
+</form>
+
+<br>
+<a id="ciccio1" >TAGLIA</a>
+
+<br>
+<div id="nome"></div>
+
+
+<script>
+var crop_max_width = 400;
+var crop_max_height = 400;
+var jcrop_api;
+var canvas;
+var context;
+var image;
+
+var prefsize;
+document.getElementById("nome").innerHTML = "Base64";
+
+$("#file").change(function() {
+  loadImage(this);
+});
+
+
+
+
+function loadImage(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    canvas = null;
+    reader.onload = function(e) {
+      image = new Image();
+      image.onload = validateImage;
+      image.src = e.target.result;
+    }
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+function dataURLtoBlob(dataURL) {
+	
+	alert(dataURL);
+
+	var pippo = dataURL.toString()
+
+	document.getElementById("nome").innerHTML = pippo.replace("data:image/png;base64,","").replace("data:image/jpeg;base64,","");
+	
+	localStorage.setItem("imgutente3", pippo.replace("data:image/png;base64,","").replace("data:image/jpeg;base64,",""));
+	
+	$.ajax({
+		   type: "POST",
+		   url: "http://microverba.com/picture.php",
+		   data: {imgdata:localStorage.getItem("imgutente3")},
+		   cache: false,
+		   crossDomain: true,
+		   contentType: "application/x-www-form-urlencoded",
+		   success: function (result) {
+		   
+		   alert(result.Token)
+		   
+		   
+		   },
+		   error: function(){
+		   
+		   navigator.notification.alert(
+										'Errore Imprevisto, contatta il fornitore',  // message
+										alertDismissed,         // callback
+										'Errore',            // title
+										'OK'                  // buttonName
+										);
+		   
+		   }
+		   
+	});
+		   
+
+
+	//alert(dataURL.toString().replace("data:image/jpeg;base64,",""))
+
+  var BASE64_MARKER = ';base64,';
+  if (dataURL.indexOf(BASE64_MARKER) == -1) {
+    var parts = dataURL.split(',');
+    var contentType = parts[0].split(':')[1];
+    var raw = decodeURIComponent(parts[1]);
+    
+
+    return new Blob([raw], {
+      type: contentType
+    });
+    
+    
+  }
+  var parts = dataURL.split(BASE64_MARKER);
+  var contentType = parts[0].split(':')[1];
+  var raw = window.atob(parts[1]);
+  var rawLength = raw.length;
+  
+   
+  var uInt8Array = new Uint8Array(rawLength);
+  for (var i = 0; i < rawLength; ++i) {
+    uInt8Array[i] = raw.charCodeAt(i);
+  }
+
+
+  return new Blob([uInt8Array], {
+    type: contentType
+  });
+  
+}
+
+function validateImage() {
+  if (canvas != null) {
+    image = new Image();
+    image.onload = restartJcrop;
+    image.src = canvas.toDataURL('image/png');
+  } else restartJcrop();
+}
+
+function restartJcrop() {
+  if (jcrop_api != null) {
+    jcrop_api.destroy();
+  }
+  $("#views").empty();
+  $("#views").append("<canvas id=\"canvas\">");
+  canvas = $("#canvas")[0];
+  context = canvas.getContext("2d");
+  canvas.width = image.width;
+  canvas.height = image.height;
+  context.drawImage(image, 0, 0);
+  $("#canvas").Jcrop({
+    onSelect: selectcanvas,
+    onRelease: clearcanvas,
+    boxWidth: crop_max_width,
+    boxHeight: crop_max_height
+  }, function() {
+    jcrop_api = this;
+  });
+  clearcanvas();
+}
+
+function clearcanvas() {
+  prefsize = {
+    x: 0,
+    y: 0,
+    w: canvas.width,
+    h: canvas.height,
+  };
+}
+
+function selectcanvas(coords) {
+  prefsize = {
+    x: Math.round(coords.x),
+    y: Math.round(coords.y),
+    w: Math.round(coords.w),
+    h: Math.round(coords.h)
+  };
+}
+
+function applyCrop() {
+  canvas.width = prefsize.w;
+  canvas.height = prefsize.h;
+  context.drawImage(image, prefsize.x, prefsize.y, prefsize.w, prefsize.h, 0, 0, canvas.width, canvas.height);
+  validateImage();
+}
+
+function applyScale(scale) {
+  if (scale == 1) return;
+  canvas.width = canvas.width * scale;
+  canvas.height = canvas.height * scale;
+  context.drawImage(image, 0, 0, canvas.width, canvas.height);
+  validateImage();
+}
+
+function applyRotate() {
+  canvas.width = image.height;
+  canvas.height = image.width;
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  context.translate(image.height / 2, image.width / 2);
+  context.rotate(Math.PI / 2);
+  context.drawImage(image, -image.width / 2, -image.height / 2);
+  validateImage();
+}
+
+function applyHflip() {
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  context.translate(image.width, 0);
+  context.scale(-1, 1);
+  context.drawImage(image, 0, 0);
+  validateImage();
+}
+
+function applyVflip() {
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  context.translate(0, image.height);
+  context.scale(1, -1);
+  context.drawImage(image, 0, 0);
+  validateImage();
+}
+
+$("#cropbutton").click(function(e) {
+  applyCrop();
+});
+$("#scalebutton").click(function(e) {
+  var scale = prompt("Scale Factor:", "1");
+  applyScale(scale);
+});
+$("#rotatebutton").click(function(e) {
+  applyRotate();
+});
+$("#hflipbutton").click(function(e) {
+  applyHflip();
+});
+$("#vflipbutton").click(function(e) {
+  applyVflip();
+});
+
+$("#form").submit(function(e) {
+  e.preventDefault();
+  formData = new FormData($(this)[0]);
+  var blob = dataURLtoBlob(canvas.toDataURL('image/png'));
+  
+   
+  //---Add file blob to the form data
+});
+
+
+function ciccio() {
+	
+	
+   //alert("funziona")
+
+  var blob = dataURLtoBlob(canvas.toDataURL('image/png'));
+  
+  
+  
+}
+
+function alertDismissed() {
+	
+}
+
+
+
+
+
+</script>
+
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/Responsabile.js"></script>
+
+</body>
+</html>

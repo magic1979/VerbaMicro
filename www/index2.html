@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<title>Pano demo</title>  
+		<style>
+		html,body {
+			height: 100%;
+		}
+		.pano {
+			width: 100%;
+			height: 100%;
+			margin: 0 auto;
+			cursor: move;
+		}
+        .pano2 {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            color: #000;
+            font-size: 34;
+            z-index: 10;
+        }
+		.pano .controls {
+			position: relative;
+			top: 40%;
+		}
+		.pano .controls a {
+			position: absolute;
+			display: inline-block;
+			text-decoration: none;
+			color: #eee;
+			font-size: 3em;
+			width: 20px;
+			height: 20px;
+		}
+		.pano .controls a.left {
+			left: 10px;
+		}
+		.pano .controls a.right {
+			right: 10px;
+		}
+		.pano.moving .controls a {
+			opacity: 0.4;
+			color: #eee;
+		}
+		</style>
+	</head>
+	<body>
+        
+        <img src="marker.png" id="marker" style="display: none; position: absolute;" />
+		<div id="myPano" class="pano">
+			<div class="controls">
+				<a href="#" class="left">&laquo;</a>
+				<a href="#" class="right">&raquo;</a>
+			</div>
+		</div>
+        
+        <div id="myPano2" class="pano2">TELE</div>
+        
+        
+		<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+        
+		<script src="jquery.pano.js"></script>
+		<script>
+		/* jshint jquery: true */
+		jQuery(document).ready(function($){
+			$("#myPano").pano({
+                img: "./sphere.jpg"
+			});
+		});
+		
+		document.getElementById('myPano').onclick = function(e)
+		{
+		   with(document.getElementById('marker'))
+		   {
+				style.left = e.pageX;
+				style.top = e.pageY;
+				style.display = 'block';
+		   }
+		   // Here you forward the coordinates e.pageX, e.pageY 
+		   // ... to whatever function that needs it
+		};
+		</script>
+	</body>
+</html>
