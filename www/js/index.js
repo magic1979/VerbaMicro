@@ -49,17 +49,24 @@ var app = {
 		
 		
 		
-		var myScroll2;
-		
-		myScroll2 = new IScroll('#wrapper', { click: true });
-		
-		setTimeout (function(){
-			myScroll2.refresh();
-		}, 1700);
-		
-		document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 300); }, false);
-		
-		document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+		var myScroll;
+		   
+		   myScroll = new iScroll('wrapper', {
+										//zoom: true,
+										click: true
+										/*hScrollbar: false,
+										vScrollbar: false,
+										zoomMin:1,
+										zoomMax:2,
+										zoomStart:1*/
+								  });
+		   
+		   
+		   setTimeout (function(){
+					   
+				myScroll.refresh();
+					   
+			}, 2000);
 		
 		
 		
