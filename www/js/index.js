@@ -171,6 +171,7 @@ var app = {
         });
 		
 		
+		
         function playAudio2(id) {
             
             var audioElement = document.getElementById(id);
@@ -684,6 +685,8 @@ var app = {
 
 		
 		// FINE CARICAMENTO //
+		
+		alert("fine caricamento pagina")
 		
     }
 };
