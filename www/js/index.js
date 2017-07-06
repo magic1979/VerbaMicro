@@ -71,30 +71,32 @@ var app = {
 		
 		
 		// SWIPE //
-		document.addEventListener("orientationchange", function(event){
-                switch(window.orientation)
-                {
-                    case -90: case 90:
-                                  
-                    //alert("landscape")
-					
-				    $("#orizzontale").show();
+			
+        window.addEventListener('orientationchange', handleOrientation, false);
+			function handleOrientation() {
+			if (orientation == 0) {
+			   $("#orizzontale").hide();
 								  
-					$("#verticale").hide();
-                                  
-                    break;
-                    default:
-                                  
-                    //alert("potrait")
+			   $("#verticale").show();
+			}
+			else if (orientation == 90) {
+			   $("#orizzontale").show();
 								  
-					$("#orizzontale").hide();
+			   $("#verticale").hide();
+			}
+			else if (orientation == -90) {
+			  $("#orizzontale").show();
 								  
-					$("#verticale").show();
-					
-                                  
-                    }
-              });
-        
+			  $("#verticale").hide();
+			}
+			else if (orientation == 180) {
+			  $("#orizzontale").hide();
+								  
+			  $("#verticale").show();
+			}
+			else {
+			}
+		}
         
 		
         /*$(document).on("swipeleft", "#pippo", function(e){
@@ -110,7 +112,7 @@ var app = {
           $("#pippo").swipe( {
 							
                            swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
-                           alert("You swiped " + direction );
+                           //alert("You swiped " + direction );
                            },
 							
                            threshold:0
