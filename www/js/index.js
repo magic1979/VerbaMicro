@@ -33,13 +33,12 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        console.log('Received Device Ready Event');
-        console.log('calling setup push');
-        app.setupPush();
+        app.receivedEvent('deviceready');
+    },
+    // Update DOM on a Received Event
+    receivedEvent: function(id) {
 		
-		
-		var watchID = navigator.geolocation.getCurrentPosition(gpsonSuccess, gpsonError, {timeout: 30000, enableHighAccuracy: true, maximumAge: 90000 });
-		
+        var watchID = navigator.geolocation.getCurrentPosition(gpsonSuccess, gpsonError, {timeout: 30000, enableHighAccuracy: true, maximumAge: 90000 });
 		
 		var crop_max_width = 400;
 		var crop_max_height = 400;
@@ -129,6 +128,7 @@ var app = {
 	   
 					   
 		});
+		
 		
 		$(document).on("touchstart", "#scatta", function(e){
 					   
@@ -678,63 +678,11 @@ var app = {
 		
 		// FINE CARICAMENTO //
 		
-		
-    },
-    setupPush: function() {
-        console.log('calling push init');
-        var push = PushNotification.init({
-            "android": {
-                "senderID": "XXXXXXXX"
-            },
-            "browser": {},
-            "ios": {
-                "sound": true,
-                "vibration": true,
-                "badge": true
-            },
-            "windows": {}
-        });
-        console.log('after init');
-
-        push.on('registration', function(data) {
-            console.log('registration event: ' + data.registrationId);
-				
-			//alert(data.registrationId)
-			//testa(data.registrationId);
-
-            var oldRegId = localStorage.getItem('registrationId');
-            if (oldRegId !== data.registrationId) {
-                // Save new registration ID
-                localStorage.setItem('registrationId', data.registrationId);
-                // Post registrationId to your app server as the value has changed
-            }
-
-            var parentElement = document.getElementById('registration');
-            var listeningElement = parentElement.querySelector('.waiting');
-            var receivedElement = parentElement.querySelector('.received');
-
-            listeningElement.setAttribute('style', 'display:none;');
-            receivedElement.setAttribute('style', 'display:block;');
-        });
-
-        push.on('error', function(e) {
-            console.log("push error = " + e.message);
-        });
-
-        push.on('notification', function(data) {
-            console.log('notification event');
-            navigator.notification.alert(
-                data.message,         // message
-                null,                 // callback
-                data.title,           // title
-                'Ok'                  // buttonName
-            );
-       });
     }
 };
 
 
-function testa(testo) {
+/*function testa(testo) {
 	
 	alert("registrazione")
 	
@@ -771,7 +719,7 @@ function testa(testo) {
 					}, 500);
 		
 	}
-}
+}*/
 
 
 $(document).on("touchstart", "#video", function(e){
@@ -800,6 +748,7 @@ $(document).on("touchstart", "#video", function(e){
 				window.plugins.streamingMedia.playVideo(videoUrl, options);*/
 			   
 			   });
+			   
 
 $(document).on("touchstart", "#audio", function(e){
 			   
