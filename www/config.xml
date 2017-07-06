@@ -10,7 +10,7 @@
 			Mondoweb s.r.l
 		</author>
 		<preference name="phonegap-version" value="cli-6.5.0" />
-		<preference name="orientation" value="portrait" />
+		<preference name="orientation" value="default" />
 		<preference name="android-windowSoftInputMode" value="adjustResize" />
 		<preference name="fullscreen" value="false" />
 		<preference name="target-device" value="universal" />

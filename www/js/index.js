@@ -46,11 +46,26 @@ var app = {
 		var canvas;
 		var context;
 		var image;
+		
+		
+		
+		var myScroll2;
+		
+		myScroll2 = new IScroll('#wrapper', { click: true });
+		
+		setTimeout (function(){
+					myScroll2.refresh();
+		}, 1700);
+		
+		document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 300); }, false);
+		
+		document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+		
+		
         
 		
-		
 		// SWIPE //
-        document.addEventListener("orientationchange", function(event){
+			document.addEventListener("orientationchange", function(event){
                 switch(window.orientation)
                 {
                     case -90: case 90:
@@ -72,9 +87,10 @@ var app = {
 					
                                   
                     }
-                });
+              });
         
         
+		
         /*$(document).on("swipeleft", "#pippo", function(e){
                        
             alert("sinistra")
@@ -82,7 +98,7 @@ var app = {
         });*/
         
         
-        $(function() {
+        /*$(function() {
 		  
           $("#pippo").swipe( {
 							
@@ -92,7 +108,7 @@ var app = {
 							
                            threshold:0
                            });
-          });
+          });*/
 		
 		
 		/*navigator.camera.getPicture(uploadPhoto, onFail, { quality: 50,
@@ -423,7 +439,7 @@ var app = {
 		
 		function dataURLtoBlob(dataURL) {
 			
-			alert(dataURL);
+			//alert(dataURL);
 			
 			var pippo = dataURL.toString()
 			
@@ -440,7 +456,12 @@ var app = {
 				   contentType: "application/x-www-form-urlencoded",
 				   success: function (result) {
 				   
-				   alert(result.Token)
+					navigator.notification.alert(
+										 'File caricato correttamente.',  // message
+										 alertDismissed,         // callback
+										 'File Upload',           // title
+										 'Done'                  // buttonName
+										 );
 				   
 				   
 				   },
@@ -458,7 +479,7 @@ var app = {
 			});
 			
 			
-			alert("fine")
+			//alert("fine")
 			
 			//alert(dataURL.toString().replace("data:image/jpeg;base64,",""))
 			
@@ -661,20 +682,7 @@ var app = {
 			
 		}
 		
-		
-		var myScroll2;
-		
-		myScroll2 = new IScroll('#wrapper', { click: true });
-		
-		setTimeout (function(){
-					myScroll2.refresh();
-		}, 1700);
-		
-		document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 300); }, false);
-		
-		document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
-		
-		
+
 		
 		// FINE CARICAMENTO //
 		
