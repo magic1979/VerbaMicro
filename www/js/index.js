@@ -54,7 +54,7 @@ var app = {
 		myScroll2 = new IScroll('#wrapper', { click: true });
 		
 		setTimeout (function(){
-					myScroll2.refresh();
+			myScroll2.refresh();
 		}, 1700);
 		
 		document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 300); }, false);
@@ -62,10 +62,9 @@ var app = {
 		document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
 		
 		
-        
 		
 		// SWIPE //
-			document.addEventListener("orientationchange", function(event){
+		/*document.addEventListener("orientationchange", function(event){
                 switch(window.orientation)
                 {
                     case -90: case 90:
@@ -87,7 +86,7 @@ var app = {
 					
                                   
                     }
-              });
+              });*/
         
         
 		
