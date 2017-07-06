@@ -71,7 +71,7 @@ var app = {
 		
 		
 		// SWIPE //
-		/*document.addEventListener("orientationchange", function(event){
+		document.addEventListener("orientationchange", function(event){
                 switch(window.orientation)
                 {
                     case -90: case 90:
@@ -93,7 +93,7 @@ var app = {
 					
                                   
                     }
-              });*/
+              });
         
         
 		
@@ -102,19 +102,20 @@ var app = {
             alert("sinistra")
                        
         });*/
+		
         
         
-        /*$(function() {
+        $(function() {
 		  
           $("#pippo").swipe( {
 							
                            swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
-                           //alert("You swiped " + direction );
+                           alert("You swiped " + direction );
                            },
 							
                            threshold:0
                            });
-          });*/
+          });
 		
 		
 		/*navigator.camera.getPicture(uploadPhoto, onFail, { quality: 50,
@@ -693,7 +694,7 @@ var app = {
 		
 		// FINE CARICAMENTO //
 		
-		alert("fine caricamento pagina")
+		//alert("fine caricamento pagina")
 		
     }
 };
