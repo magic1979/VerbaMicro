@@ -47,7 +47,7 @@ var app = {
 		var context;
 		var image;
 		
-		
+		//$("#spinner").show();
 		
 		var myScroll;
 		   
@@ -129,13 +129,13 @@ var app = {
 									});*/
 		
 	
-		/*navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 30,
+		navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 30,
 									allowEdit: true,
 									destinationType: Camera.DestinationType.DATA_URL,
 									encodingType: Camera.EncodingType.PNG,
 									targetWidth: 400,
 									targetHeight: 400
-									});*/
+									});
 		
 
 		
@@ -300,7 +300,7 @@ var app = {
 					
 					localStorage.setItem("path", mediaFiles[i].fullPath);
 					
-					alert(localStorage.getItem("path"))
+					//alert(localStorage.getItem("path"))
 					
 					uploadFile(mediaFiles[i]);
 				}
@@ -316,6 +316,9 @@ var app = {
 			
 			
 			function uploadFile(mediaFile) {
+				
+				$("#spinner").show();
+				
 				var ft = new FileTransfer(),
 				path = mediaFile.fullPath,
 				name = mediaFile.name;
@@ -323,11 +326,15 @@ var app = {
 				ft.upload(path,
 						  "http://microverba.com/filesu.php",
 						  function(result) {
-						  console.log('Upload success: ' + result.responseCode);
-						  console.log(result.bytesSent + ' bytes sent');
+							  
+					        $("#spinner").hide();
+							  
+						    //console.log('Upload success: ' + result.responseCode);
+						    //console.log(result.bytesSent + ' bytes sent');
 						  },
 						  function(error) {
-						  console.log('Error uploading file ' + path + ': ' + error.code);
+						    alert('Error uploading file ' + path + ': ' + error.code);
+							$("#spinner").hide();
 						  },
 						  { fileName: name });
 			}
@@ -352,7 +359,7 @@ var app = {
 					   
 					   localStorage.setItem("path", mediaFiles[i].fullPath);
 					   
-					   alert(localStorage.getItem("path"))
+					   //alert(localStorage.getItem("path"))
 					   
 					   uploadFile(mediaFiles[i]);
 					   }
@@ -368,18 +375,25 @@ var app = {
 					   
 					   
 					   function uploadFile(mediaFile) {
-					   var ft = new FileTransfer(),
-					   path = mediaFile.fullPath,
-					   name = mediaFile.name;
+						   
+					    $("#spinner").show();
+						   
+					    var ft = new FileTransfer(),
+					    path = mediaFile.fullPath,
+					    name = mediaFile.name;
 					   
 					   ft.upload(path,
 								 "http://microverba.com/filesu.php",
 								 function(result) {
-								 console.log('Upload success: ' + result.responseCode);
-								 console.log(result.bytesSent + ' bytes sent');
+									 
+									 $("#spinner").hide();
+									 
+								    //console.log('Upload success: ' + result.responseCode);
+								    //console.log(result.bytesSent + ' bytes sent');
 								 },
 								 function(error) {
-								 console.log('Error uploading file ' + path + ': ' + error.code);
+								   alert('Error uploading file ' + path + ': ' + error.code);
+								   $("#spinner").hide();
 								 },
 								 { fileName: name });
 					   }
@@ -401,6 +415,8 @@ var app = {
 		
 		
 		function ciccio() {
+			
+			//$("#spinner").show();
 
 			var blob = dataURLtoBlob(canvas.toDataURL('image/png'));
 
@@ -449,7 +465,7 @@ var app = {
 		
 		function dataURLtoBlob(dataURL) {
 			
-			//alert(dataURL);
+			$("#spinner").show();
 			
 			var pippo = dataURL.toString()
 			
@@ -465,6 +481,8 @@ var app = {
 				   crossDomain: true,
 				   contentType: "application/x-www-form-urlencoded",
 				   success: function (result) {
+					   
+					$("#spinner").hide();
 				   
 					navigator.notification.alert(
 										 'File caricato correttamente.',  // message
