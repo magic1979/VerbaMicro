@@ -47,7 +47,6 @@ var app = {
 		var context;
 		var image;
 		
-		$("#spinner").hide();
 		
 		var myScroll;
 		   
@@ -138,6 +137,7 @@ var app = {
 									});
 		
 
+		$("#spinner").hide();
 		
 		// START CODE //
         
@@ -275,7 +275,6 @@ var app = {
 		
 		function onFail(message) {
 			
-			$("#spinner").hide();
 			
 			navigator.notification.alert(
 										 'Nessuna foto caricata',  // message
@@ -283,6 +282,13 @@ var app = {
 										 'Foto',            // title
 										 'OK'                  // buttonName
 										 );
+										 
+			
+			setTimeout (function(){
+					   
+				$("#spinner").hide();
+					   
+			}, 1500);
 		}
 		
 		
@@ -428,7 +434,7 @@ var app = {
 		
 		
 		function alertDismissed() {
-			
+			$("#spinner").hide();
 		}
 		
 		
