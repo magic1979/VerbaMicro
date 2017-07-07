@@ -47,7 +47,7 @@ var app = {
 		var context;
 		var image;
 		
-		//$("#spinner").show();
+		$("#spinner").hide();
 		
 		var myScroll;
 		   
@@ -274,6 +274,9 @@ var app = {
 		
 		
 		function onFail(message) {
+			
+			$("#spinner").hide();
+			
 			navigator.notification.alert(
 										 'Nessuna foto caricata',  // message
 										 alertDismissed,         // callback
