@@ -342,7 +342,7 @@ var app = {
 						    //console.log(result.bytesSent + ' bytes sent');
 						  },
 						  function(error) {
-						    alert('Error uploading file ' + path + ': ' + error.code);
+						    //alert('Error uploading file ' + path + ': ' + error.code);
 							$("#spinner").hide();
 						  },
 						  { fileName: name });
@@ -359,26 +359,26 @@ var app = {
 					   
 					   
 					   // capture callback
-					   var captureSuccess = function(mediaFiles) {
+					  var captureSuccess = function(mediaFiles) {
 					   var i, path, len;
 					   for (i = 0, len = mediaFiles.length; i < len; i += 1) {
-					   path = mediaFiles[i].fullPath;
-					   // do something interesting with the file
+					    path = mediaFiles[i].fullPath;
+					    // do something interesting with the file
 					   
 					   
-					   localStorage.setItem("path", mediaFiles[i].fullPath);
+					    localStorage.setItem("path", mediaFiles[i].fullPath);
 					   
-					   //alert(localStorage.getItem("path"))
+					    //alert(localStorage.getItem("path"))
 					   
-					   uploadFile(mediaFiles[i]);
+					    uploadFile(mediaFiles[i]);
 					   }
-					   };
+					  };
 					   
 					   
 					   
 					   // capture error callback
 					   var captureError = function(error) {
-					   navigator.notification.alert('Error code: ' + error.code, null, 'Capture Error');
+					     navigator.notification.alert('Error code: ' + error.code, null, 'Capture Error');
 					   };
 					   
 					   
@@ -401,7 +401,7 @@ var app = {
 								    //console.log(result.bytesSent + ' bytes sent');
 								 },
 								 function(error) {
-								   alert('Error uploading file ' + path + ': ' + error.code);
+								   //alert('Error uploading file ' + path + ': ' + error.code);
 								   $("#spinner").hide();
 								 },
 								 { fileName: name });
