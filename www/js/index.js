@@ -129,7 +129,7 @@ var app = {
 		
 	
 		navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 30,
-									allowEdit: true,
+									//allowEdit: true,
 									destinationType: Camera.DestinationType.DATA_URL,
 									encodingType: Camera.EncodingType.PNG,
 									targetWidth: 400,
@@ -346,6 +346,13 @@ var app = {
 							$("#spinner").hide();
 						  },
 						  { fileName: name });
+						  
+						  
+				setTimeout (function(){
+					   
+				   $("#spinner").hide();
+					   
+			    }, 10000);
 			}
 			
 			
@@ -373,7 +380,6 @@ var app = {
 					    uploadFile(mediaFiles[i]);
 					   }
 					  };
-					   
 					   
 					   
 					   // capture error callback
@@ -405,6 +411,14 @@ var app = {
 								   $("#spinner").hide();
 								 },
 								 { fileName: name });
+								 
+								 
+							setTimeout (function(){
+					   
+								$("#spinner").hide();
+							   
+							}, 10000);
+							
 					   }
 					   
 					   
@@ -503,6 +517,8 @@ var app = {
 				   
 				   },
 				   error: function(){
+					   
+					$("#spinner").hide();
 				   
 				   navigator.notification.alert(
 												'Errore Imprevisto, contatta il fornitore',  // message
