@@ -51,22 +51,54 @@ var app = {
 		var myScroll;
 		   
 		   myScroll = new iScroll('wrapper', {
-										//zoom: true,
-										click: true
-										/*hScrollbar: false,
-										vScrollbar: false,
-										zoomMin:1,
-										zoomMax:2,
-										zoomStart:1*/
-								  });
+								click: true,
+								useTransform: false,
+								//bounce: false,
+								onBeforeScrollStart: function (e)
+								{
+								var target = e.target;
+								while (target.nodeType != 1) {
+								target = target.parentNode;
+								}
+								
+								if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA' && target.tagName != 'OPTION') {
+								e.preventDefault();
+								}
+								}
+
+			});
 		   
 		   
 		   setTimeout (function(){
 					   
 				myScroll.refresh();
 					   
-			}, 2000);
+			}, 1000);
 		
+		
+			var selectField = document.getElementById('radice');
+			selectField.addEventListener('touchstart', function(e)
+										 {
+										 e.stopPropagation();
+										 }, false);
+			
+			var selectField2 = document.getElementById('radice2');
+			selectField2.addEventListener('touchstart', function(e)
+										 {
+										 e.stopPropagation();
+										 }, false);
+			
+			var selectField3 = document.getElementById('foglia2');
+			selectField3.addEventListener('touchstart', function(e)
+										  {
+										  e.stopPropagation();
+										  }, false);
+			
+			var selectField4 = document.getElementById('foglia');
+			selectField4.addEventListener('touchstart', function(e)
+										  {
+										  e.stopPropagation();
+										  }, false);
 		
 		
 		// SWIPE //
