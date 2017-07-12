@@ -143,6 +143,12 @@ var app = {
           $("#pippo").swipe( {
 							
                            swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+                            
+                            $( "#radice" ).blur();
+                            $( "#foglia" ).blur();
+                            $( "#radice2" ).blur();
+                            $( "#foglia2" ).blur();
+                            
                            //alert("You swiped " + direction );
                            },
 							
@@ -653,6 +659,20 @@ var app = {
 			canvas.height = prefsize.h;
 			context.drawImage(image, prefsize.x, prefsize.y, prefsize.w, prefsize.h, 0, 0, canvas.width, canvas.height);
 			validateImage();
+			
+			$(function() {
+              
+              $("#pippo").swipe( {
+                                
+                                swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+
+                                    alert("You swiped " + direction );
+                                
+                                },
+                                
+                                threshold:0
+                                });
+              });
 		}
 		
 		function applyScale(scale) {
