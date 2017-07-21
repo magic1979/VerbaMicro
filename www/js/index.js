@@ -38,7 +38,7 @@ var app = {
     // Update DOM on a Received Event
     receivedEvent: function(id) {
 		
-		StatusBar.show();
+		StatusBar.hide();
 		
         var watchID = navigator.geolocation.getCurrentPosition(gpsonSuccess, gpsonError, {timeout: 30000, enableHighAccuracy: true, maximumAge: 90000 });
 		
@@ -168,13 +168,13 @@ var app = {
 									});*/
 		
 	
-		navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 30,
+		/*navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 30,
 									//allowEdit: true,
 									destinationType: Camera.DestinationType.DATA_URL,
 									encodingType: Camera.EncodingType.PNG,
 									targetWidth: 400,
 									targetHeight: 400
-									});
+									});*/
 		
 
 		$("#spinner").hide();

@@ -158,6 +158,7 @@
 		</platform>
 		
 		<gap:config-file platform="android" parent="/manifest" mode="add" xmlns:android="http://schemas.android.com/apk/res/android">
+		
 			android:windowSoftInputMode="adjustResize"
 			<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     		<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -172,7 +173,7 @@
 			<uses-permission android:name="android.permission.RECORD_VIDEO" />
 			<uses-feature android:name="android.hardware.camera" />  
 			<uses-feature android:name="android.hardware.camera.autofocus" />
-			<uses-feature android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+			
 		</gap:config-file>
 		
 	</widget>
