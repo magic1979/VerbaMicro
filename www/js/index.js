@@ -38,7 +38,7 @@ var app = {
     // Update DOM on a Received Event
     receivedEvent: function(id) {
 		
-		StatusBar.hide();
+		//StatusBar.hide();
 		
         var watchID = navigator.geolocation.getCurrentPosition(gpsonSuccess, gpsonError, {timeout: 30000, enableHighAccuracy: true, maximumAge: 90000 });
 		
