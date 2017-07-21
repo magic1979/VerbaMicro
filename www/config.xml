@@ -12,7 +12,7 @@
 		<preference name="phonegap-version" value="cli-6.5.0" />
 		<preference name="orientation" value="default" />
 		<preference name="android-windowSoftInputMode" value="adjustResize" />
-		<preference name="fullscreen" value="true" />
+		<preference name="fullscreen" value="false" />
 		<preference name="target-device" value="universal" />
 		<preference name="webviewbounce" value="true" />
 		<preference name="prerendered-icon" value="true" />
@@ -173,5 +173,10 @@
 			<uses-feature android:name="android.hardware.camera" />  
 			<uses-feature android:name="android.hardware.camera.autofocus" />
 		</gap:config-file>
+		
+		 <edit-config file="AndroidManifest.xml" mode="merge"
+                 target="/manifest/application/activity">
+        <activity android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+    </edit-config>
 		
 	</widget>
