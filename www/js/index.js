@@ -50,7 +50,7 @@ var app = {
 		var image;
 		
 		
-		var myScroll;
+		/*var myScroll;
 		   
 		   myScroll = new iScroll('wrapper', {
 								click: true,
@@ -75,34 +75,9 @@ var app = {
 					   
 				myScroll.refresh();
 					   
-			}, 1000);
+			}, 1000);*/
 		
-		
-			var selectField = document.getElementById('radice');
-			selectField.addEventListener('touchstart', function(e)
-										 {
-										 e.stopPropagation();
-										 }, false);
-			
-			var selectField2 = document.getElementById('radice2');
-			selectField2.addEventListener('touchstart', function(e)
-										 {
-										 e.stopPropagation();
-										 }, false);
-			
-			var selectField3 = document.getElementById('foglia2');
-			selectField3.addEventListener('touchstart', function(e)
-										  {
-										  e.stopPropagation();
-										  }, false);
-			
-			var selectField4 = document.getElementById('foglia');
-			selectField4.addEventListener('touchstart', function(e)
-										  {
-										  e.stopPropagation();
-										  }, false);
-		
-		
+	
 		// SWIPE //
 			
         window.addEventListener('orientationchange', handleOrientation, false);
