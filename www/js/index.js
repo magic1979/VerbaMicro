@@ -868,8 +868,33 @@ var app = {
 					   
 					   }
 					   
-					   
-					      //window.location.href = "tel:+393478253732";
+					  
+						   var myScroll;
+			   
+						   myScroll = new iScroll('wrapper', {
+								click: true,
+								useTransform: false,
+								//bounce: false,
+								onBeforeScrollStart: function (e)
+								{
+								var target = e.target;
+								while (target.nodeType != 1) {
+								target = target.parentNode;
+								}
+								
+								if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA' && target.tagName != 'OPTION') {
+								e.preventDefault();
+								}
+								}
+	
+							});
+		   
+		   
+						   setTimeout (function(){
+									   
+								myScroll.refresh();
+									   
+							}, 1000);
 
                           // FINE IF TOKEN
 					      }
