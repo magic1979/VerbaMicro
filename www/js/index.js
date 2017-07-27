@@ -231,7 +231,7 @@ var app = {
                 var foglia3;
 
                        
-                if(self.document.form.radice2.value !=""){
+                if(self.document.form.radice2.value != ""){
                   radice3 = self.document.form.radice2.value
                 }
                 else{
@@ -239,12 +239,14 @@ var app = {
                 }
                        
                        
-                if(self.document.form.foglia2.value!=""){
+                if(self.document.form.foglia2.value != ""){
                   foglia3 = self.document.form.foglia2.value
                 }
                 else{
                   foglia3 = self.document.form.foglia.value
                 }
+				
+				alert(radice3 +" "+ foglia3)
                        
                 
                 if (radice3 == "") {
@@ -266,6 +268,8 @@ var app = {
                      );
                     return;
                 }
+				
+				alert("1")
                        
 					   
 				var radice4 = radice3.toLowerCase();
@@ -273,6 +277,8 @@ var app = {
 					   
 				var radice = $.base64.encode(radice4);
 				var foglia = $.base64.encode(foglia4);
+				
+				alert("2")
 
 
 			   var myScroll2;
@@ -295,7 +301,7 @@ var app = {
 				});
 
 				
-					   
+			    alert("3")
 					   
 				$(".spinner").show();
 				 
@@ -970,9 +976,8 @@ var app = {
 								   localStorage.setItem("imgutente2", base64Image);
 								   localStorage.setItem("imgutente3", base64Image.replace("data:image/jpeg;base64,",""));
 								   
-								   
-								   
-								   //POST
+								   $("#cropbutton").show();
+								   $("#rotatebutton").show();
 								   
 								   
 		   });
@@ -989,6 +994,9 @@ var app = {
 			image = new Image();
 			image.onload = validateImage;
 			image.src = localStorage.getItem("biliard");
+			
+			$("#cropbutton").show();
+			$("#rotatebutton").show();
 	  
 			
          }
