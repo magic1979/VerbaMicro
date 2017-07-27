@@ -75,7 +75,7 @@ var app = {
 					   
 				myScroll.refresh();
 					   
-			}, 1000);
+			}, 500);
 		
 		
 			var selectField = document.getElementById('radice');
@@ -274,7 +274,7 @@ var app = {
 				var radice = $.base64.encode(radice4);
 				var foglia = $.base64.encode(foglia4);
 				
-				var myScroll2;
+				//var myScroll2;
                        
                     /*myScroll2 = new IScroll('#wrapper', {
                         click: true,
@@ -375,9 +375,7 @@ var app = {
 
                                }
 								
-                               setTimeout (function(){
-                                  myScroll2.refresh();
-                               }, 200);
+                               
 					   
 					           function passo(eccola){
 					   
@@ -474,9 +472,7 @@ var app = {
                        
                        }
                        
-                       setTimeout (function(){
-                                   myScroll2.refresh();
-                                   }, 200);
+                       
                        
                        function passo2(eccola){
                        
@@ -570,9 +566,7 @@ var app = {
                        
                        }
                        
-                       setTimeout (function(){
-                                   myScroll2.refresh();
-                                   }, 200);
+                       
                        
                        function passo3(eccola){
                        
@@ -666,9 +660,7 @@ var app = {
 					   
 					   }
 					   
-					   setTimeout (function(){
-								   myScroll2.refresh();
-								   }, 200);
+					   
 					   
 					   function passo4(eccola){
 					   
@@ -759,9 +751,7 @@ var app = {
 					   
 					   }
 					   
-					   setTimeout (function(){
-							myScroll2.refresh();
-						}, 200);
+					   
 					   
 					   function passo5(eccola){
 					   
@@ -851,9 +841,7 @@ var app = {
 					   
 					   }
 					   
-					   setTimeout (function(){
-							myScroll2.refresh();
-						}, 200);
+					   
 					   
 					   function passo6(eccola){
 					   
@@ -1381,6 +1369,9 @@ var app = {
 			canvas.height = prefsize.h;
 			context.drawImage(image, prefsize.x, prefsize.y, prefsize.w, prefsize.h, 0, 0, canvas.width, canvas.height);
 			validateImage();
+			
+			$("#ciccio1").show();
+			
 			
 			$(function() {
               
