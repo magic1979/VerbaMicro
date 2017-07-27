@@ -245,9 +245,7 @@ var app = {
                 else{
                   foglia3 = self.document.form.foglia.value
                 }
-				
-				alert(radice3 +" "+ foglia3)
-                       
+				     
                 
                 if (radice3 == "") {
                     navigator.notification.alert(
@@ -268,9 +266,7 @@ var app = {
                      );
                     return;
                 }
-				
-				alert("1")
-                       
+	      
 					   
 				var radice4 = radice3.toLowerCase();
 				var foglia4 = foglia3.toLowerCase();
@@ -278,30 +274,11 @@ var app = {
 				var radice = $.base64.encode(radice4);
 				var foglia = $.base64.encode(foglia4);
 				
-				alert("2")
-
-
-			   var myScroll2;
-			   
-			   myScroll2 = new IScroll('#wrapper', {
-									   click: true,
-									   useTransform: false,
-									   //bounce: false,
-									   onBeforeScrollStart: function (e)
-									   {
-									   var target = e.target;
-									   while (target.nodeType != 1) {
-									   target = target.parentNode;
-									   }
-									   
-									   if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA' && target.tagName != 'OPTION') {
-									   e.preventDefault();
-									   }
-									   }
-				});
-
-				
-			    alert("3")
+				var myScroll2;
+                       
+                    myScroll2 = new IScroll('#wrapper', {
+                        click: true,
+                    });
 					   
 				$(".spinner").show();
 				 
