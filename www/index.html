@@ -395,12 +395,9 @@
 		<div id="scroller">
 			
 	
-	<form id="form">
-	<br><br><br><br>
-	<!--<input id="file" type="file" />-->
-	<img id="fotomia" src="img/libreria.jpg" height="60">   <img id="scatta" src="img/fotocamera.png" height="60">
-		
-	  <br><br>
+	<form id="form" name="form" action="entra2.asp" method="post">
+	<br><br><br><br><br>
+	
 	  <div id="orizzontale" style="display:none">
       <table width="90%" align="center" border="0">
       <tr>
@@ -419,83 +416,83 @@
 	  
 	  <div id="verticale" >
           <table width="90%" align="center" border="0">
+		  <tr>
+			<td align="center" width="100%">
+				<input type="text" data-role="none" name="foglia2" id="foglia2" placeholder="Foglia" class="scrivo2">
+			</td>
+		  </tr>
           <tr>
-          <td align="center" width="100%">
-		    <input type="text" data-role="none" name="radice2" id="radice2" placeholder="radice" class="scrivo2">
-          </td>
+            <td align="center" width="100%">
+		     <font size="18"><b>::</b></font>
+            </td>
           </tr>
-          <tr>
-          <td align="center" width="100%">
-		    <font size="18"><b>::</b></font>
-          </td>
-          </tr>
-          <tr>
-          <td align="center" width="100%">
-		    <input type="text" data-role="none" name="foglia2" id="foglia2" placeholder="Foglia" class="scrivo2">
-          </td>
-          </tr>
+		  <tr>
+			  <td align="center" width="100%">
+		        <input type="text" data-role="none" name="radice2" id="radice2" placeholder="radice" class="scrivo2">
+			  </td>
+		  </tr>
+		  
           </table>
 	  </div>
 	  
-	  <!--<button id="scalebutton" type="button">Scale</button>
-	   <button id="rotatebutton" type="button">Rotate</button>
-	   <button id="hflipbutton" type="button">H-flip</button>
-	   <button id="vflipbutton" type="button">V-flip</button>-->
+	  <br><br>
 	  
-	  <br>
+	  <a href="#" id="richiedi" data-role="button" class="custom-btn" data-theme="b"><font color="#FFF" size="4">RICHIEDI</font></a>
 	  
+	  
+	  <br><br>
+	  <img id="fotomia" src="img/libreria.jpg" height="60">   <img id="scatta" src="img/fotocamera.png" height="60">
+	  
+	  <br><br>
 	  <div id="views"></div>
-	  <!--<input type="submit" value="Upload form data and image" style="display:none"/>-->
 	  
 	  <br>
 	  <!--<button id="cropbutton" type="button">Crop</button>-->
-	  <a id="cropbutton" href="#"><img src="img/taglia.png" width="40"></a>
-      <button id="rotatebutton" type="button">Rotate</button>
+	  <a id="cropbutton" href="#" style="display:none"><img src="img/taglia.png" width="40"></a>
+	  <a id="rotatebutton" href="#" style="display:none"><img src="img/rotate.png" width="40"></a>
+      <!--<button id="" type="button">Rotate</button>
+      <button id="hflipbutton" type="button">H-flip</button>
+      <button id="vflipbutton" type="button">V-flip</button>-->
 
 	  
 	</form>
 	
 	<br><br>
-	<a id="ciccio1" ><img src="img/plane.png" width="60"></a>
+	<a id="ciccio1" style="display:none"><img src="img/plane.png" width="60"></a>
 	
+	<br>
 	
-	<br><br>
-	
-	<table width="" align="center">
-	<tr>
-	  <td align="left" width="80"><a id="mediacattura" ><img src="img/ico_audio_live.png" width="65"></a></td><td align="left" width="100%">&nbsp;REC AUDIO</td>
+	<!--<tr>
+	  <td align="left" width="80"><img src="img/ico_audio_live.png" width="65"></td><td align="left" width="100%"> <a id="mediacattura" >REC AUDIO</a></td>
 	</tr>
 	<tr>
 		<td align="left" width="80" colspan="2"><br></td>
 	</tr>
 	<tr>
-	  <td align="left" width="80"><a id="play" ><img src="img/ico_audio.png" width="65"></a></td><td align="left" width="100%">&nbsp;PLAY REC AUDIO</td>
+	  <td align="left" width="80"><img src="img/ico_audio.png" width="65"></td><td align="left" width="100%"> <a id="play" >PLAY REC AUDIO</a></td>
 	</tr>
 	<tr>
 		<td align="left" width="80" colspan="2"><br></td>
 	</tr>
 	<tr>
-		<td align="left" width="80"><a id="mediacatturavideo" ><img src="img/ico_video_live.png" width="65"></a></td><td align="left" width="100%"> &nbsp;REC VIDEO</td>
+		<td align="left" width="80"><img src="img/ico_video_live.png" width="65"></td><td align="left" width="100%"> <a id="mediacatturavideo" >REC VIDEO</a></td>
 	</tr>
 	<tr>
 		<td align="left" width="80" colspan="2"><br></td>
 	</tr>
 	<tr>
-		<td align="left" width="80"><a id="video"><img src="img/ico_video_www.png" width="65"></a></td><td align="left" width="100%">&nbsp;PLAY WWW VIDEO</td>
+		<td align="left" width="80"><img src="img/ico_video_www.png" width="65"></td><td align="left" width="100%"> <div id="testvideo"></div></td>
 	</tr>
 	<tr>
 		<td align="left" width="80" colspan="2"><br></td>
 	</tr>
 	<tr>
-		<td align="left" width="80"><a id="audio"><img src="img/ico_audio_www.png" width="65"></a></td><td align="left" width="100%">&nbsp;PLAY WWW AUDIO</td>
-	</tr>
-	<tr>
-		<td align="left" width="80" colspan="2"><br></td>
-	</tr>
-	</table>
+		<td align="left" width="80"><img src="img/ico_audio_www.png" width="65"></td><td align="left" width="100%"> <a id="audio">PLAY WWW AUDIO</a></td>
+	</tr>-->
 	
+	<div id="testvideo"></div>
 	
-	<br><br>
+	<br><br><br><br>
 	COORDINATE
 	<br>
 	<div id="lati"></div>
@@ -503,7 +500,7 @@
 	<br>
 	<div id="nome" style="display:none"></div>
 	
-	<br><br><br><br>&nbsp;<br>&nbsp;
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	
 		</div>
 	</div>

@@ -221,6 +221,716 @@ var app = {
         });
 		
 		
+		$(document).on("touchstart", "#richiedi", function(e){
+					   
+				var posta = $.base64.encode("salvatore.bruni@gmail.com")
+				var lati = $.base64.encode(localStorage.getItem("lat"));
+				var longi = $.base64.encode(localStorage.getItem("lng"));
+					
+                var radice3;
+                var foglia3;
+
+                       
+                if(self.document.form.radice2.value !=""){
+                  radice3 = self.document.form.radice2.value
+                }
+                else{
+                  radice3 = self.document.form.radice.value
+                }
+                       
+                       
+                if(self.document.form.foglia2.value!=""){
+                  foglia3 = self.document.form.foglia2.value
+                }
+                else{
+                  foglia3 = self.document.form.foglia.value
+                }
+                       
+                
+                if (radice3 == "") {
+                    navigator.notification.alert(
+                         'inserire una Radice',  // message
+                         alertDismissed,         // callback
+                         'Radice',            // title
+                         'OK'                  // buttonName
+                    );
+                    return;
+                }
+                       
+                if (foglia3 == "") {
+                    navigator.notification.alert(
+                     'inserire una Foglia',  // message
+                      alertDismissed,         // callback
+                      'Foglia',            // title
+                       'OK'                  // buttonName
+                     );
+                    return;
+                }
+                       
+					   
+				var radice4 = radice3.toLowerCase();
+				var foglia4 = foglia3.toLowerCase();
+					   
+				var radice = $.base64.encode(radice4);
+				var foglia = $.base64.encode(foglia4);
+
+
+			   var myScroll2;
+			   
+			   myScroll2 = new IScroll('#wrapper', {
+									   click: true,
+									   useTransform: false,
+									   //bounce: false,
+									   onBeforeScrollStart: function (e)
+									   {
+									   var target = e.target;
+									   while (target.nodeType != 1) {
+									   target = target.parentNode;
+									   }
+									   
+									   if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA' && target.tagName != 'OPTION') {
+									   e.preventDefault();
+									   }
+									   }
+				});
+
+				
+					   
+					   
+				$(".spinner").show();
+				 
+				$.ajax({
+						type: "POST",
+						url: "http://www.microverba.com/leaf_root_request.php",
+					    data: {email:posta,leaf:foglia,root:radice,latitudine:lati,longitudine:longi},
+						cache: false,
+						crossDomain: true,
+						contentType: "application/x-www-form-urlencoded",
+						success: function (result) {
+							  
+					      if(result.Token==1){
+					   
+					   
+                            // YOU TUBE
+							if(result.YT === null || typeof(result.YT) == 'undefined' || result.YT=="null" || result.YT==""){
+
+					        }
+					        else{
+					   
+							for (var i=0, l=10; i<l; i++) {
+					   
+								   if(i==1){
+									 i="01"
+								   }
+								   if(i==2){
+									i="02"
+									}
+								   if(i==3){
+									i="03"
+								   }
+								   if(i==4){
+									i="04"
+								   }
+								   if(i==5){
+									i="05"
+								   }
+								   if(i==6){
+									i="06"
+								   }
+								   if(i==7){
+									i="07"
+								   }
+								   if(i==8){
+									i="08"
+								   }
+								   if(i==9){
+									i="09"
+								   }
+							   
+					   
+						          ciccio = "YT_cont_"+i
+					   
+					              /*urlvideo = "VA_cont_"+i
+								  
+								  urlaudio = "FA_cont_"+i
+								  
+								  paginaweb = "PW_cont_"+i
+								  
+								  paginafb = "FB_cont_"+i
+								  
+								  urltwitter = "TW_cont_"+i
+								  
+								  urlinstagram = "IG_cont_"+i*/
+
+								  if(result[ciccio] === null || typeof(result[ciccio]) == 'undefined' || result[ciccio]=="null" || result[ciccio]==""){
+					   
+								  }
+					              else{
+					   
+					                  var tabella = "<table width='' align='center'>";
+					   
+									  paperino = "YT_cont_"+i
+                                      descyt = "YT_desc_"+i
+
+					   
+					                  tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descyt])+"</td></tr>"
+					   
+					                  tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+					   
+					                  $("#testvideo").append(tabella);
+					   
+					   
+									  $(document).on("touchstart", "#"+paperino+"", function(e){
+									  
+										 passo(this.id) // passare la variabile in una nuova funzione
+
+									  });
+
+
+					               }
+
+
+                               }
+								
+                               setTimeout (function(){
+                                  myScroll2.refresh();
+                               }, 200);
+					   
+					           function passo(eccola){
+					   
+					              var pageNumber = 1;
+					              eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
+					              alert(link1);
+					   
+					              var ref = window.open(link1, '_blank', 'location=no');
+
+					            }
+					   
+					   
+					         }
+                       
+                       
+                       // URL VIDEO
+                       if(result.VA === null || typeof(result.VA) == 'undefined' || result.VA=="null" || result.VA==""){
+                       
+                       }
+                       else{
+                       
+                       for (var i=0, l=10; i<l; i++) {
+                       
+                       if(i==1){
+                       i="01"
+                       }
+                       if(i==2){
+                       i="02"
+                       }
+                       if(i==3){
+                       i="03"
+                       }
+                       if(i==4){
+                       i="04"
+                       }
+                       if(i==5){
+                       i="05"
+                       }
+                       if(i==6){
+                       i="06"
+                       }
+                       if(i==7){
+                       i="07"
+                       }
+                       if(i==8){
+                       i="08"
+                       }
+                       if(i==9){
+                       i="09"
+                       }
+                       
+                       
+                       urlvideo = "VA_cont_"+i
+                       
+                       /*
+                        
+                        urlaudio = "FA_cont_"+i
+                        
+                        paginaweb = "PW_cont_"+i
+                        
+                        paginafb = "FB_cont_"+i
+                        
+                        urltwitter = "TW_cont_"+i
+                        
+                        urlinstagram = "IG_cont_"+i*/
+                       
+                       if(result[urlvideo] === null || typeof(result[urlvideo]) == 'undefined' || result[urlvideo]=="null" || result[urlvideo]==""){
+                       
+                       }
+                       else{
+                       
+                       var tabella = "<table width='' align='center'>";
+                       
+                       paperino = "VA_cont_"+i
+                       descva = "VA_desc_"+i
+                       
+                       
+                        tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_video.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descva])+"</td></tr>"
+                       
+                        tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+                       
+                        $("#testvideo").append(tabella);
+                       
+                       
+                       $(document).on("touchstart", "#"+paperino+"", function(e){
+                                      
+                            passo2(this.id) // passare la variabile in una nuova funzione
+                                      
+                        });
+                       
+                       
+                       }
+                       
+                       
+                       }
+                       
+                       setTimeout (function(){
+                                   myScroll2.refresh();
+                                   }, 200);
+                       
+                       function passo2(eccola){
+                       
+                       var pageNumber = 1;
+                       eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
+                       alert(link1);
+                       
+                       var ref = window.open(link1, '_blank', 'location=no');
+                       
+                       }
+                       
+                       
+                       }
+                       
+                       
+                       // URL AUDIO
+                       if(result.FA === null || typeof(result.FA) == 'undefined' || result.FA=="null" || result.FA==""){
+                       
+                       }
+                       else{
+                       
+                       for (var i=0, l=10; i<l; i++) {
+                       
+                       if(i==1){
+                       i="01"
+                       }
+                       if(i==2){
+                       i="02"
+                       }
+                       if(i==3){
+                       i="03"
+                       }
+                       if(i==4){
+                       i="04"
+                       }
+                       if(i==5){
+                       i="05"
+                       }
+                       if(i==6){
+                       i="06"
+                       }
+                       if(i==7){
+                       i="07"
+                       }
+                       if(i==8){
+                       i="08"
+                       }
+                       if(i==9){
+                       i="09"
+                       }
+                       
+                       
+                       urlaudio = "FA_cont_"+i
+                       
+                       /*
+                        paginaweb = "PW_cont_"+i
+                        
+                        paginafb = "FB_cont_"+i
+                        
+                        urltwitter = "TW_cont_"+i
+                        
+                        urlinstagram = "IG_cont_"+i*/
+                       
+                       if(result[urlaudio] === null || typeof(result[urlaudio]) == 'undefined' || result[urlaudio]=="null" || result[urlaudio]==""){
+                       
+                       }
+                       else{
+                       
+                       var tabella = "<table width='' align='center'>";
+                       
+                       paperino = "FA_cont_"+i
+                       descfa = "FA_desc_"+i
+                       
+                       
+                       tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_audio.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descfa])+"</td></tr>"
+                       
+                       tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+                       
+                       $("#testvideo").append(tabella);
+                       
+                       
+                       $(document).on("touchstart", "#"+paperino+"", function(e){
+                                      
+                            passo3(this.id) // passare la variabile in una nuova funzione
+                                      
+                        });
+                       
+                       
+                       }
+
+                       
+                       }
+                       
+                       setTimeout (function(){
+                                   myScroll2.refresh();
+                                   }, 200);
+                       
+                       function passo3(eccola){
+                       
+                       var pageNumber = 1;
+                       eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
+                       alert(link1);
+                       
+                       var ref = window.open(link1, '_blank', 'location=no');
+                       
+                       }
+                       
+                       
+                       }
+					   
+					   
+					   // URL Pagina Web
+					   if(result.PW === null || typeof(result.PW) == 'undefined' || result.PW=="null" || result.PW==""){
+					   
+					   }
+					   else{
+					   
+					   for (var i=0, l=10; i<l; i++) {
+					   
+					   if(i==1){
+					   i="01"
+					   }
+					   if(i==2){
+					   i="02"
+					   }
+					   if(i==3){
+					   i="03"
+					   }
+					   if(i==4){
+					   i="04"
+					   }
+					   if(i==5){
+					   i="05"
+					   }
+					   if(i==6){
+					   i="06"
+					   }
+					   if(i==7){
+					   i="07"
+					   }
+					   if(i==8){
+					   i="08"
+					   }
+					   if(i==9){
+					   i="09"
+					   }
+					   
+					   
+					   paginaweb = "PW_cont_"+i
+					   
+					   /*
+						
+						
+						paginafb = "FB_cont_"+i
+						
+						urltwitter = "TW_cont_"+i
+						
+						urlinstagram = "IG_cont_"+i*/
+					   
+					   if(result[paginaweb] === null || typeof(result[paginaweb]) == 'undefined' || result[paginaweb]=="null" || result[paginaweb]==""){
+					   
+					   }
+					   else{
+					   
+					   var tabella = "<table width='' align='center'>";
+					   
+					   paperino = "PW_cont_"+i
+					   descpw = "PW_desc_"+i
+					   
+					   
+					   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/logo.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descpw])+"</td></tr>"
+					   
+					   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+					   
+					   $("#testvideo").append(tabella);
+					   
+					   
+					   $(document).on("touchstart", "#"+paperino+"", function(e){
+									  
+									  passo4(this.id) // passare la variabile in una nuova funzione
+									  
+									  });
+					   
+					   
+					   }
+					   
+					   
+					   }
+					   
+					   setTimeout (function(){
+								   myScroll2.refresh();
+								   }, 200);
+					   
+					   function passo4(eccola){
+					   
+					   var pageNumber = 1;
+					   eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
+					   alert(link1);
+					   
+					   var ref = window.open(link1, '_blank', 'location=no');
+					   
+					   }
+					   
+					   
+					   }
+					   
+					   
+					   // URL Pagina facebook
+					   if(result.FB === null || typeof(result.FB) == 'undefined' || result.FB=="null" || result.FB==""){
+					   
+					   }
+					   else{
+					   
+					   for (var i=0, l=10; i<l; i++) {
+					   
+					   if(i==1){
+					   i="01"
+					   }
+					   if(i==2){
+					   i="02"
+					   }
+					   if(i==3){
+					   i="03"
+					   }
+					   if(i==4){
+					   i="04"
+					   }
+					   if(i==5){
+					   i="05"
+					   }
+					   if(i==6){
+					   i="06"
+					   }
+					   if(i==7){
+					   i="07"
+					   }
+					   if(i==8){
+					   i="08"
+					   }
+					   if(i==9){
+					   i="09"
+					   }
+					   
+					   
+					   paginafb = "FB_cont_"+i
+					   
+					   /*
+
+						urltwitter = "TW_cont_"+i
+						
+						urlinstagram = "IG_cont_"+i*/
+					   
+					   if(result[paginafb] === null || typeof(result[paginafb]) == 'undefined' || result[paginafb]=="null" || result[paginafb]==""){
+					   
+					   }
+					   else{
+					   
+					   var tabella = "<table width='' align='center'>";
+					   
+					   paperino = "FB_cont_"+i
+					   descfb = "FB_desc_"+i
+					   
+					   
+					   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descfb])+"</td></tr>"
+					   
+					   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+					   
+					   $("#testvideo").append(tabella);
+					   
+					   
+					   $(document).on("touchstart", "#"+paperino+"", function(e){
+									  
+							passo5(this.id) // passare la variabile in una nuova funzione
+									  
+						});
+					   
+					   
+					   }
+					   
+					   
+					   }
+					   
+					   setTimeout (function(){
+							myScroll2.refresh();
+						}, 200);
+					   
+					   function passo5(eccola){
+					   
+					   var pageNumber = 1;
+					   eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
+					   alert(link1);
+					   
+					   var ref = window.open(link1, '_blank', 'location=no');
+					   
+					   }
+					   
+					   
+					   }
+					   
+					   // Telefono fisso
+					   if(result.TF === null || typeof(result.TF) == 'undefined' || result.TF=="null" || result.TF==""){
+					   
+					   }
+					   else{
+					   
+					   for (var i=0, l=10; i<l; i++) {
+					   
+					   if(i==1){
+					   i="01"
+					   }
+					   if(i==2){
+					   i="02"
+					   }
+					   if(i==3){
+					   i="03"
+					   }
+					   if(i==4){
+					   i="04"
+					   }
+					   if(i==5){
+					   i="05"
+					   }
+					   if(i==6){
+					   i="06"
+					   }
+					   if(i==7){
+					   i="07"
+					   }
+					   if(i==8){
+					   i="08"
+					   }
+					   if(i==9){
+					   i="09"
+					   }
+					   
+					   
+					   telefono = "TF_cont_"+i
+					   
+					   /*
+						
+						urltwitter = "TW_cont_"+i
+						
+						urlinstagram = "IG_cont_"+i*/
+					   
+					   if(result[telefono] === null || typeof(result[telefono]) == 'undefined' || result[telefono]=="null" || result[telefono]==""){
+					   
+					   }
+					   else{
+					   
+					   var tabella = "<table width='' align='center'>";
+					   
+					   paperino = "TF_cont_"+i
+					   desctf = "TF_desc_"+i
+					   
+					   
+					   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_telephone.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctf])+"</td></tr>"
+					   
+					   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+					   
+					   $("#testvideo").append(tabella);
+					   
+					   
+					   $(document).on("touchstart", "#"+paperino+"", function(e){
+									  
+						  passo6(this.id) // passare la variabile in una nuova funzione
+									  
+						});
+					   
+					   
+					   }
+					   
+					   
+					   }
+					   
+					   setTimeout (function(){
+							myScroll2.refresh();
+						}, 200);
+					   
+					   function passo6(eccola){
+					   
+					   var pageNumber = 1;
+					   eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
+					   alert(link1);
+					   
+					   window.location.href = "tel:"+link1+"";
+					   
+					   }
+					   
+					   
+					   }
+					   
+					   
+					      //window.location.href = "tel:+393478253732";
+
+                          // FINE IF TOKEN
+					      }
+                          else {
+					   
+                             var tabella = "<table width='' align='center'>";
+					   
+                              tabella = tabella + "<tr><td align='left' width='80'>X </td><td align='left' width='100%'>"+$.base64.decode(result.messaggio)+"</td></tr><tr><td align='left' width='80'>X </td><td align='left' width='100%'>"+$.base64.decode(result.radice)+"</td></tr><tr><td align='left' width='80'>X </td><td align='left' width='100%'>"+$.base64.decode(result.foglia)+"</td></tr>"
+					   
+                              tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+					   
+                              $("#testvideo").append(tabella);
+					   
+                           }
+
+					   
+                            setTimeout (function(){
+                               myScroll2.refresh();
+                             }, 700);
+				 
+				            $(".spinner").hide();
+					   
+					   
+						},
+					   
+						      error: function(){
+					   
+					            $(".spinner").hide();
+					   
+							    navigator.notification.alert(
+														   'Errore Imprevisto, contatta il fornitore',  // message
+														   alertDismissed,         // callback
+														   'Errore',            // title
+														   'OK'                  // buttonName
+							  );
+							  
+						}
+							  
+				});
+					   
+        });
+
+		
+		
 		
         function playAudio2(id) {
             
@@ -788,6 +1498,56 @@ var app = {
 										 );
 			
 		}
+		
+		
+		var myScroll2;
+		
+		myScroll2 = new IScroll('#wrapper', {
+				click: true,
+				useTransform: false,
+				//bounce: false,
+				onBeforeScrollStart: function (e)
+				{
+				var target = e.target;
+				while (target.nodeType != 1) {
+				target = target.parentNode;
+				}
+				
+				if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA' && target.tagName != 'OPTION') {
+				e.preventDefault();
+				}
+             }
+        });
+		
+		setTimeout (function(){
+			myScroll2.refresh();
+		}, 1000);
+        
+	
+        
+        var selectField = document.getElementById('radice');
+        selectField.addEventListener('touchstart', function(e)
+                                     {
+                                     e.stopPropagation();
+                                     }, false);
+        
+        var selectField2 = document.getElementById('radice2');
+        selectField2.addEventListener('touchstart', function(e)
+                                     {
+                                     e.stopPropagation();
+                                     }, false);
+        
+        var selectField3 = document.getElementById('foglia2');
+        selectField3.addEventListener('touchstart', function(e)
+                                      {
+                                      e.stopPropagation();
+                                      }, false);
+        
+        var selectField4 = document.getElementById('foglia');
+        selectField4.addEventListener('touchstart', function(e)
+                                      {
+                                      e.stopPropagation();
+                                      }, false);
 		
 
 		
