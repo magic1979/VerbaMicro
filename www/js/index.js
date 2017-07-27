@@ -869,9 +869,9 @@ var app = {
 					   }
 					   
 					  
-						   var myScroll;
+						   var myScroll3;
 			   
-						   myScroll = new iScroll('wrapper', {
+						   myScroll3 = new iScroll('wrapper', {
 								click: true,
 								useTransform: false,
 								//bounce: false,
@@ -892,7 +892,7 @@ var app = {
 		   
 						   setTimeout (function(){
 									   
-								myScroll.refresh();
+								myScroll3.refresh();
 									   
 							}, 1000);
 
