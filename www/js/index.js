@@ -1186,7 +1186,7 @@ var app = {
 		
 		$(document).on("touchstart", "#avanti", function(e){
 			
-			window.location.href = "indexfoto.html";
+			window.location.href = "indexFoto.html";
 				   
 		});
 		
