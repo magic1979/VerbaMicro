@@ -26,7 +26,9 @@ function onDeviceReady() {
 		
 		//StatusBar.hide();
 		
-        var watchID = navigator.geolocation.getCurrentPosition(gpsonSuccess, gpsonError, {timeout: 30000, enableHighAccuracy: true, maximumAge: 90000 });
+        //var watchID = navigator.geolocation.getCurrentPosition(gpsonSuccess, gpsonError, {timeout: 30000, enableHighAccuracy: true, maximumAge: 90000 });
+		
+		$("#lati").html(localStorage.getItem("lat") +", "+ localStorage.getItem("lng"));
 		
 		var crop_max_width = 400;
 		var crop_max_height = 400;
@@ -62,7 +64,6 @@ function onDeviceReady() {
 				myScroll.refresh();
 					   
 			}, 500);*/
-		
 		
 		
 		/*navigator.camera.getPicture(uploadPhoto, onFail, { quality: 50,
@@ -127,17 +128,18 @@ function onDeviceReady() {
         });
 		
 		
-		$(document).on("touchstart", "#richiedi", function(e){
+		//$(document).on("touchstart", "#richiedi", function(e){
+		function richiedi(){
 					   
 				var posta = $.base64.encode("salvatore.bruni@gmail.com")
 				var lati = $.base64.encode(localStorage.getItem("lat"));
 				var longi = $.base64.encode(localStorage.getItem("lng"));
 					
-                var radice3;
-                var foglia3;
+                var radice3 = "test";
+                var foglia3 = "juventus";
 
                        
-                if(self.document.form.radice2.value != ""){
+                /*if(self.document.form.radice2.value != ""){
                   radice3 = self.document.form.radice2.value
                 }
                 else{
@@ -171,7 +173,7 @@ function onDeviceReady() {
                        'OK'                  // buttonName
                      );
                     return;
-                }
+                }*/
 	      
 					   
 				var radice4 = radice3.toLowerCase();
@@ -829,7 +831,8 @@ function onDeviceReady() {
 							  
 				});
 					   
-        });
+        //});
+		}
 
 		
 		
@@ -1166,7 +1169,9 @@ function onDeviceReady() {
 										 'File Upload',           // title
 										 'Done'                  // buttonName
 										 );
-				   
+										 
+					
+				     richiedi()
 				   
 				   },
 				   error: function(){
@@ -1185,9 +1190,6 @@ function onDeviceReady() {
 			});
 			
 			
-			//alert("fine")
-			
-			//alert(dataURL.toString().replace("data:image/jpeg;base64,",""))
 			
 			var BASE64_MARKER = ';base64,';
 			if (dataURL.indexOf(BASE64_MARKER) == -1) {
@@ -1197,8 +1199,8 @@ function onDeviceReady() {
     
 				
 			return new Blob([raw], {
-					type: contentType
-					});
+			   type: contentType
+			});
     
     
 			}
@@ -1277,20 +1279,19 @@ function onDeviceReady() {
 			
 			$("#ciccio1").show();
 			
-			
-			$(function() {
+			/*$(function() {
               
-              $("#pippo").swipe( {
+					$("#pippo").swipe( {
                                 
-                                swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+                            swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
 
-                                    alert("You swiped " + direction );
+                              alert("You swiped " + direction );
                                 
-                                },
+                            },
                                 
-                                threshold:0
-                                });
-              });
+                              threshold:0
+                           });
+              });*/
 		}
 		
 		function applyScale(scale) {
@@ -1437,7 +1438,6 @@ function onDeviceReady() {
     }*/
 
 }
-
 
 
 /*function onResume() {
