@@ -38,6 +38,8 @@ var app = {
     // Update DOM on a Received Event
     receivedEvent: function(id) {
 		
+		// INIZIO CARICAMENTO
+		
 		//StatusBar.hide();
 		
         var watchID = navigator.geolocation.getCurrentPosition(gpsonSuccess, gpsonError, {timeout: 30000, enableHighAccuracy: true, maximumAge: 90000 });
@@ -77,85 +79,6 @@ var app = {
 					   
 			}, 500);
 		
-		
-			var selectField = document.getElementById('radice');
-			selectField.addEventListener('touchstart', function(e)
-										 {
-										 e.stopPropagation();
-										 }, false);
-			
-			var selectField2 = document.getElementById('radice2');
-			selectField2.addEventListener('touchstart', function(e)
-										 {
-										 e.stopPropagation();
-										 }, false);
-			
-			var selectField3 = document.getElementById('foglia2');
-			selectField3.addEventListener('touchstart', function(e)
-										  {
-										  e.stopPropagation();
-										  }, false);
-			
-			var selectField4 = document.getElementById('foglia');
-			selectField4.addEventListener('touchstart', function(e)
-										  {
-										  e.stopPropagation();
-										  }, false);
-		
-		
-		// SWIPE //
-			
-        window.addEventListener('orientationchange', handleOrientation, false);
-			function handleOrientation() {
-			if (orientation == 0) {
-			   $("#orizzontale").hide();
-								  
-			   $("#verticale").show();
-			}
-			else if (orientation == 90) {
-			   $("#orizzontale").show();
-								  
-			   $("#verticale").hide();
-			}
-			else if (orientation == -90) {
-			  $("#orizzontale").show();
-								  
-			  $("#verticale").hide();
-			}
-			else if (orientation == 180) {
-			  $("#orizzontale").hide();
-								  
-			  $("#verticale").show();
-			}
-			else {
-			}
-		}
-        
-		
-        /*$(document).on("swipeleft", "#pippo", function(e){
-                       
-            alert("sinistra")
-                       
-        });*/
-		
-        
-        $(function() {
-		  
-          $("#pippo").swipe( {
-							
-                           swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
-                            
-                            $( "#radice" ).blur();
-                            $( "#foglia" ).blur();
-                            $( "#radice2" ).blur();
-                            $( "#foglia2" ).blur();
-                            
-                           //alert("You swiped " + direction );
-                           },
-							
-                           threshold:0
-                           });
-          });
 		
 		
 		/*navigator.camera.getPicture(uploadPhoto, onFail, { quality: 50,
@@ -1184,13 +1107,6 @@ var app = {
 		});
 		
 		
-		$(document).on("touchstart", "#avanti", function(e){
-			
-			window.location.href = "indexfoto.html";
-				   
-		});
-		
-		
 		function ciccio() {
 			
 			//$("#spinner").show();
@@ -1509,7 +1425,6 @@ var app = {
 		
 		// FINE CARICAMENTO //
 		
-		//alert("fine caricamento pagina")
 		
     }
 };
