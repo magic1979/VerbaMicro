@@ -36,7 +36,7 @@ function onDeviceReady() {
 		var image;
 		
 		
-		var myScroll;
+		/*var myScroll;
 		   
 		   myScroll = new iScroll('wrapper', {
 								click: true,
@@ -61,7 +61,7 @@ function onDeviceReady() {
 					   
 				myScroll.refresh();
 					   
-			}, 500);
+			}, 500);*/
 		
 		
 		
@@ -1416,11 +1416,10 @@ function onDeviceReady() {
 	
 	
     
-    $.mobile.defaultPageTransition = 'none';
+    /*$.mobile.defaultPageTransition = 'none';
     $.mobile.defaultDialogTransition = 'none';
 	
 	
-    $(".spinner").show();
     var connectionStatus = false;
     connectionStatus = navigator.onLine ? 'online' : 'offline';
 	
@@ -1435,19 +1434,16 @@ function onDeviceReady() {
 
 		alert("No Connection")
 		
-    }
+    }*/
 
 }
 
 
 
-function onResume() {
+/*function onResume() {
     onDeviceReady();
-}
+}*/
 
-function alertDismissed() {
-	$(".spinner").hide();
-}
 
 
 
