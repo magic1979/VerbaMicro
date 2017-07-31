@@ -273,13 +273,8 @@ var app = {
 				var radice = $.base64.encode(radice4);
 				var foglia = $.base64.encode(foglia4);
 				
-				//var myScroll2;
-                       
-                    /*myScroll2 = new IScroll('#wrapper', {
-                        click: true,
-                    });*/
 					   
-				$(".spinner").show();
+				$("#spinner").show();
 				 
 				$.ajax({
 						type: "POST",
@@ -841,7 +836,6 @@ var app = {
 					   }
 					   
 					   
-					   
 					   function passo6(eccola){
 					   
 					   var pageNumber = 1;
@@ -855,10 +849,28 @@ var app = {
 					   
 					   }
 					   
-					  
-						   var myScroll3;
+	
+                        // FINE IF TOKEN
+					    }
+                          else {
+					   
+                             var tabella = "<table width='' align='center'>";
+					   
+                              tabella = tabella + "<tr><td align='left' width='80'>X </td><td align='left' width='100%'>"+$.base64.decode(result.messaggio)+"</td></tr><tr><td align='left' width='80'>X </td><td align='left' width='100%'>"+$.base64.decode(result.radice)+"</td></tr><tr><td align='left' width='80'>X </td><td align='left' width='100%'>"+$.base64.decode(result.foglia)+"</td></tr>"
+					   
+                              tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+					   
+                              $("#testvideo").append(tabella);
+					   
+                           }
+
+					   
+				            $("#spinner").hide();
+							
+							
+							/*var myScroll3;
 			   
-						   myScroll3 = new iScroll('wrapper', {
+						     myScroll3 = new iScroll('wrapper', {
 								click: true,
 								useTransform: false,
 								//bounce: false,
@@ -874,35 +886,14 @@ var app = {
 								}
 								}
 	
-							});
+							});*/
 		   
 		   
 						   setTimeout (function(){
 									   
-								myScroll3.refresh();
+								myScroll.refresh();
 									   
 							}, 1000);
-
-                          // FINE IF TOKEN
-					      }
-                          else {
-					   
-                             var tabella = "<table width='' align='center'>";
-					   
-                              tabella = tabella + "<tr><td align='left' width='80'>X </td><td align='left' width='100%'>"+$.base64.decode(result.messaggio)+"</td></tr><tr><td align='left' width='80'>X </td><td align='left' width='100%'>"+$.base64.decode(result.radice)+"</td></tr><tr><td align='left' width='80'>X </td><td align='left' width='100%'>"+$.base64.decode(result.foglia)+"</td></tr>"
-					   
-                              tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
-					   
-                              $("#testvideo").append(tabella);
-					   
-                           }
-
-					   
-                            setTimeout (function(){
-                               myScroll2.refresh();
-                             }, 700);
-				 
-				            $(".spinner").hide();
 					   
 					   
 						},
