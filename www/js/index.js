@@ -243,6 +243,14 @@ var app = {
 		
 		
 		
+		$(document).on("touchstart", "#compra", function(e){
+					   	   
+				compraCarta("121","1","00,20")
+					   
+		});
+		
+		
+		
 		$(document).on("touchstart", "#richiedi", function(e){
 					   
 					   var posta = $.base64.encode("salvatore.bruni@gmail.com")
@@ -399,7 +407,7 @@ var app = {
 							  
 							  var pageNumber = 1;
 							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  alert(link1);
+							  //alert(link1);
 							  
 							  var ref = window.open(link1, '_blank', 'location=no');
 							  
@@ -496,7 +504,7 @@ var app = {
 							  
 							  var pageNumber = 1;
 							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  alert(link1);
+							  //alert(link1);
 							  
 							  var ref = window.open(link1, '_blank', 'location=no');
 							  
@@ -590,7 +598,7 @@ var app = {
 							  
 							  var pageNumber = 1;
 							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  alert(link1);
+							  //alert(link1);
 							  
 							  var ref = window.open(link1, '_blank', 'location=no');
 							  
@@ -684,7 +692,7 @@ var app = {
 							  
 							  var pageNumber = 1;
 							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  alert(link1);
+							  //alert(link1);
 							  
 							  var ref = window.open(link1, '_blank', 'location=no');
 							  
@@ -775,7 +783,7 @@ var app = {
 							  
 							  var pageNumber = 1;
 							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  alert(link1);
+							  //alert(link1);
 							  
 							  var ref = window.open(link1, '_blank', 'location=no');
 							  
@@ -865,7 +873,7 @@ var app = {
 							  
 							  var pageNumber = 1;
 							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  alert(link1);
+							  //alert(link1);
 							  
 							  window.location.href = "tel:"+link1+"";
 							  
@@ -950,7 +958,7 @@ var app = {
 							  
 							  var pageNumber = 1;
 							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  alert(link1);
+							  //alert(link1);
 
 							  var ref = window.open(link1, '_blank', 'location=no');
 							  
@@ -1036,7 +1044,7 @@ var app = {
 							  
 							  var pageNumber = 1;
 							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  alert(link1);
+							  //alert(link1);
 							  
 							  var ref = window.open(link1, '_blank', 'location=no');
 							  
@@ -1121,7 +1129,7 @@ var app = {
 							  
 							  var pageNumber = 1;
 							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  alert(link1);
+							  //alert(link1);
 							  
 							  var ref = window.open(link1, '_blank', 'location=no');
 							  
@@ -1206,7 +1214,7 @@ var app = {
 							  
 							  var pageNumber = 1;
 							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  alert(link1);
+							  //alert(link1);
 							  
 							  var ref = window.open(link1, '_blank', 'location=no');
 							  
@@ -1292,7 +1300,7 @@ var app = {
 							  
 							  var pageNumber = 1;
 							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  alert(link1);
+							  //alert(link1);
 							  
 							  var ref = window.open(link1, '_blank', 'location=no');
 							  
@@ -1382,7 +1390,7 @@ var app = {
 							  
 							  var pageNumber = 1;
 							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  alert(link1);
+							  //alert(link1);
 							  
 							  window.location.href = "tel:"+link1+"";
 							  
@@ -1473,14 +1481,15 @@ var app = {
 							  
 							  var pageNumber = 1;
 							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  alert(link1);
+							  //alert(link1);
 							  
-							   window.plugin.email.open({
+							   cordova.plugins.email.open({
 													   to:      link1,
 													   subject: "Email",
 													   body:    "Ciao,",
 													   isHtml:  true
 								});
+								
 							  
 							  }
 							  
@@ -1562,6 +1571,152 @@ var app = {
         });
 		
 
+		function compraCarta(id_richiesta,id_autista,totale) {
+			
+			//alert("2")
+			
+			var num1 = Math.floor((Math.random() * 20) + 1);
+			var num2 = Math.floor((Math.random() * 20) + 1);
+			var num3 = Math.floor((Math.random() * 20) + 1);
+			var num4 = Math.floor((Math.random() * 20) + 1);
+			var num5 = Math.floor((Math.random() * 20) + 1);
+			var num6 = Math.floor((Math.random() * 20) + 1);
+			var num7 = Math.floor((Math.random() * 20) + 1);
+			var num8 = Math.floor((Math.random() * 20) + 1);
+			
+			transazioneprodotto = id_richiesta+""+num2+""+num3+""+num4+""+num5+""+num6+""+num7+""+num8;
+			
+			var item_number= transazioneprodotto;
+			
+			var nome = "";
+			var email = "salvatore.bruni@gmail.com";
+			var EmailEsercente = "";
+			
+			var NomeRegalo = "Trasporto Aermes";
+			var ordinazione = "Microverba";
+			var Indirizzo = "Address";
+			var Telefono = "Tel";
+			var amount = totale;
+			var amountPunti = 1;
+			var OraConsegna = "Ora";
+			var Note = id_autista;
+			var Richiesta = id_richiesta;
+			
+			if ((email == "")||(!email)) {
+				navigator.notification.alert(
+											 'Devi prima effettuare il Login',
+											 alertDismissed,
+											 'Login',
+											 'OK'
+											 );
+				return;
+			}
+			
+			if (NomeRegalo == "") {
+				navigator.notification.alert(
+											 'inserire Nome Destinario',
+											 alertDismissed,
+											 'Nome Destinatario',
+											 'OK'
+											 );
+				return;
+			}
+			if (Indirizzo == "") {
+				navigator.notification.alert(
+											 'inserire un indirizzo corretto',
+											 alertDismissed,
+											 'Indirizzo',
+											 'OK'
+											 );
+				return;
+			}
+			
+			
+			if (Telefono == "") {
+				navigator.notification.alert(
+											 'inserire un telefono valido',
+											 alertDismissed,
+											 'Telefono',
+											 'OK'
+											 );
+				return;
+			}
+			
+			if (amount == 0) {
+				navigator.notification.alert(
+											 'Non hai prodotti nel carrello',
+											 alertDismissed,
+											 'Ordine',
+											 'OK'
+											 );
+				return;
+			}
+			
+			if (OraConsegna == "") {
+				navigator.notification.alert(
+											 'Non hai inserito un orario di consegna desiderata',
+											 alertDismissed,
+											 'Ora Consegna',
+											 'OK'
+											 );
+				return;
+			}
+			
+			$(".spinner").show();
+			
+			
+			
+			$.ajax({
+				   type:"GET",
+				   url:"http://msop.it/microverba/Check_TransactionV2.asp",
+				   contentType: "application/json",
+				   data: {email:email,id_prodotto:transazioneprodotto,qta:1,tot:amount,totPunti:amountPunti,transazionemia:transazioneprodotto,NomeProdotto:"Ordine Aermes",EmailEsercente:"info@pokeranswer.it",idTransazione:"CC",Ordine:ordinazione,Indirizzo:Indirizzo,Telefono:Telefono,OraConsegna:OraConsegna,Note:Note,Richiesta:id_richiesta},
+				   timeout: 7000,
+				   jsonp: 'callback',
+				   crossDomain: true,
+				   success:function(result){
+				   
+				   $.each(result, function(i,item){
+						  
+						  //alert(item.Token)
+						  
+						  if (item.Token == "1"){
+						  
+						  var ref = window.open('http://msop.it/microverba/wbspaypal.asp?Transprodotto='+ transazioneprodotto +'', '_blank', 'location=no');
+						  
+						  ref.addEventListener('loadstop', function(event) { if (event.url.match("mobile/close")) { ref.close(); } });
+						  
+						  }
+						  else{
+						  navigator.notification.alert(
+													   'Possibile errore di rete, riprova tra qualche minuto',  // message
+													   alertDismissed,         // callback
+													   'Attenzione',            // title
+													   'Done'                  // buttonName
+													   );
+						  }
+						  
+						  });
+				   
+				   $(".spinner").hide();
+				   
+				   },
+				   error: function(){
+				   $(".spinner").hide();
+				   
+				   navigator.notification.alert(
+												'Possibile errore di rete, riprova tra qualche minuto',  // message
+												alertDismissed,         // callback
+												'Attenzione',            // title
+												'Done'                  // buttonName
+												);
+				   
+				   },
+				   dataType:"jsonp"});
+			
+			
+			
+		}
 		
 		
 		
