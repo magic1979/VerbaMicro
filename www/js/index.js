@@ -319,6 +319,8 @@ var app = {
 							  
 							  if(result.Token==1){
 							  
+							  $("#testvideo").html("");
+							  
 							  
 							  // YOU TUBE
 							  if(result.YT === null || typeof(result.YT) == 'undefined' || result.YT=="null" || result.YT==""){
