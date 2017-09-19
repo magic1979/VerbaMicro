@@ -1506,14 +1506,16 @@ var app = {
 							  // FINE IF TOKEN
 							  }
 							  else {
-							  
-							  var tabella = "<table width='' align='center'>";
-							  
-							  tabella = tabella + "<tr><td align='left' width='80'>X </td><td align='left' width='100%'>"+$.base64.decode(result.messaggio)+"</td></tr><tr><td align='left' width='80'>X </td><td align='left' width='100%'>"+$.base64.decode(result.radice)+"</td></tr><tr><td align='left' width='80'>X </td><td align='left' width='100%'>"+$.base64.decode(result.foglia)+"</td></tr>"
-							  
-							  tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
-							  
-							  $("#testvideo").append(tabella);
+								  
+								  $("#testvideo").html("");
+								  
+								  var tabella = "<table width='' align='center'>";
+								  
+								  tabella = tabella + "<tr><td align='left' width='80'>X </td><td align='left' width='100%'>"+$.base64.decode(result.messaggio)+"</td></tr><tr><td align='left' width='80'>X </td><td align='left' width='100%'>"+$.base64.decode(result.radice)+"</td></tr><tr><td align='left' width='80'>X </td><td align='left' width='100%'>"+$.base64.decode(result.foglia)+"</td></tr>"
+								  
+								  tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+								  
+								  $("#testvideo").append(tabella);
 							  
 							  }
 
