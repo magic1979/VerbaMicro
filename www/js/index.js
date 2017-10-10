@@ -41,7 +41,8 @@ var app = {
 		//StatusBar.hide();
 		
 
-		var watchID = navigator.geolocation.watchPosition(gpsonSuccess, gpsonError, {timeout: 10000, enableHighAccuracy: true });
+		//navigator.geolocation.watchPosition(gpsonSuccess, gpsonError, {timeout: 10000, enableHighAccuracy: true });
+		var watchID = navigator.geolocation.getCurrentPosition(gpsonSuccess, gpsonError, {timeout: 10000, enableHighAccuracy: true, maximumAge: 0 });
 		
 		var crop_max_width = 400;
 		var crop_max_height = 400;
@@ -64,7 +65,7 @@ var app = {
         }
 		
 		window.sqlitePlugin.selfTest(function() {
-			alert('SELF test OK');
+			//alert('SELF test OK');
 		});
 		
 	    var db = window.sqlitePlugin.openDatabase({name: 'mydb.db', location: 'default'});
@@ -222,12 +223,12 @@ var app = {
                 tx.executeSql('SELECT * FROM Ordine where id='+ prod +'', [], function (tx, results) {
                     var len = results.rows.length, i;
                               
-                    alert(results.rows.length)
+                    //alert(results.rows.length)
                               
                     for (i = 0; i < len; i++){
-                        alert("id:" + results.rows.item(i).id)
-                        alert("Qta:" +results.rows.item(i).Qta)
-                        alert("Descrizione:" +results.rows.item(i).Descrizione)
+                        //alert("id:" + results.rows.item(i).id)
+                        //alert("Qta:" +results.rows.item(i).Qta)
+                        //alert("Descrizione:" +results.rows.item(i).Descrizione)
                               
                     }
 					
@@ -243,7 +244,7 @@ var app = {
                               $("#badde5").attr("data-badge", Badge10);
                               $("#badde5").html('<img id="carro3" src="img/CartW.png" width="20px">');
                               
-                              alert("Insert")
+                              //alert("Insert")
                               seleziona()
                     }
                     else{
@@ -311,7 +312,7 @@ var app = {
             
             //var Badge10 = localStorage.getItem("Badge10");
             //$("#badde3").attr("data-badge", Badge10);
-			alert("sel2")
+			//alert("sel2")
             
             $("#contenutoCart").html('');
             
@@ -323,7 +324,7 @@ var app = {
                            tx.executeSql('SELECT * FROM Ordine', [], function (tx, results) {
                                          var len = results.rows.length, i;
                                          var Punita;
-                                         alert("en2"+len);
+                                         //alert("en2"+len);
                                          
                                          for (i = 0; i < len; i++){
                                          
@@ -382,7 +383,7 @@ var app = {
         function selPrezzo(){
 			//var db = window.openDatabase.openDatabase('mydb', '1.0', 'TestDB', 2 * 1024 * 1024);
 			
-			alert("selprezzo")
+			//alert("selprezzo")
 			
             db.transaction(function (tx) {
                            tx.executeSql('SELECT SUM(Descrizione) as TOT FROM Ordine', [], function (tx, results) {
@@ -424,7 +425,7 @@ var app = {
             });
             
             
-            alert(prod)
+            //alert(prod)
  
         }
         
@@ -828,7 +829,7 @@ var app = {
                               
                                 $(document).on("touchstart", "#piu"+ identYT +"piu"+ prezzoYT +"piu"+ nomeYT +"", function(e){
                                                
-                                    alert(this.id)
+                                    //alert(this.id)
                                                
                                     //SPLIT
                                     var str=this.id;
@@ -856,7 +857,7 @@ var app = {
 							  
                               function passoV(eccolaV){
                               
-                                alert(result[eccolaV])
+                                //alert(result[eccolaV])
                               
                               }
 							  
@@ -965,7 +966,7 @@ var app = {
                               
                               $(document).on("touchstart", "#piu"+ identVA +"piu"+ prezzoVA +"piu"+ nomeVA +"", function(e){
                                              
-                                             alert(this.id)
+                                             //alert(this.id)
                                              
                                              //SPLIT
                                              var str=this.id;
@@ -998,7 +999,7 @@ var app = {
 							  
 							  var pageNumber = 1;
 							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  alert(link1);
+							  //alert(link1);
 							  
 							  var ref = window.open(link1, '_blank', 'location=no');
 							  
@@ -1095,7 +1096,7 @@ var app = {
                               
                               $(document).on("touchstart", "#piu"+ identFA +"piu"+ prezzoFA +"piu"+ nomeFA +"", function(e){
                                              
-                                             alert(this.id)
+                                             //alert(this.id)
                                              
                                              //SPLIT
                                              var str=this.id;
@@ -1122,7 +1123,7 @@ var app = {
 							  
 							  var pageNumber = 1;
 							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  alert(link1);
+							  //alert(link1);
 							  
 							  var ref = window.open(link1, '_blank', 'location=no');
 							  
@@ -1219,7 +1220,7 @@ var app = {
                               
                               $(document).on("touchstart", "#piu"+ identPW +"piu"+ prezzoPW +"piu"+ nomePW +"", function(e){
                                              
-                                             alert(this.id)
+                                             //alert(this.id)
                                              
                                              //SPLIT
                                              var str=this.id;
@@ -1245,7 +1246,7 @@ var app = {
 							  
 							  var pageNumber = 1;
 							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  alert(link1);
+							  //alert(link1);
 							  
 							  var ref = window.open(link1, '_blank', 'location=no');
 							  
@@ -1339,7 +1340,7 @@ var app = {
                               
                               $(document).on("touchstart", "#piu"+ identFB +"piu"+ prezzoFB +"piu"+ nomeFB +"", function(e){
                                              
-                                             alert(this.id)
+                                             //alert(this.id)
                                              
                                              //SPLIT
                                              var str=this.id;
@@ -1366,7 +1367,7 @@ var app = {
 							  
 							  var pageNumber = 1;
 							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  alert(link1);
+							  //alert(link1);
 							  
 							  var ref = window.open(link1, '_blank', 'location=no');
 							  
@@ -1460,7 +1461,7 @@ var app = {
                               
                               $(document).on("touchstart", "#piu"+ identTF +"piu"+ prezzoTF +"piu"+ nomeTF +"", function(e){
                                              
-                                             alert(this.id)
+                                             //alert(this.id)
                                              
                                              //SPLIT
                                              var str=this.id;
@@ -1484,7 +1485,7 @@ var app = {
 							  
 							  var pageNumber = 1;
 							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  alert(link1);
+							  //alert(link1);
 							  
 							  window.location.href = "tel:"+link1+"";
 							  
@@ -1572,7 +1573,7 @@ var app = {
                               
                               $(document).on("touchstart", "#piu"+ identTW +"piu"+ prezzoTW +"piu"+ nomeTW +"", function(e){
                                              
-                                             alert(this.id)
+                                             //alert(this.id)
                                              
                                              //SPLIT
                                              var str=this.id;
@@ -1597,7 +1598,7 @@ var app = {
 							  
 							  var pageNumber = 1;
 							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  alert(link1);
+							  //alert(link1);
 
 							  var ref = window.open(link1, '_blank', 'location=no');
 							  
@@ -1686,7 +1687,7 @@ var app = {
                               
                               $(document).on("touchstart", "#piu"+ identIG +"piu"+ prezzoIG +"piu"+ nomeIG +"", function(e){
                                              
-                                             alert(this.id)
+                                             //alert(this.id)
                                              
                                              //SPLIT
                                              var str=this.id;
@@ -1711,7 +1712,7 @@ var app = {
 							  
 							  var pageNumber = 1;
 							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  alert(link1);
+							  //alert(link1);
 							  
 							  var ref = window.open(link1, '_blank', 'location=no');
 							  
@@ -1800,7 +1801,7 @@ var app = {
                               
                               $(document).on("touchstart", "#piu"+ identUS +"piu"+ prezzoUS +"piu"+ nomeUS +"", function(e){
                                              
-                                             alert(this.id)
+                                             //alert(this.id)
                                              
                                              //SPLIT
                                              var str=this.id;
@@ -1825,7 +1826,7 @@ var app = {
 							  
 							  var pageNumber = 1;
 							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  alert(link1);
+							  //alert(link1);
 							  
 							  var ref = window.open(link1, '_blank', 'location=no');
 							  
@@ -1913,7 +1914,7 @@ var app = {
                               
                               $(document).on("touchstart", "#piu"+ identSV +"piu"+ prezzoSV +"piu"+ nomeSV +"", function(e){
                                              
-                                             alert(this.id)
+                                             //alert(this.id)
                                              
                                              //SPLIT
                                              var str=this.id;
@@ -1938,7 +1939,7 @@ var app = {
 							  
 							  var pageNumber = 1;
 							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  alert(link1);
+							  //alert(link1);
 							  
 							  var ref = window.open(link1, '_blank', 'location=no');
 							  
@@ -2028,7 +2029,7 @@ var app = {
                               
                               $(document).on("touchstart", "#piu"+ identSA +"piu"+ prezzoSA +"piu"+ nomeSA +"", function(e){
                                              
-                                             alert(this.id)
+                                             //alert(this.id)
                                              
                                              //SPLIT
                                              var str=this.id;
@@ -2053,7 +2054,7 @@ var app = {
 							  
 							  var pageNumber = 1;
 							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  alert(link1);
+							  //alert(link1);
 							  
 							  var ref = window.open(link1, '_blank', 'location=no');
 							  
@@ -2146,7 +2147,7 @@ var app = {
                               
                               $(document).on("touchstart", "#piu"+ identTM +"piu"+ prezzoTM +"piu"+ nomeTM +"", function(e){
                                              
-                                             alert(this.id)
+                                             //alert(this.id)
                                              
                                              //SPLIT
                                              var str=this.id;
@@ -2171,7 +2172,7 @@ var app = {
 							  
 							  var pageNumber = 1;
 							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  alert(link1);
+							  //alert(link1);
 							  
 							  window.location.href = "tel:"+link1+"";
 							  
@@ -2265,7 +2266,7 @@ var app = {
                               
                               $(document).on("touchstart", "#piu"+ identEM +"piu"+ prezzoEM +"piu"+ nomeEM +"", function(e){
                                              
-                                             alert(this.id)
+                                             //alert(this.id)
                                              
                                              //SPLIT
                                              var str=this.id;
@@ -2290,7 +2291,7 @@ var app = {
 							  
 							  var pageNumber = 1;
 							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  alert(link1);
+							  //alert(link1);
 							  
 							   window.plugin.email.open({
 													   to:      link1,
@@ -3084,6 +3085,34 @@ var app = {
 		
 		function gpsonError(){
 			
+			navigator.geolocation.watchPosition(onSuccess55, onError56, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
+			
+						
+		}
+		
+		
+		function onSuccess55(position){
+			
+			var ciao = position.coords.latitude;
+			var ciao1 = position.coords.longitude;
+			var gradi = position.coords.heading;
+			
+			localStorage.setItem("lat", ciao)
+			localStorage.setItem("lng", ciao1)
+			localStorage.setItem("gradi", gradi)
+			
+			localStorage.setItem("geostory", "SI")
+			
+			
+			$("#lati").html(ciao +", "+ ciao1);
+			
+			
+			
+		}
+		
+		function onError56(){
+			
+
 			var lat = "41.889191";
 			var lng = "12.492475";
 			
@@ -3098,6 +3127,8 @@ var app = {
 										 );
 			
 		}
+		
+		
 		
 		
 		// FINE CARICAMENTO //
