@@ -48,8 +48,28 @@ var app = {
 		var canvas;
 		var context;
 		var image;
+		var db;
+        var dbCreated = false;
+        var Badge10 = localStorage.getItem("Badge10");
+        $("#badde5").attr("data-badge", Badge10);
+        
+        if (Badge10 > 0){
+            $('#badde5').removeClass('badge2').addClass('badge1');
+            $("#badde5").html('<img id="carro3" src="img/CartW.png" width="20px">');
+        }
+        else{
+            var Badge10 = 0;
+            localStorage.setItem("Badge10","0");
+        }
 		
+        var db = window.openDatabase('mydb', '1.0', 'TestDB', 2 * 1024 * 1024);
+        db.transaction(function (tx) {
+            tx.executeSql('CREATE TABLE IF NOT EXISTS Ordine (id unique, IdProdotto, Qta, Descrizione, Nome)');
+        });
 		
+		$("#spinner").hide();
+		
+		var myScroll2;
 		var myScroll;
 		   
 		   myScroll = new iScroll('wrapper', {
@@ -179,6 +199,323 @@ var app = {
 		$("#spinner").hide();
 		
 		// START CODE //
+		
+		
+		 function agg2(prod,prezz,nomi){
+            
+            var aggiornamento = 0;
+            var msg;
+            var prezzo=prezz;
+            var test;
+            var P1 = '110';
+            var nome = nomi;
+            
+            
+            db.transaction(function (tx) {
+                tx.executeSql('SELECT * FROM Ordine where id='+ prod +'', [], function (tx, results) {
+                    var len = results.rows.length, i;
+                              
+                    alert(results.rows.length)
+                              
+                    for (i = 0; i < len; i++){
+                        alert("id:" + results.rows.item(i).id)
+                        alert("Qta:" +results.rows.item(i).Qta)
+                        alert("Descrizione:" +results.rows.item(i).Descrizione)
+                              
+                    }
+                              
+                    if(results.rows.length==0){
+                      tx.executeSql('INSERT INTO Ordine (id, IdProdotto, Qta, Descrizione, Nome) VALUES ('+ prod +', 1, 1, "'+ prezzo +'", "'+ nome +'")');
+                              
+                              localStorage.setItem("Badge10", parseInt(localStorage.getItem("Badge10"))+1)
+                              var Badge10 = localStorage.getItem("Badge10");
+                              
+                              
+                              $('#badde5').removeClass('badge2').addClass('badge1');
+                              $("#badde5").attr("data-badge", Badge10);
+                              $("#badde5").html('<img id="carro3" src="img/CartW.png" width="20px">');
+                              
+                              alert("Insert")
+                              seleziona()
+                    }
+                    else{
+                       /* tx.executeSql('UPDATE Ordine set Qta=Qta+1, Descrizione=Descrizione + '+ prezzo +' where id='+ prod +'', [], function (tx, results) {
+                                      
+                            localStorage.setItem("Badge10", parseInt(localStorage.getItem("Badge10"))+1)
+                            var Badge10 = localStorage.getItem("Badge10");
+                                      
+                                      
+                            $('#badde5').removeClass('badge2').addClass('badge1');
+                            $("#badde5").attr("data-badge", Badge10);
+                            $("#badde5").html('<img id="carro3" src="img/CartW.png" width="20px">');
+                                      
+                            alert("Update")
+                            seleziona()
+
+                        }, null);*/
+                    }
+                              
+                })
+                           
+            })
+
+            
+        }
+		
+		
+		function seleziona(){
+            var msg=""
+            
+           //var db = window.openDatabase('mydb', '1.0', 'TestDB', 2 * 1024 * 1024);
+            
+            db.transaction(function (tx) {
+            tx.executeSql('SELECT * FROM Ordine', [], function (tx, results) {
+                    var len = results.rows.length, i;
+                                         
+                    var pippo = 0
+                                         
+                    for (i = 0; i < len; i++){
+                          
+                         //$('#TOTPrezzo').html(results.rows.item(i).quanti);
+                          
+                          if(pippo==0){
+                            msg = msg + "" + results.rows.item(i).id + " - " + results.rows.item(i).IdProdotto + " - " + results.rows.item(i).Qta + " - " + results.rows.item(i).Descrizione + " - " + results.rows.item(i).Nome + "<br>";
+                          }
+                          else{
+                            msg = msg + "," + results.rows.item(i).id + " - " + results.rows.item(i).IdProdotto + " - " + results.rows.item(i).Qta + " - " + results.rows.item(i).Descrizione + " - " + results.rows.item(i).Nome + "<br>";
+                          }
+                          
+                          pippo = pippo+1
+                          
+                    }
+                          
+
+                    $('#TOTPrezzo').html(msg);
+                                         
+                                         
+                    }, null);
+            });
+            
+        }
+		
+
+  
+		function seleziona2(){
+            
+            //var Badge10 = localStorage.getItem("Badge10");
+            //$("#badde3").attr("data-badge", Badge10);
+            
+            $("#contenutoCart").html('');
+            
+            var tuttigliid = "";
+            var conta = 0;
+            
+            
+            db.transaction(function (tx) {
+                           tx.executeSql('SELECT * FROM Ordine', [], function (tx, results) {
+                                         var len = results.rows.length, i;
+                                         var Punita;
+                                         //alert(len);
+                                         
+                                         for (i = 0; i < len; i++){
+                                         
+                                         msg = results.rows.item(i).IdProdotto + "," + results.rows.item(i).Qta + "," + results.rows.item(i).Descrizione + "," + results.rows.item(i).Nome;
+                                         
+                                         Punita = (Number(results.rows.item(i).Descrizione).toFixed(2) / Number(results.rows.item(i).Qta).toFixed(2))
+                                        
+                                         var paperino2 = "cod_"+results.rows.item(i).id
+                                         
+                                         if(conta==0){
+                                           tuttigliid = results.rows.item(i).id;
+                                         
+                                           $("#contenutoCart").append('<table class="tablesorter"><tr><td width="160"><font color="#000" size="2">ORDINE</font></td><td width="50"><font color="#000" size="2">QTA</font></td><td width="70"><font color="#000" size="2">COSTO</font></td><td width="40"><font color="#000" size="2"></font></td></tr><tr><td width="150"><font size="3">'+ results.rows.item(i).Nome +'</font></td><td width="50"><font size="3">'+ results.rows.item(i).Qta +'<font color="#000" size="1"> x('+ Number(Punita).toFixed(2) +'&euro;)</font></td><td width="70"><font size="3">'+ Number(results.rows.item(i).Descrizione).toFixed(2) +'&euro;</font></td><td align="center" width="40"><a id="'+ paperino2 +'"><img src="img/minus.png" width="25"></a></td></tr></table>');
+                                         }
+                                         else{
+                                           tuttigliid = tuttigliid + "," + results.rows.item(i).id;
+                                         
+                                           $("#contenutoCart").append('<table class="tablesorter"><tr><td width="160"><font size="3">'+ results.rows.item(i).Nome +'</font></td><td width="50"><font size="3">'+ results.rows.item(i).Qta +'<font color="#000" size="1"> x('+ Number(Punita).toFixed(2) +'&euro;)</font></td><td width="70"><font size="3">'+ Number(results.rows.item(i).Descrizione).toFixed(2) +'&euro;</font></td width="40"><td align="center"><a id="'+ paperino2 +'"><img src="img/minus.png" width="25"></a></td></tr></table>');
+                                         }
+                                         
+                                        
+                                         
+                                         
+                                         $(document).on("touchstart", "#"+paperino2+"", function(e){
+                                                        
+                                            //alert(this.id)
+                                                        
+                                            var codice = this.id
+                                                        
+                                            codice = codice.replace("cod_","")
+                                                        
+                                            sottprod(codice)
+                                                        
+                                         });
+                                         
+                                         //alert(paperino2)
+                                         
+                                         
+                                         conta = conta+1;
+
+                                         }
+                                         
+                                         //$("#contenutoCart").append('</table>');
+                                         //$('#contenutoCart').html(landmark);
+                                         
+                                         document.getElementById("idordine").value = tuttigliid;
+                                         
+                                        // $("#contenutoCart").append("jhdjahasj js djkas dsahkjsa kjash jkashdkjashdjkas <br><br>jhdjahasj js djkas dsahkjsa kjash jkashdkjashdjkas <br><br>jhdjahasj js djkas dsahkjsa kjash jkashdkjashdjkas <br><br>jhdjahasj js djkas dsahkjsa kjash jkashdkjashdjkas <br><br>jhdjahasj js djkas dsahkjsa kjash jkashdkjashdjkas <br><br>jhdjahasj js djkas dsahkjsa kjash jkashdkjashdjkas <br><br>jhdjahasj js djkas dsahkjsa kjash jkashdkjashdjkas <br><br>")
+                                         
+                                         selPrezzo();
+                                         
+                                         
+                                         }, null);
+                           });
+        }
+        
+        function selPrezzo(){
+            db.transaction(function (tx) {
+                           tx.executeSql('SELECT SUM(Descrizione) as TOT FROM Ordine', [], function (tx, results) {
+                                         var len = results.rows.length, i;
+                                         
+                                         for (i = 0; i < len; i++){
+                                         
+                                          $("#TOTCART").html(Number(results.rows.item(i).TOT).toFixed(2));
+                                          document.getElementById("totordine").value = Number(results.rows.item(i).TOT).toFixed(2);
+                                         
+                                         }
+                                         
+                                         
+                                         }, null);
+                           });
+            
+            var myScroll2;
+            
+            myScroll2 = new IScroll('#wrapper2', { click: true });
+            
+            setTimeout (function(){
+                myScroll2.refresh();
+            }, 500);
+            
+        }
+        
+        function sottprod(prod){
+            
+            db.transaction(function (tx) {
+                tx.executeSql('DELETE FROM Ordine where id='+prod+'', [], function (tx, results) {
+                }, null);
+                           
+                           
+                localStorage.setItem("Badge10", parseInt(localStorage.getItem("Badge10"))-1)
+                           
+                seleziona2()
+                           
+            });
+            
+            
+            alert(prod)
+ 
+        }
+        
+
+
+        $(document).on("touchstart", "#meno", function(e){
+                       
+            //var  db = window.openDatabase('mydb', '1.0', 'TestDB', 2 * 1024 * 1024);
+                       
+            var prezzo = "1.00"
+            var prod= 1;
+                       
+                       db.transaction(function (tx) {
+                                      tx.executeSql('SELECT * FROM Ordine where id='+ prod +'', [], function (tx, results) {
+                                                    var len = results.rows.length, i;
+                                                    
+                                                    for (i = 0; i < len; i++){
+                                                    
+                                                      if (parseInt(results.rows.item(i).Qta) > 1){
+                                                    
+                                                         db.transaction(function (tx) {
+                                                           tx.executeSql('UPDATE Ordine set Qta=Qta-1, Descrizione=Descrizione - '+ prezzo +' where id='+ prod +'', [], function (tx, results) {
+                                                                         
+                                                                         
+                                                            localStorage.setItem("Badge10", parseInt(localStorage.getItem("Badge10"))-1)
+                                                                         
+                                                            Badge10 = localStorage.getItem("Badge10");
+                                                                         
+                                                            $("#badde5").attr("data-badge", Badge10);
+                                                                         
+                                                            seleziona()
+                                                                                 
+                                                           }, null);
+                                                                        
+                                                            
+                                                         });
+                                                    
+                                                     }
+                                                     else{
+                                                       tx.executeSql('DELETE FROM Ordine where id='+ prod +'', [], function (tx, results) {
+                                                                  
+                                                        localStorage.setItem("Badge10", parseInt(localStorage.getItem("Badge10"))-1)
+                                                        Badge10 = localStorage.getItem("Badge10");
+                                                                  
+                                                        $("#badde5").attr("data-badge", Badge10);
+                                                        $("#badde5").html('<img id="carro3" src="img/CartW.png" width="20px">');
+                                                                  
+                                                        //$( "#carro5" ).effect( "bounce", "slow" );
+                                                                  
+                                                       }, null);
+                                                    
+                                                    }
+                                                    
+                                                    
+                                                    }
+                                        }, null);
+                        });
+                       
+            /*if(parseInt(localStorage.getItem("Badge10"))>0){
+                       
+              localStorage.setItem("Badge10", parseInt(localStorage.getItem("Badge10"))-1)
+                       
+              Badge10 = localStorage.getItem("Badge10");
+                       
+              $("#badde5").attr("data-badge", Badge10);
+                       
+   
+              seleziona;
+                       
+            }*/
+                       
+        });
+        
+        
+        $(document).on("touchstart", "#cancella", function(e){
+                       
+                      //var  db = window.openDatabase('mydb', '1.0', 'TestDB', 2 * 1024 * 1024);
+                       
+                      	db.transaction(function (tx) {
+                            tx.executeSql('DELETE FROM Ordine', [], function (tx, results) {
+                                                     }, null);
+                        });
+                       
+                       
+                       localStorage.setItem("Badge10", 0)
+                       
+                       Badge10 = localStorage.getItem("Badge10");
+                       
+                       $("#badde5").attr("data-badge", Badge10);
+                       
+                       $("#spinner2").hide();
+                       
+                       window.location.href = "#page2";
+                       
+                       seleziona2()
+                       
+                       
+                       setTimeout (function(){
+                            myScroll2.refresh();
+                        }, 500);
+                       
+        });
+		
         
 		$(document).on("touchstart", "#fotomia", function(e){
 					   
@@ -250,8 +587,59 @@ var app = {
 		});
 		
 		
+		$(document).on("tap", "#altro", function(e){
+                       
+            $("#btnpanel").click();
+                       
+        });
 		
-		$(document).on("touchstart", "#richiedi", function(e){
+		$(document).on("touchstart", "#indietro", function(e){
+                       
+            window.location.href = "#page";
+                       
+                       var Badge10 = localStorage.getItem("Badge10");
+                       $("#badde5").attr("data-badge", Badge10);
+                       
+                       if (Badge10 > 0){
+                       $('#badde5').removeClass('badge2').addClass('badge1');
+                       $("#badde5").html('<img id="carro3" src="img/CartW.png" width="20px">');
+                       }
+                       else{
+                       var Badge10 = 0;
+                       localStorage.setItem("Badge10","0");
+                       }
+                       
+            setTimeout (function(){
+                seleziona()
+                myScroll.refresh();
+            }, 1000);
+                       
+                       
+        });
+		
+		
+		$(document).on("touchstart", "#badde5", function(e){
+                       
+            $("#spinner2").hide();
+                       
+            window.location.href = "#page2";
+                
+                var myScroll2;
+                       
+                myScroll2 = new IScroll('#wrapper2', { click: true });
+                
+                setTimeout (function(){
+                    myScroll2.refresh();
+                }, 500);
+                       
+                       
+            seleziona2()
+                       
+                    
+        });
+		
+		
+				$(document).on("touchstart", "#richiedi", function(e){
 					   
 					   var posta = $.base64.encode("salvatore.bruni@gmail.com")
 					   var lati = $.base64.encode(localStorage.getItem("lat"));
@@ -316,10 +704,10 @@ var app = {
 							  crossDomain: true,
 							  contentType: "application/x-www-form-urlencoded",
 							  success: function (result) {
+                              
+                              $("#testvideo").html("");
 							  
 							  if(result.Token==1){
-							  
-							  $("#testvideo").html("");
 							  
 							  
 							  // YOU TUBE
@@ -360,7 +748,8 @@ var app = {
 							  
 							  
 							  ciccio = "YT_cont_"+i
-							  
+                              
+                              
 							  /*urlvideo = "VA_cont_"+i
 								  
 								  urlaudio = "FA_cont_"+i
@@ -378,24 +767,59 @@ var app = {
 							  }
 							  else{
 							  
-							  var tabella = "<table width='' align='center'>";
+							  var tabella = "<table width='90%' align='center'>";
 							  
 							  paperino = "YT_cont_"+i
 							  descyt = "YT_desc_"+i
+                              
+                              prezzoYT = "YT_pric_"+i
+                              nomeYT = "YT_nome_"+i
+                              identYT = "YT_iden_"+i
+                              
+                              if(result[prezzoYT] =="0.00"){
+                                lock="unlock.png";
+                            
+                              }
+                              else{
+                                lock="cart.png";
+                              
+                              }
 							  
-							  
-							  tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descyt])+"</td></tr>"
-							  
+                              tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descyt])+"</td><td align='right' width='40'><a id='piu"+ identYT +"piu"+ prezzoYT +"piu"+ nomeYT +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
+
 							  tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+                              
 							  
 							  $("#testvideo").append(tabella);
 							  
 							  
-							  $(document).on("touchstart", "#"+paperino+"", function(e){
+							     $(document).on("touchstart", "#"+paperino+"", function(e){
 											 
-											 passo(this.id) // passare la variabile in una nuova funzione
+                                    passo(this.id) // passare la variabile in una nuova funzione
 											 
-											 });
+                                });
+                              
+                                $(document).on("touchstart", "#piu"+ identYT +"piu"+ prezzoYT +"piu"+ nomeYT +"", function(e){
+                                               
+                                    alert(this.id)
+                                               
+                                    //SPLIT
+                                    var str=this.id;
+                                               
+                                    var a1 = new Array();
+                                               
+                                    a1=str.split("piu");
+                                               
+                                    agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]))
+                                               
+                                               
+                                    /*for (i=0;i<a1.length;i++)
+                                    {
+                                     alert(a1[1]);3
+                                    }*/
+
+  
+                                });
 							  
 							  
 							  }
@@ -403,6 +827,11 @@ var app = {
 							  
 							  }
 							  
+                              function passoV(eccolaV){
+                              
+                                alert(result[eccolaV])
+                              
+                              }
 							  
 							  
 							  function passo(eccola){
@@ -475,13 +904,26 @@ var app = {
 							  }
 							  else{
 							  
-							  var tabella = "<table width='' align='center'>";
+							  var tabella = "<table width='90%' align='center'>";
 							  
 							  paperino = "VA_cont_"+i
 							  descva = "VA_desc_"+i
-							  
-							  
-							  tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_video.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descva])+"</td></tr>"
+                              
+                              prezzoVA = "VA_pric_"+i
+                              nomeVA = "VA_nome_"+i
+                              identVA = "VA_iden_"+i
+                              
+                              if(result[prezzoVA] =="0.00"){
+                               lock="unlock.png";
+                              
+                              }
+                              else{
+                               lock="cart.png";
+                              
+                              }
+
+                              
+                              tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descva])+"</td><td align='right' width='40'><a id='piu"+ identVA +"piu"+ prezzoVA +"piu"+ nomeVA +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
 							  
 							  tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
 							  
@@ -493,6 +935,29 @@ var app = {
 											 passo2(this.id) // passare la variabile in una nuova funzione
 											 
 											 });
+                              
+                              $(document).on("touchstart", "#piu"+ identVA +"piu"+ prezzoVA +"piu"+ nomeVA +"", function(e){
+                                             
+                                             alert(this.id)
+                                             
+                                             //SPLIT
+                                             var str=this.id;
+                                             
+                                             var a1 = new Array();
+                                             
+                                             a1=str.split("piu");
+                                             
+                                             agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]))
+                                             
+                                             
+                                             /*for (i=0;i<a1.length;i++)
+                                              {
+                                              alert(a1[1]);3
+                                              }*/
+                                             
+                                             
+                                             });
+                              
 							  
 							  
 							  }
@@ -506,7 +971,7 @@ var app = {
 							  
 							  var pageNumber = 1;
 							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  //alert(link1);
+							  alert(link1);
 							  
 							  var ref = window.open(link1, '_blank', 'location=no');
 							  
@@ -569,24 +1034,54 @@ var app = {
 							  }
 							  else{
 							  
-							  var tabella = "<table width='' align='center'>";
+							  var tabella = "<table width='90%' align='center'>";
 							  
 							  paperino = "FA_cont_"+i
 							  descfa = "FA_desc_"+i
+                              
+                              prezzoFA = "FA_pric_"+i
+                              nomeFA = "FA_nome_"+i
+                              identFA = "FA_iden_"+i
+                              
+                              if(result[prezzoFA] =="0.00"){
+                               lock="unlock.png";
+                              
+                              }
+                              else{
+                               lock="cart.png";
+                              
+                              }
 							  
 							  
-							  tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_audio.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descfa])+"</td></tr>"
-							  
-							  tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
-							  
-							  $("#testvideo").append(tabella);
+                              tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descfa])+"</td><td align='right' width='40'><a id='piu"+ identFA +"piu"+ prezzoFA +"piu"+ nomeFA +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
+                              
+                              tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+                              
+                              $("#testvideo").append(tabella);
 							  
 							  
 							  $(document).on("touchstart", "#"+paperino+"", function(e){
 											 
-											 passo3(this.id) // passare la variabile in una nuova funzione
+                                 passo3(this.id) // passare la variabile in una nuova funzione
 											 
-											 });
+                              });
+                              
+                              $(document).on("touchstart", "#piu"+ identFA +"piu"+ prezzoFA +"piu"+ nomeFA +"", function(e){
+                                             
+                                             alert(this.id)
+                                             
+                                             //SPLIT
+                                             var str=this.id;
+                                             
+                                             var a1 = new Array();
+                                             
+                                             a1=str.split("piu");
+                                             
+                                             agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]))
+
+                                             
+                                             
+                               });
 							  
 							  
 							  }
@@ -600,7 +1095,7 @@ var app = {
 							  
 							  var pageNumber = 1;
 							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  //alert(link1);
+							  alert(link1);
 							  
 							  var ref = window.open(link1, '_blank', 'location=no');
 							  
@@ -663,13 +1158,26 @@ var app = {
 							  }
 							  else{
 							  
-							  var tabella = "<table width='' align='center'>";
+							  var tabella = "<table width='90%' align='center'>";
 							  
 							  paperino = "PW_cont_"+i
 							  descpw = "PW_desc_"+i
 							  
-							  
-							  tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/logo.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descpw])+"</td></tr>"
+                              prezzoPW = "PW_pric_"+i
+                              nomePW = "PW_nome_"+i
+                              identPW = "PW_iden_"+i
+                              
+                              if(result[prezzoPW] =="0.00"){
+                               lock="unlock.png";
+                              
+                              }
+                              else{
+                               lock="cart.png";
+                              
+                              }
+                              
+                              
+                              tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descpw])+"</td><td align='right' width='40'><a id='piu"+ identPW +"piu"+ prezzoPW +"piu"+ nomePW +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
 							  
 							  tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
 							  
@@ -681,7 +1189,23 @@ var app = {
 											 passo4(this.id) // passare la variabile in una nuova funzione
 											 
 											 });
-							  
+                              
+                              $(document).on("touchstart", "#piu"+ identPW +"piu"+ prezzoPW +"piu"+ nomePW +"", function(e){
+                                             
+                                             alert(this.id)
+                                             
+                                             //SPLIT
+                                             var str=this.id;
+                                             
+                                             var a1 = new Array();
+                                             
+                                             a1=str.split("piu");
+                                             
+                                             agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]))
+                                             
+                                             
+                                             
+                                             });
 							  
 							  }
 							  
@@ -694,7 +1218,7 @@ var app = {
 							  
 							  var pageNumber = 1;
 							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  //alert(link1);
+							  alert(link1);
 							  
 							  var ref = window.open(link1, '_blank', 'location=no');
 							  
@@ -754,13 +1278,26 @@ var app = {
 							  }
 							  else{
 							  
-							  var tabella = "<table width='' align='center'>";
+							  var tabella = "<table width='90%' align='center'>";
 							  
 							  paperino = "FB_cont_"+i
 							  descfb = "FB_desc_"+i
 							  
-							  
-							  tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descfb])+"</td></tr>"
+                              prezzoFB = "FB_pric_"+i
+                              nomeFB = "FB_nome_"+i
+                              identFB = "FB_iden_"+i
+                              
+                              if(result[prezzoFB] =="0.00"){
+                               lock="unlock.png";
+                              
+                              }
+                              else{
+                               lock="cart.png";
+                              
+                              }
+                              
+                              
+                              tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descfb])+"</td><td align='right' width='40'><a id='piu"+ identFB +"piu"+ prezzoFB +"piu"+ nomeFB +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
 							  
 							  tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
 							  
@@ -772,6 +1309,23 @@ var app = {
 											 passo5(this.id) // passare la variabile in una nuova funzione
 											 
 											 });
+                              
+                              $(document).on("touchstart", "#piu"+ identFB +"piu"+ prezzoFB +"piu"+ nomeFB +"", function(e){
+                                             
+                                             alert(this.id)
+                                             
+                                             //SPLIT
+                                             var str=this.id;
+                                             
+                                             var a1 = new Array();
+                                             
+                                             a1=str.split("piu");
+                                             
+                                             agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]))
+                                             
+                                             
+                                             
+                                             });
 							  
 							  
 							  }
@@ -785,7 +1339,7 @@ var app = {
 							  
 							  var pageNumber = 1;
 							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  //alert(link1);
+							  alert(link1);
 							  
 							  var ref = window.open(link1, '_blank', 'location=no');
 							  
@@ -844,13 +1398,26 @@ var app = {
 							  }
 							  else{
 							  
-							  var tabella = "<table width='' align='center'>";
+							  var tabella = "<table width='90%' align='center'>";
 							  
 							  paperino = "TF_cont_"+i
 							  desctf = "TF_desc_"+i
 							  
-							  
-							  tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_telephone.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctf])+"</td></tr>"
+                              prezzoTF = "TF_pric_"+i
+                              nomeTF = "TF_nome_"+i
+                              identTF = "TF_iden_"+i
+                              
+                              if(result[prezzoTF] =="0.00"){
+                               lock="unlock.png";
+                              
+                              }
+                              else{
+                               lock="cart.png";
+                              
+                              }
+                              
+                              
+                              tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctf])+"</td><td align='right' width='40'><a id='piu"+ identTF +"piu"+ prezzoTF +"piu"+ nomeTF +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
 							  
 							  tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
 							  
@@ -862,7 +1429,22 @@ var app = {
 									passo6(this.id) // passare la variabile in una nuova funzione
 											 
 							  });
-							  
+                              
+                              
+                              $(document).on("touchstart", "#piu"+ identTF +"piu"+ prezzoTF +"piu"+ nomeTF +"", function(e){
+                                             
+                                             alert(this.id)
+                                             
+                                             //SPLIT
+                                             var str=this.id;
+                                             
+                                             var a1 = new Array();
+                                             
+                                             a1=str.split("piu");
+                                             
+                                             agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]))
+                                             
+                                });
 							  
 							  }
 							  
@@ -875,7 +1457,7 @@ var app = {
 							  
 							  var pageNumber = 1;
 							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  //alert(link1);
+							  alert(link1);
 							  
 							  window.location.href = "tel:"+link1+"";
 							  
@@ -929,13 +1511,26 @@ var app = {
 							  }
 							  else{
 							  
-							  var tabella = "<table width='' align='center'>";
+							  var tabella = "<table width='90%' align='center'>";
 							  
 							  paperino = "TW_cont_"+i
 							  desctw = "TW_desc_"+i
 							  
-							  
-							  tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_telephone.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctw])+"</td></tr>"
+                              prezzoTW = "TW_pric_"+i
+                              nomeTW = "TW_nome_"+i
+                              identTW = "TW_iden_"+i
+                              
+                              if(result[prezzoTF] =="0.00"){
+                               lock="unlock.png";
+                              
+                              }
+                              else{
+                               lock="cart.png";
+                              
+                              }
+                              
+                              
+                              tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctw])+"</td><td align='right' width='40'><a id='piu"+ identTW +"piu"+ prezzoTW +"piu"+ nomeTW +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
 							  
 							  tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
 							  
@@ -947,6 +1542,21 @@ var app = {
 											 passo7(this.id) // passare la variabile in una nuova funzione
 											 
 											 });
+                              
+                              $(document).on("touchstart", "#piu"+ identTW +"piu"+ prezzoTW +"piu"+ nomeTW +"", function(e){
+                                             
+                                             alert(this.id)
+                                             
+                                             //SPLIT
+                                             var str=this.id;
+                                             
+                                             var a1 = new Array();
+                                             
+                                             a1=str.split("piu");
+                                             
+                                             agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]))
+                                             
+                                });
 							  
 							  
 							  }
@@ -960,7 +1570,7 @@ var app = {
 							  
 							  var pageNumber = 1;
 							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  //alert(link1);
+							  alert(link1);
 
 							  var ref = window.open(link1, '_blank', 'location=no');
 							  
@@ -1015,13 +1625,26 @@ var app = {
 							  }
 							  else{
 							  
-							  var tabella = "<table width='' align='center'>";
+							  var tabella = "<table width='90%' align='center'>";
 							  
 							  paperino = "IG_cont_"+i
 							  descig = "IG_desc_"+i
 							  
-							  
-							  tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_telephone.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descig])+"</td></tr>"
+                              prezzoIG = "IG_pric_"+i
+                              nomeIG = "IG_nome_"+i
+                              identIG = "IG_iden_"+i
+                              
+                              if(result[prezzoIG] =="0.00"){
+                               lock="unlock.png";
+                              
+                              }
+                              else{
+                               lock="cart.png";
+                              
+                              }
+                              
+                              
+                              tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descig])+"</td><td align='right' width='40'><a id='piu"+ identIG +"piu"+ prezzoIG +"piu"+ nomeIG +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
 							  
 							  tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
 							  
@@ -1033,6 +1656,21 @@ var app = {
 											 passo8(this.id) // passare la variabile in una nuova funzione
 											 
 											 });
+                              
+                              $(document).on("touchstart", "#piu"+ identIG +"piu"+ prezzoIG +"piu"+ nomeIG +"", function(e){
+                                             
+                                             alert(this.id)
+                                             
+                                             //SPLIT
+                                             var str=this.id;
+                                             
+                                             var a1 = new Array();
+                                             
+                                             a1=str.split("piu");
+                                             
+                                             agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]))
+                                             
+                                             });
 							  
 							  
 							  }
@@ -1046,7 +1684,7 @@ var app = {
 							  
 							  var pageNumber = 1;
 							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  //alert(link1);
+							  alert(link1);
 							  
 							  var ref = window.open(link1, '_blank', 'location=no');
 							  
@@ -1100,13 +1738,26 @@ var app = {
 							  }
 							  else{
 							  
-							  var tabella = "<table width='' align='center'>";
+							  var tabella = "<table width='90%' align='center'>";
 							  
 							  paperino = "US_cont_"+i
 							  descus = "US_desc_"+i
 							  
-							  
-							  tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_telephone.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descus])+"</td></tr>"
+                              prezzoUS = "US_pric_"+i
+                              nomeUS = "US_nome_"+i
+                              identUS = "US_iden_"+i
+                              
+                              if(result[prezzoUS] =="0.00"){
+                               lock="unlock.png";
+                              
+                              }
+                              else{
+                               lock="cart.png";
+                              
+                              }
+                              
+                              
+                              tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descus])+"</td><td align='right' width='40'><a id='piu"+ identUS +"piu"+ prezzoUS +"piu"+ nomeUS +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
 							  
 							  tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
 							  
@@ -1118,6 +1769,22 @@ var app = {
 											 passo9(this.id) // passare la variabile in una nuova funzione
 											 
 											 });
+                              
+                              
+                              $(document).on("touchstart", "#piu"+ identUS +"piu"+ prezzoUS +"piu"+ nomeUS +"", function(e){
+                                             
+                                             alert(this.id)
+                                             
+                                             //SPLIT
+                                             var str=this.id;
+                                             
+                                             var a1 = new Array();
+                                             
+                                             a1=str.split("piu");
+                                             
+                                             agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]))
+                                             
+                                             });
 							  
 							  
 							  }
@@ -1131,7 +1798,7 @@ var app = {
 							  
 							  var pageNumber = 1;
 							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  //alert(link1);
+							  alert(link1);
 							  
 							  var ref = window.open(link1, '_blank', 'location=no');
 							  
@@ -1185,13 +1852,26 @@ var app = {
 							  }
 							  else{
 							  
-							  var tabella = "<table width='' align='center'>";
+							  var tabella = "<table width='90%' align='center'>";
 							  
 							  paperino = "SV_cont_"+i
 							  descsv = "SV_desc_"+i
 							  
-							  
-							  tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_telephone.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descsv])+"</td></tr>"
+                              prezzoSV = "SV_pric_"+i
+                              nomeSV = "SV_nome_"+i
+                              identSV = "SV_iden_"+i
+                              
+                              if(result[prezzoSV] =="0.00"){
+                               lock="unlock.png";
+                              
+                              }
+                              else{
+                               lock="cart.png";
+                              
+                              }
+                              
+                              
+                              tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descsv])+"</td><td align='right' width='40'><a id='piu"+ identSV +"piu"+ prezzoSV +"piu"+ nomeSV +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
 							  
 							  tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
 							  
@@ -1203,6 +1883,21 @@ var app = {
 											 passo10(this.id) // passare la variabile in una nuova funzione
 											 
 											 });
+                              
+                              $(document).on("touchstart", "#piu"+ identSV +"piu"+ prezzoSV +"piu"+ nomeSV +"", function(e){
+                                             
+                                             alert(this.id)
+                                             
+                                             //SPLIT
+                                             var str=this.id;
+                                             
+                                             var a1 = new Array();
+                                             
+                                             a1=str.split("piu");
+                                             
+                                             agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]))
+                                             
+                                });
 							  
 							  
 							  }
@@ -1216,7 +1911,7 @@ var app = {
 							  
 							  var pageNumber = 1;
 							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  //alert(link1);
+							  alert(link1);
 							  
 							  var ref = window.open(link1, '_blank', 'location=no');
 							  
@@ -1271,13 +1966,27 @@ var app = {
 							  }
 							  else{
 							  
-							  var tabella = "<table width='' align='center'>";
+							  var tabella = "<table width='90%' align='center'>";
 							  
 							  paperino = "SA_cont_"+i
 							  descsa = "SA_desc_"+i
 							  
-							  
-							  tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_telephone.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descsa])+"</td></tr>"
+                              
+                              prezzoSA = "SA_pric_"+i
+                              nomeSA = "SA_nome_"+i
+                              identSA = "SA_iden_"+i
+                              
+                              if(result[prezzoSA] =="0.00"){
+                               lock="unlock.png";
+                              
+                              }
+                              else{
+                               lock="cart.png";
+                              
+                              }
+                              
+                              
+                              tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descsa])+"</td><td align='right' width='40'><a id='piu"+ identSA +"piu"+ prezzoSA +"piu"+ nomeSA +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
 							  
 							  tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
 							  
@@ -1289,6 +1998,21 @@ var app = {
 											 passo11(this.id) // passare la variabile in una nuova funzione
 											 
 											 });
+                              
+                              $(document).on("touchstart", "#piu"+ identSA +"piu"+ prezzoSA +"piu"+ nomeSA +"", function(e){
+                                             
+                                             alert(this.id)
+                                             
+                                             //SPLIT
+                                             var str=this.id;
+                                             
+                                             var a1 = new Array();
+                                             
+                                             a1=str.split("piu");
+                                             
+                                             agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]))
+                                             
+                                             });
 							  
 							  
 							  }
@@ -1302,7 +2026,7 @@ var app = {
 							  
 							  var pageNumber = 1;
 							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  //alert(link1);
+							  alert(link1);
 							  
 							  var ref = window.open(link1, '_blank', 'location=no');
 							  
@@ -1361,13 +2085,26 @@ var app = {
 							  }
 							  else{
 							  
-							  var tabella = "<table width='' align='center'>";
+							  var tabella = "<table width='90%' align='center'>";
 							  
 							  paperino = "TM_cont_"+i
 							  desctm = "TM_desc_"+i
 							  
-							  
-							  tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_telephone.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctm])+"</td></tr>"
+                              prezzoTM = "TM_pric_"+i
+                              nomeTM = "TM_nome_"+i
+                              identTM = "TM_iden_"+i
+                              
+                              if(result[prezzoTM] =="0.00"){
+                                lock="unlock.png";
+                              
+                              }
+                              else{
+                                lock="cart.png";
+                              
+                              }
+                              
+                              
+                              tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctm])+"</td><td align='right' width='40'><a id='piu"+ identTM +"piu"+ prezzoTM +"piu"+ nomeTM +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
 							  
 							  tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
 							  
@@ -1379,6 +2116,21 @@ var app = {
 											 passo12(this.id) // passare la variabile in una nuova funzione
 											 
 											 });
+                              
+                              $(document).on("touchstart", "#piu"+ identTM +"piu"+ prezzoTM +"piu"+ nomeTM +"", function(e){
+                                             
+                                             alert(this.id)
+                                             
+                                             //SPLIT
+                                             var str=this.id;
+                                             
+                                             var a1 = new Array();
+                                             
+                                             a1=str.split("piu");
+                                             
+                                             agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]))
+                                             
+                                             });
 							  
 							  
 							  }
@@ -1392,7 +2144,7 @@ var app = {
 							  
 							  var pageNumber = 1;
 							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  //alert(link1);
+							  alert(link1);
 							  
 							  window.location.href = "tel:"+link1+"";
 							  
@@ -1452,13 +2204,26 @@ var app = {
 							  }
 							  else{
 							  
-							  var tabella = "<table width='' align='center'>";
+							  var tabella = "<table width='90%' align='center'>";
 							  
 							  paperino = "EM_cont_"+i
 							  descem = "EM_desc_"+i
 							  
-							  
-							  tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_telephone.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descem])+"</td></tr>"
+                              prezzoEM = "EM_pric_"+i
+                              nomeEM = "EM_nome_"+i
+                              identEM = "EM_iden_"+i
+                              
+                              if(result[prezzoEM] =="0.00"){
+                               lock="unlock.png";
+                              
+                              }
+                              else{
+                               lock="cart.png";
+                              
+                              }
+                              
+                              
+                              tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descem])+"</td><td align='right' width='40'><a id='piu"+ identEM +"piu"+ prezzoEM +"piu"+ nomeEM +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
 							  
 							  tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
 							  
@@ -1470,6 +2235,21 @@ var app = {
 									passo13(this.id) // passare la variabile in una nuova funzione
 											 
 							    });
+                              
+                              $(document).on("touchstart", "#piu"+ identEM +"piu"+ prezzoEM +"piu"+ nomeEM +"", function(e){
+                                             
+                                             alert(this.id)
+                                             
+                                             //SPLIT
+                                             var str=this.id;
+                                             
+                                             var a1 = new Array();
+                                             
+                                             a1=str.split("piu");
+                                             
+                                             agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]))
+                                             
+                                             });
 							  
 							  
 							  }
@@ -1483,15 +2263,14 @@ var app = {
 							  
 							  var pageNumber = 1;
 							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  //alert(link1);
+							  alert(link1);
 							  
-							   cordova.plugins.email.open({
+							   window.plugin.email.open({
 													   to:      link1,
 													   subject: "Email",
 													   body:    "Ciao,",
 													   isHtml:  true
 								});
-								
 							  
 							  }
 							  
@@ -1506,16 +2285,14 @@ var app = {
 							  // FINE IF TOKEN
 							  }
 							  else {
-								  
-								  $("#testvideo").html("");
-								  
-								  var tabella = "<table width='' align='center'>";
-								  
-								  tabella = tabella + "<tr><td align='left' width='80'>X </td><td align='left' width='100%'>"+$.base64.decode(result.messaggio)+"</td></tr><tr><td align='left' width='80'>X </td><td align='left' width='100%'>"+$.base64.decode(result.radice)+"</td></tr><tr><td align='left' width='80'>X </td><td align='left' width='100%'>"+$.base64.decode(result.foglia)+"</td></tr>"
-								  
-								  tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
-								  
-								  $("#testvideo").append(tabella);
+							  
+							  var tabella = "<table width='' align='center'>";
+							  
+							  tabella = tabella + "<tr><td align='left' width='80'>X </td><td align='left' width='100%'>"+$.base64.decode(result.messaggio)+"</td></tr><tr><td align='left' width='80'>X </td><td align='left' width='100%'>"+$.base64.decode(result.radice)+"</td></tr><tr><td align='left' width='80'>X </td><td align='left' width='100%'>"+$.base64.decode(result.foglia)+"</td></tr>"
+							  
+							  tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+							  
+							  $("#testvideo").append(tabella);
 							  
 							  }
 
@@ -1573,6 +2350,9 @@ var app = {
 				});
 					   
         });
+	
+		
+		
 		
 
 		function compraCarta(id_richiesta,id_autista,totale) {
