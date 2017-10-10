@@ -41,7 +41,7 @@ var app = {
 		//StatusBar.hide();
 		
 
-		var watchID = navigator.geolocation.getCurrentPosition(gpsonSuccess, gpsonError, {timeout: 10000, enableHighAccuracy: true });
+		var watchID = navigator.geolocation.watchPosition(gpsonSuccess, gpsonError, {timeout: 10000, enableHighAccuracy: true });
 		
 		var crop_max_width = 400;
 		var crop_max_height = 400;
@@ -64,7 +64,7 @@ var app = {
         }
 		
 		window.sqlitePlugin.selfTest(function() {
-			//alert('SELF test OK');
+			alert('SELF test OK');
 		});
 		
 	    var db = window.sqlitePlugin.openDatabase({name: 'mydb.db', location: 'default'});
@@ -635,19 +635,34 @@ var app = {
             $("#spinner2").hide();
                        
             window.location.href = "#page2";
+			
+			seleziona2()
                 
-                var myScroll2;
+            var myScroll2;
                        
-                myScroll2 = new IScroll('#wrapper2', { click: true });
+                myScroll2 = new iScroll('wrapper2', {
+								click: true,
+								useTransform: false,
+								//bounce: false,
+								onBeforeScrollStart: function (e)
+								{
+								var target = e.target;
+								while (target.nodeType != 1) {
+								target = target.parentNode;
+								}
+								
+								if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA' && target.tagName != 'OPTION') {
+								e.preventDefault();
+								}
+								}
+
+			});
                 
-                setTimeout (function(){
-                    myScroll2.refresh();
-                }, 500);
+				
+			setTimeout (function(){
+				myScroll2.refresh();
+			}, 500);
                        
-                       
-            seleziona2()
-                       
-                    
         });
 		
 		
