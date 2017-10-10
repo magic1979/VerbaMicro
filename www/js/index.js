@@ -41,7 +41,7 @@ var app = {
 		//StatusBar.hide();
 		
 
-		var watchID = navigator.geolocation.getCurrentPosition(gpsonSuccess, gpsonError, {timeout: 10000, enableHighAccuracy: true, maximumAge: 0 });
+		var watchID = navigator.geolocation.getCurrentPosition(gpsonSuccess, gpsonError, {timeout: 10000, enableHighAccuracy: true });
 		
 		var crop_max_width = 400;
 		var crop_max_height = 400;
@@ -243,7 +243,7 @@ var app = {
                               $("#badde5").attr("data-badge", Badge10);
                               $("#badde5").html('<img id="carro3" src="img/CartW.png" width="20px">');
                               
-                              //alert("Insert")
+                              alert("Insert")
                               seleziona()
                     }
                     else{
@@ -274,7 +274,6 @@ var app = {
 		function seleziona(){
             var msg=""
             
-           //var db = window.openDatabase('mydb', '1.0', 'TestDB', 2 * 1024 * 1024);
             
             db.transaction(function (tx) {
             tx.executeSql('SELECT * FROM Ordine', [], function (tx, results) {
@@ -318,7 +317,7 @@ var app = {
             
             var tuttigliid = "";
             var conta = 0;
-            var db = window.openDatabase.openDatabase('mydb', '1.0', 'TestDB', 2 * 1024 * 1024);
+            
             
             db.transaction(function (tx) {
                            tx.executeSql('SELECT * FROM Ordine', [], function (tx, results) {
@@ -433,7 +432,7 @@ var app = {
 
         $(document).on("touchstart", "#meno", function(e){
                        
-           var db = window.openDatabase('mydb', '1.0', 'TestDB', 2 * 1024 * 1024);
+           //var db = window.openDatabase('mydb', '1.0', 'TestDB', 2 * 1024 * 1024);
                        
             var prezzo = "1.00"
             var prod= 1;
@@ -3064,17 +3063,6 @@ var app = {
 			$("#lati").html(ciao +", "+ ciao1);
 			
 			
-			/*alert('Latitude: '          + position.coords.latitude          + '\n' +
-			 'Longitude: '         + position.coords.longitude         + '\n' +
-			 'Altitude: '          + position.coords.altitude          + '\n' +
-			 'Accuracy: '          + position.coords.accuracy          + '\n' +
-			 'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
-			 'Heading: '           + position.coords.heading           + '\n' +
-			 'Speed: '             + position.coords.speed             + '\n' +
-			 'Timestamp: '         + position.timestamp                + '\n');*/
-			
-			
-			//$("#distanza").html("<span style = 'font-size: 18px;'>"+ position.coords.speed +","+ position.coords.heading  +"</span>");
 			
 		}
 		

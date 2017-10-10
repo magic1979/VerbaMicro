@@ -159,8 +159,6 @@
 		
 		<gap:config-file platform="android" parent="/manifest" mode="add" xmlns:android="http://schemas.android.com/apk/res/android">
 		
-			android:windowSoftInputMode="adjustResize"
-			android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"
 			<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     		<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     		<uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
@@ -174,6 +172,9 @@
 			<uses-permission android:name="android.permission.RECORD_VIDEO" />
 			<uses-feature android:name="android.hardware.camera" />  
 			<uses-feature android:name="android.hardware.camera.autofocus" />
+			
+			<!--android:windowSoftInputMode="adjustResize"
+			android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"-->
 			
 		</gap:config-file>
 		
