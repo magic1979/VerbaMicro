@@ -224,6 +224,7 @@ var app = {
                         alert("Descrizione:" +results.rows.item(i).Descrizione)
                               
                     }
+					
                               
                     if(results.rows.length==0){
                       tx.executeSql('INSERT INTO Ordine (id, IdProdotto, Qta, Descrizione, Nome) VALUES ('+ prod +', 1, 1, "'+ prezzo +'", "'+ nome +'")');
@@ -236,7 +237,7 @@ var app = {
                               $("#badde5").attr("data-badge", Badge10);
                               $("#badde5").html('<img id="carro3" src="img/CartW.png" width="20px">');
                               
-                              alert("Insert")
+                              //alert("Insert")
                               seleziona()
                     }
                     else{
@@ -305,18 +306,19 @@ var app = {
             
             //var Badge10 = localStorage.getItem("Badge10");
             //$("#badde3").attr("data-badge", Badge10);
+			alert("sel2")
             
             $("#contenutoCart").html('');
             
             var tuttigliid = "";
             var conta = 0;
-            
+            var db = window.openDatabase('mydb', '1.0', 'TestDB', 2 * 1024 * 1024);
             
             db.transaction(function (tx) {
                            tx.executeSql('SELECT * FROM Ordine', [], function (tx, results) {
                                          var len = results.rows.length, i;
                                          var Punita;
-                                         //alert(len);
+                                         alert("en2"+len);
                                          
                                          for (i = 0; i < len; i++){
                                          
@@ -359,8 +361,7 @@ var app = {
 
                                          }
                                          
-                                         //$("#contenutoCart").append('</table>');
-                                         //$('#contenutoCart').html(landmark);
+
                                          
                                          document.getElementById("idordine").value = tuttigliid;
                                          
@@ -374,6 +375,10 @@ var app = {
         }
         
         function selPrezzo(){
+			var db = window.openDatabase('mydb', '1.0', 'TestDB', 2 * 1024 * 1024);
+			
+			alert("selprezzo")
+			
             db.transaction(function (tx) {
                            tx.executeSql('SELECT SUM(Descrizione) as TOT FROM Ordine', [], function (tx, results) {
                                          var len = results.rows.length, i;
@@ -400,6 +405,7 @@ var app = {
         }
         
         function sottprod(prod){
+			var db = window.openDatabase('mydb', '1.0', 'TestDB', 2 * 1024 * 1024);
             
             db.transaction(function (tx) {
                 tx.executeSql('DELETE FROM Ordine where id='+prod+'', [], function (tx, results) {
@@ -421,7 +427,7 @@ var app = {
 
         $(document).on("touchstart", "#meno", function(e){
                        
-            //var  db = window.openDatabase('mydb', '1.0', 'TestDB', 2 * 1024 * 1024);
+           var db = window.openDatabase('mydb', '1.0', 'TestDB', 2 * 1024 * 1024);
                        
             var prezzo = "1.00"
             var prod= 1;
