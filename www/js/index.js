@@ -63,7 +63,11 @@ var app = {
             localStorage.setItem("Badge10","0");
         }
 		
-        var db = window.openDatabase('mydb', '1.0', 'TestDB', 2 * 1024 * 1024);
+		window.sqlitePlugin.selfTest(function() {
+			alert('SELF test OK');
+		});
+				
+        var db = window.sqlitePlugin.openDatabase('mydb', '1.0', 'TestDB', 2 * 1024 * 1024);
         db.transaction(function (tx) {
             tx.executeSql('CREATE TABLE IF NOT EXISTS Ordine (id unique, IdProdotto, Qta, Descrizione, Nome)');
         });
@@ -312,7 +316,7 @@ var app = {
             
             var tuttigliid = "";
             var conta = 0;
-            var db = window.openDatabase('mydb', '1.0', 'TestDB', 2 * 1024 * 1024);
+            var db = window.openDatabase.openDatabase('mydb', '1.0', 'TestDB', 2 * 1024 * 1024);
             
             db.transaction(function (tx) {
                            tx.executeSql('SELECT * FROM Ordine', [], function (tx, results) {
@@ -375,7 +379,7 @@ var app = {
         }
         
         function selPrezzo(){
-			var db = window.openDatabase('mydb', '1.0', 'TestDB', 2 * 1024 * 1024);
+			//var db = window.openDatabase.openDatabase('mydb', '1.0', 'TestDB', 2 * 1024 * 1024);
 			
 			alert("selprezzo")
 			
@@ -405,7 +409,7 @@ var app = {
         }
         
         function sottprod(prod){
-			var db = window.openDatabase('mydb', '1.0', 'TestDB', 2 * 1024 * 1024);
+			//var db = window.openDatabase('mydb', '1.0', 'TestDB', 2 * 1024 * 1024);
             
             db.transaction(function (tx) {
                 tx.executeSql('DELETE FROM Ordine where id='+prod+'', [], function (tx, results) {
