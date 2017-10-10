@@ -40,7 +40,8 @@ var app = {
 		
 		//StatusBar.hide();
 		
-        var watchID = navigator.geolocation.getCurrentPosition(gpsonSuccess, gpsonError, {timeout: 30000, enableHighAccuracy: true, maximumAge: 90000 });
+
+		var watchID = navigator.geolocation.getCurrentPosition(gpsonSuccess, gpsonError, {timeout: 10000, enableHighAccuracy: true, maximumAge: 0 });
 		
 		var crop_max_width = 400;
 		var crop_max_height = 400;
