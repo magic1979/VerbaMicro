@@ -348,13 +348,13 @@ var app = {
      
 		
 		function seleziona2(){
-            
-            //var Badge10 = localStorage.getItem("Badge10");
-            //$("#badde3").attr("data-badge", Badge10);
+			
+			alert("enter")
             
             $("#contenutoCart").html('');
             
             var tuttigliid = "";
+			var tuttigliid2 = "";
             var conta = 0;
             
             
@@ -362,7 +362,7 @@ var app = {
                            tx.executeSql('SELECT * FROM Ordine', [], function (tx, results) {
                                          var len = results.rows.length, i;
                                          var Punita;
-                                         //alert(len);
+                                         alert("len:"+len);
                                          
                                          for (i = 0; i < len; i++){
 									 
@@ -379,6 +379,8 @@ var app = {
                                          Punita = (Number(results.rows.item(i).Descrizione).toFixed(2) / Number(results.rows.item(i).Qta).toFixed(2))
                                         
                                          var paperino2 = "_"+results.rows.item(i).id+"_"+results.rows.item(i).IdProdotto
+										 
+										 alert("paperino2:"+paperino2);
                                          
                                          if(conta==0){
                                            tuttigliid = results.rows.item(i).IdProdotto;
@@ -394,6 +396,7 @@ var app = {
                                          }
                                          
                                         
+										
                                          
                                          $(document).on("touchstart", "#"+paperino2+"", function(e){
 														
@@ -413,7 +416,7 @@ var app = {
                                                         
                                          });
                                          
-                                         //alert(paperino2)
+                                         alert("p:"+paperino2)
 										 
                                          conta = conta+1;
 
@@ -435,6 +438,9 @@ var app = {
         }
   
         function selPrezzo(){
+			
+			//alert("prezzo")
+			
             db.transaction(function (tx) {
                            tx.executeSql('SELECT SUM(Descrizione) as TOT FROM Ordine', [], function (tx, results) {
                                          var len = results.rows.length, i;
