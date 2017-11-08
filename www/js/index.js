@@ -40,6 +40,26 @@ var app = {
 		
 		//StatusBar.hide();
 		
+		$("#iddevice").html(localStorage.getItem("deviceid"))
+		
+		last_click_time = new Date().getTime();
+
+		document.addEventListener('click touchend', function (e) {
+						  
+		  click_time = e['timeStamp'];
+		  
+		  if (click_time && (click_time - last_click_time) < 1000) { e.stopImmediatePropagation();
+		  
+		  e.preventDefault();
+		  
+		  return false;
+		  
+		  }
+		  
+		  last_click_time = click_time;
+						  
+		}, true);
+		
 
 		//navigator.geolocation.watchPosition(gpsonSuccess, gpsonError, {timeout: 10000, enableHighAccuracy: true });
 		var watchID = navigator.geolocation.getCurrentPosition(gpsonSuccess, gpsonError, {timeout: 10000, enableHighAccuracy: true, maximumAge: 0 });
@@ -160,11 +180,11 @@ var app = {
 		}
         
 		
-        /*$(document).on("swipeleft", "#pippo", function(e){
-                       
-            alert("sinistra")
-                       
-        });*/
+		if(localStorage.getItem("carrello")=="1"){
+            
+            seleziona()
+        }
+		
 		
         
         $(function() {
@@ -186,30 +206,49 @@ var app = {
           });
 		
 		
-		/*navigator.camera.getPicture(uploadPhoto, onFail, { quality: 50,
-									allowEdit: true,
-									destinationType: Camera.DestinationType.FILE_URI,
-									sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-									targetWidth: 400,
-									targetHeight: 400
-									});*/
+		$(document).on("touchstart", "#piu", function(e){
+                       
+            agg2(1,"1.00","Test 1")
+                       
+                       
+        });
+        
+        $(document).on("touchstart", "#piu2", function(e){
+                       
+            agg2(2, "2.00", "Test 2")
+                       
+        });
+        
+        
+        
+        $(document).on("touchstart", "#piu3", function(e){
+                       
+                       localStorage.setItem("Badge10", parseInt(localStorage.getItem("Badge10"))+1)
+                       var Badge10 = localStorage.getItem("Badge10");
+                       
+                       
+                       $('#badde5').removeClass('badge2').addClass('badge1');
+                       $("#badde5").attr("data-badge", Badge10);
+                       $("#badde5").html('<img id="carro3" src="img/CartW.png" width="20px">');
+                       
+        });
+        
+        
+        
+        $(document).on("touchstart", "#meno3", function(e){
+                       
+                       localStorage.setItem("Badge10", parseInt(localStorage.getItem("Badge10"))-1)
+                       var Badge10 = localStorage.getItem("Badge10");
+                       
+                       
+                       $('#badde5').removeClass('badge2').addClass('badge1');
+                       $("#badde5").attr("data-badge", Badge10);
+                       $("#badde5").html('<img id="carro3" src="img/CartW.png" width="20px">');
+                       
+        });
 		
-	
-		/*navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 30,
-									//allowEdit: true,
-									destinationType: Camera.DestinationType.DATA_URL,
-									encodingType: Camera.EncodingType.PNG,
-									targetWidth: 400,
-									targetHeight: 400
-									});*/
 		
-
-		$("#spinner").hide();
-		
-		// START CODE //
-		
-		
-		 function agg2(prod,prezz,nomi){
+		function agg2(prod,prezz,nomi,dove){
             
             var aggiornamento = 0;
             var msg;
@@ -217,24 +256,25 @@ var app = {
             var test;
             var P1 = '110';
             var nome = nomi;
-            
+			var nomeprod = dove+prod
+			
+			//alert(nomeprod)
             
             db.transaction(function (tx) {
-                tx.executeSql('SELECT * FROM Ordine where id='+ prod +'', [], function (tx, results) {
+                tx.executeSql('SELECT * FROM Ordine where id='+ prod +' and IdProdotto="'+ nomeprod +'"', [], function (tx, results) {
                     var len = results.rows.length, i;
                               
                     //alert(results.rows.length)
                               
                     for (i = 0; i < len; i++){
-                        //alert("id:" + results.rows.item(i).id)
-                        //alert("Qta:" +results.rows.item(i).Qta)
-                        //alert("Descrizione:" +results.rows.item(i).Descrizione)
+                        alert("id:" + results.rows.item(i).id)
+                        alert("Qta:" +results.rows.item(i).Qta)
+                        alert("Descrizione:" +results.rows.item(i).Descrizione)
                               
                     }
-					
                               
                     if(results.rows.length==0){
-                      tx.executeSql('INSERT INTO Ordine (id, IdProdotto, Qta, Descrizione, Nome) VALUES ('+ prod +', 1, 1, "'+ prezzo +'", "'+ nome +'")');
+                      tx.executeSql('INSERT INTO Ordine (id, IdProdotto, Qta, Descrizione, Nome) VALUES ('+ prod +', "'+nomeprod+'", 1, "'+ prezzo +'", "'+ nome +'")');
                               
                               localStorage.setItem("Badge10", parseInt(localStorage.getItem("Badge10"))+1)
                               var Badge10 = localStorage.getItem("Badge10");
@@ -244,7 +284,7 @@ var app = {
                               $("#badde5").attr("data-badge", Badge10);
                               $("#badde5").html('<img id="carro3" src="img/CartW.png" width="20px">');
                               
-                              //alert("Insert")
+                              alert("Insert")
                               seleziona()
                     }
                     else{
@@ -270,11 +310,11 @@ var app = {
 
             
         }
-		
-		
-		function seleziona(){
+        
+        function seleziona(){
             var msg=""
             
+           //var db = window.openDatabase('mydb', '1.0', 'TestDB', 2 * 1024 * 1024);
             
             db.transaction(function (tx) {
             tx.executeSql('SELECT * FROM Ordine', [], function (tx, results) {
@@ -305,14 +345,12 @@ var app = {
             });
             
         }
+     
 		
-
-  
 		function seleziona2(){
             
             //var Badge10 = localStorage.getItem("Badge10");
             //$("#badde3").attr("data-badge", Badge10);
-			//alert("sel2")
             
             $("#contenutoCart").html('');
             
@@ -324,52 +362,68 @@ var app = {
                            tx.executeSql('SELECT * FROM Ordine', [], function (tx, results) {
                                          var len = results.rows.length, i;
                                          var Punita;
-                                         //alert("en2"+len);
+                                         //alert(len);
                                          
                                          for (i = 0; i < len; i++){
-                                         
-                                         msg = results.rows.item(i).IdProdotto + "," + results.rows.item(i).Qta + "," + results.rows.item(i).Descrizione + "," + results.rows.item(i).Nome;
-                                         
+									 
+										 if(i==0){
+                                           msg = results.rows.item(i).IdProdotto
+										 }
+										 else{
+										   msg = msg + "|" + results.rows.item(i).IdProdotto
+										 }
+										 
+										 $("#IDCART").html(msg);
+										 $("#NOMEORD").html("Ordinazione Microverba");
+										 
                                          Punita = (Number(results.rows.item(i).Descrizione).toFixed(2) / Number(results.rows.item(i).Qta).toFixed(2))
                                         
-                                         var paperino2 = "cod_"+results.rows.item(i).id
+                                         var paperino2 = "_"+results.rows.item(i).id+"_"+results.rows.item(i).IdProdotto
                                          
                                          if(conta==0){
-                                           tuttigliid = results.rows.item(i).id;
+                                           tuttigliid = results.rows.item(i).IdProdotto;
+										   tuttigliid2 = results.rows.item(i).id;
                                          
-                                           $("#contenutoCart").append('<table class="tablesorter"><tr><td width="160"><font color="#000" size="2">ORDINE</font></td><td width="50"><font color="#000" size="2">QTA</font></td><td width="70"><font color="#000" size="2">COSTO</font></td><td width="40"><font color="#000" size="2"></font></td></tr><tr><td width="150"><font size="3">'+ results.rows.item(i).Nome +'</font></td><td width="50"><font size="3">'+ results.rows.item(i).Qta +'<font color="#000" size="1"> x('+ Number(Punita).toFixed(2) +'&euro;)</font></td><td width="70"><font size="3">'+ Number(results.rows.item(i).Descrizione).toFixed(2) +'&euro;</font></td><td align="center" width="40"><a id="'+ paperino2 +'"><img src="img/minus.png" width="25"></a></td></tr></table>');
+                                           $("#contenutoCart").append('<table class="tablesorter"><tr><td width="160"><font color="#000" size="2">ORDINE</font></td><td width="50"><font color="#000" size="2">QTA</font></td><td width="70"><font color="#000" size="2">COSTO</font></td><td width="40"><font color="#000" size="2"></font></td></tr><tr><td width="150"><font size="3">'+ msg +'</font></td><td width="50"><font size="3">'+ results.rows.item(i).Qta +'<font color="#000" size="1"> x('+ Number(Punita).toFixed(2) +'&euro;)</font></td><td width="70"><font size="3">'+ Number(results.rows.item(i).Descrizione).toFixed(2) +'&euro;</font></td><td align="center" width="40"><a id="'+ paperino2 +'"><img src="img/minus.png" width="25"></a></td></tr></table>');
                                          }
                                          else{
-                                           tuttigliid = tuttigliid + "," + results.rows.item(i).id;
+                                           tuttigliid = tuttigliid + "|" + results.rows.item(i).IdProdotto;
+										   tuttigliid2 = tuttigliid2 + results.rows.item(i).id;
                                          
-                                           $("#contenutoCart").append('<table class="tablesorter"><tr><td width="160"><font size="3">'+ results.rows.item(i).Nome +'</font></td><td width="50"><font size="3">'+ results.rows.item(i).Qta +'<font color="#000" size="1"> x('+ Number(Punita).toFixed(2) +'&euro;)</font></td><td width="70"><font size="3">'+ Number(results.rows.item(i).Descrizione).toFixed(2) +'&euro;</font></td width="40"><td align="center"><a id="'+ paperino2 +'"><img src="img/minus.png" width="25"></a></td></tr></table>');
+                                           $("#contenutoCart").append('<table class="tablesorter"><tr><td width="160"><font size="3">'+ msg +'</font></td><td width="50"><font size="3">'+ results.rows.item(i).Qta +'<font color="#000" size="1"> x('+ Number(Punita).toFixed(2) +'&euro;)</font></td><td width="70"><font size="3">'+ Number(results.rows.item(i).Descrizione).toFixed(2) +'&euro;</font></td width="40"><td align="center"><a id="'+ paperino2 +'"><img src="img/minus.png" width="25"></a></td></tr></table>');
                                          }
                                          
                                         
                                          
-                                         
                                          $(document).on("touchstart", "#"+paperino2+"", function(e){
-                                                        
-                                            //alert(this.id)
-                                                        
+														
                                             var codice = this.id
+														
+											//SPLIT
+			
+											var a1 = new Array();
+														
+											a1=codice.split("_");
+														
+											//alert(a1[1]+" "+a1[2])
+       
+                                            //codice = codice.replace("cod_","")
                                                         
-                                            codice = codice.replace("cod_","")
-                                                        
-                                            sottprod(codice)
+                                            sottprod(a1[1],a1[2])
                                                         
                                          });
                                          
                                          //alert(paperino2)
-                                         
-                                         
+										 
                                          conta = conta+1;
 
                                          }
                                          
-
-                                         
-                                         document.getElementById("idordine").value = tuttigliid;
+                                         //$("#contenutoCart").append('</table>');
+                                         //$('#contenutoCart').html(landmark);
+										 
+										 document.getElementById("idordine").value = tuttigliid2;
+                                         document.getElementById("products").value = tuttigliid;
                                          
                                         // $("#contenutoCart").append("jhdjahasj js djkas dsahkjsa kjash jkashdkjashdjkas <br><br>jhdjahasj js djkas dsahkjsa kjash jkashdkjashdjkas <br><br>jhdjahasj js djkas dsahkjsa kjash jkashdkjashdjkas <br><br>jhdjahasj js djkas dsahkjsa kjash jkashdkjashdjkas <br><br>jhdjahasj js djkas dsahkjsa kjash jkashdkjashdjkas <br><br>jhdjahasj js djkas dsahkjsa kjash jkashdkjashdjkas <br><br>jhdjahasj js djkas dsahkjsa kjash jkashdkjashdjkas <br><br>")
                                          
@@ -379,12 +433,8 @@ var app = {
                                          }, null);
                            });
         }
-        
+  
         function selPrezzo(){
-			//var db = window.openDatabase.openDatabase('mydb', '1.0', 'TestDB', 2 * 1024 * 1024);
-			
-			//alert("selprezzo")
-			
             db.transaction(function (tx) {
                            tx.executeSql('SELECT SUM(Descrizione) as TOT FROM Ordine', [], function (tx, results) {
                                          var len = results.rows.length, i;
@@ -395,29 +445,49 @@ var app = {
                                           document.getElementById("totordine").value = Number(results.rows.item(i).TOT).toFixed(2);
                                          
                                          }
+										 
+										 selQta();
                                          
                                          
                                          }, null);
                            });
             
-            var myScroll2;
-            
-            myScroll2 = new IScroll('#wrapper2', { click: true });
-            
-            setTimeout (function(){
-                myScroll2.refresh();
-            }, 500);
-            
         }
-        
-        function sottprod(prod){
-			//var db = window.openDatabase('mydb', '1.0', 'TestDB', 2 * 1024 * 1024);
+	
+  
+		function selQta(){
+			db.transaction(function (tx) {
+						   tx.executeSql('SELECT SUM(Qta) as TOT FROM Ordine', [], function (tx, results) {
+										 var len = results.rows.length, i;
+										 
+								 for (i = 0; i < len; i++){
+										 
+									 $("#QTA").html(Number(results.rows.item(i).TOT));
+									 document.getElementById("qta").value = Number(results.rows.item(i).TOT);
+										 
+								 }
+										 
+										 //selQta();
+										 
+								 }, null);
+						   });
+			
+			//var myScroll2;
+			
+			//myScroll2 = new IScroll('#wrapper2', { click: true });
+			
+			setTimeout (function(){
+						myScroll2.refresh();
+						}, 500);
+		}
+  
+  
+        function sottprod(prod,vedo){
             
             db.transaction(function (tx) {
-                tx.executeSql('DELETE FROM Ordine where id='+prod+'', [], function (tx, results) {
+                tx.executeSql('DELETE FROM Ordine where id='+prod+' and IdProdotto="'+ vedo +'"', [], function (tx, results) {
                 }, null);
-                           
-                           
+						   
                 localStorage.setItem("Badge10", parseInt(localStorage.getItem("Badge10"))-1)
                            
                 seleziona2()
@@ -425,15 +495,14 @@ var app = {
             });
             
             
-            //alert(prod)
+            alert(prod)
  
         }
-        
-
-
-        $(document).on("touchstart", "#meno", function(e){
+ 
+  
+		$(document).on("touchstart", "#meno", function(e){
                        
-           //var db = window.openDatabase('mydb', '1.0', 'TestDB', 2 * 1024 * 1024);
+            //var  db = window.openDatabase('mydb', '1.0', 'TestDB', 2 * 1024 * 1024);
                        
             var prezzo = "1.00"
             var prod= 1;
@@ -498,9 +567,9 @@ var app = {
             }*/
                        
         });
+  
         
-        
-        $(document).on("touchstart", "#cancella", function(e){
+		$(document).on("touchstart", "#cancella", function(e){
                        
                       //var  db = window.openDatabase('mydb', '1.0', 'TestDB', 2 * 1024 * 1024);
                        
@@ -518,17 +587,25 @@ var app = {
                        
                        $("#spinner2").hide();
                        
-                       window.location.href = "#page2";
+                       //window.location.href = "#page2";
                        
                        seleziona2()
                        
                        
-                       setTimeout (function(){
+                      /* setTimeout (function(){
                             myScroll2.refresh();
-                        }, 500);
+                        }, 500);*/
                        
         });
+	
+  
+  
+  
+  
+		$("#spinner").hide();
 		
+		// START CODE //
+
         
 		$(document).on("touchstart", "#fotomia", function(e){
 					   
@@ -606,6 +683,7 @@ var app = {
                        
         });
 		
+	
 		$(document).on("touchstart", "#indietro", function(e){
                        
             window.location.href = "#page";
@@ -629,1763 +707,2353 @@ var app = {
                        
                        
         });
-		
+  
 		
 		$(document).on("touchstart", "#badde5", function(e){
                        
             $("#spinner2").hide();
                        
             window.location.href = "#page2";
-			
-			seleziona2()
                 
-            var myScroll2;
+                var myScroll2;
                        
-                myScroll2 = new iScroll('wrapper2', {
-								click: true,
-								useTransform: false,
-								//bounce: false,
-								onBeforeScrollStart: function (e)
-								{
-								var target = e.target;
-								while (target.nodeType != 1) {
-								target = target.parentNode;
-								}
-								
-								if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA' && target.tagName != 'OPTION') {
-								e.preventDefault();
-								}
-								}
-
-			});
+                myScroll2 = new IScroll('#wrapper2', { click: true });
                 
-				
-			setTimeout (function(){
-				myScroll2.refresh();
-			}, 500);
-                       
-        });
-		
-		
-				$(document).on("touchstart", "#richiedi", function(e){
-					   
-					   var posta = $.base64.encode("salvatore.bruni@gmail.com")
-					   var lati = $.base64.encode(localStorage.getItem("lat"));
-					   var longi = $.base64.encode(localStorage.getItem("lng"));
-					   
-					   var radice3;
-					   var foglia3;
-					   
-					   
-					   if(self.document.form.radice2.value != ""){
-					   radice3 = self.document.form.radice2.value
-					   }
-					   else{
-					   radice3 = self.document.form.radice.value
-					   }
-					   
-					   
-					   if(self.document.form.foglia2.value != ""){
-					   foglia3 = self.document.form.foglia2.value
-					   }
-					   else{
-					   foglia3 = self.document.form.foglia.value
-					   }
-					   
-					   
-					   if (radice3 == "") {
-					   navigator.notification.alert(
-													'inserire una Radice',  // message
-													alertDismissed,         // callback
-													'Radice',            // title
-													'OK'                  // buttonName
-													);
-					   return;
-					   }
-					   
-					   if (foglia3 == "") {
-					   navigator.notification.alert(
-													'inserire una Foglia',  // message
-													alertDismissed,         // callback
-													'Foglia',            // title
-													'OK'                  // buttonName
-													);
-					   return;
-					   }
-					   
-					   
-					   var radice4 = radice3.toLowerCase();
-					   var foglia4 = foglia3.toLowerCase();
-					   
-					   var radice = $.base64.encode(radice4);
-					   var foglia = $.base64.encode(foglia4);
-					   
-					   
-					   
-					   $("#spinner").show();
-					   
-					   $.ajax({
-							  type: "POST",
-							  url: "http://www.microverba.com/leaf_root_request.php",
-					    data: {email:posta,leaf:foglia,root:radice,latitudine:lati,longitudine:longi},
-							  cache: false,
-							  crossDomain: true,
-							  contentType: "application/x-www-form-urlencoded",
-							  success: function (result) {
-                              
-                              $("#testvideo").html("");
-							  
-							  if(result.Token==1){
-							  
-							  
-							  // YOU TUBE
-							  if(result.YT === null || typeof(result.YT) == 'undefined' || result.YT=="null" || result.YT==""){
-							  
-							  }
-							  else{
-							  
-							  for (var i=0, l=10; i<l; i++) {
-							  
-							  if(i==1){
-							  i="01"
-							  }
-							  if(i==2){
-									i="02"
-									}
-							  if(i==3){
-									i="03"
-							  }
-							  if(i==4){
-									i="04"
-							  }
-							  if(i==5){
-									i="05"
-							  }
-							  if(i==6){
-									i="06"
-							  }
-							  if(i==7){
-									i="07"
-							  }
-							  if(i==8){
-									i="08"
-							  }
-							  if(i==9){
-									i="09"
-							  }
-							  
-							  
-							  ciccio = "YT_cont_"+i
-                              
-                              
-							  /*urlvideo = "VA_cont_"+i
-								  
-								  urlaudio = "FA_cont_"+i
-								  
-								  paginaweb = "PW_cont_"+i
-								  
-								  paginafb = "FB_cont_"+i
-								  
-								  urltwitter = "TW_cont_"+i
-								  
-								  urlinstagram = "IG_cont_"+i*/
-							  
-							  if(result[ciccio] === null || typeof(result[ciccio]) == 'undefined' || result[ciccio]=="null" || result[ciccio]==""){
-							  
-							  }
-							  else{
-							  
-							  var tabella = "<table width='90%' align='center'>";
-							  
-							  paperino = "YT_cont_"+i
-							  descyt = "YT_desc_"+i
-                              
-                              prezzoYT = "YT_pric_"+i
-                              nomeYT = "YT_nome_"+i
-                              identYT = "YT_iden_"+i
-                              
-                              if(result[prezzoYT] =="0.00"){
-                                lock="unlock.png";
-                            
-                              }
-                              else{
-                                lock="cart.png";
-                              
-                              }
-							  
-                              tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descyt])+"</td><td align='right' width='40'><a id='piu"+ identYT +"piu"+ prezzoYT +"piu"+ nomeYT +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
-
-							  tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
-                              
-							  
-							  $("#testvideo").append(tabella);
-							  
-							  
-							     $(document).on("touchstart", "#"+paperino+"", function(e){
-											 
-                                    passo(this.id) // passare la variabile in una nuova funzione
-											 
-                                });
-                              
-                                $(document).on("touchstart", "#piu"+ identYT +"piu"+ prezzoYT +"piu"+ nomeYT +"", function(e){
-                                               
-                                    //alert(this.id)
-                                               
-                                    //SPLIT
-                                    var str=this.id;
-                                               
-                                    var a1 = new Array();
-                                               
-                                    a1=str.split("piu");
-                                               
-                                    agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]))
-                                               
-                                               
-                                    /*for (i=0;i<a1.length;i++)
-                                    {
-                                     alert(a1[1]);3
-                                    }*/
-
-  
-                                });
-							  
-							  
-							  }
-							  
-							  
-							  }
-							  
-                              function passoV(eccolaV){
-                              
-                                //alert(result[eccolaV])
-                              
-                              }
-							  
-							  
-							  function passo(eccola){
-							  
-							  var pageNumber = 1;
-							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  //alert(link1);
-							  
-							  var ref = window.open(link1, '_blank', 'location=no');
-							  
-							  }
-							  
-							  
-							  }
-							  
-							  
-							  // URL VIDEO
-							  if(result.VA === null || typeof(result.VA) == 'undefined' || result.VA=="null" || result.VA==""){
-							  
-							  }
-							  else{
-							  
-							  for (var i=0, l=10; i<l; i++) {
-							  
-							  if(i==1){
-							  i="01"
-							  }
-							  if(i==2){
-							  i="02"
-							  }
-							  if(i==3){
-							  i="03"
-							  }
-							  if(i==4){
-							  i="04"
-							  }
-							  if(i==5){
-							  i="05"
-							  }
-							  if(i==6){
-							  i="06"
-							  }
-							  if(i==7){
-							  i="07"
-							  }
-							  if(i==8){
-							  i="08"
-							  }
-							  if(i==9){
-							  i="09"
-							  }
-							  
-							  
-							  urlvideo = "VA_cont_"+i
-							  
-							  /*
-							   
-							   urlaudio = "FA_cont_"+i
-							   
-							   paginaweb = "PW_cont_"+i
-							   
-							   paginafb = "FB_cont_"+i
-							   
-							   urltwitter = "TW_cont_"+i
-							   
-							   urlinstagram = "IG_cont_"+i*/
-							  
-							  if(result[urlvideo] === null || typeof(result[urlvideo]) == 'undefined' || result[urlvideo]=="null" || result[urlvideo]==""){
-							  
-							  }
-							  else{
-							  
-							  var tabella = "<table width='90%' align='center'>";
-							  
-							  paperino = "VA_cont_"+i
-							  descva = "VA_desc_"+i
-                              
-                              prezzoVA = "VA_pric_"+i
-                              nomeVA = "VA_nome_"+i
-                              identVA = "VA_iden_"+i
-                              
-                              if(result[prezzoVA] =="0.00"){
-                               lock="unlock.png";
-                              
-                              }
-                              else{
-                               lock="cart.png";
-                              
-                              }
-
-                              
-                              tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descva])+"</td><td align='right' width='40'><a id='piu"+ identVA +"piu"+ prezzoVA +"piu"+ nomeVA +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
-							  
-							  tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
-							  
-							  $("#testvideo").append(tabella);
-							  
-							  
-							  $(document).on("touchstart", "#"+paperino+"", function(e){
-											 
-											 passo2(this.id) // passare la variabile in una nuova funzione
-											 
-											 });
-                              
-                              $(document).on("touchstart", "#piu"+ identVA +"piu"+ prezzoVA +"piu"+ nomeVA +"", function(e){
-                                             
-                                             //alert(this.id)
-                                             
-                                             //SPLIT
-                                             var str=this.id;
-                                             
-                                             var a1 = new Array();
-                                             
-                                             a1=str.split("piu");
-                                             
-                                             agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]))
-                                             
-                                             
-                                             /*for (i=0;i<a1.length;i++)
-                                              {
-                                              alert(a1[1]);3
-                                              }*/
-                                             
-                                             
-                                             });
-                              
-							  
-							  
-							  }
-							  
-							  
-							  }
-							  
-							  
-							  
-							  function passo2(eccola){
-							  
-							  var pageNumber = 1;
-							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  //alert(link1);
-							  
-							  var ref = window.open(link1, '_blank', 'location=no');
-							  
-							  }
-							  
-							  
-							  }
-							  
-							  
-							  // URL AUDIO
-							  if(result.FA === null || typeof(result.FA) == 'undefined' || result.FA=="null" || result.FA==""){
-							  
-							  }
-							  else{
-							  
-							  for (var i=0, l=10; i<l; i++) {
-							  
-							  if(i==1){
-							  i="01"
-							  }
-							  if(i==2){
-							  i="02"
-							  }
-							  if(i==3){
-							  i="03"
-							  }
-							  if(i==4){
-							  i="04"
-							  }
-							  if(i==5){
-							  i="05"
-							  }
-							  if(i==6){
-							  i="06"
-							  }
-							  if(i==7){
-							  i="07"
-							  }
-							  if(i==8){
-							  i="08"
-							  }
-							  if(i==9){
-							  i="09"
-							  }
-							  
-							  
-							  urlaudio = "FA_cont_"+i
-							  
-							  /*
-							   paginaweb = "PW_cont_"+i
-							   
-							   paginafb = "FB_cont_"+i
-							   
-							   urltwitter = "TW_cont_"+i
-							   
-							   urlinstagram = "IG_cont_"+i*/
-							  
-							  if(result[urlaudio] === null || typeof(result[urlaudio]) == 'undefined' || result[urlaudio]=="null" || result[urlaudio]==""){
-							  
-							  }
-							  else{
-							  
-							  var tabella = "<table width='90%' align='center'>";
-							  
-							  paperino = "FA_cont_"+i
-							  descfa = "FA_desc_"+i
-                              
-                              prezzoFA = "FA_pric_"+i
-                              nomeFA = "FA_nome_"+i
-                              identFA = "FA_iden_"+i
-                              
-                              if(result[prezzoFA] =="0.00"){
-                               lock="unlock.png";
-                              
-                              }
-                              else{
-                               lock="cart.png";
-                              
-                              }
-							  
-							  
-                              tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descfa])+"</td><td align='right' width='40'><a id='piu"+ identFA +"piu"+ prezzoFA +"piu"+ nomeFA +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
-                              
-                              tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
-                              
-                              $("#testvideo").append(tabella);
-							  
-							  
-							  $(document).on("touchstart", "#"+paperino+"", function(e){
-											 
-                                 passo3(this.id) // passare la variabile in una nuova funzione
-											 
-                              });
-                              
-                              $(document).on("touchstart", "#piu"+ identFA +"piu"+ prezzoFA +"piu"+ nomeFA +"", function(e){
-                                             
-                                             //alert(this.id)
-                                             
-                                             //SPLIT
-                                             var str=this.id;
-                                             
-                                             var a1 = new Array();
-                                             
-                                             a1=str.split("piu");
-                                             
-                                             agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]))
-
-                                             
-                                             
-                               });
-							  
-							  
-							  }
-							  
-							  
-							  }
-							  
-							  
-							  
-							  function passo3(eccola){
-							  
-							  var pageNumber = 1;
-							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  //alert(link1);
-							  
-							  var ref = window.open(link1, '_blank', 'location=no');
-							  
-							  }
-							  
-							  
-							  }
-							  
-							  
-							  // URL Pagina Web
-							  if(result.PW === null || typeof(result.PW) == 'undefined' || result.PW=="null" || result.PW==""){
-							  
-							  }
-							  else{
-							  
-							  for (var i=0, l=10; i<l; i++) {
-							  
-							  if(i==1){
-							  i="01"
-							  }
-							  if(i==2){
-							  i="02"
-							  }
-							  if(i==3){
-							  i="03"
-							  }
-							  if(i==4){
-							  i="04"
-							  }
-							  if(i==5){
-							  i="05"
-							  }
-							  if(i==6){
-							  i="06"
-							  }
-							  if(i==7){
-							  i="07"
-							  }
-							  if(i==8){
-							  i="08"
-							  }
-							  if(i==9){
-							  i="09"
-							  }
-							  
-							  
-							  paginaweb = "PW_cont_"+i
-							  
-							  /*
-							   
-							   
-							   paginafb = "FB_cont_"+i
-							   
-							   urltwitter = "TW_cont_"+i
-							   
-							   urlinstagram = "IG_cont_"+i*/
-							  
-							  if(result[paginaweb] === null || typeof(result[paginaweb]) == 'undefined' || result[paginaweb]=="null" || result[paginaweb]==""){
-							  
-							  }
-							  else{
-							  
-							  var tabella = "<table width='90%' align='center'>";
-							  
-							  paperino = "PW_cont_"+i
-							  descpw = "PW_desc_"+i
-							  
-                              prezzoPW = "PW_pric_"+i
-                              nomePW = "PW_nome_"+i
-                              identPW = "PW_iden_"+i
-                              
-                              if(result[prezzoPW] =="0.00"){
-                               lock="unlock.png";
-                              
-                              }
-                              else{
-                               lock="cart.png";
-                              
-                              }
-                              
-                              
-                              tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descpw])+"</td><td align='right' width='40'><a id='piu"+ identPW +"piu"+ prezzoPW +"piu"+ nomePW +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
-							  
-							  tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
-							  
-							  $("#testvideo").append(tabella);
-							  
-							  
-							  $(document).on("touchstart", "#"+paperino+"", function(e){
-											 
-											 passo4(this.id) // passare la variabile in una nuova funzione
-											 
-											 });
-                              
-                              $(document).on("touchstart", "#piu"+ identPW +"piu"+ prezzoPW +"piu"+ nomePW +"", function(e){
-                                             
-                                             //alert(this.id)
-                                             
-                                             //SPLIT
-                                             var str=this.id;
-                                             
-                                             var a1 = new Array();
-                                             
-                                             a1=str.split("piu");
-                                             
-                                             agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]))
-                                             
-                                             
-                                             
-                                             });
-							  
-							  }
-							  
-							  
-							  }
-							  
-							  
-							  
-							  function passo4(eccola){
-							  
-							  var pageNumber = 1;
-							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  //alert(link1);
-							  
-							  var ref = window.open(link1, '_blank', 'location=no');
-							  
-							  }
-							  
-							  
-							  }
-							  
-							  
-							  // URL Pagina facebook
-							  if(result.FB === null || typeof(result.FB) == 'undefined' || result.FB=="null" || result.FB==""){
-							  
-							  }
-							  else{
-							  
-							  for (var i=0, l=10; i<l; i++) {
-							  
-							  if(i==1){
-							  i="01"
-							  }
-							  if(i==2){
-							  i="02"
-							  }
-							  if(i==3){
-							  i="03"
-							  }
-							  if(i==4){
-							  i="04"
-							  }
-							  if(i==5){
-							  i="05"
-							  }
-							  if(i==6){
-							  i="06"
-							  }
-							  if(i==7){
-							  i="07"
-							  }
-							  if(i==8){
-							  i="08"
-							  }
-							  if(i==9){
-							  i="09"
-							  }
-							  
-							  
-							  paginafb = "FB_cont_"+i
-							  
-							  /*
-							   
-							   urltwitter = "TW_cont_"+i
-							   
-							   urlinstagram = "IG_cont_"+i*/
-							  
-							  if(result[paginafb] === null || typeof(result[paginafb]) == 'undefined' || result[paginafb]=="null" || result[paginafb]==""){
-							  
-							  }
-							  else{
-							  
-							  var tabella = "<table width='90%' align='center'>";
-							  
-							  paperino = "FB_cont_"+i
-							  descfb = "FB_desc_"+i
-							  
-                              prezzoFB = "FB_pric_"+i
-                              nomeFB = "FB_nome_"+i
-                              identFB = "FB_iden_"+i
-                              
-                              if(result[prezzoFB] =="0.00"){
-                               lock="unlock.png";
-                              
-                              }
-                              else{
-                               lock="cart.png";
-                              
-                              }
-                              
-                              
-                              tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descfb])+"</td><td align='right' width='40'><a id='piu"+ identFB +"piu"+ prezzoFB +"piu"+ nomeFB +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
-							  
-							  tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
-							  
-							  $("#testvideo").append(tabella);
-							  
-							  
-							  $(document).on("touchstart", "#"+paperino+"", function(e){
-											 
-											 passo5(this.id) // passare la variabile in una nuova funzione
-											 
-											 });
-                              
-                              $(document).on("touchstart", "#piu"+ identFB +"piu"+ prezzoFB +"piu"+ nomeFB +"", function(e){
-                                             
-                                             //alert(this.id)
-                                             
-                                             //SPLIT
-                                             var str=this.id;
-                                             
-                                             var a1 = new Array();
-                                             
-                                             a1=str.split("piu");
-                                             
-                                             agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]))
-                                             
-                                             
-                                             
-                                             });
-							  
-							  
-							  }
-							  
-							  
-							  }
-							  
-							  
-							  
-							  function passo5(eccola){
-							  
-							  var pageNumber = 1;
-							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  //alert(link1);
-							  
-							  var ref = window.open(link1, '_blank', 'location=no');
-							  
-							  }
-							  
-							  
-							  }
-							  
-							  // Telefono fisso
-							  if(result.TF === null || typeof(result.TF) == 'undefined' || result.TF=="null" || result.TF==""){
-							  
-							  }
-							  else{
-							  
-							  for (var i=0, l=10; i<l; i++) {
-							  
-							  if(i==1){
-							  i="01"
-							  }
-							  if(i==2){
-							  i="02"
-							  }
-							  if(i==3){
-							  i="03"
-							  }
-							  if(i==4){
-							  i="04"
-							  }
-							  if(i==5){
-							  i="05"
-							  }
-							  if(i==6){
-							  i="06"
-							  }
-							  if(i==7){
-							  i="07"
-							  }
-							  if(i==8){
-							  i="08"
-							  }
-							  if(i==9){
-							  i="09"
-							  }
-							  
-							  
-							  telefono = "TF_cont_"+i
-							  
-							  /*
-							   
-							   urltwitter = "TW_cont_"+i
-							   
-							   urlinstagram = "IG_cont_"+i*/
-							  
-							  if(result[telefono] === null || typeof(result[telefono]) == 'undefined' || result[telefono]=="null" || result[telefono]==""){
-							  
-							  }
-							  else{
-							  
-							  var tabella = "<table width='90%' align='center'>";
-							  
-							  paperino = "TF_cont_"+i
-							  desctf = "TF_desc_"+i
-							  
-                              prezzoTF = "TF_pric_"+i
-                              nomeTF = "TF_nome_"+i
-                              identTF = "TF_iden_"+i
-                              
-                              if(result[prezzoTF] =="0.00"){
-                               lock="unlock.png";
-                              
-                              }
-                              else{
-                               lock="cart.png";
-                              
-                              }
-                              
-                              
-                              tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctf])+"</td><td align='right' width='40'><a id='piu"+ identTF +"piu"+ prezzoTF +"piu"+ nomeTF +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
-							  
-							  tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
-							  
-							  $("#testvideo").append(tabella);
-							  
-							  
-							  $(document).on("touchstart", "#"+paperino+"", function(e){
-											 
-									passo6(this.id) // passare la variabile in una nuova funzione
-											 
-							  });
-                              
-                              
-                              $(document).on("touchstart", "#piu"+ identTF +"piu"+ prezzoTF +"piu"+ nomeTF +"", function(e){
-                                             
-                                             //alert(this.id)
-                                             
-                                             //SPLIT
-                                             var str=this.id;
-                                             
-                                             var a1 = new Array();
-                                             
-                                             a1=str.split("piu");
-                                             
-                                             agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]))
-                                             
-                                });
-							  
-							  }
-							  
-							  
-							  }
-							  
-							  
-							  
-							  function passo6(eccola){
-							  
-							  var pageNumber = 1;
-							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  //alert(link1);
-							  
-							  window.location.href = "tel:"+link1+"";
-							  
-							  }
-							  
-							  
-							  }
-							  
-							  // Twitter
-							  if(result.TW === null || typeof(result.TW) == 'undefined' || result.TW=="null" || result.TW==""){
-							  
-							  }
-							  else{
-							  
-							  for (var i=0, l=10; i<l; i++) {
-							  
-							  if(i==1){
-							  i="01"
-							  }
-							  if(i==2){
-							  i="02"
-							  }
-							  if(i==3){
-							  i="03"
-							  }
-							  if(i==4){
-							  i="04"
-							  }
-							  if(i==5){
-							  i="05"
-							  }
-							  if(i==6){
-							  i="06"
-							  }
-							  if(i==7){
-							  i="07"
-							  }
-							  if(i==8){
-							  i="08"
-							  }
-							  if(i==9){
-							  i="09"
-							  }
-							  
-							  
-							  twitter = "TW_cont_"+i
-							  
-							  
-							  if(result[twitter] === null || typeof(result[twitter]) == 'undefined' || result[twitter]=="null" || result[twitter]==""){
-							  
-							  }
-							  else{
-							  
-							  var tabella = "<table width='90%' align='center'>";
-							  
-							  paperino = "TW_cont_"+i
-							  desctw = "TW_desc_"+i
-							  
-                              prezzoTW = "TW_pric_"+i
-                              nomeTW = "TW_nome_"+i
-                              identTW = "TW_iden_"+i
-                              
-                              if(result[prezzoTF] =="0.00"){
-                               lock="unlock.png";
-                              
-                              }
-                              else{
-                               lock="cart.png";
-                              
-                              }
-                              
-                              
-                              tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctw])+"</td><td align='right' width='40'><a id='piu"+ identTW +"piu"+ prezzoTW +"piu"+ nomeTW +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
-							  
-							  tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
-							  
-							  $("#testvideo").append(tabella);
-							  
-							  
-							  $(document).on("touchstart", "#"+paperino+"", function(e){
-											 
-											 passo7(this.id) // passare la variabile in una nuova funzione
-											 
-											 });
-                              
-                              $(document).on("touchstart", "#piu"+ identTW +"piu"+ prezzoTW +"piu"+ nomeTW +"", function(e){
-                                             
-                                             //alert(this.id)
-                                             
-                                             //SPLIT
-                                             var str=this.id;
-                                             
-                                             var a1 = new Array();
-                                             
-                                             a1=str.split("piu");
-                                             
-                                             agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]))
-                                             
-                                });
-							  
-							  
-							  }
-							  
-							  
-							  }
-							  
-							  
-							  
-							  function passo7(eccola){
-							  
-							  var pageNumber = 1;
-							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  //alert(link1);
-
-							  var ref = window.open(link1, '_blank', 'location=no');
-							  
-							  }
-							  
-							  
-							  }
-							  
-							  
-							  // Instagram
-							  if(result.IG === null || typeof(result.IG) == 'undefined' || result.IG=="null" || result.IG==""){
-							  
-							  }
-							  else{
-							  
-							  for (var i=0, l=10; i<l; i++) {
-							  
-							  if(i==1){
-							  i="01"
-							  }
-							  if(i==2){
-							  i="02"
-							  }
-							  if(i==3){
-							  i="03"
-							  }
-							  if(i==4){
-							  i="04"
-							  }
-							  if(i==5){
-							  i="05"
-							  }
-							  if(i==6){
-							  i="06"
-							  }
-							  if(i==7){
-							  i="07"
-							  }
-							  if(i==8){
-							  i="08"
-							  }
-							  if(i==9){
-							  i="09"
-							  }
-							  
-							  
-							  instagram = "IG_cont_"+i
-							  
-							  
-							  if(result[instagram] === null || typeof(result[instagram]) == 'undefined' || result[instagram]=="null" || result[instagram]==""){
-							  
-							  }
-							  else{
-							  
-							  var tabella = "<table width='90%' align='center'>";
-							  
-							  paperino = "IG_cont_"+i
-							  descig = "IG_desc_"+i
-							  
-                              prezzoIG = "IG_pric_"+i
-                              nomeIG = "IG_nome_"+i
-                              identIG = "IG_iden_"+i
-                              
-                              if(result[prezzoIG] =="0.00"){
-                               lock="unlock.png";
-                              
-                              }
-                              else{
-                               lock="cart.png";
-                              
-                              }
-                              
-                              
-                              tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descig])+"</td><td align='right' width='40'><a id='piu"+ identIG +"piu"+ prezzoIG +"piu"+ nomeIG +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
-							  
-							  tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
-							  
-							  $("#testvideo").append(tabella);
-							  
-							  
-							  $(document).on("touchstart", "#"+paperino+"", function(e){
-											 
-											 passo8(this.id) // passare la variabile in una nuova funzione
-											 
-											 });
-                              
-                              $(document).on("touchstart", "#piu"+ identIG +"piu"+ prezzoIG +"piu"+ nomeIG +"", function(e){
-                                             
-                                             //alert(this.id)
-                                             
-                                             //SPLIT
-                                             var str=this.id;
-                                             
-                                             var a1 = new Array();
-                                             
-                                             a1=str.split("piu");
-                                             
-                                             agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]))
-                                             
-                                             });
-							  
-							  
-							  }
-							  
-							  
-							  }
-							  
-							  
-							  
-							  function passo8(eccola){
-							  
-							  var pageNumber = 1;
-							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  //alert(link1);
-							  
-							  var ref = window.open(link1, '_blank', 'location=no');
-							  
-							  }
-							  
-							  
-							  }
-							  
-							  // Altro Social
-							  if(result.US === null || typeof(result.US) == 'undefined' || result.US=="null" || result.US==""){
-							  
-							  }
-							  else{
-							  
-							  for (var i=0, l=10; i<l; i++) {
-							  
-							  if(i==1){
-							  i="01"
-							  }
-							  if(i==2){
-							  i="02"
-							  }
-							  if(i==3){
-							  i="03"
-							  }
-							  if(i==4){
-							  i="04"
-							  }
-							  if(i==5){
-							  i="05"
-							  }
-							  if(i==6){
-							  i="06"
-							  }
-							  if(i==7){
-							  i="07"
-							  }
-							  if(i==8){
-							  i="08"
-							  }
-							  if(i==9){
-							  i="09"
-							  }
-							  
-							  
-							  instagram = "US_cont_"+i
-							  
-							  
-							  if(result[instagram] === null || typeof(result[instagram]) == 'undefined' || result[instagram]=="null" || result[instagram]==""){
-							  
-							  }
-							  else{
-							  
-							  var tabella = "<table width='90%' align='center'>";
-							  
-							  paperino = "US_cont_"+i
-							  descus = "US_desc_"+i
-							  
-                              prezzoUS = "US_pric_"+i
-                              nomeUS = "US_nome_"+i
-                              identUS = "US_iden_"+i
-                              
-                              if(result[prezzoUS] =="0.00"){
-                               lock="unlock.png";
-                              
-                              }
-                              else{
-                               lock="cart.png";
-                              
-                              }
-                              
-                              
-                              tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descus])+"</td><td align='right' width='40'><a id='piu"+ identUS +"piu"+ prezzoUS +"piu"+ nomeUS +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
-							  
-							  tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
-							  
-							  $("#testvideo").append(tabella);
-							  
-							  
-							  $(document).on("touchstart", "#"+paperino+"", function(e){
-											 
-											 passo9(this.id) // passare la variabile in una nuova funzione
-											 
-											 });
-                              
-                              
-                              $(document).on("touchstart", "#piu"+ identUS +"piu"+ prezzoUS +"piu"+ nomeUS +"", function(e){
-                                             
-                                             //alert(this.id)
-                                             
-                                             //SPLIT
-                                             var str=this.id;
-                                             
-                                             var a1 = new Array();
-                                             
-                                             a1=str.split("piu");
-                                             
-                                             agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]))
-                                             
-                                             });
-							  
-							  
-							  }
-							  
-							  
-							  }
-							  
-							  
-							  
-							  function passo9(eccola){
-							  
-							  var pageNumber = 1;
-							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  //alert(link1);
-							  
-							  var ref = window.open(link1, '_blank', 'location=no');
-							  
-							  }
-							  
-							  
-							  }
-							  
-							  // Steaming Video
-							  if(result.SV === null || typeof(result.SV) == 'undefined' || result.SV=="null" || result.SV==""){
-							  
-							  }
-							  else{
-							  
-							  for (var i=0, l=10; i<l; i++) {
-							  
-							  if(i==1){
-							  i="01"
-							  }
-							  if(i==2){
-							  i="02"
-							  }
-							  if(i==3){
-							  i="03"
-							  }
-							  if(i==4){
-							  i="04"
-							  }
-							  if(i==5){
-							  i="05"
-							  }
-							  if(i==6){
-							  i="06"
-							  }
-							  if(i==7){
-							  i="07"
-							  }
-							  if(i==8){
-							  i="08"
-							  }
-							  if(i==9){
-							  i="09"
-							  }
-							  
-							  
-							  stramingv = "SV_cont_"+i
-							  
-							  
-							  if(result[stramingv] === null || typeof(result[stramingv]) == 'undefined' || result[stramingv]=="null" || result[stramingv]==""){
-							  
-							  }
-							  else{
-							  
-							  var tabella = "<table width='90%' align='center'>";
-							  
-							  paperino = "SV_cont_"+i
-							  descsv = "SV_desc_"+i
-							  
-                              prezzoSV = "SV_pric_"+i
-                              nomeSV = "SV_nome_"+i
-                              identSV = "SV_iden_"+i
-                              
-                              if(result[prezzoSV] =="0.00"){
-                               lock="unlock.png";
-                              
-                              }
-                              else{
-                               lock="cart.png";
-                              
-                              }
-                              
-                              
-                              tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descsv])+"</td><td align='right' width='40'><a id='piu"+ identSV +"piu"+ prezzoSV +"piu"+ nomeSV +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
-							  
-							  tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
-							  
-							  $("#testvideo").append(tabella);
-							  
-							  
-							  $(document).on("touchstart", "#"+paperino+"", function(e){
-											 
-											 passo10(this.id) // passare la variabile in una nuova funzione
-											 
-											 });
-                              
-                              $(document).on("touchstart", "#piu"+ identSV +"piu"+ prezzoSV +"piu"+ nomeSV +"", function(e){
-                                             
-                                             //alert(this.id)
-                                             
-                                             //SPLIT
-                                             var str=this.id;
-                                             
-                                             var a1 = new Array();
-                                             
-                                             a1=str.split("piu");
-                                             
-                                             agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]))
-                                             
-                                });
-							  
-							  
-							  }
-							  
-							  
-							  }
-							  
-							  
-							  
-							  function passo10(eccola){
-							  
-							  var pageNumber = 1;
-							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  //alert(link1);
-							  
-							  var ref = window.open(link1, '_blank', 'location=no');
-							  
-							  }
-							  
-							  
-							  }
-							  
-							  
-							  // Steaming Audio
-							  if(result.SA === null || typeof(result.SA) == 'undefined' || result.SA=="null" || result.SA==""){
-							  
-							  }
-							  else{
-							  
-							  for (var i=0, l=10; i<l; i++) {
-							  
-							  if(i==1){
-							  i="01"
-							  }
-							  if(i==2){
-							  i="02"
-							  }
-							  if(i==3){
-							  i="03"
-							  }
-							  if(i==4){
-							  i="04"
-							  }
-							  if(i==5){
-							  i="05"
-							  }
-							  if(i==6){
-							  i="06"
-							  }
-							  if(i==7){
-							  i="07"
-							  }
-							  if(i==8){
-							  i="08"
-							  }
-							  if(i==9){
-							  i="09"
-							  }
-							  
-							  
-							  straminga = "SA_cont_"+i
-							  
-							  
-							  if(result[straminga] === null || typeof(result[straminga]) == 'undefined' || result[straminga]=="null" || result[straminga]==""){
-							  
-							  }
-							  else{
-							  
-							  var tabella = "<table width='90%' align='center'>";
-							  
-							  paperino = "SA_cont_"+i
-							  descsa = "SA_desc_"+i
-							  
-                              
-                              prezzoSA = "SA_pric_"+i
-                              nomeSA = "SA_nome_"+i
-                              identSA = "SA_iden_"+i
-                              
-                              if(result[prezzoSA] =="0.00"){
-                               lock="unlock.png";
-                              
-                              }
-                              else{
-                               lock="cart.png";
-                              
-                              }
-                              
-                              
-                              tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descsa])+"</td><td align='right' width='40'><a id='piu"+ identSA +"piu"+ prezzoSA +"piu"+ nomeSA +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
-							  
-							  tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
-							  
-							  $("#testvideo").append(tabella);
-							  
-							  
-							  $(document).on("touchstart", "#"+paperino+"", function(e){
-											 
-											 passo11(this.id) // passare la variabile in una nuova funzione
-											 
-											 });
-                              
-                              $(document).on("touchstart", "#piu"+ identSA +"piu"+ prezzoSA +"piu"+ nomeSA +"", function(e){
-                                             
-                                             //alert(this.id)
-                                             
-                                             //SPLIT
-                                             var str=this.id;
-                                             
-                                             var a1 = new Array();
-                                             
-                                             a1=str.split("piu");
-                                             
-                                             agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]))
-                                             
-                                             });
-							  
-							  
-							  }
-							  
-							  
-							  }
-							  
-							  
-							  
-							  function passo11(eccola){
-							  
-							  var pageNumber = 1;
-							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  //alert(link1);
-							  
-							  var ref = window.open(link1, '_blank', 'location=no');
-							  
-							  }
-							  
-							  
-							  }
-							  
-							  // Telefono mobile
-							  if(result.TM === null || typeof(result.TM) == 'undefined' || result.TM=="null" || result.TM==""){
-							  
-							  }
-							  else{
-							  
-							  for (var i=0, l=10; i<l; i++) {
-							  
-							  if(i==1){
-							  i="01"
-							  }
-							  if(i==2){
-							  i="02"
-							  }
-							  if(i==3){
-							  i="03"
-							  }
-							  if(i==4){
-							  i="04"
-							  }
-							  if(i==5){
-							  i="05"
-							  }
-							  if(i==6){
-							  i="06"
-							  }
-							  if(i==7){
-							  i="07"
-							  }
-							  if(i==8){
-							  i="08"
-							  }
-							  if(i==9){
-							  i="09"
-							  }
-							  
-							  
-							  telefonomb = "TM_cont_"+i
-							  
-							  /*
-							   
-							   urltwitter = "TW_cont_"+i
-							   
-							   urlinstagram = "IG_cont_"+i*/
-							  
-							  if(result[telefonomb] === null || typeof(result[telefonomb]) == 'undefined' || result[telefonomb]=="null" || result[telefonomb]==""){
-							  
-							  }
-							  else{
-							  
-							  var tabella = "<table width='90%' align='center'>";
-							  
-							  paperino = "TM_cont_"+i
-							  desctm = "TM_desc_"+i
-							  
-                              prezzoTM = "TM_pric_"+i
-                              nomeTM = "TM_nome_"+i
-                              identTM = "TM_iden_"+i
-                              
-                              if(result[prezzoTM] =="0.00"){
-                                lock="unlock.png";
-                              
-                              }
-                              else{
-                                lock="cart.png";
-                              
-                              }
-                              
-                              
-                              tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctm])+"</td><td align='right' width='40'><a id='piu"+ identTM +"piu"+ prezzoTM +"piu"+ nomeTM +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
-							  
-							  tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
-							  
-							  $("#testvideo").append(tabella);
-							  
-							  
-							  $(document).on("touchstart", "#"+paperino+"", function(e){
-											 
-											 passo12(this.id) // passare la variabile in una nuova funzione
-											 
-											 });
-                              
-                              $(document).on("touchstart", "#piu"+ identTM +"piu"+ prezzoTM +"piu"+ nomeTM +"", function(e){
-                                             
-                                             //alert(this.id)
-                                             
-                                             //SPLIT
-                                             var str=this.id;
-                                             
-                                             var a1 = new Array();
-                                             
-                                             a1=str.split("piu");
-                                             
-                                             agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]))
-                                             
-                                             });
-							  
-							  
-							  }
-							  
-							  
-							  }
-							  
-							  
-							  
-							  function passo12(eccola){
-							  
-							  var pageNumber = 1;
-							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  //alert(link1);
-							  
-							  window.location.href = "tel:"+link1+"";
-							  
-							  }
-							  
-							  
-							  }
-							  
-							  
-							  // Email
-							  if(result.EM === null || typeof(result.EM) == 'undefined' || result.EM=="null" || result.EM==""){
-							  
-							  }
-							  else{
-							  
-							  for (var i=0, l=10; i<l; i++) {
-							  
-							  if(i==1){
-							  i="01"
-							  }
-							  if(i==2){
-							  i="02"
-							  }
-							  if(i==3){
-							  i="03"
-							  }
-							  if(i==4){
-							  i="04"
-							  }
-							  if(i==5){
-							  i="05"
-							  }
-							  if(i==6){
-							  i="06"
-							  }
-							  if(i==7){
-							  i="07"
-							  }
-							  if(i==8){
-							  i="08"
-							  }
-							  if(i==9){
-							  i="09"
-							  }
-							  
-							  
-							  email2 = "EM_cont_"+i
-							  
-							  /*
-							   
-							   urltwitter = "TW_cont_"+i
-							   
-							   urlinstagram = "IG_cont_"+i*/
-							  
-							  if(result[email2] === null || typeof(result[email2]) == 'undefined' || result[email2]=="null" || result[email2]==""){
-							  
-							  }
-							  else{
-							  
-							  var tabella = "<table width='90%' align='center'>";
-							  
-							  paperino = "EM_cont_"+i
-							  descem = "EM_desc_"+i
-							  
-                              prezzoEM = "EM_pric_"+i
-                              nomeEM = "EM_nome_"+i
-                              identEM = "EM_iden_"+i
-                              
-                              if(result[prezzoEM] =="0.00"){
-                               lock="unlock.png";
-                              
-                              }
-                              else{
-                               lock="cart.png";
-                              
-                              }
-                              
-                              
-                              tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descem])+"</td><td align='right' width='40'><a id='piu"+ identEM +"piu"+ prezzoEM +"piu"+ nomeEM +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
-							  
-							  tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
-							  
-							  $("#testvideo").append(tabella);
-							  
-							  
-							    $(document).on("touchstart", "#"+paperino+"", function(e){
-											 
-									passo13(this.id) // passare la variabile in una nuova funzione
-											 
-							    });
-                              
-                              $(document).on("touchstart", "#piu"+ identEM +"piu"+ prezzoEM +"piu"+ nomeEM +"", function(e){
-                                             
-                                             //alert(this.id)
-                                             
-                                             //SPLIT
-                                             var str=this.id;
-                                             
-                                             var a1 = new Array();
-                                             
-                                             a1=str.split("piu");
-                                             
-                                             agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]))
-                                             
-                                             });
-							  
-							  
-							  }
-							  
-							  
-							  }
-							  
-							  
-							  
-							  function passo13(eccola){
-							  
-							  var pageNumber = 1;
-							  eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-							  //alert(link1);
-							  
-							   window.plugin.email.open({
-													   to:      link1,
-													   subject: "Email",
-													   body:    "Ciao,",
-													   isHtml:  true
-								});
-							  
-							  }
-							  
-							  
-							  }
-							  
-							  
-							  //window.plugins.socialsharing.shareViaWhatsApp('Message via WhatsApp', null /* img */, null /* url */, function() {alert('share ok')}, function(errormsg){alert(errormsg)})
-							  //<button onclick="window.plugins.socialsharing.shareViaWhatsAppToReceiver(receiver, 'Message via WhatsApp', null /* img */, null /* url */, function() {console.log('share ok')})">msg via WhatsApp for Addressbook ID 101</button>
-							  
-							  
-							  // FINE IF TOKEN
-							  }
-							  else {
-							  
-							  var tabella = "<table width='' align='center'>";
-							  
-							  tabella = tabella + "<tr><td align='left' width='80'>X </td><td align='left' width='100%'>"+$.base64.decode(result.messaggio)+"</td></tr><tr><td align='left' width='80'>X </td><td align='left' width='100%'>"+$.base64.decode(result.radice)+"</td></tr><tr><td align='left' width='80'>X </td><td align='left' width='100%'>"+$.base64.decode(result.foglia)+"</td></tr>"
-							  
-							  tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
-							  
-							  $("#testvideo").append(tabella);
-							  
-							  }
-
+                setTimeout (function(){
+                    myScroll2.refresh();
 							
-							  $("#spinner").hide();
-							  
-							  
-							  
-							  /*var myScroll3;
-							  
-							  myScroll3 = new IScroll('#wrapper', {
-													  click: true,
-													  useTransform: false,
-													  //bounce: false,
-													  onBeforeScrollStart: function (e)
-													  {
-													  var target = e.target;
-													  while (target.nodeType != 1) {
-													  target = target.parentNode;
-													  }
-													  
-													  if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA' && target.tagName != 'OPTION') {
-													  e.preventDefault();
-													  }
-													  }
-													  });*/
-							  
-							   setTimeout (function(){
-									myScroll.refresh();
-								}, 500);
-							  
-							  
-							  //document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 300); }, false);
-							  
-							  //document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
-							  
-							  
-							  
-							  
-							  },
-							  
-							  error: function(){
-							  
-							  $(".spinner").hide();
-							  
-							  navigator.notification.alert(
-														   'Errore Imprevisto, contatta il fornitore',  // message
-														   alertDismissed,         // callback
-														   'Errore',            // title
-														   'OK'                  // buttonName
-														   );
-							  
-							  }
-							  
-				});
+					 seleziona2()
+                }, 500);
 					   
         });
-	
 		
 		
 		
+		
+		$(document).on("touchstart", "#richiedi", function(e){
+					   
+	      richiesta(0,0)
+		})
+		
+		
+		$(document).on("touchstart", "#richiedi2", function(e){
+					   
+		   richiesta(localStorage.getItem("pagina"),localStorage.getItem("pagina1"))
+	   })
+		
+		$(document).on("touchstart", "#annulla33", function(e){
+					   
+			$("#contlock").hide()
+					   
+	   })
+		
+		$(document).on("touchstart", "#annulla22", function(e){
+					   
+			$("#celllock").hide()
+					   
+		})
+		
+		
+		$(document).on("touchstart", "#sbloccacell", function(e){
+					   
+			$("#celllock").show()
+					   
+		})
+		
+		
+		 function agg(){
+            var db = window.openDatabase('mydb', '1.0', 'TestDB', 2 * 1024 * 1024);
+            var msg;
+            var test;
+            var P1 = '110';
+            
+            db.transaction(function (tx) {
+                tx.executeSql('CREATE TABLE IF NOT EXISTS Ordine (id unique, IdProdotto, Qta, Descrizione, Nome)');
+                //tx.executeSql('INSERT INTO Ordine (id, IdProdotto, Qta, Descrizione, Nome) VALUES (1, 1, 1, "Omaggio", "Omaggio")');
+            });
+            
+            
+        }
+		
+		$(document).on("touchstart", "#mandaordine", function(e){
+					   
+		     if (localStorage.getItem("email") === null || typeof(localStorage.getItem("email")) == 'undefined' || localStorage.getItem("email")=="null" || localStorage.getItem("email")==""){
+					   
+			   navigator.notification.prompt(
+				 'Inserisci il tuo indirizzo email',  // message
+				  onPrompt,                  // callback to invoke
+				 'Recupera la Password',            // title
+				 ['Invia','Annulla'],             // buttonLabels
+				 ''                 // defaultText
+			   );
+			   
+		     }
+		   else{
+			 compraCarta()
+		   }
+            
 
-		function compraCarta(id_richiesta,id_autista,totale) {
+        });
+		
+	
+		function onPrompt(results) {
+			if(results.buttonIndex==1){
+				if (results.input1 == "") {
+					navigator.notification.alert(
+												 'inserire indirizzo email',  // message
+												 alertDismissed,         // callback
+												 'Email',            // title
+												 'OK'                  // buttonName
+												 );
+					return;
+				}
+				
+				EmailAddr = results.input1;
+				Filtro = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-]{2,})+\.)+([a-zA-Z0-9]{2,})+$/;
+				if (Filtro.test(EmailAddr)) {
+					
+				}
+				else {
+					navigator.notification.alert(
+												 'Caratteri email non consentiti',  // message
+												 alertDismissed,         // callback
+												 'Email',            // title
+												 'OK'                  // buttonName
+												 );
+					return;
+				}
+				
+				
+				var num1 = Math.floor((Math.random() * 20) + 1);
+				var num2 = Math.floor((Math.random() * 20) + 1);
+				var num3 = Math.floor((Math.random() * 20) + 1);
+				var num4 = Math.floor((Math.random() * 20) + 1);
+				var num5 = Math.floor((Math.random() * 20) + 1);
+				var num6 = Math.floor((Math.random() * 20) + 1);
+				var num7 = Math.floor((Math.random() * 20) + 1);
+				var num8 = Math.floor((Math.random() * 20) + 1);
+				
+				var num9 = Math.floor((Math.random() * 20) + 1);
+				var num10 = Math.floor((Math.random() * 20) + 1);
+				var num11 = Math.floor((Math.random() * 20) + 1);
+				var num12 = Math.floor((Math.random() * 20) + 1);
+				var num13 = Math.floor((Math.random() * 20) + 1);
+				var num14 = Math.floor((Math.random() * 20) + 1);
+				var num15 = Math.floor((Math.random() * 20) + 1);
+				var num16 = Math.floor((Math.random() * 20) + 1);
+				
+				
+				var deviceid = num1+""+num2+""+num3+""+num4+""+num5+""+num6+""+num7+""+num8+""+num9+""+num10+""+num11+""+num12+""+num13+""+num14+""+num15+""+num16;
+				
+				localStorage.setItem("deviceid", deviceid);
+				
+				localStorage.setItem("email", results.input1);
+				
+			    compraCarta()
+			}
+			
+		}
+  
+		
+		
+		
+		
+		
+		function richiesta(pagina,pagina1){
+			
+			$("#testvideo").html("");
+			$("#tutto").html("");
+			var tabella = "";
+			
+			$("#contlock").hide()
+			$("#microlock").hide()
+			$("#progettolock").hide()
+			
+			var posta = $.base64.encode(localStorage.getItem("email"))
+			var lati = $.base64.encode(localStorage.getItem("lat"));
+			var longi = $.base64.encode(localStorage.getItem("lng"));
+			
+			var pswp = self.document.form.pswp.value;
+			var pswm = self.document.form.pswm.value;
+			
+			var pswYTT = self.document.form.pswYTT.value;
+			var pswVAA = self.document.form.pswVAA.value;
+			var pswFAA = self.document.form.pswFAA.value;
+			
+			document.getElementById("pswYTT").value = ""
+			document.getElementById("pswVAA").value = ""
+			document.getElementById("pswFAA").value = ""
+			document.getElementById("pswYTTBLOC").value = ""
+			
+			//alert(pswp + pswm)
+			
+			var pag1= $.base64.encode(pagina);
+			var pag2= $.base64.encode(pagina1);
+			
+			var radice3;
+			var foglia3;
+			
+			
+			if(self.document.form.radice2.value != ""){
+				radice3 = self.document.form.radice2.value
+			}
+			else{
+				radice3 = self.document.form.radice.value
+			}
+			
+			
+			if(self.document.form.foglia2.value != ""){
+				foglia3 = self.document.form.foglia2.value
+			}
+			else{
+				foglia3 = self.document.form.foglia.value
+			}
+			
+			
+			if ((radice3 == "") && (foglia3 == "")) {
+				
+				navigator.notification.alert(
+											 'inserire una Radice o una Foglia',  // message
+											 alertDismissed,         // callback
+											 'Radice',            // title
+											 'OK'                  // buttonName
+											 );
+				return;
+				
+			}
+			
+			
+			/*if (foglia3 == "") {
+			 navigator.notification.alert(
+			 'inserire una Foglia',  // message
+			 alertDismissed,         // callback
+			 'Foglia',            // title
+			 'OK'                  // buttonName
+			 );
+			 return;
+			 }*/
+			
+			if (radice3 == ""){
+				
+				var radice4 = "";
+				var foglia4 = foglia3.toLowerCase();
+				
+				var radice = "";
+				var foglia = $.base64.encode(foglia4);
+				
+				//alert("R" + radice + "F" + foglia)
+				
+			}
+			else if(foglia3 == ""){
+				
+				var radice4 = radice3.toLowerCase();
+				var foglia4 = "";
+				
+				var radice = $.base64.encode(radice4);
+				var foglia = "";
+				
+				//alert("R" + radice + "F" + foglia)
+				
+			}
+			else{
+				var radice4 = radice3.toLowerCase();
+				var foglia4 = foglia3.toLowerCase();
+				
+				var radice = $.base64.encode(radice4);
+				var foglia = $.base64.encode(foglia4);
+				
+				//alert("R" + radice + "F" + foglia)
+			}
 			
 			//alert("2")
+			
+			var lock_microverba = "";
+			var lock_progetto = "";
+			
+			$("#spinner").show();
+			
+			$.ajax({
+				   type: "POST",
+				   url: "http://www.microverba.com/leaf_root_request.php",
+				   data: {email:posta,leaf:foglia,root:radice,device_id:localStorage.getItem("deviceid"),latitudine:lati,longitudine:longi,nextPaginationRootStart:pag1,nextPaginationLeafStart:pag2},
+				   cache: false,
+				   crossDomain: true,
+				   contentType: "application/x-www-form-urlencoded",
+				   success: function (result) {
+				   
+				   $("#testvideo").html("");
+				   $("#tutto").html("");
+				   
+				   //TUTTO
+				   //var tabella = "<table width='90%' align='center'>";
+				   
+				   if(result.Token==0){
+				   var tabella = "<table width='90%' align='center' border='0'>";
+				   
+				   if((result.radice!="")&&(result.foglia!="")){
+				   tabella = tabella + "<tr><td align='left' width='150'>-</td><td align='left' width='100%'> "+$.base64.decode(result.messaggio)+" </td></tr><tr><td align='left' width='150'>Progetto: </td><td align='left' width='100%'></td></tr><tr><td align='left' width='150'>Descrizione Progetto: </td><td align='left' width='100%'></td></tr>"
+				   
+				   tabella = tabella + "</table><br>";
+				   
+				   $("#tutto").append(tabella);
+				   }
+				   else{
+				   var tabella = "<table width='90%' align='center' border='0'>";
+				   
+				   if((result.messaggio=="TmVzc3VuIE1pY3JvdmVyYmEgdHJvdmF0bw==")||(result.messaggio=="TmVzc3VuYSBmb2dsaWEgZGlzcG9uaWJpbGU=")){
+				   
+				   tabella = tabella + "<tr><td align='left' width='150'>-</td><td align='left' width='100%'> "+$.base64.decode(result.messaggio)+" </td></tr><tr><td align='left' width='150'>Progetto: </td><td align='left' width='100%'></td></tr><tr><td align='left' width='150'>Descrizione Progetto: </td><td align='left' width='100%'></td></tr>"
+				   
+				   tabella = tabella + "</table><br>";
+				   
+				   $("#tutto").append(tabella);
+				   }
+				   else{
+				   
+				   if(result.foglia!=""){
+				   
+				   if(result.roots!=""){
+				   
+				   var tabella = "<table width='90%' align='center' border='0'>";
+				   
+				   tabella = tabella + "<tr><td align='center' width='100%' colspan='2'>"+$.base64.decode(result.messaggio)+"</td></tr></tr>"
+				   
+				   tabella = tabella + "<tr><td align='center' width='80' colspan='2'><br><a id='pag_"+result.nextPaginationRootStart+"'>"+result.nextPaginationRootStart+"</a></td></tr></table><br>";
+				   
+				   $("#tutto").append(tabella);
+				   
+				   $(document).on("touchstart", "#pag_"+ result.nextPaginationRootStart +"", function(e){
+								  var paginazione = this.id
+								  paginazione = paginazione.replace("pag_","")
+								  
+								  richiesta(paginazione,0)
+								  
+								  })
+				   
+				   var str = $.base64.decode(result.roots);
+				   alert(str)
+				   
+				   var a1 = new Array();
+				   
+				   a1=str.split("|");
+				   //alert(a1.length)
+				   
+				   for (i=0;i<a1.length;i++)
+				   
+				   {
+				   
+				   var tabella = "<table width='90%' align='center' border='0'>";
+				   
+				   tabella = tabella + "<tr><td align='center' width='100%' colspan='2'><b>Suggerimento Foglie:</b><a id='root_"+a1[i]+"'> "+a1[i]+"</a></td></tr></tr>"
+				   
+				   tabella = tabella + "</table><br>";
+				   $("#tutto").append(tabella);
+				   
+				   
+				   $(document).on("touchstart", "#root_"+ a1[i] +"", function(e){
+								  
+								  var radicchio = this.id
+								  radicchio = radicchio.replace("root_","")
+								  
+								  if(self.document.form.foglia2.value != ""){
+								  document.getElementById("radice2").value = radicchio;
+								  }
+								  else{
+								  document.getElementById("radice").value = radicchio;
+								  }
+								  
+								  })
+				   
+				   }
+				   }// end nuovo controllo
+				   
+				   }
+				   
+				   
+				   if(result.radice!=""){
+				   
+				   if(result.leafs!=""){
+				   
+				   var tabella = "<table width='90%' align='center' border='0'>";
+				   
+				   tabella = tabella + "<tr><td align='center' width='100%' colspan='2'>"+$.base64.decode(result.messaggio)+"</td></tr></tr>"
+				   
+				   tabella = tabella + "<tr><td align='center' width='80' colspan='2'><br><a id='pag_"+result.nextPaginationLeafStart+"'>"+result.nextPaginationLeafStart+"</a></td></tr></table><br>";
+				   
+				   $("#tutto").append(tabella);
+				   
+				   $(document).on("touchstart", "#pag_"+ result.nextPaginationLeafStart +"", function(e){
+								  var paginazione = this.id
+								  paginazione = paginazione.replace("pag_","")
+								  
+								  richiesta(0,paginazione)
+								  
+								  })
+				   
+				   var risultato = ""
+				   
+				   var str=$.base64.decode(result.leafs);
+				   alert(str)
+				   
+				   var a1 = new Array();
+				   
+				   a1=str.split("|");
+				   //alert(a1.length)
+				   
+				   for (i=0;i<a1.length;i++)
+				   
+				   {
+				   
+				   var tabella = "<table width='90%' align='center' border='0'>";
+				   
+				   if(risultato!=a1[i]){
+				   tabella = tabella + "<tr><td align='center' width='100%' colspan='2'><b>Suggerimento Foglie:</b><a id='root_"+a1[i]+"'> "+a1[i]+"</a></td></tr></tr>"
+				   }
+				   
+				   
+				   tabella = tabella + "</table><br>";
+				   $("#tutto").append(tabella);
+				   
+				   $(document).on("touchstart", "#root_"+ a1[i] +"", function(e){
+								  
+								  var radicchio = this.id
+								  radicchio = radicchio.replace("root_","")
+								  
+								  if(self.document.form.radice2.value != ""){
+								  document.getElementById("foglia2").value = radicchio;
+								  }
+								  else{
+								  document.getElementById("foglia").value = radicchio;
+								  }
+								  
+								  })
+				   
+				   risultato = a1[i]
+				   
+				   }
+				   
+				   }// end se 0
+				   
+				   }
+				   
+				   }
+				   
+				   }
+				   
+				   
+				   }
+				   
+				   
+				   if(result.Token==1){
+				   
+				   //PROGETTO
+				   
+				   var tabella = "<table width='90%' align='center' border='0'>";
+				   
+				   if(result.pr_pric==""){
+				   //alert("1")
+				   if((result.project_lock=="")||(result.project_lock==$.base64.encode(pswp))){
+				   //alert("2")
+				   if(result.pric==""){
+				   //alert("3")
+				   if((result.lock=="")||(result.lock==$.base64.encode(pswm))){
+				   //alert("4")
+				   
+				   var lock="unlock.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='150'><img src='img/"+lock+"' width='40'></td><td align='left' width='100%'> "+$.base64.decode(result.messaggio)+" </td></tr><tr><td align='left' width='150'>Progetto: </td><td align='left' width='100%'>"+$.base64.decode(result.project)+"</td></tr><tr><td align='left' width='150'>Descrizione Progetto: </td><td align='left' width='100%'>"+$.base64.decode(result.description_microverba)+"</td></tr>"
+				   }
+				   else{
+				   //alert($.base64.encode(pswm))
+				   var lock_microverba ="cart.png";
+				   //$("#microlock").html("<input type='text' data-role='none' name='pswm' id='pswm' placeholder='pswm' class='scrivo2' >");
+				   $("#progettolock").hide()
+				   $("#microlock").show()
+				   
+				   tabella = tabella + "<tr><td align='center' width='100%' colspan='2'><a id='_sblocca_prj'>SBLOCCA MICROVERBA</a></td><td align='left' width='100%'></td></tr>"
+				   }
+				   
+				   }
+				   else{
+				   var lock_microverba ="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='150'><a id='_ident_prezzo_nome'> <img src='img/"+lock_microverba+"' width='40'></a></td><td align='left' width='100%'>"+$.base64.decode(result.messaggio)+"</td></tr><tr><td align='left' width='120'> Prezzo: </td><td align='left' width='100%'>"+$.base64.decode(result.pric)+" </td></tr><tr><td align='left' width='120'>Microverba: </td><td align='left' width='100%'>"+$.base64.decode(result.description_microverba)+"</td></tr>"
+				   }
+				   
+				   }
+				   else{
+				   var lock_microverba ="cart.png";
+				   //$("#progettolock").html("<input type='text' data-role='none' name='pswp' id='pswp' placeholder='pswp' class='scrivo2' >");
+				   $("#progettolock").show()
+				   
+				   tabella = tabella + "<tr><td align='center' width='100%' colspan='2'><a id='_sblocca_prj'>SBLOCCA PROGETTO</a></td><td align='left' width='100%'></td></tr>"
+				   }
+				   
+				   }
+				   else{
+				   var lock_progetto ="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='150'><a id='pr_ident_prezzo_nome'> <img src='img/"+lock_progetto+"' width='40'></a></td><td align='left' width='100%'></td></tr><tr><td align='left' width='120'> Prezzo: </td><td align='left' width='100%'>"+$.base64.decode(result.pr_pric)+" </td></tr><tr><td align='left' width='120'>Progetto: </td><td align='left' width='100%'>"+$.base64.decode(result.project_description)+"</td></tr>"
+				   }
+				   
+				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+				   
+				   $("#tutto").append(tabella);
+				   
+				   
+				   $(document).on("touchstart", "#_ident_prezzo_nome", function(e){
+								  
+								  var ident = result.iden
+								  var prezzo = $.base64.decode(result.pric)
+								  var nome = $.base64.decode(result.description_microverba)
+								  
+								  alert(ident + " " + prezzo + " " + nome)
+								  
+								  agg2(ident,prezzo,nome,"m")
+								  
+				  });
+				   
+				   $(document).on("touchstart", "#pr_ident_prezzo_nome", function(e){
+								  
+								  var ident = result.pr_iden
+								  var prezzo = $.base64.decode(result.pr_pric)
+								  var nome = $.base64.decode(result.project_description)
+								  
+								  alert(ident + " " + prezzo + " " + nome)
+								  
+								  agg2(ident,prezzo,nome,"p")
+								  
+				  });
+				   
+				   
+				   $(document).on("touchstart", "#_sblocca_prj", function(e){
+								  
+								  richiesta(pagina,pagina1)
+								  
+								  });
+				   
+				   
+				   // YOU TUBE
+				   if(result.YT === null || typeof(result.YT) == 'undefined' || result.YT=="null" || result.YT==""){
+				   
+				   }
+				   else{
+				   
+				   
+				   for (var i=0, l=10; i<l; i++) {
+				   
+				   if(i==1){
+				   i="01"
+				   }
+				   if(i==2){
+				   i="02"
+				   }
+				   if(i==3){
+				   i="03"
+				   }
+				   if(i==4){
+				   i="04"
+				   }
+				   if(i==5){
+				   i="05"
+				   }
+				   if(i==6){
+				   i="06"
+				   }
+				   if(i==7){
+				   i="07"
+				   }
+				   if(i==8){
+				   i="08"
+				   }
+				   if(i==9){
+				   i="09"
+				   }
+				   
+				   
+				   ciccio = "YT_desc_"+i
+				   
+				   /*urlvideo = "VA_cont_"+i
+					
+					urlaudio = "FA_cont_"+i
+					
+					paginaweb = "PW_cont_"+i
+					
+					paginafb = "FB_cont_"+i
+					
+					urltwitter = "TW_cont_"+i
+					
+					urlinstagram = "IG_cont_"+i*/
+				   
+				   if(result[ciccio] === null || typeof(result[ciccio]) == 'undefined' || result[ciccio]=="null" || result[ciccio]==""){
+				   
+				   }
+				   else{
+				   
+				   var tabella = "<table width='90%' align='center'>";
+				   
+				   paperino = "YT_cont_"+i
+				   descyt = "YT_desc_"+i
+				   nomeYT = "YT_nome_"+i
+				   identYT = "YT_iden_"+i
+				   prezzoYT = "YT_pric_"+i
+				   
+				   
+				   pswYT = "YT_lock_"+i
+				   
+				   if(lock_progetto!="cart.png"){
+				   if(lock_microverba=="cart.png"){
+				   
+				   lock="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descyt])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+				   
+				   }
+				   else{
+				   
+				   if(result[prezzoYT] === null || typeof(result[prezzoYT]) == 'undefined' || result[prezzoYT]=="null" || result[prezzoYT]==""){
+				   
+				   
+				    if((result[pswYT]=="")||(result[pswYT]==$.base64.encode(pswYTT))){
+				   
+				     lock="unlock.png";
+				   
+				     tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descyt])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+
+				   
+				    }
+				    else{
+				     tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_youtube.png' width='80'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswYT+"'>SBLOCCA</a></td><td align='left' width='100%'></td></tr>"
+				   
+				    }
+				   
+				   }
+				   else{
+				   
+				   lock="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoYT]+", "+$.base64.decode(result[descyt])+"</td><td align='right' width='40'><a id='piu"+ identYT +"piu"+ prezzoYT +"piu"+ nomeYT +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+				   
+				   }
+				   
+				   }
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   
+				   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descyt])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+				   
+				   }
+				   
+				   
+				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+				   
+				   
+				   $("#testvideo").append(tabella);
+				   
+				   
+				   $(document).on("touchstart", "#"+paperino+"", function(e){
+								  
+						passo(this.id) // passare la variabile in una nuova funzione
+								  
+					});
+				   
+				   // SBLOCCA
+				   
+				   
+				   $(document).on("touchstart", "#fff_"+pswYT+"", function(e){
+								  
+						  var nomefun = this.id
+						  nomefun = nomefun.replace("fff_","")
+								  
+						  $("#progettolock").hide()
+						  $("#microlock").hide()
+						  $("#contlock").show()
+								  
+						  $("#pswVAA").attr("type","hidden")
+						  $("#pswFAA").attr("type","hidden")
+						  $("#pswYTT").attr("type","text")
+								  
+						   localStorage.setItem("pagina",pagina);
+						   localStorage.setItem("pagina1",pagina1);
+								  
+						   
+						   $("#pswYTT").focus()
+								  
+ 
+				  });
+				   
+				   
+				   $(document).on("touchstart", "#piu"+ identYT +"piu"+ prezzoYT +"piu"+ nomeYT +"", function(e){
+								  
+								  alert(this.id)
+								  
+								  //SPLIT
+								  var str=this.id;
+								  
+								  var a1 = new Array();
+								  
+								  a1=str.split("piu");
+								  
+								  agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]),"c")
+								  
+								  /*for (i=0;i<a1.length;i++)
+								   {
+								   alert(a1[1]);3
+								   }*/
+								  
+					  });
+				   
+				   
+				   function passo(eccola){
+				   
+				   var pageNumber = 1;
+				   eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
+				   //alert(link1);
+				   
+				   var ref = window.open(link1, '_blank', 'location=no');
+				   
+				   }
+				   
+				   
+				   }
+				   
+				   
+				   }
+				   
+				   function passoV(eccolaV){
+				   
+				   alert(result[eccolaV])
+				   
+				   }
+				   
+	
+				   
+				   }
+				   
+				   
+				   // URL VIDEO
+				   if(result.VA === null || typeof(result.VA) == 'undefined' || result.VA=="null" || result.VA==""){
+				   
+				   }
+				   else{
+				   
+				   for (var i=0, l=10; i<l; i++) {
+				   
+				   if(i==1){
+				   i="01"
+				   }
+				   if(i==2){
+				   i="02"
+				   }
+				   if(i==3){
+				   i="03"
+				   }
+				   if(i==4){
+				   i="04"
+				   }
+				   if(i==5){
+				   i="05"
+				   }
+				   if(i==6){
+				   i="06"
+				   }
+				   if(i==7){
+				   i="07"
+				   }
+				   if(i==8){
+				   i="08"
+				   }
+				   if(i==9){
+				   i="09"
+				   }
+				   
+				   
+				   urlvideo = "VA_desc_"+i
+				   
+				   /*
+					
+					urlaudio = "FA_cont_"+i
+					
+					paginaweb = "PW_cont_"+i
+					
+					paginafb = "FB_cont_"+i
+					
+					urltwitter = "TW_cont_"+i
+					
+					urlinstagram = "IG_cont_"+i*/
+				   
+				   if(result[urlvideo] === null || typeof(result[urlvideo]) == 'undefined' || result[urlvideo]=="null" || result[urlvideo]==""){
+				   
+				   }
+				   else{
+				   
+				   var tabella = "<table width='90%' align='center'>";
+				   
+				   paperino = "VA_cont_"+i
+				   descva = "VA_desc_"+i
+				   prezzoVA = "VA_pric_"+i
+				   nomeVA = "VA_nome_"+i
+				   identVA = "VA_iden_"+i
+				   
+				   pswVA = "VA_lock_"+i
+				   
+				   
+				   if(lock_progetto!="cart.png"){
+				   if(lock_microverba=="cart.png"){
+				   
+				   lock="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_video.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descva])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+				   
+				   }
+				   else{
+				   
+				   if(result[prezzoVA] === null || typeof(result[prezzoVA]) == 'undefined' || result[prezzoVA]=="null" || result[prezzoVA]==""){
+	   
+				    lock="unlock.png";
+				   
+				    if((result[pswVA]=="")||(result[pswVA]==$.base64.encode(pswVAA))){
+				   
+				     lock="unlock.png";
+				   
+				     tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_video.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descva])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+				   
+				   
+				    }
+				    else{
+				     tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_video.png' width='80'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswVA+"'>SBLOCCA</a></td><td align='left' width='100%'></td></tr>"
+				   
+				    }
+				   
+				   }
+				   else{
+				    lock="cart.png";
+				   
+				    tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_video.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoVA]+", "+$.base64.decode(result[descva])+"</td><td align='right' width='40'><a id='piu"+ identVA +"piu"+ prezzoVA +"piu"+ nomeVA +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+				   
+				   }
+				   
+				   }
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   
+				   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_video.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descva])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+				   
+				   }
+				   
+				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+				   
+				   $("#testvideo").append(tabella);
+				   
+				   
+				   $(document).on("touchstart", "#"+paperino+"", function(e){
+								  
+						passo2(this.id) // passare la variabile in una nuova funzione
+								  
+					});
+				   
+				   
+				   $(document).on("touchstart", "#fff_"+pswVA+"", function(e){
+								  
+						  var nomefun = this.id
+						  nomefun = nomefun.replace("fff_","")
+								  
+						  $("#progettolock").hide()
+						  $("#microlock").hide()
+								  
+						  $("#contlock").show()
+								  
+						  $("#pswVAA").attr("type","text")
+						  $("#pswYTT").attr("type","hidden")
+						  $("#pswFAA").attr("type","hidden")
+								  
+						  localStorage.setItem("pagina",pagina);
+						  localStorage.setItem("pagina1",pagina1);
+								  
+								  
+						  $("#pswVAA").focus()
+								  
+								  
+					  });
+				   
+				   $(document).on("touchstart", "#piu"+ identVA +"piu"+ prezzoVA +"piu"+ nomeVA +"", function(e){
+								  
+								 // alert(this.id)
+								  
+								  //SPLIT
+								  var str=this.id;
+								  
+								  var a1 = new Array();
+								  
+								  a1=str.split("piu");
+								  
+								  agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]),"c")
+								  
+								  });
+				   
+				   
+				    function passo2(eccola){
+				   
+				    alert(eccola)
+				   
+					 //alert($.base64.decode(result[eccola]))
+				   
+				     var pageNumber = 1;
+				     eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
+				     //alert(link1);
+				   
+				     var ref = window.open(link1, '_blank', 'location=no');
+				   
+				    }
+				   
+
+				   }
+				   
+				   
+				   }
+				   
+
+				   }
+				   
+				   
+				   // URL AUDIO
+				   if(result.FA === null || typeof(result.FA) == 'undefined' || result.FA=="null" || result.FA==""){
+				   
+				   }
+				   else{
+				   
+				   for (var i=0, l=10; i<l; i++) {
+				   
+				   if(i==1){
+				   i="01"
+				   }
+				   if(i==2){
+				   i="02"
+				   }
+				   if(i==3){
+				   i="03"
+				   }
+				   if(i==4){
+				   i="04"
+				   }
+				   if(i==5){
+				   i="05"
+				   }
+				   if(i==6){
+				   i="06"
+				   }
+				   if(i==7){
+				   i="07"
+				   }
+				   if(i==8){
+				   i="08"
+				   }
+				   if(i==9){
+				   i="09"
+				   }
+				   
+				   
+				   urlaudio = "FA_desc_"+i
+				   
+				   /*
+					paginaweb = "PW_cont_"+i
+					
+					paginafb = "FB_cont_"+i
+					
+					urltwitter = "TW_cont_"+i
+					
+					urlinstagram = "IG_cont_"+i*/
+				   
+				   if(result[urlaudio] === null || typeof(result[urlaudio]) == 'undefined' || result[urlaudio]=="null" || result[urlaudio]==""){
+				   
+				   }
+				   else{
+				   
+				   var tabella = "<table width='90%' align='center'>";
+				   
+				   paperino = "FA_cont_"+i
+				   descfa = "FA_desc_"+i
+				   prezzoFA = "FA_pric_"+i
+				   nomeFA = "FA_nome_"+i
+				   identFA = "FA_iden_"+i
+				   
+				   pswFA = "FA_lock_"+i
+				   
+				   if(lock_progetto!="cart.png"){
+				   if(lock_microverba=="cart.png"){
+				   
+				   lock="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_audio.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descfa])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+				   
+				   }
+				   else{
+				   
+				   if(result[prezzoFA] === null || typeof(result[prezzoFA]) == 'undefined' || result[prezzoFA]=="null" || result[prezzoFA]==""){
+				   
+				   lock="unlock.png";
+				   
+				   if((result[pswFA]=="")||(result[pswFA]==$.base64.encode(pswFAA))){
+				   
+				   lock="unlock.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_audio.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descfa])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+				   
+				   
+				   }
+				   else{
+				   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_audio.png' width='80'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswFA+"'>SBLOCCA</a></td><td align='left' width='100%'></td></tr>"
+				   
+				   }
+				   
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_audio.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoFA]+", "+$.base64.decode(result[descfa])+"</td><td align='right' width='40'><a id='piu"+ identFA +"piu"+ prezzoFA +"piu"+ nomeFA +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+				   
+				   }
+				   
+				   }
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   
+				   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_audio.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descfa])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+				   
+				   }
+				   
+				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+				   
+				   $("#testvideo").append(tabella);
+				   
+				   
+				   $(document).on("touchstart", "#"+paperino+"", function(e){
+								  
+								  passo3(this.id) // passare la variabile in una nuova funzione
+								  
+								  });
+				   
+				   $(document).on("touchstart", "#fff_"+pswFA+"", function(e){
+								  
+								  var nomefun = this.id
+								  nomefun = nomefun.replace("fff_","")
+								  
+								  $("#progettolock").hide()
+								  $("#microlock").hide()
+								  $("#contlock").show()
+								  
+								  $("#pswVAA").attr("type","hidden")
+								  $("#pswYTT").attr("type","hidden")
+								  $("#pswFAA").attr("type","text")
+								  
+								  
+								  localStorage.setItem("pagina",pagina);
+								  localStorage.setItem("pagina1",pagina1);
+								  
+								  
+								  $("#pswYTT").focus()
+								  
+								  
+								  });
+				   
+				   $(document).on("touchstart", "#piu"+ identFA +"piu"+ prezzoFA +"piu"+ nomeFA +"", function(e){
+								  
+								  //alert(this.id)
+								  
+								  //SPLIT
+								  var str=this.id;
+								  
+								  var a1 = new Array();
+								  
+								  a1=str.split("piu");
+								  
+								  agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]),"c")
+								  
+								  });
+				   
+				   
+				   }
+				   
+				   
+				   }
+				   
+				   
+				   
+				   function passo3(eccola){
+				   
+				   var pageNumber = 1;
+				   eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
+				   //alert(link1);
+				   
+				   var ref = window.open(link1, '_blank', 'location=no');
+				   
+				   }
+				   
+				   
+				   }
+				   
+				   //// QUI QUI ////
+				   // URL Pagina Web
+				   if(result.PW === null || typeof(result.PW) == 'undefined' || result.PW=="null" || result.PW==""){
+				   
+				   }
+				   else{
+				   
+				   for (var i=0, l=10; i<l; i++) {
+				   
+				   if(i==1){
+				   i="01"
+				   }
+				   if(i==2){
+				   i="02"
+				   }
+				   if(i==3){
+				   i="03"
+				   }
+				   if(i==4){
+				   i="04"
+				   }
+				   if(i==5){
+				   i="05"
+				   }
+				   if(i==6){
+				   i="06"
+				   }
+				   if(i==7){
+				   i="07"
+				   }
+				   if(i==8){
+				   i="08"
+				   }
+				   if(i==9){
+				   i="09"
+				   }
+				   
+				   
+				   paginaweb = "PW_desc_"+i
+				   
+				   /*
+					
+					
+					paginafb = "FB_cont_"+i
+					
+					urltwitter = "TW_cont_"+i
+					
+					urlinstagram = "IG_cont_"+i*/
+				   
+				   if(result[paginaweb] === null || typeof(result[paginaweb]) == 'undefined' || result[paginaweb]=="null" || result[paginaweb]==""){
+				   
+				   }
+				   else{
+				   
+				   var tabella = "<table width='90%' align='center'>";
+				   
+				   paperino = "PW_cont_"+i
+				   descpw = "PW_desc_"+i
+				   
+				   prezzoPW = "PW_pric_"+i
+				   nomePW = "PW_nome_"+i
+				   identPW = "PW_iden_"+i
+				   
+				   if(result[prezzoPW] === null || typeof(result[prezzoPW]) == 'undefined' || result[prezzoPW]=="null" || result[prezzoPW]==""){
+				   lock="unlock.png";
+				   
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   }
+				   
+				   
+				   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_www.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descpw])+"</td><td align='right' width='40'><a id='piu"+ identPW +"piu"+ prezzoPW +"piu"+ nomePW +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
+				   
+				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+				   
+				   $("#testvideo").append(tabella);
+				   
+				   
+				   $(document).on("touchstart", "#"+paperino+"", function(e){
+								  
+								  passo4(this.id) // passare la variabile in una nuova funzione
+								  
+								  });
+				   
+				   $(document).on("touchstart", "#piu"+ identPW +"piu"+ prezzoPW +"piu"+ nomePW +"", function(e){
+								  
+								  alert(this.id)
+								  
+								  //SPLIT
+								  var str=this.id;
+								  
+								  var a1 = new Array();
+								  
+								  a1=str.split("piu");
+								  
+								  agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]),"c")
+								  
+								  
+								  
+								  });
+				   
+				   }
+				   
+				   
+				   }
+				   
+				   
+				   
+				   function passo4(eccola){
+				   
+				   var pageNumber = 1;
+				   eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
+				   alert(link1);
+				   
+				   var ref = window.open(link1, '_blank', 'location=no');
+				   
+				   }
+				   
+				   
+				   }
+				   
+				   
+				   // URL Pagina facebook
+				   if(result.FB === null || typeof(result.FB) == 'undefined' || result.FB=="null" || result.FB==""){
+				   
+				   }
+				   else{
+				   
+				   for (var i=0, l=10; i<l; i++) {
+				   
+				   if(i==1){
+				   i="01"
+				   }
+				   if(i==2){
+				   i="02"
+				   }
+				   if(i==3){
+				   i="03"
+				   }
+				   if(i==4){
+				   i="04"
+				   }
+				   if(i==5){
+				   i="05"
+				   }
+				   if(i==6){
+				   i="06"
+				   }
+				   if(i==7){
+				   i="07"
+				   }
+				   if(i==8){
+				   i="08"
+				   }
+				   if(i==9){
+				   i="09"
+				   }
+				   
+				   
+				   paginafb = "FB_desc_"+i
+				   
+				   /*
+					
+					urltwitter = "TW_cont_"+i
+					
+					urlinstagram = "IG_cont_"+i*/
+				   
+				   if(result[paginafb] === null || typeof(result[paginafb]) == 'undefined' || result[paginafb]=="null" || result[paginafb]==""){
+				   
+				   }
+				   else{
+				   
+				   var tabella = "<table width='90%' align='center'>";
+				   
+				   paperino = "FB_cont_"+i
+				   descfb = "FB_desc_"+i
+				   
+				   prezzoFB = "FB_pric_"+i
+				   nomeFB = "FB_nome_"+i
+				   identFB = "FB_iden_"+i
+				   
+				   if(result[prezzoFB] === null || typeof(result[prezzoFB]) == 'undefined' || result[prezzoFB]=="null" || result[prezzoFB]==""){
+				   lock="unlock.png";
+				   
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   }
+				   
+				   
+				   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descfb])+"</td><td align='right' width='40'><a id='piu"+ identFB +"piu"+ prezzoFB +"piu"+ nomeFB +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
+				   
+				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+				   
+				   $("#testvideo").append(tabella);
+				   
+				   
+				   $(document).on("touchstart", "#"+paperino+"", function(e){
+								  
+								  passo5(this.id) // passare la variabile in una nuova funzione
+								  
+								  });
+				   
+				   $(document).on("touchstart", "#piu"+ identFB +"piu"+ prezzoFB +"piu"+ nomeFB +"", function(e){
+								  
+								  alert(this.id)
+								  
+								  //SPLIT
+								  var str=this.id;
+								  
+								  var a1 = new Array();
+								  
+								  a1=str.split("piu");
+								  
+								  agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]),"c")
+								  
+								  
+								  
+								  });
+				   
+				   
+				   }
+				   
+				   
+				   }
+				   
+				   
+				   
+				   function passo5(eccola){
+				   
+				   var pageNumber = 1;
+				   eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
+				   alert(link1);
+				   
+				   var ref = window.open(link1, '_blank', 'location=no');
+				   
+				   }
+				   
+				   
+				   }
+				   
+				   // Telefono fisso
+				   if(result.TF === null || typeof(result.TF) == 'undefined' || result.TF=="null" || result.TF==""){
+				   
+				   }
+				   else{
+				   
+				   for (var i=0, l=10; i<l; i++) {
+				   
+				   if(i==1){
+				   i="01"
+				   }
+				   if(i==2){
+				   i="02"
+				   }
+				   if(i==3){
+				   i="03"
+				   }
+				   if(i==4){
+				   i="04"
+				   }
+				   if(i==5){
+				   i="05"
+				   }
+				   if(i==6){
+				   i="06"
+				   }
+				   if(i==7){
+				   i="07"
+				   }
+				   if(i==8){
+				   i="08"
+				   }
+				   if(i==9){
+				   i="09"
+				   }
+				   
+				   
+				   telefono = "TF_desc_"+i
+				   
+				   /*
+					
+					urltwitter = "TW_cont_"+i
+					
+					urlinstagram = "IG_cont_"+i*/
+				   
+				   if(result[telefono] === null || typeof(result[telefono]) == 'undefined' || result[telefono]=="null" || result[telefono]==""){
+				   
+				   }
+				   else{
+				   
+				   var tabella = "<table width='90%' align='center'>";
+				   
+				   paperino = "TF_cont_"+i
+				   desctf = "TF_desc_"+i
+				   
+				   prezzoTF = "TF_pric_"+i
+				   nomeTF = "TF_nome_"+i
+				   identTF = "TF_iden_"+i
+				   
+				   if(result[prezzoTF] === null || typeof(result[prezzoTF]) == 'undefined' || result[prezzoTF]=="null" || result[prezzoTF]==""){
+				   lock="unlock.png";
+				   
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   }
+				   
+				   
+				   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_telephone.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctf])+"</td><td align='right' width='40'><a id='piu"+ identTF +"piu"+ prezzoTF +"piu"+ nomeTF +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
+				   
+				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+				   
+				   $("#testvideo").append(tabella);
+				   
+				   
+				   $(document).on("touchstart", "#"+paperino+"", function(e){
+								  
+								  passo6(this.id) // passare la variabile in una nuova funzione
+								  
+								  });
+				   
+				   
+				   $(document).on("touchstart", "#piu"+ identTF +"piu"+ prezzoTF +"piu"+ nomeTF +"", function(e){
+								  
+								  alert(this.id)
+								  
+								  //SPLIT
+								  var str=this.id;
+								  
+								  var a1 = new Array();
+								  
+								  a1=str.split("piu");
+								  
+								  agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]),"c")
+								  
+								  });
+				   
+				   }
+				   
+				   
+				   }
+				   
+				   
+				   
+				   function passo6(eccola){
+				   
+				   var pageNumber = 1;
+				   eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
+				   alert(link1);
+				   
+				   window.location.href = "tel:"+link1+"";
+				   
+				   }
+				   
+				   
+				   }
+				   
+				   // Twitter
+				   if(result.TW === null || typeof(result.TW) == 'undefined' || result.TW=="null" || result.TW==""){
+				   
+				   }
+				   else{
+				   
+				   for (var i=0, l=10; i<l; i++) {
+				   
+				   if(i==1){
+				   i="01"
+				   }
+				   if(i==2){
+				   i="02"
+				   }
+				   if(i==3){
+				   i="03"
+				   }
+				   if(i==4){
+				   i="04"
+				   }
+				   if(i==5){
+				   i="05"
+				   }
+				   if(i==6){
+				   i="06"
+				   }
+				   if(i==7){
+				   i="07"
+				   }
+				   if(i==8){
+				   i="08"
+				   }
+				   if(i==9){
+				   i="09"
+				   }
+				   
+				   
+				   twitter = "TW_desc_"+i
+				   
+				   
+				   if(result[twitter] === null || typeof(result[twitter]) == 'undefined' || result[twitter]=="null" || result[twitter]==""){
+				   
+				   }
+				   else{
+				   
+				   var tabella = "<table width='90%' align='center'>";
+				   
+				   paperino = "TW_cont_"+i
+				   desctw = "TW_desc_"+i
+				   
+				   prezzoTW = "TW_pric_"+i
+				   nomeTW = "TW_nome_"+i
+				   identTW = "TW_iden_"+i
+				   
+				   if(result[TW_pric_] === null || typeof(result[TW_pric_]) == 'undefined' || result[TW_pric_]=="null" || result[TW_pric_]==""){
+				   lock="unlock.png";
+				   
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   }
+				   
+				   
+				   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_twitter.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctw])+"</td><td align='right' width='40'><a id='piu"+ identTW +"piu"+ prezzoTW +"piu"+ nomeTW +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
+				   
+				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+				   
+				   $("#testvideo").append(tabella);
+				   
+				   
+				   $(document).on("touchstart", "#"+paperino+"", function(e){
+								  
+								  passo7(this.id) // passare la variabile in una nuova funzione
+								  
+								  });
+				   
+				   $(document).on("touchstart", "#piu"+ identTW +"piu"+ prezzoTW +"piu"+ nomeTW +"", function(e){
+								  
+								  alert(this.id)
+								  
+								  //SPLIT
+								  var str=this.id;
+								  
+								  var a1 = new Array();
+								  
+								  a1=str.split("piu");
+								  
+								  agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]),"c")
+								  
+								  });
+				   
+				   
+				   }
+				   
+				   
+				   }
+				   
+				   
+				   
+				   function passo7(eccola){
+				   
+				   var pageNumber = 1;
+				   eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
+				   alert(link1);
+				   
+				   var ref = window.open(link1, '_blank', 'location=no');
+				   
+				   }
+				   
+				   
+				   }
+				   
+				   
+				   // Instagram
+				   if(result.IG === null || typeof(result.IG) == 'undefined' || result.IG=="null" || result.IG==""){
+				   
+				   }
+				   else{
+				   
+				   for (var i=0, l=10; i<l; i++) {
+				   
+				   if(i==1){
+				   i="01"
+				   }
+				   if(i==2){
+				   i="02"
+				   }
+				   if(i==3){
+				   i="03"
+				   }
+				   if(i==4){
+				   i="04"
+				   }
+				   if(i==5){
+				   i="05"
+				   }
+				   if(i==6){
+				   i="06"
+				   }
+				   if(i==7){
+				   i="07"
+				   }
+				   if(i==8){
+				   i="08"
+				   }
+				   if(i==9){
+				   i="09"
+				   }
+				   
+				   
+				   instagram = "IG_desc_"+i
+				   
+				   
+				   if(result[instagram] === null || typeof(result[instagram]) == 'undefined' || result[instagram]=="null" || result[instagram]==""){
+				   
+				   }
+				   else{
+				   
+				   var tabella = "<table width='90%' align='center'>";
+				   
+				   paperino = "IG_cont_"+i
+				   descig = "IG_desc_"+i
+				   
+				   prezzoIG = "IG_pric_"+i
+				   nomeIG = "IG_nome_"+i
+				   identIG = "IG_iden_"+i
+				   
+				   if(result[prezzoIG] === null || typeof(result[prezzoIG]) == 'undefined' || result[prezzoIG]=="null" || result[prezzoIG]==""){
+				   lock="unlock.png";
+				   
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   }
+				   
+				   
+				   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_instagram.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descig])+"</td><td align='right' width='40'><a id='piu"+ identIG +"piu"+ prezzoIG +"piu"+ nomeIG +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
+				   
+				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+				   
+				   $("#testvideo").append(tabella);
+				   
+				   
+				   $(document).on("touchstart", "#"+paperino+"", function(e){
+								  
+								  passo8(this.id) // passare la variabile in una nuova funzione
+								  
+								  });
+				   
+				   $(document).on("touchstart", "#piu"+ identIG +"piu"+ prezzoIG +"piu"+ nomeIG +"", function(e){
+								  
+								  alert(this.id)
+								  
+								  //SPLIT
+								  var str=this.id;
+								  
+								  var a1 = new Array();
+								  
+								  a1=str.split("piu");
+								  
+								  agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]),"c")
+								  
+								  });
+				   
+				   
+				   }
+				   
+				   
+				   }
+				   
+				   
+				   
+				   function passo8(eccola){
+				   
+				   var pageNumber = 1;
+				   eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
+				   alert(link1);
+				   
+				   var ref = window.open(link1, '_blank', 'location=no');
+				   
+				   }
+				   
+				   
+				   }
+				   
+				   // Altro Social
+				   if(result.US === null || typeof(result.US) == 'undefined' || result.US=="null" || result.US==""){
+				   
+				   }
+				   else{
+				   
+				   for (var i=0, l=10; i<l; i++) {
+				   
+				   if(i==1){
+				   i="01"
+				   }
+				   if(i==2){
+				   i="02"
+				   }
+				   if(i==3){
+				   i="03"
+				   }
+				   if(i==4){
+				   i="04"
+				   }
+				   if(i==5){
+				   i="05"
+				   }
+				   if(i==6){
+				   i="06"
+				   }
+				   if(i==7){
+				   i="07"
+				   }
+				   if(i==8){
+				   i="08"
+				   }
+				   if(i==9){
+				   i="09"
+				   }
+				   
+				   
+				   instagram = "US_desc_"+i
+				   
+				   
+				   if(result[instagram] === null || typeof(result[instagram]) == 'undefined' || result[instagram]=="null" || result[instagram]==""){
+				   
+				   }
+				   else{
+				   
+				   var tabella = "<table width='90%' align='center'>";
+				   
+				   paperino = "US_cont_"+i
+				   descus = "US_desc_"+i
+				   
+				   prezzoUS = "US_pric_"+i
+				   nomeUS = "US_nome_"+i
+				   identUS = "US_iden_"+i
+				   
+				   if(result[prezzoUS] === null || typeof(result[prezzoUS]) == 'undefined' || result[prezzoUS]=="null" || result[prezzoUS]==""){
+				   lock="unlock.png";
+				   
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   }
+				   
+				   
+				   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_social.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descus])+"</td><td align='right' width='40'><a id='piu"+ identUS +"piu"+ prezzoUS +"piu"+ nomeUS +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
+				   
+				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+				   
+				   $("#testvideo").append(tabella);
+				   
+				   
+				   $(document).on("touchstart", "#"+paperino+"", function(e){
+								  
+								  passo9(this.id) // passare la variabile in una nuova funzione
+								  
+								  });
+				   
+				   
+				   $(document).on("touchstart", "#piu"+ identUS +"piu"+ prezzoUS +"piu"+ nomeUS +"", function(e){
+								  
+								  alert(this.id)
+								  
+								  //SPLIT
+								  var str=this.id;
+								  
+								  var a1 = new Array();
+								  
+								  a1=str.split("piu");
+								  
+								  agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]),"c")
+								  
+								  });
+				   
+				   
+				   }
+				   
+				   
+				   }
+				   
+				   
+				   
+				   function passo9(eccola){
+				   
+				   var pageNumber = 1;
+				   eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
+				   alert(link1);
+				   
+				   var ref = window.open(link1, '_blank', 'location=no');
+				   
+				   }
+				   
+				   
+				   }
+				   
+				   // Steaming Video
+				   if(result.SV === null || typeof(result.SV) == 'undefined' || result.SV=="null" || result.SV==""){
+				   
+				   }
+				   else{
+				   
+				   for (var i=0, l=10; i<l; i++) {
+				   
+				   if(i==1){
+				   i="01"
+				   }
+				   if(i==2){
+				   i="02"
+				   }
+				   if(i==3){
+				   i="03"
+				   }
+				   if(i==4){
+				   i="04"
+				   }
+				   if(i==5){
+				   i="05"
+				   }
+				   if(i==6){
+				   i="06"
+				   }
+				   if(i==7){
+				   i="07"
+				   }
+				   if(i==8){
+				   i="08"
+				   }
+				   if(i==9){
+				   i="09"
+				   }
+				   
+				   
+				   stramingv = "SV_desc_"+i
+				   
+				   
+				   if(result[stramingv] === null || typeof(result[stramingv]) == 'undefined' || result[stramingv]=="null" || result[stramingv]==""){
+				   
+				   }
+				   else{
+				   
+				   var tabella = "<table width='90%' align='center'>";
+				   
+				   paperino = "SV_cont_"+i
+				   descsv = "SV_desc_"+i
+				   
+				   prezzoSV = "SV_pric_"+i
+				   nomeSV = "SV_nome_"+i
+				   identSV = "SV_iden_"+i
+				   
+				   if(result[prezzoSV] === null || typeof(result[prezzoSV]) == 'undefined' || result[prezzoSV]=="null" || result[prezzoSV]==""){
+				   lock="unlock.png";
+				   
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   }
+				   
+				   
+				   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_video_live.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descsv])+"</td><td align='right' width='40'><a id='piu"+ identSV +"piu"+ prezzoSV +"piu"+ nomeSV +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
+				   
+				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+				   
+				   $("#testvideo").append(tabella);
+				   
+				   
+				   $(document).on("touchstart", "#"+paperino+"", function(e){
+								  
+								  passo10(this.id) // passare la variabile in una nuova funzione
+								  
+								  });
+				   
+				   $(document).on("touchstart", "#piu"+ identSV +"piu"+ prezzoSV +"piu"+ nomeSV +"", function(e){
+								  
+								  alert(this.id)
+								  
+								  //SPLIT
+								  var str=this.id;
+								  
+								  var a1 = new Array();
+								  
+								  a1=str.split("piu");
+								  
+								  agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]),"c")
+								  
+								  });
+				   
+				   
+				   }
+				   
+				   
+				   }
+				   
+				   
+				   
+				   function passo10(eccola){
+				   
+				   var pageNumber = 1;
+				   eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
+				   alert(link1);
+				   
+				   var ref = window.open(link1, '_blank', 'location=no');
+				   
+				   }
+				   
+				   
+				   }
+				   
+				   
+				   // Steaming Audio
+				   if(result.SA === null || typeof(result.SA) == 'undefined' || result.SA=="null" || result.SA==""){
+				   
+				   }
+				   else{
+				   
+				   for (var i=0, l=10; i<l; i++) {
+				   
+				   if(i==1){
+				   i="01"
+				   }
+				   if(i==2){
+				   i="02"
+				   }
+				   if(i==3){
+				   i="03"
+				   }
+				   if(i==4){
+				   i="04"
+				   }
+				   if(i==5){
+				   i="05"
+				   }
+				   if(i==6){
+				   i="06"
+				   }
+				   if(i==7){
+				   i="07"
+				   }
+				   if(i==8){
+				   i="08"
+				   }
+				   if(i==9){
+				   i="09"
+				   }
+				   
+				   
+				   straminga = "SA_desc_"+i
+				   
+				   
+				   if(result[straminga] === null || typeof(result[straminga]) == 'undefined' || result[straminga]=="null" || result[straminga]==""){
+				   
+				   }
+				   else{
+				   
+				   var tabella = "<table width='90%' align='center'>";
+				   
+				   paperino = "SA_cont_"+i
+				   descsa = "SA_desc_"+i
+				   
+				   
+				   prezzoSA = "SA_pric_"+i
+				   nomeSA = "SA_nome_"+i
+				   identSA = "SA_iden_"+i
+				   
+				   if(result[prezzoSA] === null || typeof(result[prezzoSA]) == 'undefined' || result[prezzoSA]=="null" || result[prezzoSA]==""){
+				   lock="unlock.png";
+				   
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   }
+				   
+				   
+				   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_audio_live.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descsa])+"</td><td align='right' width='40'><a id='piu"+ identSA +"piu"+ prezzoSA +"piu"+ nomeSA +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
+				   
+				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+				   
+				   $("#testvideo").append(tabella);
+				   
+				   
+				   $(document).on("touchstart", "#"+paperino+"", function(e){
+								  
+								  passo11(this.id) // passare la variabile in una nuova funzione
+								  
+								  });
+				   
+				   $(document).on("touchstart", "#piu"+ identSA +"piu"+ prezzoSA +"piu"+ nomeSA +"", function(e){
+								  
+								  alert(this.id)
+								  
+								  //SPLIT
+								  var str=this.id;
+								  
+								  var a1 = new Array();
+								  
+								  a1=str.split("piu");
+								  
+								  agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]),"c")
+								  
+								  });
+				   
+				   
+				   }
+				   
+				   
+				   }
+				   
+				   
+				   
+				   function passo11(eccola){
+				   
+				   var pageNumber = 1;
+				   eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
+				   alert(link1);
+				   
+				   var ref = window.open(link1, '_blank', 'location=no');
+				   
+				   }
+				   
+				   
+				   }
+				   
+				   // Telefono mobile
+				   if(result.TM === null || typeof(result.TM) == 'undefined' || result.TM=="null" || result.TM==""){
+				   
+				   }
+				   else{
+				   
+				   for (var i=0, l=10; i<l; i++) {
+				   
+				   if(i==1){
+				   i="01"
+				   }
+				   if(i==2){
+				   i="02"
+				   }
+				   if(i==3){
+				   i="03"
+				   }
+				   if(i==4){
+				   i="04"
+				   }
+				   if(i==5){
+				   i="05"
+				   }
+				   if(i==6){
+				   i="06"
+				   }
+				   if(i==7){
+				   i="07"
+				   }
+				   if(i==8){
+				   i="08"
+				   }
+				   if(i==9){
+				   i="09"
+				   }
+				   
+				   
+				   telefonomb = "TM_desc_"+i
+				   
+				   /*
+					
+					urltwitter = "TW_cont_"+i
+					
+					urlinstagram = "IG_cont_"+i*/
+				   
+				   if(result[telefonomb] === null || typeof(result[telefonomb]) == 'undefined' || result[telefonomb]=="null" || result[telefonomb]==""){
+				   
+				   }
+				   else{
+				   
+				   var tabella = "<table width='90%' align='center'>";
+				   
+				   paperino = "TM_cont_"+i
+				   desctm = "TM_desc_"+i
+				   
+				   prezzoTM = "TM_pric_"+i
+				   nomeTM = "TM_nome_"+i
+				   identTM = "TM_iden_"+i
+				   
+				   if(result[prezzoTM] === null || typeof(result[prezzoTM]) == 'undefined' || result[prezzoTM]=="null" || result[prezzoTM]==""){
+				   lock="unlock.png";
+				   
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   }
+				   
+				   
+				   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_telephone.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctm])+"</td><td align='right' width='40'><a id='piu"+ identTM +"piu"+ prezzoTM +"piu"+ nomeTM +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
+				   
+				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+				   
+				   $("#testvideo").append(tabella);
+				   
+				   
+				   $(document).on("touchstart", "#"+paperino+"", function(e){
+								  
+								  passo12(this.id) // passare la variabile in una nuova funzione
+								  
+								  });
+				   
+				   $(document).on("touchstart", "#piu"+ identTM +"piu"+ prezzoTM +"piu"+ nomeTM +"", function(e){
+								  
+								  alert(this.id)
+								  
+								  //SPLIT
+								  var str=this.id;
+								  
+								  var a1 = new Array();
+								  
+								  a1=str.split("piu");
+								  
+								  agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]),"c")
+								  
+								  });
+				   
+				   
+				   }
+				   
+				   
+				   }
+				   
+				   
+				   
+				   function passo12(eccola){
+				   
+				   var pageNumber = 1;
+				   eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
+				   alert(link1);
+				   
+				   window.location.href = "tel:"+link1+"";
+				   
+				   }
+				   
+				   
+				   }
+				   
+				   
+				   // Email
+				   if(result.EM === null || typeof(result.EM) == 'undefined' || result.EM=="null" || result.EM==""){
+				   
+				   }
+				   else{
+				   
+				   for (var i=0, l=10; i<l; i++) {
+				   
+				   if(i==1){
+				   i="01"
+				   }
+				   if(i==2){
+				   i="02"
+				   }
+				   if(i==3){
+				   i="03"
+				   }
+				   if(i==4){
+				   i="04"
+				   }
+				   if(i==5){
+				   i="05"
+				   }
+				   if(i==6){
+				   i="06"
+				   }
+				   if(i==7){
+				   i="07"
+				   }
+				   if(i==8){
+				   i="08"
+				   }
+				   if(i==9){
+				   i="09"
+				   }
+				   
+				   
+				   email2 = "EM_desc_"+i
+				   
+				   /*
+					
+					urltwitter = "TW_cont_"+i
+					
+					urlinstagram = "IG_cont_"+i*/
+				   
+				   if(result[email2] === null || typeof(result[email2]) == 'undefined' || result[email2]=="null" || result[email2]==""){
+				   
+				   }
+				   else{
+				   
+				   var tabella = "<table width='90%' align='center'>";
+				   
+				   paperino = "EM_cont_"+i
+				   descem = "EM_desc_"+i
+				   
+				   prezzoEM = "EM_pric_"+i
+				   nomeEM = "EM_nome_"+i
+				   identEM = "EM_iden_"+i
+				   
+				   if(result[prezzoEM] === null || typeof(result[prezzoEM]) == 'undefined' || result[prezzoEM]=="null" || result[prezzoEM]==""){
+				   lock="unlock.png";
+				   
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   }
+				   
+				   
+				   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descem])+"</td><td align='right' width='40'><a id='piu"+ identEM +"piu"+ prezzoEM +"piu"+ nomeEM +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
+				   
+				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+				   
+				   $("#testvideo").append(tabella);
+				   
+				   
+				   $(document).on("touchstart", "#"+paperino+"", function(e){
+								  
+								  passo13(this.id) // passare la variabile in una nuova funzione
+								  
+								  });
+				   
+				   $(document).on("touchstart", "#piu"+ identEM +"piu"+ prezzoEM +"piu"+ nomeEM +"", function(e){
+								  
+								  alert(this.id)
+								  
+								  //SPLIT
+								  var str=this.id;
+								  
+								  var a1 = new Array();
+								  
+								  a1=str.split("piu");
+								  
+								  agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]),"c")
+								  
+								  });
+				   
+				   
+				   }
+				   
+				   
+				   }
+				   
+				   
+				   
+				   function passo13(eccola){
+				   
+				   var pageNumber = 1;
+				   eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
+				   alert(link1);
+				   
+				   window.plugin.email.open({
+											to:      link1,
+											subject: "Email",
+											body:    "Ciao,",
+											isHtml:  true
+											});
+				   
+				   }
+				   
+				   
+				   }
+				   
+				   
+				   //window.plugins.socialsharing.shareViaWhatsApp('Message via WhatsApp', null /* img */, null /* url */, function() {alert('share ok')}, function(errormsg){alert(errormsg)})
+				   //<button onclick="window.plugins.socialsharing.shareViaWhatsAppToReceiver(receiver, 'Message via WhatsApp', null /* img */, null /* url */, function() {console.log('share ok')})">msg via WhatsApp for Addressbook ID 101</button>
+				   
+				   
+				   // FINE IF TOKEN
+				   
+				   }
+				   else {
+				   
+				   /*var tabella = "<table width='' align='center'>";
+					
+					tabella = tabella + "<tr><td align='left' width='80'>X </td><td align='left' width='100%'>"+$.base64.decode(result.messaggio)+"</td></tr><tr><td align='left' width='80'>X </td><td align='left' width='100%'>"+$.base64.decode(result.radice)+"</td></tr><tr><td align='left' width='80'>X </td><td align='left' width='100%'>"+$.base64.decode(result.foglia)+"</td></tr>"
+					
+					tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+					
+					$("#tutto").append(tabella);*/
+				   
+				   }
+				   
+				   
+				   $("#spinner").hide();
+				   
+				   /*var myScroll3;
+					
+					myScroll3 = new IScroll('#wrapper', {
+					click: true,
+					useTransform: false,
+					//bounce: false,
+					onBeforeScrollStart: function (e)
+					{
+					var target = e.target;
+					while (target.nodeType != 1) {
+					target = target.parentNode;
+					}
+					
+					if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA' && target.tagName != 'OPTION') {
+					e.preventDefault();
+					}
+					}
+					});*/
+				   
+				   setTimeout (function(){
+							   myScroll.refresh();
+							   
+							   return
+							   }, 500);
+				   
+				   
+				   //document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 300); }, false);
+				   
+				   //document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+				   
+				   
+				   },
+				   
+				   error: function(){
+				   
+				   $(".spinner").hide();
+				   
+				   navigator.notification.alert(
+												'Errore Imprevisto, contatta il fornitore',  // message
+												alertDismissed,         // callback
+												'Errore',            // title
+												'OK'                  // buttonName
+												);
+				   
+				   }
+				   
+				   });
+			
+		}
+  
+		
+		
+		function compraCarta() {
+			
+		    /*alert(localStorage.getItem("email"))
+			alert(self.document.formia9.totordine.value);
+			alert(self.document.formia9.idordine.value);
+			alert(self.document.formia9.nomeordine.value);
+			alert(self.document.formia9.products.value);
+			alert(self.document.formia9.qta.value);*/
 			
 			var num1 = Math.floor((Math.random() * 20) + 1);
 			var num2 = Math.floor((Math.random() * 20) + 1);
@@ -2396,64 +3064,15 @@ var app = {
 			var num7 = Math.floor((Math.random() * 20) + 1);
 			var num8 = Math.floor((Math.random() * 20) + 1);
 			
-			transazioneprodotto = id_richiesta+""+num2+""+num3+""+num4+""+num5+""+num6+""+num7+""+num8;
+			var transazionemia = num1+""+num2+""+num3+""+num4+""+num5+""+num6+""+num7+""+num8;
 			
-			var item_number= transazioneprodotto;
+			var item_number= "ABC1122";
 			
-			var nome = "";
-			var email = "salvatore.bruni@gmail.com";
-			var EmailEsercente = "";
+			//alert(transazionemia)
+
+			var amount = self.document.formia9.totordine.value;
 			
-			var NomeRegalo = "Trasporto Aermes";
-			var ordinazione = "Microverba";
-			var Indirizzo = "Address";
-			var Telefono = "Tel";
-			var amount = totale;
-			var amountPunti = 1;
-			var OraConsegna = "Ora";
-			var Note = id_autista;
-			var Richiesta = id_richiesta;
-			
-			if ((email == "")||(!email)) {
-				navigator.notification.alert(
-											 'Devi prima effettuare il Login',
-											 alertDismissed,
-											 'Login',
-											 'OK'
-											 );
-				return;
-			}
-			
-			if (NomeRegalo == "") {
-				navigator.notification.alert(
-											 'inserire Nome Destinario',
-											 alertDismissed,
-											 'Nome Destinatario',
-											 'OK'
-											 );
-				return;
-			}
-			if (Indirizzo == "") {
-				navigator.notification.alert(
-											 'inserire un indirizzo corretto',
-											 alertDismissed,
-											 'Indirizzo',
-											 'OK'
-											 );
-				return;
-			}
-			
-			
-			if (Telefono == "") {
-				navigator.notification.alert(
-											 'inserire un telefono valido',
-											 alertDismissed,
-											 'Telefono',
-											 'OK'
-											 );
-				return;
-			}
-			
+
 			if (amount == 0) {
 				navigator.notification.alert(
 											 'Non hai prodotti nel carrello',
@@ -2464,19 +3083,37 @@ var app = {
 				return;
 			}
 			
-			if (OraConsegna == "") {
-				navigator.notification.alert(
-											 'Non hai inserito un orario di consegna desiderata',
-											 alertDismissed,
-											 'Ora Consegna',
-											 'OK'
-											 );
-				return;
-			}
+	
+			//alert("email:"+localStorage.getItem("email")+",transazionemia:"+transazionemia+",id_prodotto:"+self.document.formia9.products.value+",tot:"+self.document.formia9.totordine.value+",NomeProdotto:'Microverba Product',qta:"+self.document.formia9.qta.value+",Ordine:'Ordine Microverba',Note:'',did:"+localStorage.getItem("deviceid")+"")
+			//"+localStorage.getItem("deviceid")+"
+
+			$.ajax({
+				   type: "GET",
+				   url: "http://www.microverba.com/Check_Transaction.php?email="+localStorage.getItem("email")+"&transazionemia="+transazionemia+"&id_prodotto="+self.document.formia9.products.value+"&tot="+self.document.formia9.totordine.value+"&NomeProdotto=Microverba&qta="+self.document.formia9.qta.value+"&Ordine=Ordine&Note=Nessuna&did="+localStorage.getItem("deviceid")+"",
+				   cache: false,
+				   crossDomain: true,
+				   contentType: "application/x-www-form-urlencoded",
+				   success: function (result) {
+				   
+				     window.open('http://microverba.com/wbspaypal.php?Transprodotto='+ transazionemia +'&did='+ localStorage.getItem("deviceid") +'', '_blank', 'location=no');
+				   
+				   },
+				   error: function(){
+				   
+				   navigator.notification.alert(
+												'Errore Imprevisto, contatta il fornitore',  // message
+												alertDismissed,         // callback
+												'Errore',            // title
+												'OK'                  // buttonName
+												);
+				   
+				   }
+				   
+			});
 			
-			$(".spinner").show();
+
 			
-			
+			/*$(".spinner").show();
 			
 			$.ajax({
 				   type:"GET",
@@ -2513,6 +3150,7 @@ var app = {
 				   $(".spinner").hide();
 				   
 				   },
+				   
 				   error: function(){
 				   $(".spinner").hide();
 				   
@@ -2524,11 +3162,10 @@ var app = {
 												);
 				   
 				   },
-				   dataType:"jsonp"});
-			
-			
+				   dataType:"jsonp"});*/
 			
 		}
+	
 		
 		
 		
