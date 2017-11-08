@@ -208,14 +208,14 @@ var app = {
 		
 		$(document).on("touchstart", "#piu", function(e){
                        
-            agg2(1,"1.00","Test 1")
+            agg2(1,"1.00","Test 1","c")
                        
                        
         });
         
         $(document).on("touchstart", "#piu2", function(e){
                        
-            agg2(2, "2.00", "Test 2")
+            agg2(2, "2.00", "Test 2","p")
                        
         });
         
@@ -732,10 +732,15 @@ var app = {
 		
 		
 		$(document).on("touchstart", "#richiedi", function(e){
-			
-		  alert("0")
-					   
-	      richiesta2(0,0)
+			   
+	      richiesta(0,0)
+		  
+		})
+		
+		
+		$(document).on("touchstart", "#richiedi11", function(e){
+			   
+	      richiesta(0,0)
 		  
 		})
 		
