@@ -722,15 +722,37 @@ var app = {
                        
             window.location.href = "#page2";
 			
-			var myScroll2;
+			seleziona2()
 			
-			myScroll2 = new IScroll('wrapper2', { click: true });
+			// SCROLL"
+			
+			var myScroll2
+			
+			myScroll2 = new iScroll('wrapper2', {
+								click: true,
+								useTransform: false,
+								//bounce: false,
+								onBeforeScrollStart: function (e)
+								{
+								var target = e.target;
+								while (target.nodeType != 1) {
+								target = target.parentNode;
+								}
+								
+								if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA' && target.tagName != 'OPTION') {
+								e.preventDefault();
+								}
+								}
+
+			});
+			
 			
 			setTimeout (function(){
 				myScroll2.refresh();
+				
+				alert("scroll 2")
 						
-				 seleziona2()
-			}, 500);
+			}, 1500);
 					   
         });
 		
