@@ -657,6 +657,7 @@ var app = {
 		$(document).on("touchstart", "#messaggino2", function(e){
 					   
 			//window.plugins.socialsharing.shareViaWhatsApp('Message via WhatsApp', null /* img */, null /* url */, function() {alert('share ok')}, function(errormsg){alert(errormsg)})
+			
 			window.plugins.socialsharing.shareViaWhatsAppToReceiver('+393663934483', 'Message via WhatsApp', null /* img */, null /* url */, function() {console.log('share ok')})
 					   
 		});
@@ -731,8 +732,11 @@ var app = {
 		
 		
 		$(document).on("touchstart", "#richiedi", function(e){
+			
+		  alert("0")
 					   
 	      richiesta2(0,0)
+		  
 		})
 		
 		
@@ -856,7 +860,10 @@ var app = {
   
   
 		function richiesta2(pagina,pagina1){
-					$("#testvideo").html("");
+			
+			alert("1")
+			
+			$("#testvideo").html("");
 			$("#tutto").html("");
 			var tabella = "";
 			
@@ -880,10 +887,11 @@ var app = {
 			document.getElementById("pswFAA").value = ""
 			document.getElementById("pswYTTBLOC").value = ""
 			
-			//alert(pswp + pswm)
-			
+		
 			var pag1= $.base64.encode(pagina);
 			var pag2= $.base64.encode(pagina1);
+			
+			alert(pag1)
 			
 			var radice3;
 			var foglia3;
@@ -927,7 +935,6 @@ var app = {
 				var radice = "";
 				var foglia = $.base64.encode(foglia4);
 				
-				//alert("R" + radice + "F" + foglia)
 				
 			}
 			else if(foglia3 == ""){
@@ -938,8 +945,7 @@ var app = {
 				var radice = $.base64.encode(radice4);
 				var foglia = "";
 				
-				//alert("R" + radice + "F" + foglia)
-				
+	
 			}
 			else{
 				var radice4 = radice3.toLowerCase();
@@ -948,10 +954,9 @@ var app = {
 				var radice = $.base64.encode(radice4);
 				var foglia = $.base64.encode(foglia4);
 				
-				//alert("R" + radice + "F" + foglia)
 			}
 			
-			//alert("2")
+			alert("2")
 			
 			var lock_microverba = "";
 			var lock_progetto = "";
