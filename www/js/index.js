@@ -732,7 +732,7 @@ var app = {
 		
 		$(document).on("touchstart", "#richiedi", function(e){
 					   
-	      richiesta(0,0)
+	      richiesta2(0,0)
 		})
 		
 		
@@ -854,12 +854,116 @@ var app = {
 			
 		}
   
+  
+		function richiesta2(pagina,pagina1){
+					$("#testvideo").html("");
+			$("#tutto").html("");
+			var tabella = "";
+			
+			$("#contlock").hide()
+			$("#microlock").hide()
+			$("#progettolock").hide()
+			
+			var posta = $.base64.encode(localStorage.getItem("email"))
+			var lati = $.base64.encode(localStorage.getItem("lat"));
+			var longi = $.base64.encode(localStorage.getItem("lng"));
+			
+			var pswp = self.document.form.pswp.value;
+			var pswm = self.document.form.pswm.value;
+			
+			var pswYTT = self.document.form.pswYTT.value;
+			var pswVAA = self.document.form.pswVAA.value;
+			var pswFAA = self.document.form.pswFAA.value;
+			
+			document.getElementById("pswYTT").value = ""
+			document.getElementById("pswVAA").value = ""
+			document.getElementById("pswFAA").value = ""
+			document.getElementById("pswYTTBLOC").value = ""
+			
+			//alert(pswp + pswm)
+			
+			var pag1= $.base64.encode(pagina);
+			var pag2= $.base64.encode(pagina1);
+			
+			var radice3;
+			var foglia3;
+			
+			
+			if(self.document.form.radice2.value != ""){
+				radice3 = self.document.form.radice2.value
+			}
+			else{
+				radice3 = self.document.form.radice.value
+			}
+			
+			
+			if(self.document.form.foglia2.value != ""){
+				foglia3 = self.document.form.foglia2.value
+			}
+			else{
+				foglia3 = self.document.form.foglia.value
+			}
+			
+			
+			if ((radice3 == "") && (foglia3 == "")) {
+				
+				navigator.notification.alert(
+											 'inserire una Radice o una Foglia',  // message
+											 alertDismissed,         // callback
+											 'Radice',            // title
+											 'OK'                  // buttonName
+											 );
+				return;
+				
+			}
+			
+			
+			
+			if (radice3 == ""){
+				
+				var radice4 = "";
+				var foglia4 = foglia3.toLowerCase();
+				
+				var radice = "";
+				var foglia = $.base64.encode(foglia4);
+				
+				//alert("R" + radice + "F" + foglia)
+				
+			}
+			else if(foglia3 == ""){
+				
+				var radice4 = radice3.toLowerCase();
+				var foglia4 = "";
+				
+				var radice = $.base64.encode(radice4);
+				var foglia = "";
+				
+				//alert("R" + radice + "F" + foglia)
+				
+			}
+			else{
+				var radice4 = radice3.toLowerCase();
+				var foglia4 = foglia3.toLowerCase();
+				
+				var radice = $.base64.encode(radice4);
+				var foglia = $.base64.encode(foglia4);
+				
+				//alert("R" + radice + "F" + foglia)
+			}
+			
+			//alert("2")
+			
+			var lock_microverba = "";
+			var lock_progetto = "";
+			
+			$("#spinner").show();
+			
+		}
 		
-		
-		
-		
+
 		
 		function richiesta(pagina,pagina1){
+			
 			
 			$("#testvideo").html("");
 			$("#tutto").html("");
@@ -923,15 +1027,6 @@ var app = {
 			}
 			
 			
-			/*if (foglia3 == "") {
-			 navigator.notification.alert(
-			 'inserire una Foglia',  // message
-			 alertDismissed,         // callback
-			 'Foglia',            // title
-			 'OK'                  // buttonName
-			 );
-			 return;
-			 }*/
 			
 			if (radice3 == ""){
 				
