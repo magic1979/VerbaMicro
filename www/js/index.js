@@ -721,19 +721,18 @@ var app = {
             $("#spinner2").hide();
                        
             window.location.href = "#page2";
-                
-                var myScroll2;
-                       
-                myScroll2 = new IScroll('#wrapper2', { click: true });
-                
-                setTimeout (function(){
-                    myScroll2.refresh();
-							
-					 seleziona2()
-                }, 500);
+			
+			var myScroll2;
+			
+			myScroll2 = new IScroll('wrapper2', { click: true });
+			
+			setTimeout (function(){
+				myScroll2.refresh();
+						
+				 seleziona2()
+			}, 500);
 					   
         });
-		
 		
 		
 		
