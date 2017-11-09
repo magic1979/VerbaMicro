@@ -1504,7 +1504,7 @@ var app = {
 				   if(lock_progetto!="cart.png"){
 				   if(lock_microverba=="cart.png"){
 				   
-				   lock="cart.png";
+				   lock="lock.jpg";
 				   
 				   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descyt])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
 				   
@@ -1539,7 +1539,7 @@ var app = {
 				   }
 				   }
 				   else{
-				   lock="cart.png";
+				   lock="lock.jpg";
 				   
 				   
 				   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descyt])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
@@ -1703,7 +1703,7 @@ var app = {
 				   if(lock_progetto!="cart.png"){
 				   if(lock_microverba=="cart.png"){
 				   
-				   lock="cart.png";
+				   lock="lock.jpg";
 				   
 				   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_video.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descva])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
 				   
@@ -1738,7 +1738,7 @@ var app = {
 				   }
 				   }
 				   else{
-				   lock="cart.png";
+				   lock="lock.jpg";
 				   
 				   
 				   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_video.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descva])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
@@ -1886,7 +1886,7 @@ var app = {
 				   if(lock_progetto!="cart.png"){
 				   if(lock_microverba=="cart.png"){
 				   
-				   lock="cart.png";
+				   lock="lock.jpg";
 				   
 				   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_audio.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descfa])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
 				   
@@ -1921,7 +1921,7 @@ var app = {
 				   }
 				   }
 				   else{
-				   lock="cart.png";
+				   lock="lock.jpg";
 				   
 				   
 				   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_audio.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descfa])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
