@@ -267,9 +267,9 @@ var app = {
                     //alert(results.rows.length)
                               
                     for (i = 0; i < len; i++){
-                        alert("id:" + results.rows.item(i).id)
-                        alert("Qta:" +results.rows.item(i).Qta)
-                        alert("Descrizione:" +results.rows.item(i).Descrizione)
+                        //alert("id:" + results.rows.item(i).id)
+                        //alert("Qta:" +results.rows.item(i).Qta)
+                        //alert("Descrizione:" +results.rows.item(i).Descrizione)
                               
                     }
                               
@@ -284,7 +284,7 @@ var app = {
                               $("#badde5").attr("data-badge", Badge10);
                               $("#badde5").html('<img id="carro3" src="img/CartW.png" width="20px">');
                               
-                              alert("Insert")
+                              //alert("Insert")
                               seleziona()
                     }
                     else{
@@ -349,7 +349,7 @@ var app = {
 		
 		function seleziona2(){
 			
-			alert("enter")
+			//alert("enter")
             
             $("#contenutoCart").html('');
             
@@ -380,7 +380,7 @@ var app = {
                                         
                                          var paperino2 = "_"+results.rows.item(i).id+"_"+results.rows.item(i).IdProdotto
 										 
-										 alert("paperino2:"+paperino2);
+										// alert("paperino2:"+paperino2);
                                          
                                          if(conta==0){
                                            tuttigliid = results.rows.item(i).IdProdotto;
@@ -416,7 +416,7 @@ var app = {
                                                         
                                          });
                                          
-                                         alert("p:"+paperino2)
+                                         //alert("p:"+paperino2)
 										 
                                          conta = conta+1;
 
@@ -501,7 +501,7 @@ var app = {
             });
             
             
-            alert(prod)
+            //alert(prod)
  
         }
  
@@ -750,7 +750,7 @@ var app = {
 			setTimeout (function(){
 				myScroll2.refresh();
 				
-				alert("scroll 2")
+				//alert("scroll 2")
 						
 			}, 1500);
 					   
@@ -893,7 +893,7 @@ var app = {
   
 		function richiesta2(pagina,pagina1){
 			
-			alert("1")
+			//alert("1")
 			
 			$("#testvideo").html("");
 			$("#tutto").html("");
@@ -923,7 +923,7 @@ var app = {
 			var pag1= $.base64.encode(pagina);
 			var pag2= $.base64.encode(pagina1);
 			
-			alert(pag1)
+			//alert(pag1)
 			
 			var radice3;
 			var foglia3;
@@ -988,7 +988,7 @@ var app = {
 				
 			}
 			
-			alert("2")
+			//alert("2")
 			
 			var lock_microverba = "";
 			var lock_progetto = "";
@@ -1163,7 +1163,7 @@ var app = {
 								  })
 				   
 				   var str = $.base64.decode(result.roots);
-				   alert(str)
+				   //alert(str)
 				   
 				   var a1 = new Array();
 				   
@@ -1225,7 +1225,7 @@ var app = {
 				   var risultato = ""
 				   
 				   var str=$.base64.decode(result.leafs);
-				   alert(str)
+				   ////alert(str)
 				   
 				   var a1 = new Array();
 				   
@@ -1339,7 +1339,7 @@ var app = {
 								  var prezzo = $.base64.decode(result.pric)
 								  var nome = $.base64.decode(result.description_microverba)
 								  
-								  alert(ident + " " + prezzo + " " + nome)
+								  //alert(ident + " " + prezzo + " " + nome)
 								  
 								  agg2(ident,prezzo,nome,"m")
 								  
@@ -1351,7 +1351,7 @@ var app = {
 								  var prezzo = $.base64.decode(result.pr_pric)
 								  var nome = $.base64.decode(result.project_description)
 								  
-								  alert(ident + " " + prezzo + " " + nome)
+								  //alert(ident + " " + prezzo + " " + nome)
 								  
 								  agg2(ident,prezzo,nome,"p")
 								  
@@ -1519,7 +1519,7 @@ var app = {
 				   
 				   $(document).on("touchstart", "#piu"+ identYT +"piu"+ prezzoYT +"piu"+ nomeYT +"", function(e){
 								  
-								  alert(this.id)
+								  //alert(this.id)
 								  
 								  //SPLIT
 								  var str=this.id;
@@ -1714,7 +1714,7 @@ var app = {
 				   
 				   $(document).on("touchstart", "#piu"+ identVA +"piu"+ prezzoVA +"piu"+ nomeVA +"", function(e){
 								  
-								 // alert(this.id)
+								 // //alert(this.id)
 								  
 								  //SPLIT
 								  var str=this.id;
@@ -1896,7 +1896,7 @@ var app = {
 				   
 				   $(document).on("touchstart", "#piu"+ identFA +"piu"+ prezzoFA +"piu"+ nomeFA +"", function(e){
 								  
-								  //alert(this.id)
+								  ////alert(this.id)
 								  
 								  //SPLIT
 								  var str=this.id;
@@ -2018,7 +2018,7 @@ var app = {
 				   
 				   $(document).on("touchstart", "#piu"+ identPW +"piu"+ prezzoPW +"piu"+ nomePW +"", function(e){
 								  
-								  alert(this.id)
+								  //alert(this.id)
 								  
 								  //SPLIT
 								  var str=this.id;
@@ -2044,7 +2044,7 @@ var app = {
 				   
 				   var pageNumber = 1;
 				   eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-				   alert(link1);
+				  //alert(link1);
 				   
 				   var ref = window.open(link1, '_blank', 'location=no');
 				   
@@ -2138,7 +2138,7 @@ var app = {
 				   
 				   $(document).on("touchstart", "#piu"+ identFB +"piu"+ prezzoFB +"piu"+ nomeFB +"", function(e){
 								  
-								  alert(this.id)
+								  //alert(this.id)
 								  
 								  //SPLIT
 								  var str=this.id;
@@ -2165,7 +2165,7 @@ var app = {
 				   
 				   var pageNumber = 1;
 				   eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-				   alert(link1);
+				  //alert(link1);
 				   
 				   var ref = window.open(link1, '_blank', 'location=no');
 				   
@@ -2259,7 +2259,7 @@ var app = {
 				   
 				   $(document).on("touchstart", "#piu"+ identTF +"piu"+ prezzoTF +"piu"+ nomeTF +"", function(e){
 								  
-								  alert(this.id)
+								  //alert(this.id)
 								  
 								  //SPLIT
 								  var str=this.id;
@@ -2283,7 +2283,7 @@ var app = {
 				   
 				   var pageNumber = 1;
 				   eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-				   alert(link1);
+				  //alert(link1);
 				   
 				   window.location.href = "tel:"+link1+"";
 				   
@@ -2371,7 +2371,7 @@ var app = {
 				   
 				   $(document).on("touchstart", "#piu"+ identTW +"piu"+ prezzoTW +"piu"+ nomeTW +"", function(e){
 								  
-								  alert(this.id)
+								  //alert(this.id)
 								  
 								  //SPLIT
 								  var str=this.id;
@@ -2396,7 +2396,7 @@ var app = {
 				   
 				   var pageNumber = 1;
 				   eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-				   alert(link1);
+				  //alert(link1);
 				   
 				   var ref = window.open(link1, '_blank', 'location=no');
 				   
@@ -2485,7 +2485,7 @@ var app = {
 				   
 				   $(document).on("touchstart", "#piu"+ identIG +"piu"+ prezzoIG +"piu"+ nomeIG +"", function(e){
 								  
-								  alert(this.id)
+								  //alert(this.id)
 								  
 								  //SPLIT
 								  var str=this.id;
@@ -2510,7 +2510,7 @@ var app = {
 				   
 				   var pageNumber = 1;
 				   eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-				   alert(link1);
+				  //alert(link1);
 				   
 				   var ref = window.open(link1, '_blank', 'location=no');
 				   
@@ -2599,7 +2599,7 @@ var app = {
 				   
 				   $(document).on("touchstart", "#piu"+ identUS +"piu"+ prezzoUS +"piu"+ nomeUS +"", function(e){
 								  
-								  alert(this.id)
+								  //alert(this.id)
 								  
 								  //SPLIT
 								  var str=this.id;
@@ -2624,7 +2624,7 @@ var app = {
 				   
 				   var pageNumber = 1;
 				   eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-				   alert(link1);
+				  //alert(link1);
 				   
 				   var ref = window.open(link1, '_blank', 'location=no');
 				   
@@ -2712,7 +2712,7 @@ var app = {
 				   
 				   $(document).on("touchstart", "#piu"+ identSV +"piu"+ prezzoSV +"piu"+ nomeSV +"", function(e){
 								  
-								  alert(this.id)
+								  //alert(this.id)
 								  
 								  //SPLIT
 								  var str=this.id;
@@ -2737,7 +2737,7 @@ var app = {
 				   
 				   var pageNumber = 1;
 				   eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-				   alert(link1);
+				  //alert(link1);
 				   
 				   var ref = window.open(link1, '_blank', 'location=no');
 				   
@@ -2827,7 +2827,7 @@ var app = {
 				   
 				   $(document).on("touchstart", "#piu"+ identSA +"piu"+ prezzoSA +"piu"+ nomeSA +"", function(e){
 								  
-								  alert(this.id)
+								  //alert(this.id)
 								  
 								  //SPLIT
 								  var str=this.id;
@@ -2852,7 +2852,7 @@ var app = {
 				   
 				   var pageNumber = 1;
 				   eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-				   alert(link1);
+				  //alert(link1);
 				   
 				   var ref = window.open(link1, '_blank', 'location=no');
 				   
@@ -2945,7 +2945,7 @@ var app = {
 				   
 				   $(document).on("touchstart", "#piu"+ identTM +"piu"+ prezzoTM +"piu"+ nomeTM +"", function(e){
 								  
-								  alert(this.id)
+								  //alert(this.id)
 								  
 								  //SPLIT
 								  var str=this.id;
@@ -2970,7 +2970,7 @@ var app = {
 				   
 				   var pageNumber = 1;
 				   eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-				   alert(link1);
+				   //alert(link1);
 				   
 				   window.location.href = "tel:"+link1+"";
 				   
@@ -3064,7 +3064,7 @@ var app = {
 				   
 				   $(document).on("touchstart", "#piu"+ identEM +"piu"+ prezzoEM +"piu"+ nomeEM +"", function(e){
 								  
-								  alert(this.id)
+								  ////alert(this.id)
 								  
 								  //SPLIT
 								  var str=this.id;
@@ -3089,7 +3089,7 @@ var app = {
 				   
 				   var pageNumber = 1;
 				   eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-				   alert(link1);
+				   //alert(link1);
 				   
 				   window.plugin.email.open({
 											to:      link1,
