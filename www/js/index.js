@@ -389,13 +389,13 @@ var app = {
                                            tuttigliid = results.rows.item(i).IdProdotto;
 										   tuttigliid2 = results.rows.item(i).id;
                                          
-                                           $("#contenutoCart").append('<table class="tablesorter"><tr><td width="160"><font color="#000" size="2">ORDINE</font></td><td width="50"><font color="#000" size="2">QTA</font></td><td width="70"><font color="#000" size="2">COSTO</font></td><td width="40"><font color="#000" size="2"></font></td></tr><tr><td width="150"><font size="3">'+ msg +'</font></td><td width="50"><font size="3">'+ results.rows.item(i).Qta +'<font color="#000" size="1"> x('+ Number(Punita).toFixed(2) +'&euro;)</font></td><td width="70"><font size="3">'+ Number(results.rows.item(i).Descrizione).toFixed(2) +'&euro;</font></td><td align="center" width="40"><a id="'+ paperino2 +'"><img src="img/minus.png" width="25"></a></td></tr></table>');
+                                           $("#contenutoCart").append('<table class="tablesorter"><tr><td width="160"><font color="#000" size="2">ORDINE</font></td><td width="50"><font color="#000" size="2">QTA</font></td><td width="70"><font color="#000" size="2">COSTO</font></td><td width="40"><font color="#000" size="2"></font></td></tr><tr><td width="150"><font size="3">'+ results.rows.item(i).IdProdotto +'</font></td><td width="50"><font size="3">'+ results.rows.item(i).Qta +'<font color="#000" size="1"> x('+ Number(Punita).toFixed(2) +'&euro;)</font></td><td width="70"><font size="3">'+ Number(results.rows.item(i).Descrizione).toFixed(2) +'&euro;</font></td><td align="center" width="40"><a id="'+ paperino2 +'"><img src="img/minus.png" width="25"></a></td></tr></table>');
                                          }
                                          else{
                                            tuttigliid = tuttigliid + "|" + results.rows.item(i).IdProdotto;
 										   tuttigliid2 = tuttigliid2 + results.rows.item(i).id;
                                          
-                                           $("#contenutoCart").append('<table class="tablesorter"><tr><td width="160"><font size="3">'+ msg +'</font></td><td width="50"><font size="3">'+ results.rows.item(i).Qta +'<font color="#000" size="1"> x('+ Number(Punita).toFixed(2) +'&euro;)</font></td><td width="70"><font size="3">'+ Number(results.rows.item(i).Descrizione).toFixed(2) +'&euro;</font></td width="40"><td align="center"><a id="'+ paperino2 +'"><img src="img/minus.png" width="25"></a></td></tr></table>');
+                                           $("#contenutoCart").append('<table class="tablesorter"><tr><td width="160"><font size="3">'+ results.rows.item(i).IdProdotto +'</font></td><td width="50"><font size="3">'+ results.rows.item(i).Qta +'<font color="#000" size="1"> x('+ Number(Punita).toFixed(2) +'&euro;)</font></td><td width="70"><font size="3">'+ Number(results.rows.item(i).Descrizione).toFixed(2) +'&euro;</font></td width="40"><td align="center"><a id="'+ paperino2 +'"><img src="img/minus.png" width="25"></a></td></tr></table>');
                                          }
                                          
                                         
@@ -1330,10 +1330,11 @@ var app = {
 				   //alert($.base64.encode(pswm))
 				   var lock_microverba ="cart.png";
 				   //$("#microlock").html("<input type='text' data-role='none' name='pswm' id='pswm' placeholder='pswm' class='scrivo2' >");
-				   $("#prolock").hide()
-				   $("#miclock").show()
 				   
-				   tabella = tabella + "<tr><td align='center' width='100%' colspan='2'><a id='_sblocca_prj'>SBLOCCA MICROVERBA</a></td><td align='left' width='100%'></td></tr>"
+				   //$("#prolock").hide()
+				   //$("#miclock").show()
+				   
+				   tabella = tabella + "<tr><td align='center' width='100%' colspan='2'><a id='_sblocca_mic'>SBLOCCA MICROVERBA</a></td><td align='left' width='100%'></td></tr>"
 				   }
 				   
 				   }
@@ -1347,7 +1348,8 @@ var app = {
 				   else{
 				   var lock_microverba ="cart.png";
 				   //$("#progettolock").html("<input type='text' data-role='none' name='pswp' id='pswp' placeholder='pswp' class='scrivo2' >");
-				   $("#prolock").show()
+				   
+				   //$("#prolock").show()
 				   
 				   tabella = tabella + "<tr><td align='center' width='100%' colspan='2'><a id='_sblocca_prj'>SBLOCCA PROGETTO</a></td><td align='left' width='100%'></td></tr>"
 				   }
@@ -1391,9 +1393,72 @@ var app = {
 				   
 				   $(document).on("touchstart", "#_sblocca_prj", function(e){
 								  
-								  richiesta(pagina,pagina1)
+					  $("#prolock").show()
+					  
+					  var myScroll22;
+		   
+					   myScroll22 = new iScroll('wrapper', {
+							click: true,
+							useTransform: false,
+							//bounce: false,
+							onBeforeScrollStart: function (e)
+							{
+								var target = e.target;
+								while (target.nodeType != 1) {
+								target = target.parentNode;
+								}
+								
+								if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA' && target.tagName != 'OPTION') {
+								e.preventDefault();
+								}
+							}
+
+						});
+		   
+		   
+					   setTimeout (function(){
+								   
+							myScroll22.refresh();
+							
+								   
+						}, 500);
+					  
+
+					});
 								  
-								  });
+					$(document).on("touchstart", "#_sblocca_mic", function(e){
+					  
+					 $("#miclock").show()
+					 
+					 var myScroll33;
+		   
+					   myScroll33 = new iScroll('wrapper', {
+							click: true,
+							useTransform: false,
+							//bounce: false,
+							onBeforeScrollStart: function (e)
+							{
+								var target = e.target;
+								while (target.nodeType != 1) {
+								target = target.parentNode;
+								}
+								
+								if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA' && target.tagName != 'OPTION') {
+								e.preventDefault();
+								}
+							}
+
+						});
+		   
+		   
+					   setTimeout (function(){
+								   
+							myScroll33.refresh();
+							
+								   
+						}, 500);
+					  
+					});
 				   
 				   
 				   // YOU TUBE
