@@ -122,6 +122,9 @@ var app = {
 		   setTimeout (function(){
 					   
 				myScroll.refresh();
+				
+				$("#progettolock").hide()
+				$("#microlock").hide()
 					   
 			}, 500);
 		
@@ -362,7 +365,7 @@ var app = {
                            tx.executeSql('SELECT * FROM Ordine', [], function (tx, results) {
                                          var len = results.rows.length, i;
                                          var Punita;
-                                         alert("len:"+len);
+                                         //alert("len:"+len);
                                          
                                          for (i = 0; i < len; i++){
 									 
@@ -3243,59 +3246,8 @@ var app = {
 				   
 			});
 			
-
 			
-			/*$(".spinner").show();
-			
-			$.ajax({
-				   type:"GET",
-				   url:"http://msop.it/microverba/Check_TransactionV2.asp",
-				   contentType: "application/json",
-				   data: {email:email,id_prodotto:transazioneprodotto,qta:1,tot:amount,totPunti:amountPunti,transazionemia:transazioneprodotto,NomeProdotto:"Ordine Aermes",EmailEsercente:"info@pokeranswer.it",idTransazione:"CC",Ordine:ordinazione,Indirizzo:Indirizzo,Telefono:Telefono,OraConsegna:OraConsegna,Note:Note,Richiesta:id_richiesta},
-				   timeout: 7000,
-				   jsonp: 'callback',
-				   crossDomain: true,
-				   success:function(result){
-				   
-				   $.each(result, function(i,item){
-						  
-						  //alert(item.Token)
-						  
-						  if (item.Token == "1"){
-						  
-						  var ref = window.open('http://msop.it/microverba/wbspaypal.asp?Transprodotto='+ transazioneprodotto +'', '_blank', 'location=no');
-						  
-						  ref.addEventListener('loadstop', function(event) { if (event.url.match("mobile/close")) { ref.close(); } });
-						  
-						  }
-						  else{
-						  navigator.notification.alert(
-													   'Possibile errore di rete, riprova tra qualche minuto',  // message
-													   alertDismissed,         // callback
-													   'Attenzione',            // title
-													   'Done'                  // buttonName
-													   );
-						  }
-						  
-						  });
-				   
-				   $(".spinner").hide();
-				   
-				   },
-				   
-				   error: function(){
-				   $(".spinner").hide();
-				   
-				   navigator.notification.alert(
-												'Possibile errore di rete, riprova tra qualche minuto',  // message
-												alertDismissed,         // callback
-												'Attenzione',            // title
-												'Done'                  // buttonName
-												);
-				   
-				   },
-				   dataType:"jsonp"});*/
-			
+		
 		}
 	
 		
