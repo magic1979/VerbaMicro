@@ -101,20 +101,20 @@ var app = {
 		var myScroll;
 		   
 		   myScroll = new iScroll('wrapper', {
-								click: true,
-								useTransform: false,
-								//bounce: false,
-								onBeforeScrollStart: function (e)
-								{
-								var target = e.target;
-								while (target.nodeType != 1) {
-								target = target.parentNode;
-								}
-								
-								if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA' && target.tagName != 'OPTION') {
-								e.preventDefault();
-								}
-								}
+				click: true,
+				useTransform: false,
+				//bounce: false,
+				onBeforeScrollStart: function (e)
+				{
+					var target = e.target;
+					while (target.nodeType != 1) {
+					target = target.parentNode;
+					}
+					
+					if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA' && target.tagName != 'OPTION') {
+					e.preventDefault();
+					}
+				}
 
 			});
 		   
@@ -123,8 +123,8 @@ var app = {
 					   
 				myScroll.refresh();
 				
-				$("#progettolock").hide()
-				$("#microlock").hide()
+				$("#prolock").hide()
+				$("#miclock").hide()
 					   
 			}, 500);
 		
@@ -767,6 +767,21 @@ var app = {
 		  
 		})
 		
+				
+				
+		$(document).on("touchstart", "#richiediA", function(e){
+			   
+	      richiesta(0,0)
+		  
+		})
+		
+				$(document).on("touchstart", "#richiediB", function(e){
+			   
+	      richiesta(0,0)
+		  
+		})
+		
+		
 		
 		$(document).on("touchstart", "#richiedi11", function(e){
 			   
@@ -783,6 +798,18 @@ var app = {
 		$(document).on("touchstart", "#annulla33", function(e){
 					   
 			$("#contlock").hide()
+					   
+	   })
+	   
+	   		$(document).on("touchstart", "#annullaA", function(e){
+					   
+			$("#prolock").hide()
+					   
+	   })
+	   
+	   		$(document).on("touchstart", "#annullaB", function(e){
+					   
+			$("#miclock").hide()
 					   
 	   })
 		
@@ -903,8 +930,8 @@ var app = {
 			var tabella = "";
 			
 			$("#contlock").hide()
-			$("#microlock").hide()
-			$("#progettolock").hide()
+			$("#miclock").hide()
+			$("#prolock").hide()
 			
 			var posta = $.base64.encode(localStorage.getItem("email"))
 			var lati = $.base64.encode(localStorage.getItem("lat"));
@@ -1010,8 +1037,9 @@ var app = {
 			var tabella = "";
 			
 			$("#contlock").hide()
-			$("#microlock").hide()
-			$("#progettolock").hide()
+			$("#miclock").hide()
+			$("#prolock").hide()
+			
 			
 			var posta = $.base64.encode(localStorage.getItem("email"))
 			var lati = $.base64.encode(localStorage.getItem("lat"));
@@ -1302,8 +1330,8 @@ var app = {
 				   //alert($.base64.encode(pswm))
 				   var lock_microverba ="cart.png";
 				   //$("#microlock").html("<input type='text' data-role='none' name='pswm' id='pswm' placeholder='pswm' class='scrivo2' >");
-				   $("#progettolock").hide()
-				   $("#microlock").show()
+				   $("#prolock").hide()
+				   $("#miclock").show()
 				   
 				   tabella = tabella + "<tr><td align='center' width='100%' colspan='2'><a id='_sblocca_prj'>SBLOCCA MICROVERBA</a></td><td align='left' width='100%'></td></tr>"
 				   }
@@ -1319,7 +1347,7 @@ var app = {
 				   else{
 				   var lock_microverba ="cart.png";
 				   //$("#progettolock").html("<input type='text' data-role='none' name='pswp' id='pswp' placeholder='pswp' class='scrivo2' >");
-				   $("#progettolock").show()
+				   $("#prolock").show()
 				   
 				   tabella = tabella + "<tr><td align='center' width='100%' colspan='2'><a id='_sblocca_prj'>SBLOCCA PROGETTO</a></td><td align='left' width='100%'></td></tr>"
 				   }
@@ -1502,8 +1530,8 @@ var app = {
 						  var nomefun = this.id
 						  nomefun = nomefun.replace("fff_","")
 								  
-						  $("#progettolock").hide()
-						  $("#microlock").hide()
+						  $("#prolock").hide()
+						  $("#miclock").hide()
 						  $("#contlock").show()
 								  
 						  $("#pswVAA").attr("type","hidden")
@@ -1697,8 +1725,8 @@ var app = {
 						  var nomefun = this.id
 						  nomefun = nomefun.replace("fff_","")
 								  
-						  $("#progettolock").hide()
-						  $("#microlock").hide()
+						  $("#prolock").hide()
+						  $("#miclock").hide()
 								  
 						  $("#contlock").show()
 								  
@@ -1879,8 +1907,8 @@ var app = {
 								  var nomefun = this.id
 								  nomefun = nomefun.replace("fff_","")
 								  
-								  $("#progettolock").hide()
-								  $("#microlock").hide()
+								  $("#prolock").hide()
+								  $("#miclock").hide()
 								  $("#contlock").show()
 								  
 								  $("#pswVAA").attr("type","hidden")
