@@ -1523,7 +1523,7 @@ var app = {
 				   
 				    }
 				    else{
-				     tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswYT+"'>SBLOCCA</a></td><td align='left' width='100%'></td></tr>"
+				     tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswYT+"'><img src='img/lock.jpg' width='40'></a></td><td align='left' width='100%'></td></tr>"
 				   
 				    }
 				   
@@ -1723,7 +1723,7 @@ var app = {
 				   
 				    }
 				    else{
-				     tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_video.png' width='80'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswVA+"'>SBLOCCA</a></td><td align='left' width='100%'></td></tr>"
+				     tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_video.png' width='80'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswVA+"'><img src='img/lock.jpg' width='40'></a></td><td align='left' width='100%'></td></tr>"
 				   
 				    }
 				   
@@ -1906,7 +1906,7 @@ var app = {
 				   
 				   }
 				   else{
-				   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_audio.png' width='80'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswFA+"'>SBLOCCA</a></td><td align='left' width='100%'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_audio.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswFA+"'><img src='img/lock.jpg' width='40'></a></a></td><td align='left' width='100%'></td></tr>"
 				   
 				   }
 				   
