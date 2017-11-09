@@ -1403,8 +1403,11 @@ var app = {
 						e.stopPropagation();
 					  }, false);
 					  
+					  
+					   $("#pswp").focus()
 
 					});
+					
 								  
 					$(document).on("touchstart", "#_sblocca_mic", function(e){
 					  
@@ -1419,8 +1422,10 @@ var app = {
 					  {
 						e.stopPropagation();
 					  }, false);
+					  
+					  
+					  $("#pswm").focus()
 		   
-
 					  
 					});
 				   
@@ -1515,7 +1520,7 @@ var app = {
 				   
 				    }
 				    else{
-				     tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_youtube.png' width='80'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswYT+"'>SBLOCCA</a></td><td align='left' width='100%'></td></tr>"
+				     tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswYT+"'>SBLOCCA</a></td><td align='left' width='100%'></td></tr>"
 				   
 				    }
 				   
@@ -1949,7 +1954,7 @@ var app = {
 								  localStorage.setItem("pagina1",pagina1);
 								  
 								  
-								  $("#pswYTT").focus()
+								  $("#pswFAA").focus()
 								  
 								  
 								  });
