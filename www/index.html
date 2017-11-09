@@ -752,6 +752,36 @@
 		text-align: center;
 		
 	}
+	
+	.miclock {
+		
+		position: absolute;
+		width: 300px;
+		height: 200px;
+		z-index: 25;
+		top: 50%;
+		left: 50%;
+		margin: -100px 0 0 -150px;
+		background: #f0f0f0;
+		
+		text-align: center;
+		
+	}
+	
+	.prolock {
+		
+		position: absolute;
+		width: 300px;
+		height: 200px;
+		z-index: 30;
+		top: 50%;
+		left: 50%;
+		margin: -100px 0 0 -150px;
+		background: #f0f0f0;
+		
+		text-align: center;
+		
+	}
     
 </style>
     
@@ -791,8 +821,10 @@
 		<a id="annulla33"><font color="#000" size="4">ANNULLA</font></a>
 	</div>
 	
-	
-	<div id="prolock" class="contolock" style="display:none" >
+	<div id="wrapper">
+		<div id="scroller">
+		
+		<div id="prolock" class="prolock"  >
 		<br>
 		<b>SBLOCCA PROGETTO</b>
 		<br>
@@ -800,10 +832,10 @@
 		<br>
 		<a id="richiediA" data-role="button" class="custom-btn" data-theme="b"><font color="#FFF" size="4">SBLOCCA</font></a><br>
 		<a id="annullaA"><font color="#000" size="4">ANNULLA</font></a>
-	</div>
+		</div>
 	
 	
-	<div id="miclock" class="contolock" style="display:none" >
+	<div id="miclock" class="miclock"  >
 		<br>
 		<b>SBLOCCA MICROVERBA</b>
 		<br>
@@ -814,7 +846,7 @@
 	</div>
 	
 	
-	<div id="celllock" class="contolock" style="display:none" >
+	<div id="celllock" class="contolock"  >
 		<br>
 		<b>UNLOCK PHONE</b>
 		<br>
@@ -824,10 +856,6 @@
 		<a href="#" id="richiedi22" data-role="button" class="custom-btn" data-theme="b"><font color="red" size="4">UNLOCK</font></a><br>
 		<a href="#" id="annulla22"><font color="#000" size="4">CANCEL</font></a>
 	</div>
-	
-
-	<div id="wrapper">
-		<div id="scroller">
 
 	<br><br><br><br><br>
 	

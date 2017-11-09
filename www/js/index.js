@@ -125,6 +125,7 @@ var app = {
 				
 				$("#prolock").hide()
 				$("#miclock").hide()
+				$("#celllock").hide()
 					   
 			}, 500);
 		
@@ -1395,33 +1396,12 @@ var app = {
 								  
 					  $("#prolock").show()
 					  
-					  var myScroll22;
-		   
-					   myScroll22 = new iScroll('wrapper', {
-							click: true,
-							useTransform: false,
-							//bounce: false,
-							onBeforeScrollStart: function (e)
-							{
-								var target = e.target;
-								while (target.nodeType != 1) {
-								target = target.parentNode;
-								}
-								
-								if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA' && target.tagName != 'OPTION') {
-								e.preventDefault();
-								}
-							}
-
-						});
-		   
-		   
-					   setTimeout (function(){
-								   
-							myScroll22.refresh();
-							
-								   
-						}, 500);
+					   var selectField = document.getElementById('pswp');
+					 
+					  selectField.addEventListener('touchstart', function(e)
+					  {
+						e.stopPropagation();
+					  }, false);
 					  
 
 					});
@@ -1431,32 +1411,16 @@ var app = {
 					 $("#miclock").show()
 					 
 					 var myScroll33;
+					 
+					 
+					 var selectField = document.getElementById('pswm');
+					 
+					  selectField.addEventListener('touchstart', function(e)
+					  {
+						e.stopPropagation();
+					  }, false);
 		   
-					   myScroll33 = new iScroll('wrapper', {
-							click: true,
-							useTransform: false,
-							//bounce: false,
-							onBeforeScrollStart: function (e)
-							{
-								var target = e.target;
-								while (target.nodeType != 1) {
-								target = target.parentNode;
-								}
-								
-								if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA' && target.tagName != 'OPTION') {
-								e.preventDefault();
-								}
-							}
 
-						});
-		   
-		   
-					   setTimeout (function(){
-								   
-							myScroll33.refresh();
-							
-								   
-						}, 500);
 					  
 					});
 				   
