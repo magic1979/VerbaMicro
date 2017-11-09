@@ -824,6 +824,9 @@ var app = {
 		$(document).on("touchstart", "#sbloccacell", function(e){
 					   
 			$("#celllock").show()
+			
+			 $("#emailphone").focus()
+			
 					   
 		})
 		
