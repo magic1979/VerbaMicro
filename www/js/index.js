@@ -90,8 +90,8 @@ var app = {
 		});
 		
 		
-	    //var db = window.sqlitePlugin.openDatabase({name: 'mydb.db', location: 'default'});
-		var db = window.sqlitePlugin.openDatabase({name: "my.db", androidDatabaseImplementation: 2});
+	    var db = window.sqlitePlugin.openDatabase({name: 'mydb.db', location: 'default'});
+		//var db = window.sqlitePlugin.openDatabase({name: "my.db", androidDatabaseImplementation: 2});
 		
         //var db = window.sqlitePlugin.openDatabase('mydb', '1.0', 'TestDB', 2 * 1024 * 1024);
         db.transaction(function (tx) {
