@@ -132,7 +132,9 @@ var app = {
 				$("#celllock").hide()
 					   
 			}, 500);
-		
+			
+			
+			alert('Se arriva qui ok');
 		
 			var selectField = document.getElementById('radice');
 			selectField.addEventListener('touchstart', function(e)
