@@ -42,7 +42,7 @@ var app = {
 		
 		$("#iddevice").html(localStorage.getItem("deviceid"))
 		
-		last_click_time = new Date().getTime();
+		/*last_click_time = new Date().getTime();
 
 		document.addEventListener('click touchend', function (e) {
 						  
@@ -58,7 +58,7 @@ var app = {
 		  
 		  last_click_time = click_time;
 						  
-		}, true);
+		}, true);*/
 		
 
 		//navigator.geolocation.watchPosition(gpsonSuccess, gpsonError, {timeout: 10000, enableHighAccuracy: true });
@@ -84,16 +84,20 @@ var app = {
             localStorage.setItem("Badge10","0");
         }
 		
+		
 		window.sqlitePlugin.selfTest(function() {
-			//alert('SELF test OK');
+			alert('DataBase WORK');
 		});
 		
-	    var db = window.sqlitePlugin.openDatabase({name: 'mydb.db', location: 'default'});
+		
+	    //var db = window.sqlitePlugin.openDatabase({name: 'mydb.db', location: 'default'});
+		var db = window.sqlitePlugin.openDatabase({name: "my.db", androidDatabaseImplementation: 2});
 		
         //var db = window.sqlitePlugin.openDatabase('mydb', '1.0', 'TestDB', 2 * 1024 * 1024);
         db.transaction(function (tx) {
             tx.executeSql('CREATE TABLE IF NOT EXISTS Ordine (id unique, IdProdotto, Qta, Descrizione, Nome)');
         });
+		
 		
 		$("#spinner").hide();
 		
@@ -195,18 +199,18 @@ var app = {
 		  
           $("#pippo").swipe( {
 							
-                           swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
-                            
-                            $( "#radice" ).blur();
-                            $( "#foglia" ).blur();
-                            $( "#radice2" ).blur();
-                            $( "#foglia2" ).blur();
-                            
-                           //alert("You swiped " + direction );
-                           },
-							
-                           threshold:0
-                           });
+			   swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+				
+				$( "#radice" ).blur();
+				$( "#foglia" ).blur();
+				$( "#radice2" ).blur();
+				$( "#foglia2" ).blur();
+				
+			   //alert("You swiped " + direction );
+			   },
+				
+			   threshold:0
+			   });
           });
 		
 		
