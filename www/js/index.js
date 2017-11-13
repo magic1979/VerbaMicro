@@ -86,7 +86,7 @@ var app = {
 		
 		
 		window.sqlitePlugin.selfTest(function() {
-			alert('DataBase WORK');
+			//alert('DataBase WORK');
 		});
 		
 		
@@ -134,7 +134,7 @@ var app = {
 			}, 500);
 			
 			
-			alert('Se arriva qui ok');
+			//alert('Se arriva qui ok');
 		
 			var selectField = document.getElementById('radice');
 			selectField.addEventListener('touchstart', function(e)
