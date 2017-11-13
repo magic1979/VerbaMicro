@@ -55,6 +55,7 @@
 		
 		<plugin name="cordova-plugin-battery-status"      source="npm" />
 		<plugin name="cordova-plugin-camera"              source="npm" />
+		<!--<plugin name="cordova-plugin-camera" version="2.4.1" />-->
 		<plugin name="cordova-plugin-media-capture"       source="npm" />
 		<plugin name="cordova-plugin-console"             source="npm" />
 		<plugin name="cordova-plugin-contacts"            source="npm" />
