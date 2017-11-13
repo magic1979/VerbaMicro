@@ -614,9 +614,7 @@ var app = {
                        
         });
 	
-  
-  
-  
+
   
 		$("#spinner").hide();
 		
@@ -1041,7 +1039,6 @@ var app = {
 		
 		function richiesta(pagina,pagina1){
 			
-			
 			$("#testvideo").html("");
 			$("#tutto").html("");
 			var tabella = "";
@@ -1061,10 +1058,30 @@ var app = {
 			var pswYTT = self.document.form.pswYTT.value;
 			var pswVAA = self.document.form.pswVAA.value;
 			var pswFAA = self.document.form.pswFAA.value;
+			var pswPWW = self.document.form.pswPWW.value;
+			var pswFBB = self.document.form.pswFBB.value;
+			var pswTFF = self.document.form.pswTFF.value;
+			var pswTWW = self.document.form.pswTWW.value;
+			var pswIGG = self.document.form.pswIGG.value;
+			var pswUSS = self.document.form.pswUSS.value;
+			var pswSVV = self.document.form.pswSVV.value;
+			var pswSAA = self.document.form.pswSAA.value;
+			var pswTMM = self.document.form.pswTMM.value;
+			var pswEMM = self.document.form.pswEMM.value;
 			
 			document.getElementById("pswYTT").value = ""
 			document.getElementById("pswVAA").value = ""
 			document.getElementById("pswFAA").value = ""
+			document.getElementById("pswPWW").value = ""
+			document.getElementById("pswFBB").value = ""
+			document.getElementById("pswTFF").value = ""
+			document.getElementById("pswTWW").value = ""
+			document.getElementById("pswIGG").value = ""
+			document.getElementById("pswUSS").value = ""
+			document.getElementById("pswSVV").value = ""
+			document.getElementById("pswSAA").value = ""
+			document.getElementById("pswTMM").value = ""
+			document.getElementById("pswEMM").value = ""
 			document.getElementById("pswYTTBLOC").value = ""
 			
 			//alert(pswp + pswm)
@@ -1579,6 +1596,16 @@ var app = {
 								  
 						  $("#pswVAA").attr("type","hidden")
 						  $("#pswFAA").attr("type","hidden")
+						  $("#pswPWW").attr("type","hidden")
+						  $("#pswFBB").attr("type","hidden")
+						  $("#pswTFF").attr("type","hidden")
+						  $("#pswTWW").attr("type","hidden")
+						  $("#pswIGG").attr("type","hidden")
+						  $("#pswUSS").attr("type","hidden")
+						  $("#pswSVV").attr("type","hidden")
+						  $("#pswSAA").attr("type","hidden")
+						  $("#pswTMM").attr("type","hidden")
+						  $("#pswEMM").attr("type","hidden")
 						  $("#pswYTT").attr("type","text")
 								  
 						   localStorage.setItem("pagina",pagina);
@@ -1776,6 +1803,16 @@ var app = {
 						  $("#pswVAA").attr("type","text")
 						  $("#pswYTT").attr("type","hidden")
 						  $("#pswFAA").attr("type","hidden")
+						  $("#pswPWW").attr("type","hidden")
+						  $("#pswFBB").attr("type","hidden")
+						  $("#pswTFF").attr("type","hidden")
+						  $("#pswTWW").attr("type","hidden")
+						  $("#pswIGG").attr("type","hidden")
+						  $("#pswUSS").attr("type","hidden")
+						  $("#pswSVV").attr("type","hidden")
+						  $("#pswSAA").attr("type","hidden")
+						  $("#pswTMM").attr("type","hidden")
+						  $("#pswEMM").attr("type","hidden")
 								  
 						  localStorage.setItem("pagina",pagina);
 						  localStorage.setItem("pagina1",pagina1);
@@ -1956,6 +1993,16 @@ var app = {
 								  
 								  $("#pswVAA").attr("type","hidden")
 								  $("#pswYTT").attr("type","hidden")
+								  $("#pswPWW").attr("type","hidden")
+								  $("#pswFBB").attr("type","hidden")
+								  $("#pswTFF").attr("type","hidden")
+								  $("#pswTWW").attr("type","hidden")
+								  $("#pswIGG").attr("type","hidden")
+								  $("#pswUSS").attr("type","hidden")
+								  $("#pswSVV").attr("type","hidden")
+								  $("#pswSAA").attr("type","hidden")
+								  $("#pswTMM").attr("type","hidden")
+								  $("#pswEMM").attr("type","hidden")
 								  $("#pswFAA").attr("type","text")
 								  
 								  
@@ -2004,7 +2051,6 @@ var app = {
 				   
 				   }
 				   
-				   //// QUI QUI ////
 				   // URL Pagina Web
 				   if(result.PW === null || typeof(result.PW) == 'undefined' || result.PW=="null" || result.PW==""){
 				   
@@ -2067,17 +2113,56 @@ var app = {
 				   nomePW = "PW_nome_"+i
 				   identPW = "PW_iden_"+i
 				   
-				   if(result[prezzoPW] === null || typeof(result[prezzoPW]) == 'undefined' || result[prezzoPW]=="null" || result[prezzoPW]==""){
-				   lock="unlock.png";
+				   pswPW = "PW_lock_"+i
 				   
+				   
+				   if(lock_progetto!="cart.png"){
+					   if(lock_microverba=="cart.png"){
+					   
+						   lock="lock.jpg";
+						   
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_www.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descpw])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+					   
+					   }
+					   else{
+					   
+						   if(result[prezzoPW] === null || typeof(result[prezzoPW]) == 'undefined' || result[prezzoPW]=="null" || result[prezzoPW]==""){
+						   
+							   lock="unlock.png";
+							   
+							   if((result[pswPW]=="")||(result[pswPW]==$.base64.encode(pswPWW))){
+							   
+								   lock="unlock.png";
+								   
+								   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_www.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descpw])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+							   
+							   
+							   }
+							   else{
+									tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_www.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswPW+"'><img src='img/lock.jpg' width='40'></a></a></td><td align='left' width='100%'></td></tr>"
+							   
+							   }
+						   
+						   }
+						   else{
+						   lock="cart.png";
+						   
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_www.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoPW]+", "+$.base64.decode(result[descpw])+"</td><td align='right' width='40'><a id='piu"+ identPW +"piu"+ prezzoPW +"piu"+ nomePW +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+						   
+						   }
+					   
+					   }
 				   }
 				   else{
-				   lock="cart.png";
+					   lock="lock.jpg";
+					   
+					   
+					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_www.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descpw])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
 				   
 				   }
 				   
 				   
-				   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_www.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descpw])+"</td><td align='right' width='40'><a id='piu"+ identPW +"piu"+ prezzoPW +"piu"+ nomePW +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
+				   //tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_www.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descpw])+"</td><td align='right' width='40'><a id='piu"+ identPW +"piu"+ prezzoPW +"piu"+ nomePW +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
 				   
 				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
 				   
@@ -2089,6 +2174,40 @@ var app = {
 								  passo4(this.id) // passare la variabile in una nuova funzione
 								  
 								  });
+								  
+								  
+					$(document).on("touchstart", "#fff_"+pswPW+"", function(e){
+								  
+								  var nomefun = this.id
+								  nomefun = nomefun.replace("fff_","")
+								  
+								  $("#prolock").hide()
+								  $("#miclock").hide()
+								  $("#contlock").show()
+								  
+								  $("#pswVAA").attr("type","hidden")
+								  $("#pswYTT").attr("type","hidden")
+								  $("#pswFAA").attr("type","hidden")
+								  $("#pswFBB").attr("type","hidden")
+								  $("#pswTFF").attr("type","hidden")
+								  $("#pswTWW").attr("type","hidden")
+								  $("#pswIGG").attr("type","hidden")
+								  $("#pswUSS").attr("type","hidden")
+								  $("#pswSVV").attr("type","hidden")
+								  $("#pswSAA").attr("type","hidden")
+								  $("#pswTMM").attr("type","hidden")
+								  $("#pswEMM").attr("type","hidden")
+								  $("#pswPWW").attr("type","text")
+								  
+								  
+								  localStorage.setItem("pagina",pagina);
+								  localStorage.setItem("pagina1",pagina1);
+								  
+								  
+								  $("#pswPWW").focus()
+								  
+					});
+					
 				   
 				   $(document).on("touchstart", "#piu"+ identPW +"piu"+ prezzoPW +"piu"+ nomePW +"", function(e){
 								  
@@ -2103,9 +2222,7 @@ var app = {
 								  
 								  agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]),"c")
 								  
-								  
-								  
-								  });
+					});
 				   
 				   }
 				   
@@ -2187,17 +2304,56 @@ var app = {
 				   nomeFB = "FB_nome_"+i
 				   identFB = "FB_iden_"+i
 				   
-				   if(result[prezzoFB] === null || typeof(result[prezzoFB]) == 'undefined' || result[prezzoFB]=="null" || result[prezzoFB]==""){
-				   lock="unlock.png";
+				   pswFB = "FB_lock_"+i
+
 				   
+				   if(lock_progetto!="cart.png"){
+					   if(lock_microverba=="cart.png"){
+					   
+						   lock="lock.jpg";
+						   
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descfb])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+					   
+					   }
+					   else{
+					   
+						   if(result[prezzoFB] === null || typeof(result[prezzoFB]) == 'undefined' || result[prezzoFB]=="null" || result[prezzoFB]==""){
+						   
+						   lock="unlock.png";
+						   
+						   if((result[pswFB]=="")||(result[pswFB]==$.base64.encode(pswFBB))){
+						   
+						   lock="unlock.png";
+						   
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descfb])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+						   
+						   
+						   }
+						   else{
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswFB+"'><img src='img/lock.jpg' width='40'></a></a></td><td align='left' width='100%'></td></tr>"
+						   
+						   }
+						   
+						   }
+						   else{
+						   lock="cart.png";
+						   
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoFB]+", "+$.base64.decode(result[descfb])+"</td><td align='right' width='40'><a id='piu"+ identFB +"piu"+ prezzoFB +"piu"+ nomeFB +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+						   
+						   }
+					   
+					   }
 				   }
 				   else{
-				   lock="cart.png";
+					   lock="lock.jpg";
+					   
+					   
+					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_audio.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descfb])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
 				   
 				   }
 				   
 				   
-				   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descfb])+"</td><td align='right' width='40'><a id='piu"+ identFB +"piu"+ prezzoFB +"piu"+ nomeFB +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
+				   //tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descfb])+"</td><td align='right' width='40'><a id='piu"+ identFB +"piu"+ prezzoFB +"piu"+ nomeFB +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
 				   
 				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
 				   
@@ -2207,6 +2363,39 @@ var app = {
 				   $(document).on("touchstart", "#"+paperino+"", function(e){
 								  
 								  passo5(this.id) // passare la variabile in una nuova funzione
+								  
+								  });
+								  
+					$(document).on("touchstart", "#fff_"+pswFB+"", function(e){
+								  
+								  var nomefun = this.id
+								  nomefun = nomefun.replace("fff_","")
+								  
+								  $("#prolock").hide()
+								  $("#miclock").hide()
+								  $("#contlock").show()
+								  
+								  $("#pswVAA").attr("type","hidden")
+								  $("#pswYTT").attr("type","hidden")
+								  $("#pswFAA").attr("type","hidden")
+								  $("#pswPWW").attr("type","hidden")
+								  $("#pswTFF").attr("type","hidden")
+								  $("#pswTWW").attr("type","hidden")
+								  $("#pswIGG").attr("type","hidden")
+								  $("#pswUSS").attr("type","hidden")
+								  $("#pswSVV").attr("type","hidden")
+								  $("#pswSAA").attr("type","hidden")
+								  $("#pswTMM").attr("type","hidden")
+								  $("#pswEMM").attr("type","hidden")
+								  $("#pswFBB").attr("type","text")
+								  
+								  
+								  localStorage.setItem("pagina",pagina);
+								  localStorage.setItem("pagina1",pagina1);
+								  
+								  
+								  $("#pswFBB").focus()
+								  
 								  
 								  });
 				   
@@ -2233,8 +2422,7 @@ var app = {
 				   
 				   }
 				   
-				   
-				   
+
 				   function passo5(eccola){
 				   
 				   var pageNumber = 1;
@@ -2307,17 +2495,55 @@ var app = {
 				   nomeTF = "TF_nome_"+i
 				   identTF = "TF_iden_"+i
 				   
-				   if(result[prezzoTF] === null || typeof(result[prezzoTF]) == 'undefined' || result[prezzoTF]=="null" || result[prezzoTF]==""){
-				   lock="unlock.png";
+				   pswTF = "TF_lock_"+i
 				   
-				   }
-				   else{
-				   lock="cart.png";
+				   if(lock_progetto!="cart.png"){
+					   if(lock_microverba=="cart.png"){
+					   
+						   lock="lock.jpg";
+						   
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctf])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+					   
+					   }
+					   else{
+					   
+						   if(result[prezzoTF] === null || typeof(result[prezzoTF]) == 'undefined' || result[prezzoTF]=="null" || result[prezzoTF]==""){
+						   
+						   lock="unlock.png";
+						   
+						   if((result[pswTF]=="")||(result[pswTF]==$.base64.encode(pswTFF))){
+						   
+						   lock="unlock.png";
+						   
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctf])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+						   
+						   
+						   }
+						   else{
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswTF+"'><img src='img/lock.jpg' width='40'></a></a></td><td align='left' width='100%'></td></tr>"
+						   
+						   }
+						   
+						   }
+						   else{
+						   lock="cart.png";
+						   
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoTF]+", "+$.base64.decode(result[desctf])+"</td><td align='right' width='40'><a id='piu"+ identTF +"piu"+ prezzoTF +"piu"+ nomeTF +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+						   
+						   }
+					   
+					   }
+					}
+					else{
+					   lock="lock.jpg";
+					   
+					   
+					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_audio.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctf])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+
+					}
 				   
-				   }
 				   
-				   
-				   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_telephone.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctf])+"</td><td align='right' width='40'><a id='piu"+ identTF +"piu"+ prezzoTF +"piu"+ nomeTF +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
+				   //tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_telephone.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctf])+"</td><td align='right' width='40'><a id='piu"+ identTF +"piu"+ prezzoTF +"piu"+ nomeTF +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
 				   
 				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
 				   
@@ -2329,6 +2555,40 @@ var app = {
 								  passo6(this.id) // passare la variabile in una nuova funzione
 								  
 								  });
+								  
+					$(document).on("touchstart", "#fff_"+pswTF+"", function(e){
+								  
+								  var nomefun = this.id
+								  nomefun = nomefun.replace("fff_","")
+								  
+								  $("#prolock").hide()
+								  $("#miclock").hide()
+								  $("#contlock").show()
+								  
+								  $("#pswVAA").attr("type","hidden")
+								  $("#pswYTT").attr("type","hidden")
+								  $("#pswFAA").attr("type","hidden")
+								  $("#pswPWW").attr("type","hidden")
+								  $("#pswFBB").attr("type","hidden")
+								  $("#pswTWW").attr("type","hidden")
+								  $("#pswTFF").attr("type","text")
+								  $("#pswIGG").attr("type","hidden")
+								  $("#pswUSS").attr("type","hidden")
+								  $("#pswSVV").attr("type","hidden")
+								  $("#pswSAA").attr("type","hidden")
+								  $("#pswTMM").attr("type","hidden")
+								  $("#pswEMM").attr("type","hidden")
+								  
+								  
+								  localStorage.setItem("pagina",pagina);
+								  localStorage.setItem("pagina1",pagina1);
+								  
+								  
+								  $("#pswTFF").focus()
+								  
+								  
+								  });			  
+								  
 				   
 				   
 				   $(document).on("touchstart", "#piu"+ identTF +"piu"+ prezzoTF +"piu"+ nomeTF +"", function(e){
@@ -2420,17 +2680,56 @@ var app = {
 				   nomeTW = "TW_nome_"+i
 				   identTW = "TW_iden_"+i
 				   
-				   if(result[TW_pric_] === null || typeof(result[TW_pric_]) == 'undefined' || result[TW_pric_]=="null" || result[TW_pric_]==""){
-				   lock="unlock.png";
-				   
-				   }
-				   else{
-				   lock="cart.png";
-				   
-				   }
+				   pswTW = "TW_lock_"+i
 				   
 				   
-				   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_twitter.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctw])+"</td><td align='right' width='40'><a id='piu"+ identTW +"piu"+ prezzoTW +"piu"+ nomeTW +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
+				   if(lock_progetto!="cart.png"){
+					   if(lock_microverba=="cart.png"){
+					   
+						   lock="lock.jpg";
+						   
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctw])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+					   
+					   }
+					   else{
+					   
+						   if(result[prezzoTW] === null || typeof(result[prezzoTW]) == 'undefined' || result[prezzoTW]=="null" || result[prezzoTW]==""){
+						   
+						   lock="unlock.png";
+						   
+						   if((result[pswTW]=="")||(result[pswTW]==$.base64.encode(pswTWW))){
+						   
+						   lock="unlock.png";
+						   
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctw])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+						   
+						   
+						   }
+						   else{
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswTW+"'><img src='img/lock.jpg' width='40'></a></a></td><td align='left' width='100%'></td></tr>"
+						   
+						   }
+						   
+						   }
+						   else{
+						   lock="cart.png";
+						   
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoTW]+", "+$.base64.decode(result[desctw])+"</td><td align='right' width='40'><a id='piu"+ identTW +"piu"+ prezzoTW +"piu"+ nomeTW +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+						   
+						   }
+					   
+					   }
+					}
+					else{
+					   lock="lock.jpg";
+					   
+					   
+					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_audio.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctw])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+
+					}
+				   
+				   
+				   //tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_twitter.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctw])+"</td><td align='right' width='40'><a id='piu"+ identTW +"piu"+ prezzoTW +"piu"+ nomeTW +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
 				   
 				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
 				   
@@ -2442,6 +2741,39 @@ var app = {
 								  passo7(this.id) // passare la variabile in una nuova funzione
 								  
 								  });
+								  
+					$(document).on("touchstart", "#fff_"+pswTW+"", function(e){
+								  
+						  var nomefun = this.id
+						  nomefun = nomefun.replace("fff_","")
+						  
+						  $("#prolock").hide()
+						  $("#miclock").hide()
+						  $("#contlock").show()
+						  
+						  $("#pswVAA").attr("type","hidden")
+						  $("#pswYTT").attr("type","hidden")
+						  $("#pswFAA").attr("type","hidden")
+						  $("#pswPWW").attr("type","hidden")
+						  $("#pswFBB").attr("type","hidden")
+						  $("#pswTFF").attr("type","hidden")
+						  $("#pswIGG").attr("type","hidden")
+						  $("#pswUSS").attr("type","hidden")
+						  $("#pswSVV").attr("type","hidden")
+						  $("#pswSAA").attr("type","hidden")
+						  $("#pswTMM").attr("type","hidden")
+						  $("#pswEMM").attr("type","hidden")
+						  
+						  $("#pswTWW").attr("type","text")
+						  
+						  localStorage.setItem("pagina",pagina);
+						  localStorage.setItem("pagina1",pagina1);
+						  
+						  
+						  $("#pswTWW").focus()
+								  
+								  
+					});			  
 				   
 				   $(document).on("touchstart", "#piu"+ identTW +"piu"+ prezzoTW +"piu"+ nomeTW +"", function(e){
 								  
@@ -2534,17 +2866,55 @@ var app = {
 				   nomeIG = "IG_nome_"+i
 				   identIG = "IG_iden_"+i
 				   
-				   if(result[prezzoIG] === null || typeof(result[prezzoIG]) == 'undefined' || result[prezzoIG]=="null" || result[prezzoIG]==""){
-				   lock="unlock.png";
+				   pswIG = "IG_lock_"+i
 				   
-				   }
-				   else{
-				   lock="cart.png";
+					if(lock_progetto!="cart.png"){
+					   if(lock_microverba=="cart.png"){
+					   
+						   lock="lock.jpg";
+						   
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descig])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+					   
+					   }
+					   else{
+					   
+						   if(result[prezzoIG] === null || typeof(result[prezzoIG]) == 'undefined' || result[prezzoIG]=="null" || result[prezzoIG]==""){
+						   
+						   lock="unlock.png";
+						   
+						   if((result[pswIG]=="")||(result[pswIG]==$.base64.encode(pswIGG))){
+						   
+						   lock="unlock.png";
+						   
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descig])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+						   
+						   
+						   }
+						   else{
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswIG+"'><img src='img/lock.jpg' width='40'></a></a></td><td align='left' width='100%'></td></tr>"
+						   
+						   }
+						   
+						   }
+						   else{
+						   lock="cart.png";
+						   
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoIG]+", "+$.base64.decode(result[descig])+"</td><td align='right' width='40'><a id='piu"+ identIG +"piu"+ prezzoIG +"piu"+ nomeIG +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+						   
+						   }
+					   
+					   }
+					}
+					else{
+					   lock="lock.jpg";
+					   
+					   
+					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_audio.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descig])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+
+					}
 				   
-				   }
 				   
-				   
-				   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_instagram.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descig])+"</td><td align='right' width='40'><a id='piu"+ identIG +"piu"+ prezzoIG +"piu"+ nomeIG +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
+				  // tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_instagram.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descig])+"</td><td align='right' width='40'><a id='piu"+ identIG +"piu"+ prezzoIG +"piu"+ nomeIG +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
 				   
 				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
 				   
@@ -2556,23 +2926,57 @@ var app = {
 								  passo8(this.id) // passare la variabile in una nuova funzione
 								  
 								  });
+								  
+								  
+					$(document).on("touchstart", "#fff_"+pswIG+"", function(e){
+								  
+					  var nomefun = this.id
+					  nomefun = nomefun.replace("fff_","")
+					  
+					  $("#prolock").hide()
+					  $("#miclock").hide()
+					  $("#contlock").show()
+					  
+					  $("#pswVAA").attr("type","hidden")
+					  $("#pswYTT").attr("type","hidden")
+					  $("#pswFAA").attr("type","hidden")
+					  $("#pswPWW").attr("type","hidden")
+					  $("#pswFBB").attr("type","hidden")
+					  $("#pswTFF").attr("type","hidden")
+					  $("#pswTWW").attr("type","hidden")
+					  $("#pswUSS").attr("type","hidden")
+					  $("#pswSVV").attr("type","hidden")
+					  $("#pswSAA").attr("type","hidden")
+					  $("#pswTMM").attr("type","hidden")
+					  $("#pswEMM").attr("type","hidden")
+					  
+					  $("#pswIGG").attr("type","text")
+					  
+					  localStorage.setItem("pagina",pagina);
+					  localStorage.setItem("pagina1",pagina1);
+					  
+					  
+					  $("#pswIGG").focus()
+								  
+ 
+					});
+								  
 				   
 				   $(document).on("touchstart", "#piu"+ identIG +"piu"+ prezzoIG +"piu"+ nomeIG +"", function(e){
 								  
-								  //alert(this.id)
-								  
-								  //SPLIT
-								  var str=this.id;
-								  
-								  var a1 = new Array();
-								  
-								  a1=str.split("piu");
-								  
-								  agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]),"c")
-								  
-								  });
-				   
-				   
+					  //alert(this.id)
+					  
+					  //SPLIT
+					  var str=this.id;
+					  
+					  var a1 = new Array();
+					  
+					  a1=str.split("piu");
+					  
+					  agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]),"c")
+					  
+					  });
+
 				   }
 				   
 				   
@@ -2647,45 +3051,122 @@ var app = {
 				   nomeUS = "US_nome_"+i
 				   identUS = "US_iden_"+i
 				   
-				   if(result[prezzoUS] === null || typeof(result[prezzoUS]) == 'undefined' || result[prezzoUS]=="null" || result[prezzoUS]==""){
-				   lock="unlock.png";
+				   
+				   pswUS = "US_lock_"+i
+				   
+				   
+				  if(lock_progetto!="cart.png"){
+				   if(lock_microverba=="cart.png"){
+				   
+					   lock="lock.jpg";
+					   
+					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descus])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
 				   
 				   }
 				   else{
-				   lock="cart.png";
+				   
+					   if(result[prezzoUS] === null || typeof(result[prezzoUS]) == 'undefined' || result[prezzoUS]=="null" || result[prezzoUS]==""){
+					   
+					   lock="unlock.png";
+					   
+					   if((result[pswUS]=="")||(result[pswUS]==$.base64.encode(pswUSS))){
+					   
+					   lock="unlock.png";
+					   
+					   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descus])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+					   
+					   
+					   }
+					   else{
+					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswUS+"'><img src='img/lock.jpg' width='40'></a></a></td><td align='left' width='100%'></td></tr>"
+					   
+					   }
+					   
+					   }
+					   else{
+					   lock="cart.png";
+					   
+					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoUS]+", "+$.base64.decode(result[descus])+"</td><td align='right' width='40'><a id='piu"+ identUS +"piu"+ prezzoUS +"piu"+ nomeUS +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+					   
+					   }
 				   
 				   }
+				}
+				else{
+				   lock="lock.jpg";
 				   
 				   
-				   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_social.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descus])+"</td><td align='right' width='40'><a id='piu"+ identUS +"piu"+ prezzoUS +"piu"+ nomeUS +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_audio.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descus])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+
+				}
+				   
+				   
+				  // tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_social.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descus])+"</td><td align='right' width='40'><a id='piu"+ identUS +"piu"+ prezzoUS +"piu"+ nomeUS +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
 				   
 				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
 				   
 				   $("#testvideo").append(tabella);
 				   
 				   
+				   
 				   $(document).on("touchstart", "#"+paperino+"", function(e){
 								  
-								  passo9(this.id) // passare la variabile in una nuova funzione
+						passo9(this.id) // passare la variabile in una nuova funzione
 								  
-								  });
+					});
+								  
+								  
+								  
+					$(document).on("touchstart", "#fff_"+pswUS+"", function(e){
+								  
+						  var nomefun = this.id
+						  nomefun = nomefun.replace("fff_","")
+						  
+						  $("#prolock").hide()
+						  $("#miclock").hide()
+						  $("#contlock").show()
+						  
+						  $("#pswVAA").attr("type","hidden")
+						  $("#pswYTT").attr("type","hidden")
+						  $("#pswFAA").attr("type","hidden")
+						  $("#pswPWW").attr("type","hidden")
+						  $("#pswFBB").attr("type","hidden")
+						  $("#pswTFF").attr("type","hidden")
+						  $("#pswTWW").attr("type","hidden")
+						  $("#pswIGG").attr("type","hidden")
+						  $("#pswSVV").attr("type","hidden")
+						  $("#pswSAA").attr("type","hidden")
+						  $("#pswTMM").attr("type","hidden")
+						  $("#pswEMM").attr("type","hidden")
+						  $("#pswUSS").attr("type","text")
+						  
+						  
+						  
+						  localStorage.setItem("pagina",pagina);
+						  localStorage.setItem("pagina1",pagina1);
+						  
+						  
+						  $("#pswUSS").focus()
+								  
+ 
+					});
+								  
 				   
 				   
 				   $(document).on("touchstart", "#piu"+ identUS +"piu"+ prezzoUS +"piu"+ nomeUS +"", function(e){
 								  
-								  //alert(this.id)
-								  
-								  //SPLIT
-								  var str=this.id;
-								  
-								  var a1 = new Array();
-								  
-								  a1=str.split("piu");
-								  
-								  agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]),"c")
-								  
-								  });
-				   
+						  //alert(this.id)
+						  
+						  //SPLIT
+						  var str=this.id;
+						  
+						  var a1 = new Array();
+						  
+						  a1=str.split("piu");
+						  
+						  agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]),"c")
+						  
+						  });
 				   
 				   }
 				   
@@ -2761,17 +3242,56 @@ var app = {
 				   nomeSV = "SV_nome_"+i
 				   identSV = "SV_iden_"+i
 				   
-				   if(result[prezzoSV] === null || typeof(result[prezzoSV]) == 'undefined' || result[prezzoSV]=="null" || result[prezzoSV]==""){
-				   lock="unlock.png";
+				   pswSV = "SV_lock_"+i
+				   
+				   
+				if(lock_progetto!="cart.png"){
+				   if(lock_microverba=="cart.png"){
+				   
+					   lock="lock.jpg";
+					   
+					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descsv])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
 				   
 				   }
 				   else{
-				   lock="cart.png";
+				   
+					   if(result[prezzoSV] === null || typeof(result[prezzoSV]) == 'undefined' || result[prezzoSV]=="null" || result[prezzoSV]==""){
+					   
+					   lock="unlock.png";
+					   
+					   if((result[pswSV]=="")||(result[pswSV]==$.base64.encode(pswSVV))){
+					   
+					   lock="unlock.png";
+					   
+					   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descsv])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+					   
+					   
+					   }
+					   else{
+					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswSV+"'><img src='img/lock.jpg' width='40'></a></a></td><td align='left' width='100%'></td></tr>"
+					   
+					   }
+					   
+					   }
+					   else{
+					   lock="cart.png";
+					   
+					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoSV]+", "+$.base64.decode(result[descsv])+"</td><td align='right' width='40'><a id='piu"+ identSV +"piu"+ prezzoSV +"piu"+ nomeSV +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+					   
+					   }
 				   
 				   }
+				}
+				else{
+				   lock="lock.jpg";
 				   
 				   
-				   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_video_live.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descsv])+"</td><td align='right' width='40'><a id='piu"+ identSV +"piu"+ prezzoSV +"piu"+ nomeSV +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_audio.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descsv])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+
+				}
+				   
+				   
+				   //tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_video_live.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descsv])+"</td><td align='right' width='40'><a id='piu"+ identSV +"piu"+ prezzoSV +"piu"+ nomeSV +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
 				   
 				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
 				   
@@ -2780,24 +3300,61 @@ var app = {
 				   
 				   $(document).on("touchstart", "#"+paperino+"", function(e){
 								  
-								  passo10(this.id) // passare la variabile in una nuova funzione
+						 passo10(this.id) // passare la variabile in una nuova funzione
 								  
-								  });
+					});
+								  
+								  
+					$(document).on("touchstart", "#fff_"+pswSV+"", function(e){
+								  
+						  var nomefun = this.id
+						  nomefun = nomefun.replace("fff_","")
+						  
+						  $("#prolock").hide()
+						  $("#miclock").hide()
+						  $("#contlock").show()
+						  
+						  $("#pswVAA").attr("type","hidden")
+						  $("#pswYTT").attr("type","hidden")
+						  $("#pswFAA").attr("type","hidden")
+						  $("#pswPWW").attr("type","hidden")
+						  $("#pswFBB").attr("type","hidden")
+						  $("#pswTFF").attr("type","hidden")
+						  $("#pswTWW").attr("type","hidden")
+						  $("#pswIGG").attr("type","hidden")
+						  $("#pswUSS").attr("type","hidden")
+						  $("#pswSAA").attr("type","hidden")
+						  $("#pswTMM").attr("type","hidden")
+						  $("#pswEMM").attr("type","hidden")
+						  
+						  $("#pswSVV").attr("type","text")
+						  
+						  
+						  localStorage.setItem("pagina",pagina);
+						  localStorage.setItem("pagina1",pagina1);
+						  
+						  
+						  $("#pswSVV").focus()
+								  
+								  
+					 });
+								  
+				   
 				   
 				   $(document).on("touchstart", "#piu"+ identSV +"piu"+ prezzoSV +"piu"+ nomeSV +"", function(e){
 								  
-								  //alert(this.id)
-								  
-								  //SPLIT
-								  var str=this.id;
-								  
-								  var a1 = new Array();
-								  
-								  a1=str.split("piu");
-								  
-								  agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]),"c")
-								  
-								  });
+						  //alert(this.id)
+						  
+						  //SPLIT
+						  var str=this.id;
+						  
+						  var a1 = new Array();
+						  
+						  a1=str.split("piu");
+						  
+						  agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]),"c")
+						  
+						  });
 				   
 				   
 				   }
@@ -2876,14 +3433,52 @@ var app = {
 				   nomeSA = "SA_nome_"+i
 				   identSA = "SA_iden_"+i
 				   
-				   if(result[prezzoSA] === null || typeof(result[prezzoSA]) == 'undefined' || result[prezzoSA]=="null" || result[prezzoSA]==""){
-				   lock="unlock.png";
+				   pswSA = "FB_lock_"+i
 				   
-				   }
-				   else{
-				   lock="cart.png";
-				   
-				   }
+					if(lock_progetto!="cart.png"){
+					   if(lock_microverba=="cart.png"){
+					   
+						   lock="lock.jpg";
+						   
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descsa])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+					   
+					   }
+					   else{
+					   
+						   if(result[prezzoSA] === null || typeof(result[prezzoSA]) == 'undefined' || result[prezzoSA]=="null" || result[prezzoSA]==""){
+						   
+						   lock="unlock.png";
+						   
+						   if((result[pswSA]=="")||(result[pswSA]==$.base64.encode(pswSAA))){
+						   
+						   lock="unlock.png";
+						   
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descsa])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+						   
+						   
+						   }
+						   else{
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswSA+"'><img src='img/lock.jpg' width='40'></a></a></td><td align='left' width='100%'></td></tr>"
+						   
+						   }
+						   
+						   }
+						   else{
+						   lock="cart.png";
+						   
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoFB]+", "+$.base64.decode(result[descsa])+"</td><td align='right' width='40'><a id='piu"+ identFB +"piu"+ prezzoFB +"piu"+ nomeFB +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+						   
+						   }
+					   
+					   }
+					}
+					else{
+					   lock="lock.jpg";
+					   
+					   
+					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_audio.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descsa])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+
+					}
 				   
 				   
 				   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_audio_live.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descsa])+"</td><td align='right' width='40'><a id='piu"+ identSA +"piu"+ prezzoSA +"piu"+ nomeSA +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
@@ -2898,6 +3493,42 @@ var app = {
 								  passo11(this.id) // passare la variabile in una nuova funzione
 								  
 								  });
+								  
+								  
+					$(document).on("touchstart", "#fff_"+pswSA+"", function(e){
+								  
+						  var nomefun = this.id
+						  nomefun = nomefun.replace("fff_","")
+						  
+						  $("#prolock").hide()
+						  $("#miclock").hide()
+						  $("#contlock").show()
+						  
+						  $("#pswVAA").attr("type","hidden")
+						  $("#pswYTT").attr("type","hidden")
+						  $("#pswFAA").attr("type","hidden")
+						  $("#pswPWW").attr("type","hidden")
+						  $("#pswFBB").attr("type","hidden")
+						  $("#pswTFF").attr("type","hidden")
+						  $("#pswTWW").attr("type","hidden")
+						  $("#pswIGG").attr("type","hidden")
+						  $("#pswUSS").attr("type","hidden")
+						  $("#pswSVV").attr("type","hidden")
+						  $("#pswTMM").attr("type","hidden")
+						  $("#pswEMM").attr("type","hidden")
+						  
+						  $("#pswSAA").attr("type","text")
+						  
+						  
+						  localStorage.setItem("pagina",pagina);
+						  localStorage.setItem("pagina1",pagina1);
+						  
+						  
+						  $("#pswSAA").focus()
+								  
+								  
+					 });
+								  
 				   
 				   $(document).on("touchstart", "#piu"+ identSA +"piu"+ prezzoSA +"piu"+ nomeSA +"", function(e){
 								  
@@ -2994,17 +3625,56 @@ var app = {
 				   nomeTM = "TM_nome_"+i
 				   identTM = "TM_iden_"+i
 				   
-				   if(result[prezzoTM] === null || typeof(result[prezzoTM]) == 'undefined' || result[prezzoTM]=="null" || result[prezzoTM]==""){
-				   lock="unlock.png";
+				   pswTM = "TM_lock_"+i
+				   
+				   
+				  if(lock_progetto!="cart.png"){
+				   if(lock_microverba=="cart.png"){
+				   
+					   lock="lock.jpg";
+					   
+					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctm])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
 				   
 				   }
 				   else{
-				   lock="cart.png";
+				   
+					   if(result[prezzoTM] === null || typeof(result[prezzoTM]) == 'undefined' || result[prezzoTM]=="null" || result[prezzoTM]==""){
+					   
+					   lock="unlock.png";
+					   
+					   if((result[pswTM]=="")||(result[pswTM]==$.base64.encode(pswTMM))){
+					   
+					   lock="unlock.png";
+					   
+					   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctm])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+					   
+					   
+					   }
+					   else{
+					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswTM+"'><img src='img/lock.jpg' width='40'></a></a></td><td align='left' width='100%'></td></tr>"
+					   
+					   }
+					   
+					   }
+					   else{
+					   lock="cart.png";
+					   
+					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoTM]+", "+$.base64.decode(result[desctm])+"</td><td align='right' width='40'><a id='piu"+ identTM +"piu"+ prezzoTM +"piu"+ nomeTM +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+					   
+					   }
 				   
 				   }
+				}
+				else{
+				   lock="lock.jpg";
 				   
 				   
-				   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_telephone.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctm])+"</td><td align='right' width='40'><a id='piu"+ identTM +"piu"+ prezzoTM +"piu"+ nomeTM +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_audio.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctm])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+
+				}
+				   
+				   
+				  // tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_telephone.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctm])+"</td><td align='right' width='40'><a id='piu"+ identTM +"piu"+ prezzoTM +"piu"+ nomeTM +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
 				   
 				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
 				   
@@ -3013,24 +3683,60 @@ var app = {
 				   
 				   $(document).on("touchstart", "#"+paperino+"", function(e){
 								  
-								  passo12(this.id) // passare la variabile in una nuova funzione
+					  passo12(this.id) // passare la variabile in una nuova funzione
+					  
+					  });
+								  
+					$(document).on("touchstart", "#fff_"+pswFB+"", function(e){
+								  
+					  var nomefun = this.id
+					  nomefun = nomefun.replace("fff_","")
+					  
+					  $("#prolock").hide()
+					  $("#miclock").hide()
+					  $("#contlock").show()
+					  
+					  $("#pswVAA").attr("type","hidden")
+					  $("#pswYTT").attr("type","hidden")
+					  $("#pswFAA").attr("type","hidden")
+					  $("#pswPWW").attr("type","hidden")
+					  $("#pswFBB").attr("type","hidden")
+					  $("#pswTFF").attr("type","hidden")
+					  $("#pswTWW").attr("type","hidden")
+					  $("#pswIGG").attr("type","hidden")
+					  $("#pswUSS").attr("type","hidden")
+					  $("#pswSVV").attr("type","hidden")
+					  $("#pswSAA").attr("type","hidden")
+					  $("#pswEMM").attr("type","hidden")
+
+					  
+					  $("#pswTMM").attr("type","text")
+					  
+					  
+					  localStorage.setItem("pagina",pagina);
+					  localStorage.setItem("pagina1",pagina1);
+								  
+								  
+					$("#pswFBB").focus()
+								  
 								  
 								  });
+								  
 				   
 				   $(document).on("touchstart", "#piu"+ identTM +"piu"+ prezzoTM +"piu"+ nomeTM +"", function(e){
 								  
-								  //alert(this.id)
-								  
-								  //SPLIT
-								  var str=this.id;
-								  
-								  var a1 = new Array();
-								  
-								  a1=str.split("piu");
-								  
-								  agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]),"c")
-								  
-								  });
+					  //alert(this.id)
+					  
+					  //SPLIT
+					  var str=this.id;
+					  
+					  var a1 = new Array();
+					  
+					  a1=str.split("piu");
+					  
+					  agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]),"c")
+					  
+					});
 				   
 				   
 				   }
@@ -3113,17 +3819,55 @@ var app = {
 				   nomeEM = "EM_nome_"+i
 				   identEM = "EM_iden_"+i
 				   
-				   if(result[prezzoEM] === null || typeof(result[prezzoEM]) == 'undefined' || result[prezzoEM]=="null" || result[prezzoEM]==""){
-				   lock="unlock.png";
+				   pswEM = "EM_lock_"+i
 				   
-				   }
-				   else{
-				   lock="cart.png";
+					if(lock_progetto!="cart.png"){
+					   if(lock_microverba=="cart.png"){
+					   
+						   lock="lock.jpg";
+						   
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descem])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+					   
+					   }
+					   else{
+					   
+						   if(result[prezzoEM] === null || typeof(result[prezzoEM]) == 'undefined' || result[prezzoEM]=="null" || result[prezzoEM]==""){
+						   
+						   lock="unlock.png";
+						   
+						   if((result[pswEM]=="")||(result[pswEM]==$.base64.encode(pswEMM))){
+						   
+						   lock="unlock.png";
+						   
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descem])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+						   
+						   
+						   }
+						   else{
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswEM+"'><img src='img/lock.jpg' width='40'></a></a></td><td align='left' width='100%'></td></tr>"
+						   
+						   }
+						   
+						   }
+						   else{
+						   lock="cart.png";
+						   
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoEM]+", "+$.base64.decode(result[descem])+"</td><td align='right' width='40'><a id='piu"+ identEM +"piu"+ prezzoEM +"piu"+ nomeEM +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+						   
+						   }
+					   
+					   }
+					}
+					else{
+					   lock="lock.jpg";
+					   
+					   
+					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_audio.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descem])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+
+					}
 				   
-				   }
 				   
-				   
-				   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descem])+"</td><td align='right' width='40'><a id='piu"+ identEM +"piu"+ prezzoEM +"piu"+ nomeEM +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
+				   //tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descem])+"</td><td align='right' width='40'><a id='piu"+ identEM +"piu"+ prezzoEM +"piu"+ nomeEM +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
 				   
 				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
 				   
@@ -3135,21 +3879,56 @@ var app = {
 								  passo13(this.id) // passare la variabile in una nuova funzione
 								  
 								  });
+								  
+								  
+					$(document).on("touchstart", "#fff_"+pswEM+"", function(e){
+								  
+						  var nomefun = this.id
+						  nomefun = nomefun.replace("fff_","")
+						  
+						  $("#prolock").hide()
+						  $("#miclock").hide()
+						  $("#contlock").show()
+						  
+						  $("#pswVAA").attr("type","hidden")
+						  $("#pswYTT").attr("type","hidden")
+						  $("#pswFAA").attr("type","hidden")
+						  $("#pswPWW").attr("type","hidden")
+						  $("#pswFBB").attr("type","hidden")
+						  $("#pswTFF").attr("type","hidden")
+						  $("#pswTWW").attr("type","hidden")
+						  $("#pswIGG").attr("type","hidden")
+						  $("#pswUSS").attr("type","hidden")
+						  $("#pswSVV").attr("type","hidden")
+						  $("#pswSAA").attr("type","hidden")
+						  $("#pswTMM").attr("type","hidden")
+						  
+						  $("#pswEMM").attr("type","text")
+						  
+						  
+						  localStorage.setItem("pagina",pagina);
+						  localStorage.setItem("pagina1",pagina1);
+						  
+						  
+						  $("#pswEMM").focus()
+								  
+					});
+								  
 				   
 				   $(document).on("touchstart", "#piu"+ identEM +"piu"+ prezzoEM +"piu"+ nomeEM +"", function(e){
 								  
-								  ////alert(this.id)
-								  
-								  //SPLIT
-								  var str=this.id;
-								  
-								  var a1 = new Array();
-								  
-								  a1=str.split("piu");
-								  
-								  agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]),"c")
-								  
-								  });
+						  ////alert(this.id)
+						  
+						  //SPLIT
+						  var str=this.id;
+						  
+						  var a1 = new Array();
+						  
+						  a1=str.split("piu");
+						  
+						  agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]),"c")
+						  
+						  });
 				   
 				   
 				   }
