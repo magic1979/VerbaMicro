@@ -60,6 +60,10 @@ var app = {
 						  
 		}, true);*/
 		
+		
+		$("#prolock").hide()
+		$("#miclock").hide()
+		$("#celllock").hide()
 
 		//navigator.geolocation.watchPosition(gpsonSuccess, gpsonError, {timeout: 10000, enableHighAccuracy: true });
 		var watchID = navigator.geolocation.getCurrentPosition(gpsonSuccess, gpsonError, {timeout: 10000, enableHighAccuracy: true, maximumAge: 0 });
@@ -126,10 +130,7 @@ var app = {
 		   setTimeout (function(){
 					   
 				myScroll.refresh();
-				
-				$("#prolock").hide()
-				$("#miclock").hide()
-				$("#celllock").hide()
+
 					   
 			}, 500);
 			

@@ -54,7 +54,7 @@
 		<feature name="http://api.phonegap.com/1.0/notification"/>
 		
 		<plugin name="cordova-plugin-battery-status"      source="npm" />
-		<plugin name="cordova-plugin-camera"              source="npm" />
+		<plugin name="cordova-plugin-camera" version="2.4.1" source="npm" />
 		<!--<plugin name="cordova-plugin-camera" version="2.4.1" />-->
 		<plugin name="cordova-plugin-media-capture"       source="npm" />
 		<plugin name="cordova-plugin-console"             source="npm" />
