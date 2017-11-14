@@ -66,7 +66,7 @@ var app = {
 		$("#celllock").hide()
 
 		//navigator.geolocation.watchPosition(gpsonSuccess, gpsonError, {timeout: 10000, enableHighAccuracy: true });
-		var watchID = navigator.geolocation.getCurrentPosition(gpsonSuccess, gpsonError, {timeout: 10000, enableHighAccuracy: true, maximumAge: 0 });
+		var watchID = navigator.geolocation.getCurrentPosition(gpsonSuccess, gpsonError, {timeout: 30000, enableHighAccuracy: true, maximumAge: 90000 });
 		
 		var crop_max_width = 400;
 		var crop_max_height = 400;
@@ -802,11 +802,12 @@ var app = {
 	   })
 	   
 	   	
+		
 	   $(document).on("touchstart", "#richiedi22", function(e){
 		   
-			var email2 = self.document.formia.emailphone.value;
+			var email2 = self.document.form.emailphone.value;
 			
-			alert("ric2"+email2)
+			alert("email: "+email2)
 		   
 		   
 			if (email2 == "") {
@@ -896,7 +897,7 @@ var app = {
 		   var codsblocco =  self.document.formia9.codsblocco.value
 		   
 		   
-		   alert("roc2"+codsblocco)
+		   alert("codice: "+codsblocco)
 		   
 			var posta3 = $.base64.encode(localStorage.getItem("email"))
 			
@@ -4088,9 +4089,9 @@ var app = {
 				   
 				   $(document).on("touchstart", "#"+paperino+"", function(e){
 								  
-								  passo13(this.id) // passare la variabile in una nuova funzione
+						passo13(this.id) // passare la variabile in una nuova funzione
 								  
-								  });
+					});
 								  
 								  
 					$(document).on("touchstart", "#fff_"+pswEM+"", function(e){
@@ -4144,7 +4145,7 @@ var app = {
 						  
 						  agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]),"c")
 						  
-						  });
+					 });
 				   
 				   
 				   }
@@ -4234,7 +4235,7 @@ var app = {
 					   
 						   lock="lock.jpg";
 						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descui])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_foto.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descui])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
 					   
 					   }
 					   else{
@@ -4247,12 +4248,12 @@ var app = {
 						   
 						   lock="unlock.png";
 						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descui])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_foto.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descui])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
 						   
 						   
 						   }
 						   else{
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswUI+"'><img src='img/lock.jpg' width='40'></a></a></td><td align='left' width='100%'></td></tr>"
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_foto.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswUI+"'><img src='img/lock.jpg' width='40'></a></a></td><td align='left' width='100%'></td></tr>"
 						   
 						   }
 						   
@@ -4260,7 +4261,7 @@ var app = {
 						   else{
 						   lock="cart.png";
 						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoUI]+", "+$.base64.decode(result[descui])+"</td><td align='right' width='40'><a id='piu"+ identUI +"piu"+ prezzoUI +"piu"+ nomeUI +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_foto.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoUI]+", "+$.base64.decode(result[descui])+"</td><td align='right' width='40'><a id='piu"+ identUI +"piu"+ prezzoUI +"piu"+ nomeUI +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
 						   
 						   }
 					   
@@ -4270,7 +4271,7 @@ var app = {
 					   lock="lock.jpg";
 					   
 					   
-					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descui])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_foto.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descui])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
 
 					}
 
@@ -4422,7 +4423,7 @@ var app = {
 					   
 						   lock="lock.jpg";
 						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descud])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_document.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descud])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
 					   
 					   }
 					   else{
@@ -4435,12 +4436,12 @@ var app = {
 						   
 						   lock="unlock.png";
 						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descud])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_document.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descud])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
 						   
 						   
 						   }
 						   else{
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswUD+"'><img src='img/lock.jpg' width='40'></a></a></td><td align='left' width='100%'></td></tr>"
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_document.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswUD+"'><img src='img/lock.jpg' width='40'></a></a></td><td align='left' width='100%'></td></tr>"
 						   
 						   }
 						   
@@ -4448,7 +4449,7 @@ var app = {
 						   else{
 						   lock="cart.png";
 						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoUD]+", "+$.base64.decode(result[descud])+"</td><td align='right' width='40'><a id='piu"+ identUD +"piu"+ prezzoUD +"piu"+ nomeUD +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_document.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoUD]+", "+$.base64.decode(result[descud])+"</td><td align='right' width='40'><a id='piu"+ identUD +"piu"+ prezzoUD +"piu"+ nomeUD +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
 						   
 						   }
 					   
@@ -4458,7 +4459,7 @@ var app = {
 					   lock="lock.jpg";
 					   
 					   
-					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descud])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_document.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descud])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
 
 					}
 
@@ -4470,45 +4471,45 @@ var app = {
 				   
 				   $(document).on("touchstart", "#"+paperino+"", function(e){
 								  
-								  passo15(this.id) // passare la variabile in una nuova funzione
+						passo15(this.id) // passare la variabile in una nuova funzione
 								  
-								  });
+					 });
 								  
 								  
 					$(document).on("touchstart", "#fff_"+pswUD+"", function(e){
 								  
-						  var nomefun = this.id
-						  nomefun = nomefun.replace("fff_","")
-						  
-						  $("#prolock").hide()
-						  $("#miclock").hide()
-						  $("#contlock").show()
-						  
-						  $("#pswVAA").attr("type","hidden")
-						  $("#pswYTT").attr("type","hidden")
-						  $("#pswFAA").attr("type","hidden")
-						  $("#pswPWW").attr("type","hidden")
-						  $("#pswFBB").attr("type","hidden")
-						  $("#pswTFF").attr("type","hidden")
-						  $("#pswTWW").attr("type","hidden")
-						  $("#pswIGG").attr("type","hidden")
-						  $("#pswUSS").attr("type","hidden")
-						  $("#pswSVV").attr("type","hidden")
-						  $("#pswSAA").attr("type","hidden")
-						  $("#pswTMM").attr("type","hidden")
-						  $("#pswEMM").attr("type","hidden")	  
-						  $("#pswUII").attr("type","hidden")
-						  $("#pswUVV").attr("type","hidden")
-						  $("#pswUAA").attr("type","hidden")
-						  
-						  $("#pswUDD").attr("type","text")
-						  
-						  
-						  localStorage.setItem("pagina",pagina);
-						  localStorage.setItem("pagina1",pagina1);
-						  
-						  
-						  $("#pswUDD").focus()
+					  var nomefun = this.id
+					  nomefun = nomefun.replace("fff_","")
+					  
+					  $("#prolock").hide()
+					  $("#miclock").hide()
+					  $("#contlock").show()
+					  
+					  $("#pswVAA").attr("type","hidden")
+					  $("#pswYTT").attr("type","hidden")
+					  $("#pswFAA").attr("type","hidden")
+					  $("#pswPWW").attr("type","hidden")
+					  $("#pswFBB").attr("type","hidden")
+					  $("#pswTFF").attr("type","hidden")
+					  $("#pswTWW").attr("type","hidden")
+					  $("#pswIGG").attr("type","hidden")
+					  $("#pswUSS").attr("type","hidden")
+					  $("#pswSVV").attr("type","hidden")
+					  $("#pswSAA").attr("type","hidden")
+					  $("#pswTMM").attr("type","hidden")
+					  $("#pswEMM").attr("type","hidden")	  
+					  $("#pswUII").attr("type","hidden")
+					  $("#pswUVV").attr("type","hidden")
+					  $("#pswUAA").attr("type","hidden")
+					  
+					  $("#pswUDD").attr("type","text")
+					  
+					  
+					  localStorage.setItem("pagina",pagina);
+					  localStorage.setItem("pagina1",pagina1);
+					  
+					  
+					  $("#pswUDD").focus()
 								  
 					});
 								  
@@ -4516,16 +4517,16 @@ var app = {
 				   $(document).on("touchstart", "#piu"+ identUD +"piu"+ prezzoUD +"piu"+ nomeUD +"", function(e){
 								  
 						  
-						  //SPLIT
-						  var str=this.id;
-						  
-						  var a1 = new Array();
-						  
-						  a1=str.split("piu");
-						  
-						  agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]),"c")
-						  
-						  });
+					  //SPLIT
+					  var str=this.id;
+					  
+					  var a1 = new Array();
+					  
+					  a1=str.split("piu");
+					  
+					  agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]),"c")
+					  
+					  });
 				   
 				   
 				   }
@@ -4540,7 +4541,7 @@ var app = {
 				   eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
 				   //alert(link1);
 				   
-				    var ref = window.open(link1, '_blank', 'location=no');
+				    var ref = window.open(link1, '_system', 'location=no');
 				   
 				   }
 				   
@@ -4610,7 +4611,7 @@ var app = {
 					   
 						   lock="lock.jpg";
 						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descua])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_audio.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descua])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
 					   
 					   }
 					   else{
@@ -4623,12 +4624,12 @@ var app = {
 						   
 						   lock="unlock.png";
 						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descua])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_audio.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descua])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
 						   
 						   
 						   }
 						   else{
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswUA+"'><img src='img/lock.jpg' width='40'></a></a></td><td align='left' width='100%'></td></tr>"
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_audio.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswUA+"'><img src='img/lock.jpg' width='40'></a></a></td><td align='left' width='100%'></td></tr>"
 						   
 						   }
 						   
@@ -4636,7 +4637,7 @@ var app = {
 						   else{
 						   lock="cart.png";
 						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoUA]+", "+$.base64.decode(result[descua])+"</td><td align='right' width='40'><a id='piu"+ identUA +"piu"+ prezzoUA +"piu"+ nomeUA +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_audio.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoUA]+", "+$.base64.decode(result[descua])+"</td><td align='right' width='40'><a id='piu"+ identUA +"piu"+ prezzoUA +"piu"+ nomeUA +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
 						   
 						   }
 					   
@@ -4646,7 +4647,7 @@ var app = {
 					   lock="lock.jpg";
 					   
 					   
-					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descua])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_audio.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descua])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
 
 					}
 
@@ -4797,7 +4798,7 @@ var app = {
 					   
 						   lock="lock.jpg";
 						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descuv])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_video_live.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descuv])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
 					   
 					   }
 					   else{
@@ -4810,12 +4811,12 @@ var app = {
 						   
 						   lock="unlock.png";
 						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descuv])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_video_live.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descuv])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
 						   
 						   
 						   }
 						   else{
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswUV+"'><img src='img/lock.jpg' width='40'></a></a></td><td align='left' width='100%'></td></tr>"
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_video_live.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswUV+"'><img src='img/lock.jpg' width='40'></a></a></td><td align='left' width='100%'></td></tr>"
 						   
 						   }
 						   
@@ -4823,7 +4824,7 @@ var app = {
 						   else{
 						   lock="cart.png";
 						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoUV]+", "+$.base64.decode(result[descuv])+"</td><td align='right' width='40'><a id='piu"+ identUV +"piu"+ prezzoUV +"piu"+ nomeUV +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_video_live.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoUV]+", "+$.base64.decode(result[descuv])+"</td><td align='right' width='40'><a id='piu"+ identUV +"piu"+ prezzoUV +"piu"+ nomeUV +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
 						   
 						   }
 					   
@@ -4833,7 +4834,7 @@ var app = {
 					   lock="lock.jpg";
 					   
 					   
-					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descuv])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_video_live.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descuv])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
 
 					}
 
@@ -5041,10 +5042,16 @@ var app = {
 				   crossDomain: true,
 				   contentType: "application/x-www-form-urlencoded",
 				   success: function (result) {
-				   
-				     window.open('http://microverba.com/wbspaypal.php?Transprodotto='+ transazionemia +'&did='+ localStorage.getItem("deviceid") +'', '_blank', 'location=no');
+					   
+  
+					var ref = window.open('http://microverba.com/wbspaypal.php?Transprodotto='+ transazionemia +'&did='+ localStorage.getItem("deviceid") +'', '_blank', 'location=no');
 					 
-					 ref.addEventListener('loadstop', function(event) { if (event.url.match("mobile/close")) { ref.close(); } });
+					ref.addEventListener('loadstop', function(event) { 
+					 if (event.url.match("mobile/close")) { 
+						ref.close(); 
+						
+					  } 
+					});
 				   
 				   },
 				   error: function(){
@@ -5620,7 +5627,7 @@ var app = {
 		
 		function gpsonError(){
 			
-			navigator.geolocation.watchPosition(onSuccess55, onError56, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
+			var watchID = navigator.geolocation.watchPosition(onSuccess55, onError56, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
 			
 						
 		}
