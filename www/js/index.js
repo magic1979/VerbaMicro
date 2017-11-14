@@ -800,6 +800,151 @@ var app = {
 					   
 		   richiesta(localStorage.getItem("pagina"),localStorage.getItem("pagina1"))
 	   })
+	   
+	   	
+	   $(document).on("touchstart", "#richiedi22", function(e){
+		   
+			var email2 = self.document.formia.emailphone.value;
+			
+			alert("ric2"+email2)
+		   
+		   
+			if (email2 == "") {
+				navigator.notification.alert(
+				 'inserire Email Valida',  // message
+				 alertDismissed,         // callback
+				 'Email',            // title
+				 'OK'                  // buttonName
+				 );
+				return;
+			}
+
+			var posta2 = $.base64.encode(email2)
+		   
+			var num1 = Math.floor((Math.random() * 20) + 1);
+			var num2 = Math.floor((Math.random() * 20) + 1);
+			var num3 = Math.floor((Math.random() * 20) + 1);
+			var num4 = Math.floor((Math.random() * 20) + 1);
+			var num5 = Math.floor((Math.random() * 20) + 1);
+			var num6 = Math.floor((Math.random() * 20) + 1);
+			var num7 = Math.floor((Math.random() * 20) + 1);
+			var num8 = Math.floor((Math.random() * 20) + 1);
+			
+			var num9 = Math.floor((Math.random() * 20) + 1);
+			var num10 = Math.floor((Math.random() * 20) + 1);
+			var num11 = Math.floor((Math.random() * 20) + 1);
+			var num12 = Math.floor((Math.random() * 20) + 1);
+			var num13 = Math.floor((Math.random() * 20) + 1);
+			var num14 = Math.floor((Math.random() * 20) + 1);
+			var num15 = Math.floor((Math.random() * 20) + 1);
+			var num16 = Math.floor((Math.random() * 20) + 1);
+			
+			
+			var deviceid = num1+""+num2+""+num3+""+num4+""+num5+""+num6+""+num7+""+num8+""+num9+""+num10+""+num11+""+num12+""+num13+""+num14+""+num15+""+num16;
+			
+			var posta2 = $.base64.encode(email2)
+			
+			var device2 = $.base64.encode(deviceid)
+			
+			
+			$.ajax({
+				   type: "POST",
+				   url: "http://www.microverba.com/change_device.php",
+				   data: {email3:posta2,device_id:device2},
+				   cache: false,
+				   crossDomain: true,
+				   contentType: "application/x-www-form-urlencoded",
+				   success: function (result) {
+					   
+					localStorage.setItem("deviceid", deviceid);
+					localStorage.setItem("email", posta2);
+			   
+					navigator.notification.alert(
+						'Email spedita',  // message
+						alertDismissed,         // callback
+						'Controlla la tua email',            // title
+						'OK'                  // buttonName
+					);
+					
+					
+					$("#emailphone").hide()
+					$("#richiedi22").hide()
+					
+					$("#sblocco").show()
+					$("#richiedi23").show()
+
+				   
+				   },
+				   error: function(){
+				   
+				   navigator.notification.alert(
+												'Errore Imprevisto, contatta il fornitore',  // message
+												alertDismissed,         // callback
+												'Errore',            // title
+												'OK'                  // buttonName
+												);
+				   
+				   }
+				   
+			});
+			
+	   })
+	   
+	   
+	   $(document).on("touchstart", "#richiedi23", function(e){
+		   
+		   var codsblocco =  self.document.formia9.codsblocco.value
+		   
+		   
+		   alert("roc2"+codsblocco)
+		   
+			var posta3 = $.base64.encode(localStorage.getItem("email"))
+			
+			var device3 = $.base64.encode(localStorage.getItem("deviceid"))
+			
+			$.ajax({
+				   type: "GET",
+				   url: "http://www.microverba.com/activate_change_device.php?em="+posta3+"&dvid="+device3+"?ac="+codsblocco+"",
+				   cache: false,
+				   crossDomain: true,
+				   contentType: "application/x-www-form-urlencoded",
+				   success: function (result) {
+				   
+					navigator.notification.alert(
+						'Telefono Sbloccato',  // message
+						alertDismissed,         // callback
+						'Sblocco',            // title
+						'OK'                  // buttonName
+					);
+					
+					
+					$("#emailphone").show()
+					$("#richiedi22").show()
+					
+					$("#sblocco").hide()
+					$("#richiedi23").hide()
+					
+					$("#celllock").hide()
+				     
+				   
+				   },
+				   error: function(){
+				   
+				   navigator.notification.alert(
+												'Errore Imprevisto, contatta il fornitore',  // message
+												alertDismissed,         // callback
+												'Errore',            // title
+												'OK'                  // buttonName
+												);
+				   
+				   }
+				   
+			});
+			
+		  
+	   })
+	   
+	   
 		
 		$(document).on("touchstart", "#annulla33", function(e){
 					   
@@ -830,7 +975,7 @@ var app = {
 					   
 			$("#celllock").show()
 			
-			 $("#emailphone").focus()
+			$("#emailphone").focus()
 			
 					   
 		})
