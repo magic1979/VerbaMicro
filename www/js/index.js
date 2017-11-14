@@ -851,28 +851,42 @@ var app = {
 			$.ajax({
 				   type: "POST",
 				   url: "http://www.microverba.com/change_device.php",
-				   data: {email3:posta2,device_id:device2},
+				   data: {email3:posta2,device_id:device2,submit_change_device:"1"},
 				   cache: false,
 				   crossDomain: true,
 				   contentType: "application/x-www-form-urlencoded",
 				   success: function (result) {
 					   
-					localStorage.setItem("deviceid", deviceid);
-					localStorage.setItem("email", posta2);
-			   
-					navigator.notification.alert(
-						'Email spedita',  // message
-						alertDismissed,         // callback
-						'Controlla la tua email',            // title
-						'OK'                  // buttonName
-					);
+					if(result.status=="0"){
+						
+						navigator.notification.alert(
+							'Email non trovata',  // message
+							alertDismissed,         // callback
+							'Controlla la tua email',            // title
+							'OK'                  // buttonName
+						);
+						
+					}
+					else{
+					   
+						localStorage.setItem("deviceid", deviceid);
+						localStorage.setItem("email", posta2);
+				   
+						navigator.notification.alert(
+							'Email spedita',  // message
+							alertDismissed,         // callback
+							'Controlla la tua email',            // title
+							'OK'                  // buttonName
+						);
+						
+						
+						$("#emailphone").hide()
+						$("#richiedi22").hide()
+						
+						$("#sblocco").show()
+						$("#richiedi23").show()
 					
-					
-					$("#emailphone").hide()
-					$("#richiedi22").hide()
-					
-					$("#sblocco").show()
-					$("#richiedi23").show()
+					}
 
 				   
 				   },
