@@ -1052,6 +1052,7 @@ var app = {
 			var posta = $.base64.encode(localStorage.getItem("email"))
 			var lati = $.base64.encode(localStorage.getItem("lat"));
 			var longi = $.base64.encode(localStorage.getItem("lng"));
+			var DevId = $.base64.encode(localStorage.getItem("deviceid"));
 			
 			var pswp = self.document.form.pswp.value;
 			var pswm = self.document.form.pswm.value;
@@ -1070,6 +1071,11 @@ var app = {
 			var pswTMM = self.document.form.pswTMM.value;
 			var pswEMM = self.document.form.pswEMM.value;
 			
+			var pswUII = self.document.form.pswUII.value;
+			var pswUDD = self.document.form.pswUDD.value;
+			var pswUAA = self.document.form.pswUAA.value;
+			var pswUVV = self.document.form.pswUVV.value;
+			
 			document.getElementById("pswYTT").value = ""
 			document.getElementById("pswVAA").value = ""
 			document.getElementById("pswFAA").value = ""
@@ -1083,6 +1089,12 @@ var app = {
 			document.getElementById("pswSAA").value = ""
 			document.getElementById("pswTMM").value = ""
 			document.getElementById("pswEMM").value = ""
+			
+			document.getElementById("pswUII").value = ""
+			document.getElementById("pswUDD").value = ""
+			document.getElementById("pswUAA").value = ""
+			document.getElementById("pswUVV").value = ""
+			
 			document.getElementById("pswYTTBLOC").value = ""
 			
 			//alert(pswp + pswm)
@@ -1166,7 +1178,7 @@ var app = {
 			$.ajax({
 				   type: "POST",
 				   url: "http://www.microverba.com/leaf_root_request.php",
-				   data: {email:posta,leaf:foglia,root:radice,device_id:localStorage.getItem("deviceid"),latitudine:lati,longitudine:longi,nextPaginationRootStart:pag1,nextPaginationLeafStart:pag2},
+				   data: {email:posta,leaf:foglia,root:radice,device_id:DevId,latitudine:lati,longitudine:longi,nextPaginationRootStart:pag1,nextPaginationLeafStart:pag2},
 				   cache: false,
 				   crossDomain: true,
 				   contentType: "application/x-www-form-urlencoded",
@@ -1588,35 +1600,39 @@ var app = {
 				   
 				   $(document).on("touchstart", "#fff_"+pswYT+"", function(e){
 								  
-						  var nomefun = this.id
-						  nomefun = nomefun.replace("fff_","")
+					  var nomefun = this.id
+					  nomefun = nomefun.replace("fff_","")
+							  
+					  $("#prolock").hide()
+					  $("#miclock").hide()
+					  $("#contlock").show()
+							  
+					  $("#pswVAA").attr("type","hidden")
+					  $("#pswFAA").attr("type","hidden")
+					  $("#pswPWW").attr("type","hidden")
+					  $("#pswFBB").attr("type","hidden")
+					  $("#pswTFF").attr("type","hidden")
+					  $("#pswTWW").attr("type","hidden")
+					  $("#pswIGG").attr("type","hidden")
+					  $("#pswUSS").attr("type","hidden")
+					  $("#pswSVV").attr("type","hidden")
+					  $("#pswSAA").attr("type","hidden")
+					  $("#pswTMM").attr("type","hidden")
+					  $("#pswEMM").attr("type","hidden")
+					  $("#pswUII").attr("type","hidden")
+					  $("#pswUDD").attr("type","hidden")
+					  $("#pswUAA").attr("type","hidden")
+					  $("#pswUVV").attr("type","hidden")
+					   
+					  $("#pswYTT").attr("type","text")
+							  
+					   localStorage.setItem("pagina",pagina);
+					   localStorage.setItem("pagina1",pagina1);
+							  
+					   
+					   $("#pswYTT").focus()
 								  
-						  $("#prolock").hide()
-						  $("#miclock").hide()
-						  $("#contlock").show()
-								  
-						  $("#pswVAA").attr("type","hidden")
-						  $("#pswFAA").attr("type","hidden")
-						  $("#pswPWW").attr("type","hidden")
-						  $("#pswFBB").attr("type","hidden")
-						  $("#pswTFF").attr("type","hidden")
-						  $("#pswTWW").attr("type","hidden")
-						  $("#pswIGG").attr("type","hidden")
-						  $("#pswUSS").attr("type","hidden")
-						  $("#pswSVV").attr("type","hidden")
-						  $("#pswSAA").attr("type","hidden")
-						  $("#pswTMM").attr("type","hidden")
-						  $("#pswEMM").attr("type","hidden")
-						  $("#pswYTT").attr("type","text")
-								  
-						   localStorage.setItem("pagina",pagina);
-						   localStorage.setItem("pagina1",pagina1);
-								  
-						   
-						   $("#pswYTT").focus()
-								  
- 
-				  });
+ 				  });
 				   
 				   
 				   $(document).on("touchstart", "#piu"+ identYT +"piu"+ prezzoYT +"piu"+ nomeYT +"", function(e){
@@ -1814,6 +1830,12 @@ var app = {
 						  $("#pswSAA").attr("type","hidden")
 						  $("#pswTMM").attr("type","hidden")
 						  $("#pswEMM").attr("type","hidden")
+						  $("#pswUII").attr("type","hidden")
+						  $("#pswUDD").attr("type","hidden")
+						  $("#pswUAA").attr("type","hidden")
+						  $("#pswUVV").attr("type","hidden")
+						  
+						  $("#pswVAA").attr("type","text")
 								  
 						  localStorage.setItem("pagina",pagina);
 						  localStorage.setItem("pagina1",pagina1);
@@ -2004,12 +2026,15 @@ var app = {
 								  $("#pswSAA").attr("type","hidden")
 								  $("#pswTMM").attr("type","hidden")
 								  $("#pswEMM").attr("type","hidden")
+								  $("#pswUII").attr("type","hidden")
+								  $("#pswUDD").attr("type","hidden")
+								  $("#pswUAA").attr("type","hidden")
+								   $("#pswUVV").attr("type","hidden")
+								   
 								  $("#pswFAA").attr("type","text")
-								  
 								  
 								  localStorage.setItem("pagina",pagina);
 								  localStorage.setItem("pagina1",pagina1);
-								  
 								  
 								  $("#pswFAA").focus()
 								  
@@ -2198,6 +2223,11 @@ var app = {
 								  $("#pswSAA").attr("type","hidden")
 								  $("#pswTMM").attr("type","hidden")
 								  $("#pswEMM").attr("type","hidden")
+								  $("#pswUII").attr("type","hidden")
+								  $("#pswUDD").attr("type","hidden")
+								  $("#pswUAA").attr("type","hidden")
+								   $("#pswUVV").attr("type","hidden")
+								   
 								  $("#pswPWW").attr("type","text")
 								  
 								  
@@ -2388,6 +2418,11 @@ var app = {
 								  $("#pswSAA").attr("type","hidden")
 								  $("#pswTMM").attr("type","hidden")
 								  $("#pswEMM").attr("type","hidden")
+								  $("#pswUII").attr("type","hidden")
+								  $("#pswUDD").attr("type","hidden")
+								  $("#pswUAA").attr("type","hidden")
+								   $("#pswUVV").attr("type","hidden")
+								   
 								  $("#pswFBB").attr("type","text")
 								  
 								  
@@ -2579,6 +2614,12 @@ var app = {
 								  $("#pswSAA").attr("type","hidden")
 								  $("#pswTMM").attr("type","hidden")
 								  $("#pswEMM").attr("type","hidden")
+								  $("#pswUII").attr("type","hidden")
+								  $("#pswUDD").attr("type","hidden")
+								  $("#pswUAA").attr("type","hidden")
+								  $("#pswUVV").attr("type","hidden")
+								  
+								  $("#pswTFF").attr("type","text")
 								  
 								  
 								  localStorage.setItem("pagina",pagina);
@@ -2764,6 +2805,10 @@ var app = {
 						  $("#pswSAA").attr("type","hidden")
 						  $("#pswTMM").attr("type","hidden")
 						  $("#pswEMM").attr("type","hidden")
+						  $("#pswUII").attr("type","hidden")
+						  $("#pswUDD").attr("type","hidden")
+						  $("#pswUAA").attr("type","hidden")
+						   $("#pswUVV").attr("type","hidden")
 						  
 						  $("#pswTWW").attr("type","text")
 						  
@@ -2950,6 +2995,10 @@ var app = {
 					  $("#pswSAA").attr("type","hidden")
 					  $("#pswTMM").attr("type","hidden")
 					  $("#pswEMM").attr("type","hidden")
+					  $("#pswUII").attr("type","hidden")
+					  $("#pswUDD").attr("type","hidden")
+					  $("#pswUAA").attr("type","hidden")
+					   $("#pswUVV").attr("type","hidden")
 					  
 					  $("#pswIGG").attr("type","text")
 					  
@@ -3139,6 +3188,11 @@ var app = {
 						  $("#pswSAA").attr("type","hidden")
 						  $("#pswTMM").attr("type","hidden")
 						  $("#pswEMM").attr("type","hidden")
+						  $("#pswUII").attr("type","hidden")
+						  $("#pswUDD").attr("type","hidden")
+						  $("#pswUAA").attr("type","hidden")
+						   $("#pswUVV").attr("type","hidden")
+						   
 						  $("#pswUSS").attr("type","text")
 						  
 						  
@@ -3327,6 +3381,10 @@ var app = {
 						  $("#pswSAA").attr("type","hidden")
 						  $("#pswTMM").attr("type","hidden")
 						  $("#pswEMM").attr("type","hidden")
+						  $("#pswUII").attr("type","hidden")
+						  $("#pswUDD").attr("type","hidden")
+						  $("#pswUAA").attr("type","hidden")
+						   $("#pswUVV").attr("type","hidden")
 						  
 						  $("#pswSVV").attr("type","text")
 						  
@@ -3517,6 +3575,10 @@ var app = {
 						  $("#pswSVV").attr("type","hidden")
 						  $("#pswTMM").attr("type","hidden")
 						  $("#pswEMM").attr("type","hidden")
+						  $("#pswUII").attr("type","hidden")
+						  $("#pswUDD").attr("type","hidden")
+						  $("#pswUAA").attr("type","hidden")
+						   $("#pswUVV").attr("type","hidden")
 						  
 						  $("#pswSAA").attr("type","text")
 						  
@@ -3709,6 +3771,10 @@ var app = {
 					  $("#pswSVV").attr("type","hidden")
 					  $("#pswSAA").attr("type","hidden")
 					  $("#pswEMM").attr("type","hidden")
+					  $("#pswUII").attr("type","hidden")
+					  $("#pswUDD").attr("type","hidden")
+					  $("#pswUAA").attr("type","hidden")
+					  $("#pswUVV").attr("type","hidden")
 
 					  
 					  $("#pswTMM").attr("type","text")
@@ -3903,6 +3969,10 @@ var app = {
 						  $("#pswSVV").attr("type","hidden")
 						  $("#pswSAA").attr("type","hidden")
 						  $("#pswTMM").attr("type","hidden")
+						  $("#pswUVV").attr("type","hidden")
+						  $("#pswUAA").attr("type","hidden")
+						  $("#pswUDD").attr("type","hidden")
+						  $("#pswUII").attr("type","hidden")
 						  
 						  $("#pswEMM").attr("type","text")
 						  
@@ -3958,8 +4028,754 @@ var app = {
 				   }
 				   
 				   
-				   //window.plugins.socialsharing.shareViaWhatsApp('Message via WhatsApp', null /* img */, null /* url */, function() {alert('share ok')}, function(errormsg){alert(errormsg)})
-				   //<button onclick="window.plugins.socialsharing.shareViaWhatsAppToReceiver(receiver, 'Message via WhatsApp', null /* img */, null /* url */, function() {console.log('share ok')})">msg via WhatsApp for Addressbook ID 101</button>
+				   // Pictire
+				   if(result.UI === null || typeof(result.UI) == 'undefined' || result.UI=="null" || result.UI==""){
+				   
+				   }
+				   else{
+				   
+				   for (var i=0, l=10; i<l; i++) {
+				   
+				   if(i==1){
+				   i="01"
+				   }
+				   if(i==2){
+				   i="02"
+				   }
+				   if(i==3){
+				   i="03"
+				   }
+				   if(i==4){
+				   i="04"
+				   }
+				   if(i==5){
+				   i="05"
+				   }
+				   if(i==6){
+				   i="06"
+				   }
+				   if(i==7){
+				   i="07"
+				   }
+				   if(i==8){
+				   i="08"
+				   }
+				   if(i==9){
+				   i="09"
+				   }
+				   
+				   
+				   picture = "UI_desc_"+i
+				   
+				   
+				   if(result[picture] === null || typeof(result[picture]) == 'undefined' || result[picture]=="null" || result[picture]==""){
+				   
+				   }
+				   else{
+				   
+				   var tabella = "<table width='90%' align='center'>";
+				   
+				   paperino = "UI_cont_"+i
+				   descui = "UI_desc_"+i
+				   
+				   prezzoUI = "UI_pric_"+i
+				   nomeUI = "UI_nome_"+i
+				   identUI = "UI_iden_"+i
+				   
+				   pswUI = "UI_lock_"+i
+				   
+					if(lock_progetto!="cart.png"){
+					   if(lock_microverba=="cart.png"){
+					   
+						   lock="lock.jpg";
+						   
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descui])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+					   
+					   }
+					   else{
+					   
+						   if(result[prezzoUI] === null || typeof(result[prezzoUI]) == 'undefined' || result[prezzoUI]=="null" || result[prezzoUI]==""){
+						   
+						   lock="unlock.png";
+						   
+						   if((result[pswUI]=="")||(result[pswUI]==$.base64.encode(pswUII))){
+						   
+						   lock="unlock.png";
+						   
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descui])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+						   
+						   
+						   }
+						   else{
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswUI+"'><img src='img/lock.jpg' width='40'></a></a></td><td align='left' width='100%'></td></tr>"
+						   
+						   }
+						   
+						   }
+						   else{
+						   lock="cart.png";
+						   
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoUI]+", "+$.base64.decode(result[descui])+"</td><td align='right' width='40'><a id='piu"+ identUI +"piu"+ prezzoUI +"piu"+ nomeUI +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+						   
+						   }
+					   
+					   }
+					}
+					else{
+					   lock="lock.jpg";
+					   
+					   
+					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descui])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+
+					}
+
+				   
+				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+				   
+				   $("#testvideo").append(tabella);
+				   
+				   
+				   $(document).on("touchstart", "#"+paperino+"", function(e){
+								  
+								  passo14(this.id) // passare la variabile in una nuova funzione
+								  
+								  });
+								  
+								  
+					$(document).on("touchstart", "#fff_"+pswUI+"", function(e){
+								  
+						  var nomefun = this.id
+						  nomefun = nomefun.replace("fff_","")
+						  
+						  $("#prolock").hide()
+						  $("#miclock").hide()
+						  $("#contlock").show()
+						  
+						  $("#pswVAA").attr("type","hidden")
+						  $("#pswYTT").attr("type","hidden")
+						  $("#pswFAA").attr("type","hidden")
+						  $("#pswPWW").attr("type","hidden")
+						  $("#pswFBB").attr("type","hidden")
+						  $("#pswTFF").attr("type","hidden")
+						  $("#pswTWW").attr("type","hidden")
+						  $("#pswIGG").attr("type","hidden")
+						  $("#pswUSS").attr("type","hidden")
+						  $("#pswSVV").attr("type","hidden")
+						  $("#pswSAA").attr("type","hidden")
+						  $("#pswTMM").attr("type","hidden")
+						  $("#pswEMM").attr("type","hidden")
+						  $("#pswUVV").attr("type","hidden")
+						  $("#pswUAA").attr("type","hidden")
+						  $("#pswUDD").attr("type","hidden")
+						  
+						  $("#pswUII").attr("type","text")
+						  
+						  
+						  localStorage.setItem("pagina",pagina);
+						  localStorage.setItem("pagina1",pagina1);
+						  
+						  
+						  $("#pswUII").focus()
+								  
+					});
+								  
+				   
+				   $(document).on("touchstart", "#piu"+ identUI +"piu"+ prezzoUI +"piu"+ nomeUI +"", function(e){
+								  
+						  
+						  //SPLIT
+						  var str=this.id;
+						  
+						  var a1 = new Array();
+						  
+						  a1=str.split("piu");
+						  
+						  agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]),"c")
+						  
+						  });
+				   
+				   
+				   }
+				   
+				   
+				   }
+				   
+
+				   function passo14(eccola){
+				   
+				   var pageNumber = 1;
+				   eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
+				   //alert(link1);
+				   
+				    var ref = window.open(link1, '_blank', 'location=no');
+				   
+				   }
+				   
+				   
+				   }
+				   
+				   
+				   
+				   // File
+				   if(result.UD === null || typeof(result.UD) == 'undefined' || result.UD=="null" || result.UD==""){
+				   
+				   }
+				   else{
+				   
+				   for (var i=0, l=10; i<l; i++) {
+				   
+				   if(i==1){
+				   i="01"
+				   }
+				   if(i==2){
+				   i="02"
+				   }
+				   if(i==3){
+				   i="03"
+				   }
+				   if(i==4){
+				   i="04"
+				   }
+				   if(i==5){
+				   i="05"
+				   }
+				   if(i==6){
+				   i="06"
+				   }
+				   if(i==7){
+				   i="07"
+				   }
+				   if(i==8){
+				   i="08"
+				   }
+				   if(i==9){
+				   i="09"
+				   }
+				   
+				   
+				   fileload = "UD_desc_"+i
+				   
+				   
+				   if(result[fileload] === null || typeof(result[fileload]) == 'undefined' || result[fileload]=="null" || result[fileload]==""){
+				   
+				   }
+				   else{
+				   
+				   var tabella = "<table width='90%' align='center'>";
+				   
+				   paperino = "UD_cont_"+i
+				   descud = "UD_desc_"+i
+				   
+				   prezzoUD = "UD_pric_"+i
+				   nomeUD = "UD_nome_"+i
+				   identUD = "UD_iden_"+i
+				   
+				   pswUD = "UD_lock_"+i
+				   
+					if(lock_progetto!="cart.png"){
+					   if(lock_microverba=="cart.png"){
+					   
+						   lock="lock.jpg";
+						   
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descud])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+					   
+					   }
+					   else{
+					   
+						   if(result[prezzoUD] === null || typeof(result[prezzoUD]) == 'undefined' || result[prezzoUD]=="null" || result[prezzoUD]==""){
+						   
+						   lock="unlock.png";
+						   
+						   if((result[pswUD]=="")||(result[pswUD]==$.base64.encode(pswUDD))){
+						   
+						   lock="unlock.png";
+						   
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descud])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+						   
+						   
+						   }
+						   else{
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswUD+"'><img src='img/lock.jpg' width='40'></a></a></td><td align='left' width='100%'></td></tr>"
+						   
+						   }
+						   
+						   }
+						   else{
+						   lock="cart.png";
+						   
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoUD]+", "+$.base64.decode(result[descud])+"</td><td align='right' width='40'><a id='piu"+ identUD +"piu"+ prezzoUD +"piu"+ nomeUD +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+						   
+						   }
+					   
+					   }
+					}
+					else{
+					   lock="lock.jpg";
+					   
+					   
+					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descud])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+
+					}
+
+				   
+				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+				   
+				   $("#testvideo").append(tabella);
+				   
+				   
+				   $(document).on("touchstart", "#"+paperino+"", function(e){
+								  
+								  passo15(this.id) // passare la variabile in una nuova funzione
+								  
+								  });
+								  
+								  
+					$(document).on("touchstart", "#fff_"+pswUD+"", function(e){
+								  
+						  var nomefun = this.id
+						  nomefun = nomefun.replace("fff_","")
+						  
+						  $("#prolock").hide()
+						  $("#miclock").hide()
+						  $("#contlock").show()
+						  
+						  $("#pswVAA").attr("type","hidden")
+						  $("#pswYTT").attr("type","hidden")
+						  $("#pswFAA").attr("type","hidden")
+						  $("#pswPWW").attr("type","hidden")
+						  $("#pswFBB").attr("type","hidden")
+						  $("#pswTFF").attr("type","hidden")
+						  $("#pswTWW").attr("type","hidden")
+						  $("#pswIGG").attr("type","hidden")
+						  $("#pswUSS").attr("type","hidden")
+						  $("#pswSVV").attr("type","hidden")
+						  $("#pswSAA").attr("type","hidden")
+						  $("#pswTMM").attr("type","hidden")
+						  $("#pswEMM").attr("type","hidden")	  
+						  $("#pswUII").attr("type","hidden")
+						  $("#pswUVV").attr("type","hidden")
+						  $("#pswUAA").attr("type","hidden")
+						  
+						  $("#pswUDD").attr("type","text")
+						  
+						  
+						  localStorage.setItem("pagina",pagina);
+						  localStorage.setItem("pagina1",pagina1);
+						  
+						  
+						  $("#pswUDD").focus()
+								  
+					});
+								  
+				   
+				   $(document).on("touchstart", "#piu"+ identUD +"piu"+ prezzoUD +"piu"+ nomeUD +"", function(e){
+								  
+						  
+						  //SPLIT
+						  var str=this.id;
+						  
+						  var a1 = new Array();
+						  
+						  a1=str.split("piu");
+						  
+						  agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]),"c")
+						  
+						  });
+				   
+				   
+				   }
+				   
+				   
+				   }
+				   
+
+				   function passo15(eccola){
+				   
+				   var pageNumber = 1;
+				   eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
+				   //alert(link1);
+				   
+				    var ref = window.open(link1, '_blank', 'location=no');
+				   
+				   }
+				   
+				   
+				   }
+				   
+				   
+				   
+				   // MP3
+				   if(result.UA === null || typeof(result.UA) == 'undefined' || result.UA=="null" || result.UA==""){
+				   
+				   }
+				   else{
+				   
+				   for (var i=0, l=10; i<l; i++) {
+				   
+				   if(i==1){
+				   i="01"
+				   }
+				   if(i==2){
+				   i="02"
+				   }
+				   if(i==3){
+				   i="03"
+				   }
+				   if(i==4){
+				   i="04"
+				   }
+				   if(i==5){
+				   i="05"
+				   }
+				   if(i==6){
+				   i="06"
+				   }
+				   if(i==7){
+				   i="07"
+				   }
+				   if(i==8){
+				   i="08"
+				   }
+				   if(i==9){
+				   i="09"
+				   }
+				   
+				   
+				   filemp3 = "UA_desc_"+i
+				   
+				   
+				   if(result[filemp3] === null || typeof(result[filemp3]) == 'undefined' || result[filemp3]=="null" || result[filemp3]==""){
+				   
+				   }
+				   else{
+				   
+				   var tabella = "<table width='90%' align='center'>";
+				   
+				   paperino = "UA_cont_"+i
+				   descua = "UA_desc_"+i
+				   
+				   prezzoUA = "UA_pric_"+i
+				   nomeUA = "UA_nome_"+i
+				   identUA = "UA_iden_"+i
+				   
+				   pswUA = "UA_lock_"+i
+				   
+					if(lock_progetto!="cart.png"){
+					   if(lock_microverba=="cart.png"){
+					   
+						   lock="lock.jpg";
+						   
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descua])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+					   
+					   }
+					   else{
+					   
+						   if(result[prezzoUA] === null || typeof(result[prezzoUA]) == 'undefined' || result[prezzoUA]=="null" || result[prezzoUA]==""){
+						   
+						   lock="unlock.png";
+						   
+						   if((result[pswUA]=="")||(result[pswUA]==$.base64.encode(pswUAA))){
+						   
+						   lock="unlock.png";
+						   
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descua])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+						   
+						   
+						   }
+						   else{
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswUA+"'><img src='img/lock.jpg' width='40'></a></a></td><td align='left' width='100%'></td></tr>"
+						   
+						   }
+						   
+						   }
+						   else{
+						   lock="cart.png";
+						   
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoUA]+", "+$.base64.decode(result[descua])+"</td><td align='right' width='40'><a id='piu"+ identUA +"piu"+ prezzoUA +"piu"+ nomeUA +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+						   
+						   }
+					   
+					   }
+					}
+					else{
+					   lock="lock.jpg";
+					   
+					   
+					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descua])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+
+					}
+
+				   
+				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+				   
+				   $("#testvideo").append(tabella);
+				   
+				   
+				   $(document).on("touchstart", "#"+paperino+"", function(e){
+								  
+								  passo16(this.id) // passare la variabile in una nuova funzione
+								  
+								  });
+								  
+								  
+					$(document).on("touchstart", "#fff_"+pswUA+"", function(e){
+								  
+						  var nomefun = this.id
+						  nomefun = nomefun.replace("fff_","")
+						  
+						  $("#prolock").hide()
+						  $("#miclock").hide()
+						  $("#contlock").show()
+						  
+						  $("#pswVAA").attr("type","hidden")
+						  $("#pswYTT").attr("type","hidden")
+						  $("#pswFAA").attr("type","hidden")
+						  $("#pswPWW").attr("type","hidden")
+						  $("#pswFBB").attr("type","hidden")
+						  $("#pswTFF").attr("type","hidden")
+						  $("#pswTWW").attr("type","hidden")
+						  $("#pswIGG").attr("type","hidden")
+						  $("#pswUSS").attr("type","hidden")
+						  $("#pswSVV").attr("type","hidden")
+						  $("#pswSAA").attr("type","hidden")
+						  $("#pswTMM").attr("type","hidden")
+						  $("#pswEMM").attr("type","hidden")
+						  $("#pswUII").attr("type","hidden")
+						  $("#pswUDD").attr("type","hidden")
+						  $("#pswUVV").attr("type","hidden")
+						  
+						  $("#pswUAA").attr("type","text")
+						  
+						  
+						  localStorage.setItem("pagina",pagina);
+						  localStorage.setItem("pagina1",pagina1);
+						  
+						  
+						  $("#pswUAA").focus()
+								  
+					});
+								  
+				   
+				   $(document).on("touchstart", "#piu"+ identUA +"piu"+ prezzoUA +"piu"+ nomeUA +"", function(e){
+								  
+						  
+						  //SPLIT
+						  var str=this.id;
+						  
+						  var a1 = new Array();
+						  
+						  a1=str.split("piu");
+						  
+						  agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]),"c")
+						  
+						  });
+				   
+				   
+				   }
+				   
+				   
+				   }
+				   
+
+				   function passo16(eccola){
+				   
+				   var pageNumber = 1;
+				   eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
+				   //alert(link1);
+				   
+				    var ref = window.open(link1, '_blank', 'location=no');
+				   
+				   }
+				   
+				   
+				   }
+				   
+				   
+				   // MP4
+				   if(result.UV === null || typeof(result.UV) == 'undefined' || result.UV=="null" || result.UV==""){
+				   
+				   }
+				   else{
+				   
+				   for (var i=0, l=10; i<l; i++) {
+				   
+				   if(i==1){
+				   i="01"
+				   }
+				   if(i==2){
+				   i="02"
+				   }
+				   if(i==3){
+				   i="03"
+				   }
+				   if(i==4){
+				   i="04"
+				   }
+				   if(i==5){
+				   i="05"
+				   }
+				   if(i==6){
+				   i="06"
+				   }
+				   if(i==7){
+				   i="07"
+				   }
+				   if(i==8){
+				   i="08"
+				   }
+				   if(i==9){
+				   i="09"
+				   }
+				   
+				   
+				   filevideo = "UV_desc_"+i
+				   
+				   
+				   if(result[filevideo] === null || typeof(result[filevideo]) == 'undefined' || result[filevideo]=="null" || result[filevideo]==""){
+				   
+				   }
+				   else{
+				   
+				   var tabella = "<table width='90%' align='center'>";
+				   
+				   paperino = "UV_cont_"+i
+				   descuv = "UV_desc_"+i
+				   
+				   prezzoUV = "UV_pric_"+i
+				   nomeUV = "UV_nome_"+i
+				   identUV = "UV_iden_"+i
+				   
+				   pswUV = "UV_lock_"+i
+				   
+					if(lock_progetto!="cart.png"){
+					   if(lock_microverba=="cart.png"){
+					   
+						   lock="lock.jpg";
+						   
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descuv])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+					   
+					   }
+					   else{
+					   
+						   if(result[prezzoUV] === null || typeof(result[prezzoUV]) == 'undefined' || result[prezzoUV]=="null" || result[prezzoUV]==""){
+						   
+						   lock="unlock.png";
+						   
+						   if((result[pswUV]=="")||(result[pswUV]==$.base64.encode(pswUVV))){
+						   
+						   lock="unlock.png";
+						   
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descuv])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+						   
+						   
+						   }
+						   else{
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswUV+"'><img src='img/lock.jpg' width='40'></a></a></td><td align='left' width='100%'></td></tr>"
+						   
+						   }
+						   
+						   }
+						   else{
+						   lock="cart.png";
+						   
+						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoUV]+", "+$.base64.decode(result[descuv])+"</td><td align='right' width='40'><a id='piu"+ identUV +"piu"+ prezzoUV +"piu"+ nomeUV +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+						   
+						   }
+					   
+					   }
+					}
+					else{
+					   lock="lock.jpg";
+					   
+					   
+					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descuv])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+
+					}
+
+				   
+				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+				   
+				   $("#testvideo").append(tabella);
+				   
+				   
+				   $(document).on("touchstart", "#"+paperino+"", function(e){
+								  
+								  passo17(this.id) // passare la variabile in una nuova funzione
+								  
+								  });
+								  
+								  
+					$(document).on("touchstart", "#fff_"+pswUV+"", function(e){
+								  
+						  var nomefun = this.id
+						  nomefun = nomefun.replace("fff_","")
+						  
+						  $("#prolock").hide()
+						  $("#miclock").hide()
+						  $("#contlock").show()
+						  
+						  $("#pswVAA").attr("type","hidden")
+						  $("#pswYTT").attr("type","hidden")
+						  $("#pswFAA").attr("type","hidden")
+						  $("#pswPWW").attr("type","hidden")
+						  $("#pswFBB").attr("type","hidden")
+						  $("#pswTFF").attr("type","hidden")
+						  $("#pswTWW").attr("type","hidden")
+						  $("#pswIGG").attr("type","hidden")
+						  $("#pswUSS").attr("type","hidden")
+						  $("#pswSVV").attr("type","hidden")
+						  $("#pswSAA").attr("type","hidden")
+						  $("#pswTMM").attr("type","hidden")
+						  $("#pswEMM").attr("type","hidden")
+						  $("#pswUII").attr("type","hidden")
+						  $("#pswUDD").attr("type","hidden")
+						  $("#pswUAA").attr("type","hidden")
+						  
+						  $("#pswUVV").attr("type","text")
+						  
+						  
+						  localStorage.setItem("pagina",pagina);
+						  localStorage.setItem("pagina1",pagina1);
+						  
+						  
+						  $("#pswUVV").focus()
+								  
+					});
+								  
+				   
+				   $(document).on("touchstart", "#piu"+ identUV +"piu"+ prezzoUV +"piu"+ nomeUV +"", function(e){
+								  
+						  
+						  //SPLIT
+						  var str=this.id;
+						  
+						  var a1 = new Array();
+						  
+						  a1=str.split("piu");
+						  
+						  agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]),"c")
+						  
+						  });
+				   
+				   
+				   }
+				   
+				   
+				   }
+				   
+
+				   function passo17(eccola){
+				   
+				   var pageNumber = 1;
+				   eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
+				   //alert(link1);
+				   
+				    var ref = window.open(link1, '_blank', 'location=no');
+				   
+				   }
+				   
+				   
+				   }
 				   
 				   
 				   // FINE IF TOKEN
@@ -4082,6 +4898,8 @@ var app = {
 				   success: function (result) {
 				   
 				     window.open('http://microverba.com/wbspaypal.php?Transprodotto='+ transazionemia +'&did='+ localStorage.getItem("deviceid") +'', '_blank', 'location=no');
+					 
+					 ref.addEventListener('loadstop', function(event) { if (event.url.match("mobile/close")) { ref.close(); } });
 				   
 				   },
 				   error: function(){
