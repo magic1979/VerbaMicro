@@ -870,7 +870,7 @@ var app = {
 					else{
 					   
 						localStorage.setItem("deviceid", deviceid);
-						localStorage.setItem("email", posta2);
+						localStorage.setItem("email", email2);
 				   
 						navigator.notification.alert(
 							'Email spedita',  // message
@@ -908,7 +908,7 @@ var app = {
 	   
 	   $(document).on("touchstart", "#richiedi23", function(e){
 		   
-		   var codsblocco =  self.document.formia9.codsblocco.value
+		   var codsblocco =  self.document.form.codsblocco.value
 		   
 		   
 		   alert("codice: "+codsblocco)
