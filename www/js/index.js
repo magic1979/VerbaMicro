@@ -42,9 +42,9 @@ var app = {
 		
 		$("#iddevice").html(localStorage.getItem("deviceid"))
 		
-		/*last_click_time = new Date().getTime();
+		last_click_time = new Date().getTime();
 
-		document.addEventListener('click touchend', function (e) {
+		document.addEventListener('touchstart', function (e) {
 						  
 		  click_time = e['timeStamp'];
 		  
@@ -58,7 +58,7 @@ var app = {
 		  
 		  last_click_time = click_time;
 						  
-		}, true);*/
+		}, true);
 		
 		
 		$("#prolock").hide()
@@ -474,44 +474,51 @@ var app = {
   
 		function selQta(){
 			db.transaction(function (tx) {
-						   tx.executeSql('SELECT SUM(Qta) as TOT FROM Ordine', [], function (tx, results) {
-										 var len = results.rows.length, i;
+			   tx.executeSql('SELECT SUM(Qta) as TOT FROM Ordine', [], function (tx, results) {
+							 var len = results.rows.length, i;
 										 
-								 for (i = 0; i < len; i++){
-										 
-									 $("#QTA").html(Number(results.rows.item(i).TOT));
-									 document.getElementById("qta").value = Number(results.rows.item(i).TOT);
-										 
-								 }
-										 
-										 //selQta();
-										 
-								 }, null);
-						   });
+					 for (i = 0; i < len; i++){
+							 
+						 $("#QTA").html(Number(results.rows.item(i).TOT));
+						 document.getElementById("qta").value = Number(results.rows.item(i).TOT);
+							 
+					 }
+							 
+					 }, null);
+			   });
 			
-			//var myScroll2;
-			
-			//myScroll2 = new IScroll('#wrapper2', { click: true });
 			
 			setTimeout (function(){
-						myScroll2.refresh();
-						}, 500);
+				myScroll2.refresh();
+				
+				return;
+			}, 500);
 		}
   
   
         function sottprod(prod,vedo){
-            
-            db.transaction(function (tx) {
-                tx.executeSql('DELETE FROM Ordine where id='+prod+' and IdProdotto="'+ vedo +'"', [], function (tx, results) {
+			
+			
+			db.transaction(function (tx) {
+            tx.executeSql('SELECT * FROM Ordine where id='+ prod +' and IdProdotto="'+ vedo +'"', [], function (tx, results) {
+					var len = results.rows.length, i;
+				
+					if(results.rows.length==0){
+						return;
+					}
+					else{                        
+						tx.executeSql('DELETE FROM Ordine where id='+prod+' and IdProdotto="'+ vedo +'"', [], function (tx, results) {
+						}, null);
+								   
+						localStorage.setItem("Badge10", parseInt(localStorage.getItem("Badge10"))-1)
+								   
+						seleziona2()
+						
+					}
+                                                          
                 }, null);
-						   
-                localStorage.setItem("Badge10", parseInt(localStorage.getItem("Badge10"))-1)
-                           
-                seleziona2()
-                           
             });
-            
-            
+			
             //alert(prod)
  
         }
