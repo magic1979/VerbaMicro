@@ -880,11 +880,7 @@ var app = {
 						);
 						
 						
-						$("#emailphone").hide()
-						$("#richiedi22").hide()
-						
-						$("#sblocco").show()
-						$("#richiedi23").show()
+						$("#celllock").hide()
 					
 					}
 
