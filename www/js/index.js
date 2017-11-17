@@ -42,7 +42,7 @@ var app = {
 		
 		$("#iddevice").html(localStorage.getItem("deviceid"))
 		
-		last_click_time = new Date().getTime();
+		/*last_click_time = new Date().getTime();
 
 		document.addEventListener('touchstart', function (e) {
 						  
@@ -58,7 +58,7 @@ var app = {
 		  
 		  last_click_time = click_time;
 						  
-		}, true);
+		}, true);*/
 		
 		
 		$("#prolock").hide()
