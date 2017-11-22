@@ -84,7 +84,7 @@
 		bottom: 0px;
 		left: 0;
 		width: 100%;
-		background: #fff;
+
 		overflow: hidden;
 	}
 	
@@ -95,7 +95,7 @@
 		bottom: 0px;
 		left: 0;
 		width: 100%;
-		background: #fff;
+
 		overflow: hidden;
 	}
 	
@@ -795,7 +795,7 @@
 <body id="pippo">
     <audio id="successSound" src="sound/pool.mp3" type="audio/mpeg" ></audio>
 	
-	<div id="page" data-role="page" class="div2" >
+	<div id="page" data-role="page" >
 		
 		<div data-role="header" data-theme="c" data-position="fixed" data-tap-toggle="false" class="div1" data-add-back-btn="true" >
 			<table align="center" width="100%" valign="center" border="0">
@@ -888,46 +888,46 @@
 		  <p align="center" class="testo1">Inserisci le due chiavi di ricerca prima (foglia) e dopo (radice) il segno <b>: :</b> per visualizzare i contenuti</p>
 	  
 		  <div id="orizzontale" style="display:none">
-		  
-			<p align="center"><input name="foglia" id="foglia" class="input_login_pre" placeholder="foglia"><span class="doppiopunto">::</span><input name="radice" id="radice" class="input_login_suf" placeholder="radice"></p>
-		  
-			 <!-- <table width="90%" align="center" border="0">
+
+			 <table width="90%" align="center" border="0">
 				   <tr>
 					   <td align="center" width="45%">
-						  <input type="text" data-role="none" name="foglia" id="foglia" placeholder="Foglia" class="scrivo">
+						  <!--<input type="text" data-role="none" name="foglia" id="foglia" placeholder="Foglia" class="scrivo">-->
+						  <input name="foglia" id="foglia" class="input_login_pre" placeholder="foglia">
 					   </td>
 					   <td align="center" width="10%">
-						  <font size="18"><b>::</b></font>
+						  <span class="doppiopunto">::</span>
 					   </td>
 					   <td align="center" width="45%">
-						  <input type="text" data-role="none" name="radice" id="radice" placeholder="radice" class="scrivo">
+						  <input name="radice" id="radice" class="input_login_suf" placeholder="radice">
+						  <!--<input type="text" data-role="none" name="radice" id="radice" placeholder="radice" class="scrivo">-->
 					   </td>
 				  </tr>
-			  </table>-->
+			  </table>
 		  </div>
 		  
 		  <div id="verticale" >
 		  
-			  <p align="center"><input name="foglia2" id="foglia2" class="input_login_pre" placeholder="foglia"><span class="doppiopunto">::</span><input name="radice2" id="radice2" class="input_login_suf" placeholder="radice"></p>
-			  
-			  <!--<table width="90%" align="center" border="0">
+			  <table width="90%" align="center" border="0">
 			  <tr>
 				<td align="center" width="100%">
-					<input type="text" data-role="none" name="foglia2" id="foglia2" placeholder="Foglia" class="scrivo2">
+					<input name="foglia2" id="foglia2" class="input_login_pre" placeholder="foglia">
+					<!--<input type="text" data-role="none" name="foglia2" id="foglia2" placeholder="Foglia" class="scrivo2">-->
 				</td>
 			  </tr>
 			  <tr>
 				<td align="center" width="100%">
-				 <font size="18"><b>::</b></font>
+					<span class="doppiopunto">::</span>
 				</td>
 			  </tr>
 			  <tr>
 				  <td align="center" width="100%">
-					<input type="text" data-role="none" name="radice2" id="radice2" placeholder="radice" class="scrivo2">
+					<input name="radice2" id="radice2" class="input_login_suf" placeholder="radice">
+					<!--<input type="text" data-role="none" name="radice2" id="radice2" placeholder="radice" class="scrivo2">-->
 				  </td>
 			  </tr>
 			  
-			  </table>-->
+			  </table>
 		  </div>
 	  
 			<br><br>
@@ -940,7 +940,7 @@
 	  </div>
 	  
 	  <div class="box2">
-  
+		<div class="titolo_div_inserimenti">IN EVIDENZA</div>
 			<br>
 					
 			<div id="tutto"></div>
@@ -972,7 +972,7 @@
 			
 			<div id="nome" style="display:none"></div>
 			
-			<br><br>
+			<br><br><br><br><br><br><br>
 	
 	
 	</div>
@@ -1017,7 +1017,7 @@
 	
 	</div>
 	
-	 <div id="page2" data-role="page" class="div2" >
+	 <div id="page2" data-role="page" >
         
         <div data-role="header" data-theme="c" data-position="fixed" data-tap-toggle="false" class="div11" data-add-back-btn="true" >
             <table align="center" width="100%" valign="center" border="0">
