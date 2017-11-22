@@ -170,7 +170,7 @@
 	
 	
 	.div2 {
-		background-color: #FFFFFF;
+		background-color: #030b30;
 	}
 	.div3 {
 		background-color: #37b658;
@@ -795,9 +795,9 @@
 <body id="pippo">
     <audio id="successSound" src="sound/pool.mp3" type="audio/mpeg" ></audio>
 	
-	<div id="page" data-role="page" >
+	<div id="page" data-role="page" class="div2">
 		
-		<div data-role="header" data-theme="c" data-position="fixed" data-tap-toggle="false" class="div1" data-add-back-btn="true" >
+		<!--<div data-role="header" data-theme="c" data-position="fixed" data-tap-toggle="false" class="div1" data-add-back-btn="true" >
 			<table align="center" width="100%" valign="center" border="0">
 			  <tr>
 				<td align="center" valign="center">
@@ -805,7 +805,7 @@
 				</td>
 			  </tr>
 			</table>
-		</div>
+		</div>-->
         
         <div class="spinner" id="spinner"></div>
 		<a href="#mypanelH" data-role=button id=btnpanel data-theme="b" style="display:none"></a>
@@ -882,104 +882,105 @@
 	<div id="wrapper">
 		<div id="scroller">
 			<div class="container">
-		
-	<br><br><br><br><br>
-	  <div class="box1">
-		  <p align="center" class="testo1">Inserisci le due chiavi di ricerca prima (foglia) e dopo (radice) il segno <b>: :</b> per visualizzare i contenuti</p>
-	  
-		  <div id="orizzontale" style="display:none">
+	<br><br>
+	<p align="center"><span class="titolo1">micro<b style="margin:0px 3px;">::</b>verba</span></p>
+	
+		  <div class="box1">
+			  <p align="center" class="testo1">Inserisci le due chiavi di ricerca prima (foglia) e dopo (radice) il segno <b>: :</b> per visualizzare i contenuti</p>
+		  
+			  <div id="orizzontale" style="display:none">
 
-			 <table width="90%" align="center" border="0">
-				   <tr>
-					   <td align="center" width="45%">
-						  <!--<input type="text" data-role="none" name="foglia" id="foglia" placeholder="Foglia" class="scrivo">-->
-						  <input name="foglia" id="foglia" class="input_login_pre" placeholder="foglia">
-					   </td>
-					   <td align="center" width="10%">
-						  <span class="doppiopunto">::</span>
-					   </td>
-					   <td align="center" width="45%">
-						  <input name="radice" id="radice" class="input_login_suf" placeholder="radice">
-						  <!--<input type="text" data-role="none" name="radice" id="radice" placeholder="radice" class="scrivo">-->
-					   </td>
-				  </tr>
-			  </table>
-		  </div>
-		  
-		  <div id="verticale" >
-		  
-			  <table width="90%" align="center" border="0">
-			  <tr>
-				<td align="center" width="100%">
-					<input name="foglia2" id="foglia2" class="input_login_pre" placeholder="foglia">
-					<!--<input type="text" data-role="none" name="foglia2" id="foglia2" placeholder="Foglia" class="scrivo2">-->
-				</td>
-			  </tr>
-			  <tr>
-				<td align="center" width="100%">
-					<span class="doppiopunto">::</span>
-				</td>
-			  </tr>
-			  <tr>
-				  <td align="center" width="100%">
-					<input name="radice2" id="radice2" class="input_login_suf" placeholder="radice">
-					<!--<input type="text" data-role="none" name="radice2" id="radice2" placeholder="radice" class="scrivo2">-->
-				  </td>
-			  </tr>
+				 <table width="90%" align="center" border="0">
+					   <tr>
+						   <td align="center" width="45%">
+							  <!--<input type="text" data-role="none" name="foglia" id="foglia" placeholder="Foglia" class="scrivo">-->
+							  <input name="foglia" id="foglia" class="input_login_pre" placeholder="foglia">
+						   </td>
+						   <td align="center" width="10%">
+							  <span class="doppiopunto">::</span>
+						   </td>
+						   <td align="center" width="45%">
+							  <input name="radice" id="radice" class="input_login_suf" placeholder="radice">
+							  <!--<input type="text" data-role="none" name="radice" id="radice" placeholder="radice" class="scrivo">-->
+						   </td>
+					  </tr>
+				  </table>
+			  </div>
 			  
-			  </table>
+			  <div id="verticale" >
+			  
+				  <table width="90%" align="center" border="0">
+				  <tr>
+					<td align="center" width="100%">
+						<input name="foglia2" id="foglia2" class="input_login_pre" placeholder="foglia">
+						<!--<input type="text" data-role="none" name="foglia2" id="foglia2" placeholder="Foglia" class="scrivo2">-->
+					</td>
+				  </tr>
+				  <tr>
+					<td align="center" width="100%">
+						<span class="doppiopunto">::</span>
+					</td>
+				  </tr>
+				  <tr>
+					  <td align="center" width="100%">
+						<input name="radice2" id="radice2" class="input_login_suf" placeholder="radice">
+						<!--<input type="text" data-role="none" name="radice2" id="radice2" placeholder="radice" class="scrivo2">-->
+					  </td>
+				  </tr>
+				  
+				  </table>
+			  </div>
+		  
+				<br><br>
+			  
+				<p align="center"><input type="submit" name="richiedi" id="richiedi" class="bt_login" value="apri" alt="Apri" title="Apri" /></p>
+				<!--<a id="richiedi" data-role="button" class="custom-btn" data-theme="b"><font color="#FFF" size="4">RICHIEDI</font></a>-->
+		  
+				<br>
+		  
 		  </div>
 	  
-			<br><br>
-		  
-			<p align="center"><input type="submit" name="richiedi" id="richiedi" class="bt_login" value="apri" alt="Apri" title="Apri" /></p>
-			<!--<a id="richiedi" data-role="button" class="custom-btn" data-theme="b"><font color="#FFF" size="4">RICHIEDI</font></a>-->
-	  
-			<br>
-	  
-	  </div>
-	  
-	  <div class="box2">
-		<div class="titolo_div_inserimenti">IN EVIDENZA</div>
-			<br>
-					
-			<div id="tutto"></div>
-			
-			
-			<br>
-				  
+		  <div class="box2">
+			<div class="titolo_div_inserimenti">IN EVIDENZA</div>
+				<br>
+						
+				<div id="tutto"></div>
+				
+				
+				<br>
+					  
 
-			</form>
-			
-			<br><br>
-			
-			<div id="testvideo"></div>
-			
-			<br><br>
-					
-			<div id="TOTPrezzo"></div>
-			
-			<br><br>
-			<div id="iddevice"></div>
+				</form>
+				
+				<br><br>
+				
+				<div id="testvideo"></div>
+				
+				<br><br>
+						
+				<div id="TOTPrezzo"></div>
+				
+				<br><br>
+				<div id="iddevice"></div>
 
-			<br>
+				<br>
 
-			<br><br>
-			<h1 id="output"></h1>
+				<br><br>
+				<h1 id="output"></h1>
 
-			<br>
-			<div id="lati"></div>
-			
-			<div id="nome" style="display:none"></div>
-			
-			<br><br><br><br><br><br><br>
-	
-	
-	</div>
-	
-	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-	
+				<br>
+				<div id="lati"></div>
+				
+				<div id="nome" style="display:none"></div>
+				
+				<br><br>
+		
+		
+		</div>
+
 			</div>
+			
+			<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 		</div>
 	</div>
 	
