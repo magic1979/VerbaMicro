@@ -31,8 +31,10 @@
     
 	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
     <link rel="stylesheet" href="css/spinner.css" />
+	<link href="css/style.css" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 	
-    <title>Salvatore</title>
+    <title>Microverba - Login</title>
     
     <script src="jquery-1.10.2.min.js"></script>
 	<script src="js/jquery.mobile-1.4.2.min.js"></script>
@@ -151,7 +153,7 @@
 		}
 	
 	.div1 {
-		background-color: #FFFFFF;
+		background-color: #030b30;
 		height: 52px;
 		border: none;
 		
@@ -796,7 +798,12 @@
 	<div id="page" data-role="page" class="div2" >
 		
 		<div data-role="header" data-theme="c" data-position="fixed" data-tap-toggle="false" class="div1" data-add-back-btn="true" >
-			<table align="center" width="100%" valign="center" border="0"><tr><td></td></tr><tr><td align="center" valign="center"><img src="img/logo.png"  height="36px"></td></tr>
+			<table align="center" width="100%" valign="center" border="0">
+			  <tr>
+				<td align="center" valign="center">
+					<p align="center"><span class="titolo1">micro<b style="margin:0px 3px;">::</b>verba</span></p>
+				</td>
+			  </tr>
 			</table>
 		</div>
         
@@ -874,95 +881,105 @@
 	
 	<div id="wrapper">
 		<div id="scroller">
+			<div class="container">
 		
 	<br><br><br><br><br>
-	
-	  <div id="orizzontale" style="display:none">
-		  <table width="90%" align="center" border="0">
-		  <tr>
-		  <td align="center" width="45%">
-			  <input type="text" data-role="none" name="foglia" id="foglia" placeholder="Foglia" class="scrivo">
-		  </td>
-		  <td align="center" width="10%">
-			  <font size="18"><b>::</b></font>
-		  </td>
-		  <td align="center" width="45%">
-			  <input type="text" data-role="none" name="radice" id="radice" placeholder="radice" class="scrivo">
-		  </td>
-		  </tr>
-		  </table>
-	  </div>
+	  <div class="box1">
+		  <p align="center" class="testo1">Inserisci le due chiavi di ricerca prima (foglia) e dopo (radice) il segno <b>: :</b> per visualizzare i contenuti</p>
 	  
-	  <div id="verticale" >
-          <table width="90%" align="center" border="0">
-		  <tr>
-			<td align="center" width="100%">
-				<input type="text" data-role="none" name="foglia2" id="foglia2" placeholder="Foglia" class="scrivo2">
-			</td>
-		  </tr>
-          <tr>
-            <td align="center" width="100%">
-		     <font size="18"><b>::</b></font>
-            </td>
-          </tr>
-		  <tr>
-			  <td align="center" width="100%">
-		        <input type="text" data-role="none" name="radice2" id="radice2" placeholder="radice" class="scrivo2">
-			  </td>
-		  </tr>
+		  <div id="orizzontale" style="display:none">
 		  
-          </table>
+			<p align="center"><input name="foglia" id="foglia" class="input_login_pre" placeholder="foglia"><span class="doppiopunto">::</span><input name="radice" id="radice" class="input_login_suf" placeholder="radice"></p>
+		  
+			 <!-- <table width="90%" align="center" border="0">
+				   <tr>
+					   <td align="center" width="45%">
+						  <input type="text" data-role="none" name="foglia" id="foglia" placeholder="Foglia" class="scrivo">
+					   </td>
+					   <td align="center" width="10%">
+						  <font size="18"><b>::</b></font>
+					   </td>
+					   <td align="center" width="45%">
+						  <input type="text" data-role="none" name="radice" id="radice" placeholder="radice" class="scrivo">
+					   </td>
+				  </tr>
+			  </table>-->
+		  </div>
+		  
+		  <div id="verticale" >
+		  
+			  <p align="center"><input name="foglia2" id="foglia2" class="input_login_pre" placeholder="foglia"><span class="doppiopunto">::</span><input name="radice2" id="radice2" class="input_login_suf" placeholder="radice"></p>
+			  
+			  <!--<table width="90%" align="center" border="0">
+			  <tr>
+				<td align="center" width="100%">
+					<input type="text" data-role="none" name="foglia2" id="foglia2" placeholder="Foglia" class="scrivo2">
+				</td>
+			  </tr>
+			  <tr>
+				<td align="center" width="100%">
+				 <font size="18"><b>::</b></font>
+				</td>
+			  </tr>
+			  <tr>
+				  <td align="center" width="100%">
+					<input type="text" data-role="none" name="radice2" id="radice2" placeholder="radice" class="scrivo2">
+				  </td>
+			  </tr>
+			  
+			  </table>-->
+		  </div>
+	  
+			<br><br>
+		  
+			<p align="center"><input type="submit" name="richiedi" id="richiedi" class="bt_login" value="apri" alt="Apri" title="Apri" /></p>
+			<!--<a id="richiedi" data-role="button" class="custom-btn" data-theme="b"><font color="#FFF" size="4">RICHIEDI</font></a>-->
+	  
+			<br>
+	  
 	  </div>
 	  
-	  <br><br>
-	  
-	<a id="richiedi" data-role="button" class="custom-btn" data-theme="b"><font color="#FFF" size="4">RICHIEDI</font></a>
-	  
-	<br>
-	<!--<div id="progettolock" ><input type="text" data-role="none" name="pswp" id="pswp" placeholder="psw progetto" class="scrivo2" ></div>
-	<div id="microlock" ><input type="text" data-role="none" name="pswm" id="pswm" placeholder="pswp" class="scrivo2" ></div>
-	  style="display:none"-->
-	  
-	<br>
+	  <div class="box2">
+  
+			<br>
+					
+			<div id="tutto"></div>
 			
-	<div id="tutto"></div>
-	
-	
-	<br>
-		  
+			
+			<br>
+				  
 
-    </form>
-    
-	<br><br>
-	
-	<div id="testvideo"></div>
-	
-	<br><br>
-            
-    <div id="TOTPrezzo"></div>
-	
-	<br><br>
-	<div id="iddevice"></div>
+			</form>
+			
+			<br><br>
+			
+			<div id="testvideo"></div>
+			
+			<br><br>
+					
+			<div id="TOTPrezzo"></div>
+			
+			<br><br>
+			<div id="iddevice"></div>
 
-    <br>
+			<br>
 
-    <br><br>
-	<h1 id="output"></h1>
+			<br><br>
+			<h1 id="output"></h1>
 
-    <br>
-	<div id="lati"></div>
+			<br>
+			<div id="lati"></div>
+			
+			<div id="nome" style="display:none"></div>
+			
+			<br><br>
 	
-	<div id="nome" style="display:none"></div>
 	
-	<br><br>
-	
-	<!--<a id="richiedi11" data-role="button" class="custom-btn" data-theme="b"><font color="#FFF" size="4">RICHIEDI11</font></a>-->
-	
-	<!--<a id="piu" href="">PIU</a>  <a id="piu2" href="">PIU2</a> <a id="piu3" href="">PIU3</a>-->
+	</div>
 	
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	
-	
+			</div>
 		</div>
 	</div>
 	
