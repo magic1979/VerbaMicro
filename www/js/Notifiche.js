@@ -1411,7 +1411,16 @@ function onDeviceReady() {
 	
 	
 	$(document).on("touchstart", "#indietro", function(e){
-		window.location.href = "index.html";
+		
+		window.plugins.nativepagetransitions.fade({
+				"duration"       :  700, // in milliseconds (ms), default 400
+				"iosdelay"       :   50, // ms to wait for the iOS webview to update before animation kicks in, default 60
+				"androiddelay"   :  500,
+				"href" : "index.html"
+			});
+			
+			
+		//window.location.href = "index.html";
 				   
 	});
 	

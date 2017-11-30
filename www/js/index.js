@@ -40,13 +40,27 @@ var app = {
 		
 		document.addEventListener('touchmove', function(e) { e.preventDefault(); }, false);
 		
-		 $("input").focus(function(){
+		 /*$("input").focus(function(){
 			$("#footer").hide();
         });
         
         $("input").blur(function(){
 			$("#footer").show();
-        });
+        });*/
+		
+		
+		window.addEventListener('native.keyboardhide', keyboardHideHandler);
+  
+		function keyboardHideHandler(e){
+		  $("#footer").show();
+		}
+	  
+	  window.addEventListener('native.keyboardshow', keyboardShowHandler);
+  
+		function keyboardShowHandler(e){
+			$("#footer").hide();
+		}
+		
 		
 		$("#miclock").hide()
         $("#prolock").hide()
@@ -1395,7 +1409,7 @@ var app = {
 				   var tabella = "<table width='90%' align='center' border='0'>";
 				   
 				   if((result.radice!="")&&(result.foglia!="")){
-				     tabella = tabella + "<tr><td align='left' width='150'>-</td><td align='left' width='100%'><p class='testo1'><font color='#fff'>"+$.base64.decode(result.messaggio)+"</font></p> </td></tr><tr><td align='left' width='150'><p class='testo1'><font color='#fff'>Progetto: </font></p></td><td align='left' width='100%'></td></tr><tr><td align='left' width='150'><p class='testo1'><font color='#fff'>Descrizione Progetto: </font></p></td><td align='left' width='100%'></td></tr>"
+				     tabella = tabella + "<tr><td align='left' width='100%'><p class='testo1'><font color='#fff'>"+$.base64.decode(result.messaggio)+", vuoi acquistarlo?</font></p> </td></tr><tr><td align='center' width='100%'><a id='' name='button' class='bt_acquista' width='70%'><font color='#fff'>Aquista</font></a></td></tr><tr></tr>"
 				   
 				     tabella = tabella + "</table><br>";
 				   
@@ -1422,7 +1436,7 @@ var app = {
 				   
 				   		tabella = tabella + "<tr><td align='center' width='100%' colspan='2'><p class='testo1'><font color='#fff'>"+$.base64.decode(result.messaggio)+"</font></p></td></tr></tr>"
 				   
-				   		tabella = tabella + "<tr><td align='center' width='80' colspan='2'><br><a id='pag_"+result.nextPaginationRootStart+"'><p class='testo1'><font color='#fff'>"+result.nextPaginationRootStart+"</font></p></a></td></tr></table><br>";
+				   		tabella = tabella + "<tr><td align='center' width='80' colspan='2'><br><a id='pag_"+result.nextPaginationRootStart+"'><p class='testo1'><font color='#fff'>Go Pag --> "+result.nextPaginationRootStart+"</font></p></a></td></tr></table><br>";
 				   
 				   		$("#tutto").append(tabella);
 				   
@@ -1482,7 +1496,7 @@ var app = {
 				   
 				   tabella = tabella + "<tr><td align='center' width='100%' colspan='2'><p class='testo1'><font color='#fff'>"+$.base64.decode(result.messaggio)+"</font></p></td></tr></tr>"
 				   
-				   tabella = tabella + "<tr><td align='center' width='80' colspan='2'><br><a id='pag_"+result.nextPaginationLeafStart+"'><p class='testo1'><font color='#fff'>"+result.nextPaginationLeafStart+"</font></p></a></td></tr></table><br>";
+				   tabella = tabella + "<tr><td align='center' width='80' colspan='2'><br><a id='pag_"+result.nextPaginationLeafStart+"'><p class='testo1'><font color='#fff'>Go Pag --> "+result.nextPaginationLeafStart+"</font></p></a></td></tr></table><br>";
 				   
 				   $("#tutto").append(tabella);
 				   
@@ -1549,6 +1563,8 @@ var app = {
 				   
 				   
 				   if(result.Token==1){
+					   
+					$("#ricerca").show()
 				   
 				   //PROGETTO
 				   
@@ -5403,7 +5419,14 @@ var app = {
 		
 		$(document).on("touchstart", "#avanti", function(e){
 			
-			window.location.href = "indexFoto.html";
+			window.plugins.nativepagetransitions.fade({
+				"duration"       :  700, // in milliseconds (ms), default 400
+				"iosdelay"       :   50, // ms to wait for the iOS webview to update before animation kicks in, default 60
+				"androiddelay"   :  500,
+				"href" : "indexFoto.html"
+			});
+			
+			//window.location.href = "indexFoto.html";
 				   
 		});
 		
