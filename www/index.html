@@ -170,7 +170,12 @@
 	
 	
 	.div2 {
-		background-color: #030b30;
+		background-image: url("img/background.jpg");
+        background-color: #fff;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-position:center;
+        height: 100%;
 	}
 	.div3 {
 		background-color: #37b658;
@@ -840,8 +845,8 @@
 			<input type="text" data-role="none" name="emailphone" id="emailphone" placeholder="email" class="testo_contenuti_pw" >
 			<input type="hidden" data-role="none" name="sblocco" id="sblocco" placeholder="Codice" style="display:none">
 		<br>
-		<a id="richiedi22" name="button" class="bt_login" width="40%"><font color="#fff">UNLOCK</font></a><br>
-		<a id="annulla22"><font color="#000">CANCEL</font></a>
+		<a id="richiedi22" name="button" class="bt_login" width="40%"><font color="#fff">UNLOCK</font></a><br><br>
+		<a id="annulla22"><font color="#000">ANNULLA</font></a>
 
 	</div>
 	
@@ -912,22 +917,16 @@
                             <input type="text" data-role="none" name="radice2" id="radice2" placeholder="Radice" class="input_login_suf">
                           </td>
                       </tr>
+                      <tr>
+                          <td align="center" width="100%">
+                              <a id="richiedi" name="button" class="bt_login" width="70%"><font color="#fff">APRI</font></a>
+                        </td>
+                      </tr>
                       
                   </table>
 				  
 			  </div>
-		  
-				<br><br>
-			  
-				<p align="center"><input type="submit" name="richiedi" id="richiedi" class="bt_login" value="apri" alt="Apri" title="Apri" /></p>
-				<!--<a id="richiedi" data-role="button" class="custom-btn" data-theme="b"><font color="#FFF" size="4">RICHIEDI</font></a>-->
-		  
-				<br>
-						
-				<div id="tutto"></div>
-				
-				<br>
-					  
+	
 				</form>
 				
 				<br>
@@ -946,22 +945,16 @@
 				
 				<br>
 						
-				<div id="TOTPrezzo"></div>
+				<div id="TOTPrezzo" style="display:none"></div>
 				
-				<br><br>
-				<div id="iddevice"></div>
+				<div id="iddevice" style="display:none"></div>
 
-				<br>
+				<h1 id="output" style="display:none"></h1>
 
-				<br><br>
-				<h1 id="output"></h1>
-
-				<br>
-				<div id="lati"></div>
+				<div id="lati" style="display:none"></div>
 				
 				<div id="nome" style="display:none"></div>
 				
-				<br><br>
 
 			<br><br><br><br><br><br><br>
 		</div>
@@ -970,7 +963,7 @@
 	
 	</center>
 	
-	 <div id="footer" data-role="footer" data-theme="b" data-tap-toggle="false" class="div1">
+	 <div id="footer" data-role="footer" data-theme="b" data-tap-toggle="false" data-position="fixed" class="div1">
         <div data-role="navbar" class="nav" data-grid="d" data-theme="c" class="div1">
             <ul>
                 <li><a id="avanti" data-icon="homehome" rel="external"><font size="1">Photo</font></a></li>

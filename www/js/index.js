@@ -1201,6 +1201,30 @@ var app = {
 			
 		}
 		
+		$(document).on("touchstart", "#vediinfo", function(e){
+					   
+			$("#informazioni1").show()
+					   
+		})
+		
+		$(document).on("touchstart", "#vediinfomic", function(e){
+					   
+		   $("#informazioni2").show()
+		   
+		   })
+		
+		$(document).on("touchstart", "#informazioni1_close", function(e){
+					   
+			$("#informazioni1").hide()
+					   
+		})
+		
+		$(document).on("touchstart", "#informazioni2_close", function(e){
+					   
+		   $("#informazioni2").hide()
+		   
+		   })
+		
 
 		
 		function richiesta(pagina,pagina1){
