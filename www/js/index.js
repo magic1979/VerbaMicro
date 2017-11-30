@@ -733,20 +733,27 @@ var app = {
 		
 	
 		$(document).on("touchstart", "#indietro", function(e){
+			
+			window.plugins.nativepagetransitions.fade({
+				"duration"       :  600, // in milliseconds (ms), default 400
+				"iosdelay"       :   50, // ms to wait for the iOS webview to update before animation kicks in, default 60
+				"androiddelay"   :  300,
+				"href" : "#page"
+			});
                        
-            window.location.href = "#page";
+            //window.location.href = "#page";
                        
-                       var Badge10 = localStorage.getItem("Badge10");
-                       $("#badde5").attr("data-badge", Badge10);
-                       
-                       if (Badge10 > 0){
-                       $('#badde5').removeClass('badge2').addClass('badge1');
-                       $("#badde5").html('<img id="carro3" src="img/CartW.png" width="20px">');
-                       }
-                       else{
-                       var Badge10 = 0;
-                       localStorage.setItem("Badge10","0");
-                       }
+		   var Badge10 = localStorage.getItem("Badge10");
+		   $("#badde5").attr("data-badge", Badge10);
+		   
+		   if (Badge10 > 0){
+		   $('#badde5').removeClass('badge2').addClass('badge1');
+		   $("#badde5").html('<img id="carro3" src="img/CartW.png" width="20px">');
+		   }
+		   else{
+		   var Badge10 = 0;
+		   localStorage.setItem("Badge10","0");
+		   }
                        
             setTimeout (function(){
                 seleziona()
@@ -760,8 +767,15 @@ var app = {
 		$(document).on("touchstart", "#badde5", function(e){
                        
             $("#spinner2").hide();
+			
+			window.plugins.nativepagetransitions.fade({
+				"duration"       :  600, // in milliseconds (ms), default 400
+				"iosdelay"       :   50, // ms to wait for the iOS webview to update before animation kicks in, default 60
+				"androiddelay"   :  300,
+				"href" : "#page2"
+			});
                        
-            window.location.href = "#page2";
+            //window.location.href = "#page2";
 			
 			seleziona2()
 			
@@ -1996,7 +2010,7 @@ var app = {
 				   
 						   lock="cart.png";
 				   
-						   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descva])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
+						   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_video.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descva])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
 					   }
 					   else{
 				   
@@ -2006,25 +2020,25 @@ var app = {
 				   
 								   lock="unlock.png";
 				   
-								   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descva])+"</span></td><td align='right' width='40'></td></tr>"
+								   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_video.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descva])+"</span></td><td align='right' width='40'></td></tr>"
 				   
 							   }
 							   else{
-							   	tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'><input id='fff_"+pswVA+"' name='password' class='testo_contenuti_pw' placeholder='password' readonly></span></td><td align='right' width='40'></td></tr>"
+							   	tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_video.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'><input id='fff_"+pswVA+"' name='password' class='testo_contenuti_pw' placeholder='password' readonly></span></td><td align='right' width='40'></td></tr>"
 				   
 							   }
 						   }
 						   else{
 						   lock="cart.png";
 				   
-						   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+result[prezzoVA]+", "+$.base64.decode(result[descva])+"</span></td><td align='right' width='40'><a id='piu"+ identVA +"piu"+ prezzoVA +"piu"+ nomeVA +"'> <div class='ico_cart'></div></a></td></tr>"
+						   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_video.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+result[prezzoVA]+", "+$.base64.decode(result[descva])+"</span></td><td align='right' width='40'><a id='piu"+ identVA +"piu"+ prezzoVA +"piu"+ nomeVA +"'> <div class='ico_cart'></div></a></td></tr>"
 						   }
 					   }
 				   }
 				   else{
 					   lock="cart.png";
 				   
-					   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descva])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
+					   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_video.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descva])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
 				   
 				   } 
 				  
@@ -2181,52 +2195,43 @@ var app = {
 				   
 				   pswFA = "FA_lock_"+i
 				   
-				   if(lock_progetto!="cart.png"){
+				  if(lock_progetto!="cart.png"){
 				   if(lock_microverba=="cart.png"){
 				   
-				   lock="lock.jpg";
+				   lock="cart.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_audio.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descfa])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_audio.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descfa])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
 				   }
 				   else{
 				   
 				   if(result[prezzoFA] === null || typeof(result[prezzoFA]) == 'undefined' || result[prezzoFA]=="null" || result[prezzoFA]==""){
 				   
-				   lock="unlock.png";
-				   
 				   if((result[pswFA]=="")||(result[pswFA]==$.base64.encode(pswFAA))){
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_audio.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descfa])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_audio.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descfa])+"</span></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
-				   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_audio.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswFA+"'><img src='img/lock.jpg' width='40'></a></a></td><td align='left' width='100%'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_audio.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'><input id='fff_"+pswFA+"' name='password' class='testo_contenuti_pw' placeholder='password' readonly></span></td><td align='right' width='40'></td></tr>"
 				   
 				   }
-				   
 				   }
 				   else{
 				   lock="cart.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_audio.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoFA]+", "+$.base64.decode(result[descfa])+"</td><td align='right' width='40'><a id='piu"+ identFA +"piu"+ prezzoFA +"piu"+ nomeFA +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_audio.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+result[prezzoFA]+", "+$.base64.decode(result[descfa])+"</span></td><td align='right' width='40'><a id='piu"+ identFA +"piu"+ prezzoFA +"piu"+ nomeFA +"'> <div class='ico_cart'></div></a></td></tr>"
 				   }
-				   
 				   }
 				   }
 				   else{
-				   lock="lock.jpg";
+				   lock="cart.png";
 				   
-				   
-				   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_audio.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descfa])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_audio.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descfa])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
 				   
 				   }
 				   
-				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
 				   
 				   $("#testvideo").append(tabella);
 				   
@@ -2375,52 +2380,41 @@ var app = {
 				   
 				   
 				   if(lock_progetto!="cart.png"){
-					   if(lock_microverba=="cart.png"){
-					   
-						   lock="lock.jpg";
-						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_www.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descpw])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-					   
-					   }
-					   else{
-					   
-						   if(result[prezzoPW] === null || typeof(result[prezzoPW]) == 'undefined' || result[prezzoPW]=="null" || result[prezzoPW]==""){
-						   
-							   lock="unlock.png";
-							   
-							   if((result[pswPW]=="")||(result[pswPW]==$.base64.encode(pswPWW))){
-							   
-								   lock="unlock.png";
-								   
-								   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_www.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descpw])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-							   
-							   
-							   }
-							   else{
-									tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_www.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswPW+"'><img src='img/lock.jpg' width='40'></a></a></td><td align='left' width='100%'></td></tr>"
-							   
-							   }
-						   
-						   }
-						   else{
-						   lock="cart.png";
-						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_www.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoPW]+", "+$.base64.decode(result[descpw])+"</td><td align='right' width='40'><a id='piu"+ identPW +"piu"+ prezzoPW +"piu"+ nomePW +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-						   
-						   }
-					   
-					   }
+				   if(lock_microverba=="cart.png"){
+				   
+				   lock="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_www.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descfa])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
 				   }
 				   else{
-					   lock="lock.jpg";
-					   
-					   
-					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_www.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descpw])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+				   
+				   if(result[prezzoPW] === null || typeof(result[prezzoPW]) == 'undefined' || result[prezzoPW]=="null" || result[prezzoPW]==""){
+				   
+				   if((result[pswPW]=="")||(result[pswPW]==$.base64.encode(pswPWW))){
+				   
+				   lock="unlock.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_www.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descpw])+"</span></td><td align='right' width='40'></td></tr>"
 				   
 				   }
+				   else{
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_www.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'><input id='fff_"+pswPW+"' name='password' class='testo_contenuti_pw' placeholder='password' readonly></span></td><td align='right' width='40'></td></tr>"
 				   
+				   }
+				   }
+				   else{
+				   lock="cart.png";
 				   
-				   //tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_www.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descpw])+"</td><td align='right' width='40'><a id='piu"+ identPW +"piu"+ prezzoPW +"piu"+ nomePW +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_www.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+result[prezzoPW]+", "+$.base64.decode(result[descpw])+"</span></td><td align='right' width='40'><a id='piu"+ identPW +"piu"+ prezzoPW +"piu"+ nomePW +"'> <div class='ico_cart'></div></a></td></tr>"
+				   }
+				   }
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_www.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descpw])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
+				   
+				   }
 				   
 				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
 				   
@@ -2571,54 +2565,41 @@ var app = {
 
 				   
 				   if(lock_progetto!="cart.png"){
-					   if(lock_microverba=="cart.png"){
-					   
-						   lock="lock.jpg";
-						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descfb])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-					   
-					   }
-					   else{
-					   
-						   if(result[prezzoFB] === null || typeof(result[prezzoFB]) == 'undefined' || result[prezzoFB]=="null" || result[prezzoFB]==""){
-						   
-						   lock="unlock.png";
-						   
-						   if((result[pswFB]=="")||(result[pswFB]==$.base64.encode(pswFBB))){
-						   
-						   lock="unlock.png";
-						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descfb])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-						   
-						   
-						   }
-						   else{
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswFB+"'><img src='img/lock.jpg' width='40'></a></a></td><td align='left' width='100%'></td></tr>"
-						   
-						   }
-						   
-						   }
-						   else{
-						   lock="cart.png";
-						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoFB]+", "+$.base64.decode(result[descfb])+"</td><td align='right' width='40'><a id='piu"+ identFB +"piu"+ prezzoFB +"piu"+ nomeFB +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-						   
-						   }
-					   
-					   }
+				   if(lock_microverba=="cart.png"){
+				   
+				   lock="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_facebook.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descfb])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
 				   }
 				   else{
-					   lock="lock.jpg";
-					   
-					   
-					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_audio.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descfb])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+				   
+				   if(result[prezzoFB] === null || typeof(result[prezzoFB]) == 'undefined' || result[prezzoFB]=="null" || result[prezzoFB]==""){
+				   
+				   if((result[pswFB]=="")||(result[pswFB]==$.base64.encode(pswFBB))){
+				   
+				   lock="unlock.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_facebook.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descfb])+"</span></td><td align='right' width='40'></td></tr>"
 				   
 				   }
+				   else{
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_facebook.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'><input id='fff_"+pswFB+"' name='password' class='testo_contenuti_pw' placeholder='password' readonly></span></td><td align='right' width='40'></td></tr>"
 				   
+				   }
+				   }
+				   else{
+				   lock="cart.png";
 				   
-				   //tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_facebook.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descfb])+"</td><td align='right' width='40'><a id='piu"+ identFB +"piu"+ prezzoFB +"piu"+ nomeFB +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_facebook.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+result[prezzoPW]+", "+$.base64.decode(result[descfb])+"</span></td><td align='right' width='40'><a id='piu"+ identFB +"piu"+ prezzoFB +"piu"+ nomeFB +"'> <div class='ico_cart'></div></a></td></tr>"
+				   }
+				   }
+				   }
+				   else{
+				   lock="cart.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_facebook.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descfb])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
+				   
+				   }
 				   
 				   $("#testvideo").append(tabella);
 				   
@@ -2765,55 +2746,42 @@ var app = {
 				   
 				   pswTF = "TF_lock_"+i
 				   
-				   if(lock_progetto!="cart.png"){
-					   if(lock_microverba=="cart.png"){
-					   
-						   lock="lock.jpg";
-						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_telephone.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctf])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-					   
-					   }
-					   else{
-					   
-						   if(result[prezzoTF] === null || typeof(result[prezzoTF]) == 'undefined' || result[prezzoTF]=="null" || result[prezzoTF]==""){
-						   
-						   lock="unlock.png";
-						   
-						   if((result[pswTF]=="")||(result[pswTF]==$.base64.encode(pswTFF))){
-						   
-						   lock="unlock.png";
-						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_telephone.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctf])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-						   
-						   
-						   }
-						   else{
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_telephone.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswTF+"'><img src='img/lock.jpg' width='40'></a></a></td><td align='left' width='100%'></td></tr>"
-						   
-						   }
-						   
-						   }
-						   else{
-						   lock="cart.png";
-						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_telephone.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoTF]+", "+$.base64.decode(result[desctf])+"</td><td align='right' width='40'><a id='piu"+ identTF +"piu"+ prezzoTF +"piu"+ nomeTF +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-						   
-						   }
-					   
-					   }
-					}
-					else{
-					   lock="lock.jpg";
-					   
-					   
-					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_telephone.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctf])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-
-					}
+				    if(lock_progetto!="cart.png"){
+				   if(lock_microverba=="cart.png"){
 				   
+				   lock="cart.png";
 				   
-				   //tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_telephone.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctf])+"</td><td align='right' width='40'><a id='piu"+ identTF +"piu"+ prezzoTF +"piu"+ nomeTF +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_telephone.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[desctf])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
+				   }
+				   else{
 				   
-				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+				   if(result[prezzoTF] === null || typeof(result[prezzoTF]) == 'undefined' || result[prezzoTF]=="null" || result[prezzoTF]==""){
+				   
+				   if((result[pswTF]=="")||(result[pswTF]==$.base64.encode(pswTFF))){
+				   
+				   lock="unlock.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_telephone.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[desctf])+"</span></td><td align='right' width='40'></td></tr>"
+				   
+				   }
+				   else{
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_telephone.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'><input id='fff_"+pswTF+"' name='password' class='testo_contenuti_pw' placeholder='password' readonly></span></td><td align='right' width='40'></td></tr>"
+				   
+				   }
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_telephone.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+result[prezzoTF]+", "+$.base64.decode(result[desctf])+"</span></td><td align='right' width='40'><a id='piu"+ identTF +"piu"+ prezzoTF +"piu"+ nomeTF +"'> <div class='ico_cart'></div></a></td></tr>"
+				   }
+				   }
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_telephone.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[desctf])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
+				   
+				   }
 				   
 				   $("#testvideo").append(tabella);
 				   
@@ -2958,54 +2926,41 @@ var app = {
 				   
 				   
 				   if(lock_progetto!="cart.png"){
-					   if(lock_microverba=="cart.png"){
-					   
-						   lock="lock.jpg";
-						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_twitter.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctw])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-					   
-					   }
-					   else{
-					   
-						   if(result[prezzoTW] === null || typeof(result[prezzoTW]) == 'undefined' || result[prezzoTW]=="null" || result[prezzoTW]==""){
-						   
-						   lock="unlock.png";
-						   
-						   if((result[pswTW]=="")||(result[pswTW]==$.base64.encode(pswTWW))){
-						   
-						   lock="unlock.png";
-						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_twitter.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctw])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-						   
-						   
-						   }
-						   else{
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_twitter.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswTW+"'><img src='img/lock.jpg' width='40'></a></a></td><td align='left' width='100%'></td></tr>"
-						   
-						   }
-						   
-						   }
-						   else{
-						   lock="cart.png";
-						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_twitter.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoTW]+", "+$.base64.decode(result[desctw])+"</td><td align='right' width='40'><a id='piu"+ identTW +"piu"+ prezzoTW +"piu"+ nomeTW +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-						   
-						   }
-					   
-					   }
-					}
-					else{
-					   lock="lock.jpg";
-					   
-					   
-					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_twitter.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctw])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-
-					}
+				   if(lock_microverba=="cart.png"){
 				   
+				   lock="cart.png";
 				   
-				   //tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_twitter.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctw])+"</td><td align='right' width='40'><a id='piu"+ identTW +"piu"+ prezzoTW +"piu"+ nomeTW +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_twitter.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[desctw])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
+				   }
+				   else{
 				   
-				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+				   if(result[prezzoTW] === null || typeof(result[prezzoTW]) == 'undefined' || result[prezzoTW]=="null" || result[prezzoTW]==""){
+				   
+				   if((result[pswTW]=="")||(result[pswTW]==$.base64.encode(pswTWW))){
+				   
+				   lock="unlock.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_twitter.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[desctw])+"</span></td><td align='right' width='40'></td></tr>"
+				   
+				   }
+				   else{
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_twitter.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'><input id='fff_"+pswTW+"' name='password' class='testo_contenuti_pw' placeholder='password' readonly></span></td><td align='right' width='40'></td></tr>"
+				   
+				   }
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_twitter.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+result[prezzoTW]+", "+$.base64.decode(result[desctw])+"</span></td><td align='right' width='40'><a id='piu"+ identTW +"piu"+ prezzoTW +"piu"+ nomeTW +"'> <div class='ico_cart'></div></a></td></tr>"
+				   }
+				   }
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_twitter.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[desctw])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
+				   
+				   }
 				   
 				   $("#testvideo").append(tabella);
 				   
@@ -3146,55 +3101,42 @@ var app = {
 				   
 				   pswIG = "IG_lock_"+i
 				   
-					if(lock_progetto!="cart.png"){
-					   if(lock_microverba=="cart.png"){
-					   
-						   lock="lock.jpg";
-						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_instagram.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descig])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-					   
-					   }
-					   else{
-					   
-						   if(result[prezzoIG] === null || typeof(result[prezzoIG]) == 'undefined' || result[prezzoIG]=="null" || result[prezzoIG]==""){
-						   
-						   lock="unlock.png";
-						   
-						   if((result[pswIG]=="")||(result[pswIG]==$.base64.encode(pswIGG))){
-						   
-						   lock="unlock.png";
-						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_instagram.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descig])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-						   
-						   
-						   }
-						   else{
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_instagram.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswIG+"'><img src='img/lock.jpg' width='40'></a></a></td><td align='left' width='100%'></td></tr>"
-						   
-						   }
-						   
-						   }
-						   else{
-						   lock="cart.png";
-						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_instagram.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoIG]+", "+$.base64.decode(result[descig])+"</td><td align='right' width='40'><a id='piu"+ identIG +"piu"+ prezzoIG +"piu"+ nomeIG +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-						   
-						   }
-					   
-					   }
-					}
-					else{
-					   lock="lock.jpg";
-					   
-					   
-					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_instagram.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descig])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-
-					}
+				if(lock_progetto!="cart.png"){
+				   if(lock_microverba=="cart.png"){
 				   
+				   lock="cart.png";
 				   
-				  // tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_instagram.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descig])+"</td><td align='right' width='40'><a id='piu"+ identIG +"piu"+ prezzoIG +"piu"+ nomeIG +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_instagram.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descig])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
+				   }
+				   else{
 				   
-				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+				   if(result[prezzoIG] === null || typeof(result[prezzoIG]) == 'undefined' || result[prezzoIG]=="null" || result[prezzoIG]==""){
+				   
+				   if((result[pswIG]=="")||(result[pswIG]==$.base64.encode(pswIGG))){
+				   
+				   lock="unlock.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_instagram.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descig])+"</span></td><td align='right' width='40'></td></tr>"
+				   
+				   }
+				   else{
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_instagram.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'><input id='fff_"+pswIG+"' name='password' class='testo_contenuti_pw' placeholder='password' readonly></span></td><td align='right' width='40'></td></tr>"
+				   
+				   }
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_instagram.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+result[prezzoIG]+", "+$.base64.decode(result[descig])+"</span></td><td align='right' width='40'><a id='piu"+ identIG +"piu"+ prezzoIG +"piu"+ nomeIG +"'> <div class='ico_cart'></div></a></td></tr>"
+				   }
+				   }
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_instagram.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descig])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
+				   
+				   }
 				   
 				   $("#testvideo").append(tabella);
 				   
@@ -3340,52 +3282,39 @@ var app = {
 				  if(lock_progetto!="cart.png"){
 				   if(lock_microverba=="cart.png"){
 				   
-					   lock="lock.jpg";
-					   
-					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_social.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descus])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+				   lock="cart.png";
 				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_social.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descig])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
 				   }
 				   else{
 				   
-					   if(result[prezzoUS] === null || typeof(result[prezzoUS]) == 'undefined' || result[prezzoUS]=="null" || result[prezzoUS]==""){
-					   
-					   lock="unlock.png";
-					   
-					   if((result[pswUS]=="")||(result[pswUS]==$.base64.encode(pswUSS))){
-					   
-					   lock="unlock.png";
-					   
-					   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_social.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descus])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-					   
-					   
-					   }
-					   else{
-					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_social.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswUS+"'><img src='img/lock.jpg' width='40'></a></a></td><td align='left' width='100%'></td></tr>"
-					   
-					   }
-					   
-					   }
-					   else{
-					   lock="cart.png";
-					   
-					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_social.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoUS]+", "+$.base64.decode(result[descus])+"</td><td align='right' width='40'><a id='piu"+ identUS +"piu"+ prezzoUS +"piu"+ nomeUS +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-					   
-					   }
+				   if(result[prezzoUS] === null || typeof(result[prezzoUS]) == 'undefined' || result[prezzoUS]=="null" || result[prezzoUS]==""){
+				   
+				   if((result[pswUS]=="")||(result[pswUS]==$.base64.encode(pswUSS))){
+				   
+				   lock="unlock.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_social.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descig])+"</span></td><td align='right' width='40'></td></tr>"
 				   
 				   }
-				}
-				else{
-				   lock="lock.jpg";
+				   else{
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_social.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'><input id='fff_"+pswUS+"' name='password' class='testo_contenuti_pw' placeholder='password' readonly></span></td><td align='right' width='40'></td></tr>"
 				   
+				   }
+				   }
+				   else{
+				   lock="cart.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_social.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descus])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-
-				}
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_social.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+result[prezzoUS]+", "+$.base64.decode(result[descig])+"</span></td><td align='right' width='40'><a id='piu"+ identUS +"piu"+ prezzoUS +"piu"+ nomeUS +"'> <div class='ico_cart'></div></a></td></tr>"
+				   }
+				   }
+				   }
+				   else{
+				   lock="cart.png";
 				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_social.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descig])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
 				   
-				  // tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_social.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descus])+"</td><td align='right' width='40'><a id='piu"+ identUS +"piu"+ prezzoUS +"piu"+ nomeUS +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
-				   
-				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+				   }
 				   
 				   $("#testvideo").append(tabella);
 				   
@@ -3535,52 +3464,39 @@ var app = {
 				if(lock_progetto!="cart.png"){
 				   if(lock_microverba=="cart.png"){
 				   
-					   lock="lock.jpg";
-					   
-					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_video_live.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descsv])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+				   lock="cart.png";
 				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descsv])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
 				   }
 				   else{
 				   
-					   if(result[prezzoSV] === null || typeof(result[prezzoSV]) == 'undefined' || result[prezzoSV]=="null" || result[prezzoSV]==""){
-					   
-					   lock="unlock.png";
-					   
-					   if((result[pswSV]=="")||(result[pswSV]==$.base64.encode(pswSVV))){
-					   
-					   lock="unlock.png";
-					   
-					   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_video_live.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descsv])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-					   
-					   
-					   }
-					   else{
-					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_video_live.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswSV+"'><img src='img/lock.jpg' width='40'></a></a></td><td align='left' width='100%'></td></tr>"
-					   
-					   }
-					   
-					   }
-					   else{
-					   lock="cart.png";
-					   
-					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_video_live.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoSV]+", "+$.base64.decode(result[descsv])+"</td><td align='right' width='40'><a id='piu"+ identSV +"piu"+ prezzoSV +"piu"+ nomeSV +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-					   
-					   }
+				   if(result[prezzoSV] === null || typeof(result[prezzoSV]) == 'undefined' || result[prezzoSV]=="null" || result[prezzoSV]==""){
+				   
+				   if((result[pswSV]=="")||(result[pswSV]==$.base64.encode(pswSVV))){
+				   
+				   lock="unlock.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descsv])+"</span></td><td align='right' width='40'></td></tr>"
 				   
 				   }
-				}
-				else{
-				   lock="lock.jpg";
+				   else{
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'><input id='fff_"+pswSV+"' name='password' class='testo_contenuti_pw' placeholder='password' readonly></span></td><td align='right' width='40'></td></tr>"
 				   
+				   }
+				   }
+				   else{
+				   lock="cart.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_video_live.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descsv])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-
-				}
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+result[prezzoSV]+", "+$.base64.decode(result[descsv])+"</span></td><td align='right' width='40'><a id='piu"+ identSV +"piu"+ prezzoSV +"piu"+ nomeSV +"'> <div class='ico_cart'></div></a></td></tr>"
+				   }
+				   }
+				   }
+				   else{
+				   lock="cart.png";
 				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descsv])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
 				   
-				   //tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_video_live.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descsv])+"</td><td align='right' width='40'><a id='piu"+ identSV +"piu"+ prezzoSV +"piu"+ nomeSV +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
-				   
-				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+				   }
 				   
 				   $("#testvideo").append(tabella);
 				   
@@ -3726,55 +3642,42 @@ var app = {
 				   
 				   pswSA = "FB_lock_"+i
 				   
-					if(lock_progetto!="cart.png"){
-					   if(lock_microverba=="cart.png"){
-					   
-						   lock="lock.jpg";
-						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_audio_live.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descsa])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-					   
-					   }
-					   else{
-					   
-						   if(result[prezzoSA] === null || typeof(result[prezzoSA]) == 'undefined' || result[prezzoSA]=="null" || result[prezzoSA]==""){
-						   
-						   lock="unlock.png";
-						   
-						   if((result[pswSA]=="")||(result[pswSA]==$.base64.encode(pswSAA))){
-						   
-						   lock="unlock.png";
-						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_audio_live.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descsa])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-						   
-						   
-						   }
-						   else{
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_audio_live.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswSA+"'><img src='img/lock.jpg' width='40'></a></a></td><td align='left' width='100%'></td></tr>"
-						   
-						   }
-						   
-						   }
-						   else{
-						   lock="cart.png";
-						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_audio_live.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoFB]+", "+$.base64.decode(result[descsa])+"</td><td align='right' width='40'><a id='piu"+ identFB +"piu"+ prezzoFB +"piu"+ nomeFB +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-						   
-						   }
-					   
-					   }
-					}
-					else{
-					   lock="lock.jpg";
-					   
-					   
-					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_audio_live.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descsa])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-
-					}
+					 if(lock_progetto!="cart.png"){
+				   if(lock_microverba=="cart.png"){
 				   
+				   lock="cart.png";
 				   
-				   //tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_audio_live.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descsa])+"</td><td align='right' width='40'><a id='piu"+ identSA +"piu"+ prezzoSA +"piu"+ nomeSA +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_audio_live.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descsa])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
+				   }
+				   else{
 				   
-				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+				   if(result[prezzoSA] === null || typeof(result[prezzoSA]) == 'undefined' || result[prezzoSA]=="null" || result[prezzoSA]==""){
+				   
+				   if((result[pswSA]=="")||(result[pswSA]==$.base64.encode(pswSAA))){
+				   
+				   lock="unlock.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_audio_live.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descsa])+"</span></td><td align='right' width='40'></td></tr>"
+				   
+				   }
+				   else{
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_audio_live.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'><input id='fff_"+pswSA+"' name='password' class='testo_contenuti_pw' placeholder='password' readonly></span></td><td align='right' width='40'></td></tr>"
+				   
+				   }
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_audio_live.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+result[prezzoSA]+", "+$.base64.decode(result[descsa])+"</span></td><td align='right' width='40'><a id='piu"+ identSA +"piu"+ prezzoSA +"piu"+ nomeSA +"'> <div class='ico_cart'></div></a></td></tr>"
+				   }
+				   }
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_audio_live.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descsa])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
+				   
+				   }
 				   
 				   $("#testvideo").append(tabella);
 				   
@@ -3926,52 +3829,39 @@ var app = {
 				  if(lock_progetto!="cart.png"){
 				   if(lock_microverba=="cart.png"){
 				   
-					   lock="lock.jpg";
-					   
-					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_smartphone.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctm])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+				   lock="cart.png";
 				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_smartphone.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[desctm])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
 				   }
 				   else{
 				   
-					   if(result[prezzoTM] === null || typeof(result[prezzoTM]) == 'undefined' || result[prezzoTM]=="null" || result[prezzoTM]==""){
-					   
-					   lock="unlock.png";
-					   
-					   if((result[pswTM]=="")||(result[pswTM]==$.base64.encode(pswTMM))){
-					   
-					   lock="unlock.png";
-					   
-					   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_smartphone.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctm])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-					   
-					   
-					   }
-					   else{
-					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_smartphone.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswTM+"'><img src='img/lock.jpg' width='40'></a></a></td><td align='left' width='100%'></td></tr>"
-					   
-					   }
-					   
-					   }
-					   else{
-					   lock="cart.png";
-					   
-					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_smartphone.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoTM]+", "+$.base64.decode(result[desctm])+"</td><td align='right' width='40'><a id='piu"+ identTM +"piu"+ prezzoTM +"piu"+ nomeTM +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-					   
-					   }
+				   if(result[prezzoTM] === null || typeof(result[prezzoTM]) == 'undefined' || result[prezzoTM]=="null" || result[prezzoTM]==""){
+				   
+				   if((result[pswTM]=="")||(result[pswTM]==$.base64.encode(pswTMM))){
+				   
+				   lock="unlock.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_smartphone.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[desctm])+"</span></td><td align='right' width='40'></td></tr>"
 				   
 				   }
-				}
-				else{
-				   lock="lock.jpg";
+				   else{
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_smartphone.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'><input id='fff_"+pswTM+"' name='password' class='testo_contenuti_pw' placeholder='password' readonly></span></td><td align='right' width='40'></td></tr>"
 				   
+				   }
+				   }
+				   else{
+				   lock="cart.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_smartphone.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctm])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-
-				}
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_smartphone.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+result[prezzoTM]+", "+$.base64.decode(result[desctm])+"</span></td><td align='right' width='40'><a id='piu"+ identTM +"piu"+ prezzoTM +"piu"+ nomeTM +"'> <div class='ico_cart'></div></a></td></tr>"
+				   }
+				   }
+				   }
+				   else{
+				   lock="cart.png";
 				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_smartphone.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[desctm])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
 				   
-				  // tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_telephone.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[desctm])+"</td><td align='right' width='40'><a id='piu"+ identTM +"piu"+ prezzoTM +"piu"+ nomeTM +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
-				   
-				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+				   }
 				   
 				   $("#testvideo").append(tabella);
 				   
@@ -3982,7 +3872,7 @@ var app = {
 					  
 					  });
 								  
-					$(document).on("touchstart", "#fff_"+pswFB+"", function(e){
+					$(document).on("touchstart", "#fff_"+pswTM+"", function(e){
 								  
 					  var nomefun = this.id
 					  nomefun = nomefun.replace("fff_","")
@@ -4121,54 +4011,41 @@ var app = {
 				   pswEM = "EM_lock_"+i
 				   
 					if(lock_progetto!="cart.png"){
-					   if(lock_microverba=="cart.png"){
-					   
-						   lock="lock.jpg";
-						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descem])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-					   
-					   }
-					   else{
-					   
-						   if(result[prezzoEM] === null || typeof(result[prezzoEM]) == 'undefined' || result[prezzoEM]=="null" || result[prezzoEM]==""){
-						   
-						   lock="unlock.png";
-						   
-						   if((result[pswEM]=="")||(result[pswEM]==$.base64.encode(pswEMM))){
-						   
-						   lock="unlock.png";
-						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descem])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-						   
-						   
-						   }
-						   else{
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswEM+"'><img src='img/lock.jpg' width='40'></a></a></td><td align='left' width='100%'></td></tr>"
-						   
-						   }
-						   
-						   }
-						   else{
-						   lock="cart.png";
-						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoEM]+", "+$.base64.decode(result[descem])+"</td><td align='right' width='40'><a id='piu"+ identEM +"piu"+ prezzoEM +"piu"+ nomeEM +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-						   
-						   }
-					   
-					   }
-					}
-					else{
-					   lock="lock.jpg";
-					   
-					   
-					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descem])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-
-					}
+				   if(lock_microverba=="cart.png"){
 				   
+				   lock="cart.png";
 				   
-				   //tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_email.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descem])+"</td><td align='right' width='40'><a id='piu"+ identEM +"piu"+ prezzoEM +"piu"+ nomeEM +"'><img src='img/"+lock+"' width='40'></a></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_smartphone.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descem])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
+				   }
+				   else{
 				   
-				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+				   if(result[prezzoEM] === null || typeof(result[prezzoEM]) == 'undefined' || result[prezzoEM]=="null" || result[prezzoEM]==""){
+				   
+				   if((result[pswEM]=="")||(result[pswEM]==$.base64.encode(pswEMM))){
+				   
+				   lock="unlock.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_smartphone.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descem])+"</span></td><td align='right' width='40'></td></tr>"
+				   
+				   }
+				   else{
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_smartphone.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'><input id='fff_"+pswEM+"' name='password' class='testo_contenuti_pw' placeholder='password' readonly></span></td><td align='right' width='40'></td></tr>"
+				   
+				   }
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_smartphone.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+result[prezzoEM]+", "+$.base64.decode(result[descem])+"</span></td><td align='right' width='40'><a id='piu"+ identEM +"piu"+ prezzoEM +"piu"+ nomeEM +"'> <div class='ico_cart'></div></a></td></tr>"
+				   }
+				   }
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_smartphone.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descem])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
+				   
+				   }
 				   
 				   $("#testvideo").append(tabella);
 				   
@@ -4317,52 +4194,41 @@ var app = {
 				   pswUI = "UI_lock_"+i
 				   
 					if(lock_progetto!="cart.png"){
-					   if(lock_microverba=="cart.png"){
-					   
-						   lock="lock.jpg";
-						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_foto.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descui])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-					   
-					   }
-					   else{
-					   
-						   if(result[prezzoUI] === null || typeof(result[prezzoUI]) == 'undefined' || result[prezzoUI]=="null" || result[prezzoUI]==""){
-						   
-						   lock="unlock.png";
-						   
-						   if((result[pswUI]=="")||(result[pswUI]==$.base64.encode(pswUII))){
-						   
-						   lock="unlock.png";
-						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_foto.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descui])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-						   
-						   
-						   }
-						   else{
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_foto.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswUI+"'><img src='img/lock.jpg' width='40'></a></a></td><td align='left' width='100%'></td></tr>"
-						   
-						   }
-						   
-						   }
-						   else{
-						   lock="cart.png";
-						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_foto.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoUI]+", "+$.base64.decode(result[descui])+"</td><td align='right' width='40'><a id='piu"+ identUI +"piu"+ prezzoUI +"piu"+ nomeUI +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-						   
-						   }
-					   
-					   }
-					}
-					else{
-					   lock="lock.jpg";
-					   
-					   
-					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_foto.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descui])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-
-					}
-
+				   if(lock_microverba=="cart.png"){
 				   
-				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+				   lock="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_photo.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descui])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
+				   }
+				   else{
+				   
+				   if(result[prezzoUI] === null || typeof(result[prezzoUI]) == 'undefined' || result[prezzoUI]=="null" || result[prezzoUI]==""){
+				   
+				   if((result[pswUI]=="")||(result[pswUI]==$.base64.encode(pswUII))){
+				   
+				   lock="unlock.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_photo.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descui])+"</span></td><td align='right' width='40'></td></tr>"
+				   
+				   }
+				   else{
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_photo.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'><input id='fff_"+pswUI+"' name='password' class='testo_contenuti_pw' placeholder='password' readonly></span></td><td align='right' width='40'></td></tr>"
+				   
+				   }
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_photo.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+result[prezzoUI]+", "+$.base64.decode(result[descui])+"</span></td><td align='right' width='40'><a id='piu"+ identUI +"piu"+ prezzoUI +"piu"+ nomeUI +"'> <div class='ico_cart'></div></a></td></tr>"
+				   }
+				   }
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_photo.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descui])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
+				   
+				   }
 				   
 				   $("#testvideo").append(tabella);
 				   
@@ -4505,52 +4371,41 @@ var app = {
 				   pswUD = "UD_lock_"+i
 				   
 					if(lock_progetto!="cart.png"){
-					   if(lock_microverba=="cart.png"){
-					   
-						   lock="lock.jpg";
-						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_document.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descud])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-					   
-					   }
-					   else{
-					   
-						   if(result[prezzoUD] === null || typeof(result[prezzoUD]) == 'undefined' || result[prezzoUD]=="null" || result[prezzoUD]==""){
-						   
-						   lock="unlock.png";
-						   
-						   if((result[pswUD]=="")||(result[pswUD]==$.base64.encode(pswUDD))){
-						   
-						   lock="unlock.png";
-						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_document.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descud])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-						   
-						   
-						   }
-						   else{
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_document.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswUD+"'><img src='img/lock.jpg' width='40'></a></a></td><td align='left' width='100%'></td></tr>"
-						   
-						   }
-						   
-						   }
-						   else{
-						   lock="cart.png";
-						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_document.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoUD]+", "+$.base64.decode(result[descud])+"</td><td align='right' width='40'><a id='piu"+ identUD +"piu"+ prezzoUD +"piu"+ nomeUD +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-						   
-						   }
-					   
-					   }
-					}
-					else{
-					   lock="lock.jpg";
-					   
-					   
-					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_document.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descud])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-
-					}
-
+				   if(lock_microverba=="cart.png"){
 				   
-				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+				   lock="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_document.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descud])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
+				   }
+				   else{
+				   
+				   if(result[prezzoUD] === null || typeof(result[prezzoUD]) == 'undefined' || result[prezzoUD]=="null" || result[prezzoUD]==""){
+				   
+				   if((result[pswUD]=="")||(result[pswUD]==$.base64.encode(pswUDD))){
+				   
+				   lock="unlock.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_document.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descud])+"</span></td><td align='right' width='40'></td></tr>"
+				   
+				   }
+				   else{
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_document.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'><input id='fff_"+pswUD+"' name='password' class='testo_contenuti_pw' placeholder='password' readonly></span></td><td align='right' width='40'></td></tr>"
+				   
+				   }
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_document.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+result[prezzoUD]+", "+$.base64.decode(result[descud])+"</span></td><td align='right' width='40'><a id='piu"+ identUD +"piu"+ prezzoUD +"piu"+ nomeUD +"'> <div class='ico_cart'></div></a></td></tr>"
+				   }
+				   }
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_document.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descud])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
+				   
+				   }
 				   
 				   $("#testvideo").append(tabella);
 				   
@@ -4693,52 +4548,41 @@ var app = {
 				   pswUA = "UA_lock_"+i
 				   
 					if(lock_progetto!="cart.png"){
-					   if(lock_microverba=="cart.png"){
-					   
-						   lock="lock.jpg";
-						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_audio.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descua])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-					   
-					   }
-					   else{
-					   
-						   if(result[prezzoUA] === null || typeof(result[prezzoUA]) == 'undefined' || result[prezzoUA]=="null" || result[prezzoUA]==""){
-						   
-						   lock="unlock.png";
-						   
-						   if((result[pswUA]=="")||(result[pswUA]==$.base64.encode(pswUAA))){
-						   
-						   lock="unlock.png";
-						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_audio.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descua])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-						   
-						   
-						   }
-						   else{
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_audio.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswUA+"'><img src='img/lock.jpg' width='40'></a></a></td><td align='left' width='100%'></td></tr>"
-						   
-						   }
-						   
-						   }
-						   else{
-						   lock="cart.png";
-						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_audio.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoUA]+", "+$.base64.decode(result[descua])+"</td><td align='right' width='40'><a id='piu"+ identUA +"piu"+ prezzoUA +"piu"+ nomeUA +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-						   
-						   }
-					   
-					   }
-					}
-					else{
-					   lock="lock.jpg";
-					   
-					   
-					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_audio.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descua])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-
-					}
-
+				   if(lock_microverba=="cart.png"){
 				   
-				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+				   lock="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_audio.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descua])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
+				   }
+				   else{
+				   
+				   if(result[prezzoUA] === null || typeof(result[prezzoUA]) == 'undefined' || result[prezzoUA]=="null" || result[prezzoUA]==""){
+				   
+				   if((result[pswUA]=="")||(result[pswUA]==$.base64.encode(pswUAA))){
+				   
+				   lock="unlock.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_audio.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descua])+"</span></td><td align='right' width='40'></td></tr>"
+				   
+				   }
+				   else{
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_audio.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'><input id='fff_"+pswUA+"' name='password' class='testo_contenuti_pw' placeholder='password' readonly></span></td><td align='right' width='40'></td></tr>"
+				   
+				   }
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_audio.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+result[prezzoUA]+", "+$.base64.decode(result[descua])+"</span></td><td align='right' width='40'><a id='piu"+ identUA +"piu"+ prezzoUA +"piu"+ nomeUA +"'> <div class='ico_cart'></div></a></td></tr>"
+				   }
+				   }
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_audio.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descua])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
+				   
+				   }
 				   
 				   $("#testvideo").append(tabella);
 				   
@@ -4880,52 +4724,41 @@ var app = {
 				   pswUV = "UV_lock_"+i
 				   
 					if(lock_progetto!="cart.png"){
-					   if(lock_microverba=="cart.png"){
-					   
-						   lock="lock.jpg";
-						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_video_live.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descuv])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-					   
-					   }
-					   else{
-					   
-						   if(result[prezzoUV] === null || typeof(result[prezzoUV]) == 'undefined' || result[prezzoUV]=="null" || result[prezzoUV]==""){
-						   
-						   lock="unlock.png";
-						   
-						   if((result[pswUV]=="")||(result[pswUV]==$.base64.encode(pswUVV))){
-						   
-						   lock="unlock.png";
-						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_video_live.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descuv])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-						   
-						   
-						   }
-						   else{
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_video_live.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswUV+"'><img src='img/lock.jpg' width='40'></a></a></td><td align='left' width='100%'></td></tr>"
-						   
-						   }
-						   
-						   }
-						   else{
-						   lock="cart.png";
-						   
-						   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_video_live.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoUV]+", "+$.base64.decode(result[descuv])+"</td><td align='right' width='40'><a id='piu"+ identUV +"piu"+ prezzoUV +"piu"+ nomeUV +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-						   
-						   }
-					   
-					   }
-					}
-					else{
-					   lock="lock.jpg";
-					   
-					   
-					   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_video_live.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descuv])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-
-					}
-
+				   if(lock_microverba=="cart.png"){
 				   
-				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+				   lock="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descuv])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
+				   }
+				   else{
+				   
+				   if(result[prezzoUV] === null || typeof(result[prezzoUV]) == 'undefined' || result[prezzoUV]=="null" || result[prezzoUVV]==""){
+				   
+				   if((result[pswUV]=="")||(result[pswUV]==$.base64.encode(pswUVV))){
+				   
+				   lock="unlock.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descuv])+"</span></td><td align='right' width='40'></td></tr>"
+				   
+				   }
+				   else{
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'><input id='fff_"+pswUV+"' name='password' class='testo_contenuti_pw' placeholder='password' readonly></span></td><td align='right' width='40'></td></tr>"
+				   
+				   }
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+result[prezzoUV]+", "+$.base64.decode(result[descuv])+"</span></td><td align='right' width='40'><a id='piu"+ identUV +"piu"+ prezzoUV +"piu"+ nomeUV +"'> <div class='ico_cart'></div></a></td></tr>"
+				   }
+				   }
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descuv])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
+				   
+				   }
 				   
 				   $("#testvideo").append(tabella);
 				   

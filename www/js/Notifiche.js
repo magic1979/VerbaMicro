@@ -38,7 +38,7 @@ function onDeviceReady() {
 		var image;
 		
 		
-		/*var myScroll;
+		var myScroll;
 		   
 		   myScroll = new iScroll('wrapper', {
 								click: true,
@@ -63,7 +63,7 @@ function onDeviceReady() {
 					   
 				myScroll.refresh();
 					   
-			}, 500);*/
+			}, 500);
 		
 		
 		/*navigator.camera.getPicture(uploadPhoto, onFail, { quality: 50,
@@ -877,6 +877,12 @@ function onDeviceReady() {
 								   $("#cropbutton").show();
 								   $("#rotatebutton").show();
 								   
+								   setTimeout (function(){
+					   
+										myScroll.refresh();
+											   
+									}, 500);
+								   
 								   
 		   });
 
@@ -895,6 +901,12 @@ function onDeviceReady() {
 			
 			$("#cropbutton").show();
 			$("#rotatebutton").show();
+			
+			setTimeout (function(){
+					   
+				myScroll.refresh();
+					   
+			}, 500);
 	  
 			
          }
@@ -924,6 +936,12 @@ function onDeviceReady() {
 						 reader.readAsDataURL(file);
 						 });
 			}
+			
+			setTimeout (function(){
+					   
+				myScroll.refresh();
+					   
+			}, 500);
 	  
 	  
 		}
