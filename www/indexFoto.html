@@ -44,6 +44,8 @@
     
 	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
     <link rel="stylesheet" href="css/spinner.css" />
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 	
     <title>Salvatore</title>
     
@@ -381,31 +383,40 @@
 	
 	<div id="page" data-role="page" class="div2" >
 		
-	<div data-role="header" data-theme="c" data-position="fixed" data-tap-toggle="false" class="div1" data-add-back-btn="true" >
-		<table align="center" width="100%" valign="center" border="0"><tr><td></td></tr><tr><td align="center" valign="center"><img src="img/logo.png"  height="36px"></td></tr>
-		</table>
-	</div>
+	<p align="center"><span class="titolo1">micro<b style="margin:0px 3px;">::</b>verba</span></p>
         
     <div class="spinner" id="spinner"></div>
 		
 	<center>
+		<form id="form" name="form" action="entra2.asp" method="post">
 		
-	<form id="form" name="form" action="entra2.asp" method="post">
-		 <br><br>
-	
-		  <img id="fotomia" src="img/libreria.jpg" height="60">   <img id="scatta" src="img/fotocamera.png" height="60">
+		<div class="box3">
+			
+			<p align="center" class="testo1">Inserisci immagine</p>
+			
+			<div class="div_multimedia">
+				<div class="div_camera">
+					<img id="scatta" src="img/ico_camera.png" class="icona_camera">
+					<br>Fotocamera</div>
+				<div class="div_gallery">
+					<img id="fotomia" src="img/ico_gallery.png" class="icona_gallery">
+					<br>Galleria</div>
+			</div>
+			
+			<br>
+			<div id="views"></div>
+			
+			<br>
+			<a id="cropbutton" href="#" style="display:none"><img src="img/ico_crop.png" width="40"></a>
+			<a id="rotatebutton" href="#" style="display:none"><img src="img/ico_rotate.png" width="40"></a>
+			
+			<br>
+			<a id="ciccio1" style="display:none"><img src="img/ico_send.png" width="60"></a>
+			
+		</div>
+		
+		  <!--<img id="fotomia" src="img/libreria.jpg" height="60">   <img id="scatta" src="img/fotocamera.png" height="60">-->
 		  
-		  <br><br>
-		  <div id="views"></div>
-		  
-		  <br>
-		  <a id="cropbutton" href="#" style="display:none"><img src="img/taglia.png" width="40"></a>
-		  <a id="rotatebutton" href="#" style="display:none"><img src="img/rotate.png" width="40"></a>
-
-
-		<br><br>
-		<a id="ciccio1" style="display:none"><img src="img/plane.png" width="60"></a>
-	
 	</form>
 	
 	<br>

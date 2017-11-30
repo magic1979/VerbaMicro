@@ -741,7 +741,7 @@
 		
 		position: absolute;
 		width: 300px;
-		height: 180px;
+		height: 200px;
 		z-index: 15;
 		top: 50%;
 		left: 50%;
@@ -756,7 +756,7 @@
 		
 		position: absolute;
 		width: 300px;
-		height: 180px;
+		height: 200px;
 		z-index: 25;
 		top: 50%;
 		left: 50%;
@@ -771,7 +771,7 @@
 		
 		position: absolute;
 		width: 300px;
-		height: 180px;
+		height: 200px;
 		z-index: 30;
 		top: 50%;
 		left: 50%;
@@ -790,8 +790,7 @@
 
 
 <body>
-    <audio id="successSound" src="sound/pool.mp3" type="audio/mpeg" ></audio>
-	
+
 	<div id="page" data-role="page" class="div2">
 		
 		<!--<div data-role="header" data-theme="c" data-position="fixed" data-tap-toggle="false" class="div1" data-add-back-btn="true" >
@@ -811,68 +810,69 @@
 	
 	<form id="form" name="form" action="entra2.asp" method="post">
 	
-	<div id="prolock" class="prolock"  >
+	<div id="prolock" class="prolock" style="display:none" >
+		
+		<p class="testo1"><font color="#000">SBLOCCA MICROVERBA</font></p>
+		
+		<input type="text" data-role="none" name="pswp" id="pswp" placeholder="Codice" class="testo_contenuti_pw" >
+		
 		<br>
-		<b>SBLOCCA PROGETTO</b>
-		<br>
-		<input type="text" data-role="none" name="pswp" id="pswp" placeholder="psw progetto" class="scrivo2" >
-		<br>
-		<a id="richiediA" data-role="button" class="custom-btn" data-theme="b"><font color="#FFF" size="4">SBLOCCA</font></a><br>
+		 <a id="richiediA" name="button" class="bt_login" width="40%"><font color="#fff">SBLOCCA</font></a><br>
 		<a id="annullaA"><font color="#000" size="4">ANNULLA</font></a>
 	</div>
 	
 	
-	<div id="miclock" class="miclock"  >
+	<div id="miclock" class="miclock"  style="display:none">
+		
+		<p class="testo1"><font color="#000">SBLOCCA MICROVERBA</font></p>
+		
+		<input type="text" data-role="none" name="pswm" id="pswm" placeholder="Codice" class="testo_contenuti_pw" >
 		<br>
-		<b>SBLOCCA MICROVERBA</b>
-		<br>
-		<input type="text" data-role="none" name="pswm" id="pswm" placeholder="pswp" class="scrivo2" >
-		<br>
-		<a id="richiediB" data-role="button" class="custom-btn" data-theme="b"><font color="#FFF" size="4">SBLOCCA</font></a><br>
-		<a id="annullaB"><font color="#000" size="4">ANNULLA</font></a>
+		<a id="richiediB" name="button" class="bt_login" width="40%"><font color="#fff">SBLOCCA</font></a><br>
+		<a id="annullaB"><font color="#000">ANNULLA</font></a>
 	</div>
 	
 	
-	<div id="celllock" class="contolock"  >
-		<br>
-		<b>UNLOCK PHONE</b>
-		<br>
-			<input type="text" data-role="none" name="emailphone" id="emailphone" placeholder="email" >
+	<div id="celllock" class="contolock"  style="display:none">
+
+		<p class="testo1"><font color="#000">UNLOCK PHONE</font></p>
+		
+			<input type="text" data-role="none" name="emailphone" id="emailphone" placeholder="email" class="testo_contenuti_pw" >
 			<input type="hidden" data-role="none" name="sblocco" id="sblocco" placeholder="Codice" style="display:none">
 		<br>
-		<a id="richiedi22" data-role="button" class="custom-btn" data-theme="b"><font color="red" size="4">UNLOCK</font></a><br>
-		<!--<a id="richiedi23" data-role="button" class="custom-btn" data-theme="b" style="display:none"><font color="red" size="4">CODICE</font></a><br>-->
-		<a href="#" id="annulla22"><font color="#000" size="4">CANCEL</font></a>
+		<a id="richiedi22" name="button" class="bt_login" width="40%"><font color="#fff">UNLOCK</font></a><br>
+		<a id="annulla22"><font color="#000">CANCEL</font></a>
+
 	</div>
 	
 	
 	<div id="contlock" class="contolock" style="display:none" >
-		<br>
-		<b>SBLOCCA CONTENUTO</b>
-		<br>
-		<input type="text" data-role="none" name="pswYTT" id="pswYTT" placeholder="You Tube" >
-		<input type="hidden" data-role="none" name="pswVAA" id="pswVAA" placeholder="Video" >
-		<input type="hidden" data-role="none" name="pswFAA" id="pswFAA" placeholder="File Audio" >
-		<input type="hidden" data-role="none" name="pswPWW" id="pswPWW" placeholder="Web" >
-		<input type="hidden" data-role="none" name="pswFBB" id="pswFBB" placeholder="Facebook" >
-		<input type="hidden" data-role="none" name="pswTFF" id="pswTFF" placeholder="Telefono" >
-		<input type="hidden" data-role="none" name="pswTWW" id="pswTWW" placeholder="Twitter" >
-		<input type="hidden" data-role="none" name="pswIGG" id="pswIGG" placeholder="Instagram" >
-		<input type="hidden" data-role="none" name="pswUSS" id="pswUSS" placeholder="Altro" >
-		<input type="hidden" data-role="none" name="pswSVV" id="pswSVV" placeholder="Streaming V" >
-		<input type="hidden" data-role="none" name="pswSAA" id="pswSAA" placeholder="Streaming A" >
-		<input type="hidden" data-role="none" name="pswTMM" id="pswTMM" placeholder="Mobile" >
-		<input type="hidden" data-role="none" name="pswEMM" id="pswEMM" placeholder="Email" >
 		
-		<input type="hidden" data-role="none" name="pswUII" id="pswUII" placeholder="Picture" >
-		<input type="hidden" data-role="none" name="pswUDD" id="pswUDD" placeholder="File" >
-		<input type="hidden" data-role="none" name="pswUAA" id="pswUAA" placeholder="Audio" >
-		<input type="hidden" data-role="none" name="pswUVV" id="pswUVV" placeholder="Video" >
+		<p class="testo1"><font color="#000">SBLOCCA CONTENUTO</font></p>
 		
-		<input type="hidden" data-role="none" name="pswYTTBLOC" id="pswYTTBLOC" placeholder="pswp" class="scrivo2" >
+		<input type="text" data-role="none" name="pswYTT" id="pswYTT" placeholder="You Tube" class="testo_contenuti_pw" >
+		<input type="hidden" data-role="none" name="pswVAA" id="pswVAA" placeholder="Video" class="testo_contenuti_pw">
+		<input type="hidden" data-role="none" name="pswFAA" id="pswFAA" placeholder="File Audio" class="testo_contenuti_pw">
+		<input type="hidden" data-role="none" name="pswPWW" id="pswPWW" placeholder="Web" class="testo_contenuti_pw">
+		<input type="hidden" data-role="none" name="pswFBB" id="pswFBB" placeholder="Facebook" class="testo_contenuti_pw">
+		<input type="hidden" data-role="none" name="pswTFF" id="pswTFF" placeholder="Telefono" class="testo_contenuti_pw">
+		<input type="hidden" data-role="none" name="pswTWW" id="pswTWW" placeholder="Twitter" class="testo_contenuti_pw">
+		<input type="hidden" data-role="none" name="pswIGG" id="pswIGG" placeholder="Instagram" class="testo_contenuti_pw">
+		<input type="hidden" data-role="none" name="pswUSS" id="pswUSS" placeholder="Altro" class="testo_contenuti_pw">
+		<input type="hidden" data-role="none" name="pswSVV" id="pswSVV" placeholder="Streaming V" class="testo_contenuti_pw">
+		<input type="hidden" data-role="none" name="pswSAA" id="pswSAA" placeholder="Streaming A" class="testo_contenuti_pw">
+		<input type="hidden" data-role="none" name="pswTMM" id="pswTMM" placeholder="Mobile" class="testo_contenuti_pw">
+		<input type="hidden" data-role="none" name="pswEMM" id="pswEMM" placeholder="Email" class="testo_contenuti_pw">
+		
+		<input type="hidden" data-role="none" name="pswUII" id="pswUII" placeholder="Picture" class="testo_contenuti_pw">
+		<input type="hidden" data-role="none" name="pswUDD" id="pswUDD" placeholder="File" class="testo_contenuti_pw">
+		<input type="hidden" data-role="none" name="pswUAA" id="pswUAA" placeholder="Audio" class="testo_contenuti_pw">
+		<input type="hidden" data-role="none" name="pswUVV" id="pswUVV" placeholder="Video" class="testo_contenuti_pw">
+		
+		<input type="hidden" data-role="none" name="pswYTTBLOC" id="pswYTTBLOC" placeholder="pswp" class="testo_contenuti_pw">
 		<br>
-		<a id="richiedi2" data-role="button" class="custom-btn" data-theme="b"><font color="#FFF" size="4">SBLOCCA</font></a><br>
-		<a id="annulla33"><font color="#000" size="4">ANNULLA</font></a>
+		<a id="richiedi2" name="button" class="bt_login" width="40%"><font color="#fff">SBLOCCA</font></a><br>
+		<a id="annulla33" class="testo1"><font color="#000">ANNULLA</font></a>
 	</div>
 	
 	
@@ -930,11 +930,21 @@
 					  
 				</form>
 				
-				<br><br>
+				<br>
+                
+                <div id="informazioni1" class="div_info" style="display:none"><div id="informazioni1_close" class="ico_close"></div><br><b>PROGETTO</b><br><div id="testoinfoprogetto"></div></div>
 				
-				<div id="testvideo"></div>
+				<div id="informazioni2" class="div_info" style="display:none"><div id="informazioni2_close" class="ico_close"></div><br><b><div id="ricercainfomicro"></div></b><br><div id="testoinfomicro"></div></div>
 				
-				<br><br>
+				<div id="box2" class="box2" style="display:none">
+					<div id="tutto"></div>
+					
+					<div class="titolo_testo_microverba"><div id="ricerca">roma :: italy</div><br><a id="vediinfomic"><div class="ico_info_microverba"></div></a><div id="_sblocca_mic" class="ico_lock_microverba" style="display:none"></div><div id="_ident_prezzo_nome" class="ico_buy" style="display:none"></div><br><div id="eurmic" class='euro' style="display:none"></div></div>
+					
+                    <div id="testvideo"></div>
+                </div>
+				
+				<br>
 						
 				<div id="TOTPrezzo"></div>
 				
@@ -953,9 +963,7 @@
 				
 				<br><br>
 
-			 <div class="titolo_div_inserimenti">IN EVIDENZA</div>
-
-			<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+			<br><br><br><br><br><br><br>
 		</div>
 	</div>
 	

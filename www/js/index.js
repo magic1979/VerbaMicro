@@ -1205,6 +1205,8 @@ var app = {
 		
 		function richiesta(pagina,pagina1){
 			
+			$("#box2").show()
+			
 			$("#testvideo").html("");
 			$("#tutto").html("");
 			var tabella = "";
@@ -1333,7 +1335,8 @@ var app = {
 				//alert("R" + radice + "F" + foglia)
 			}
 			
-			//alert("2")
+			$("#ricerca").html(foglia3 + " :: " + radice3);
+			$("#ricercainfomicro").html(foglia3 + " :: " + radice3);
 			
 			var lock_microverba = "";
 			var lock_progetto = "";
@@ -1359,22 +1362,22 @@ var app = {
 				   var tabella = "<table width='90%' align='center' border='0'>";
 				   
 				   if((result.radice!="")&&(result.foglia!="")){
-				   tabella = tabella + "<tr><td align='left' width='150'>-</td><td align='left' width='100%'> "+$.base64.decode(result.messaggio)+" </td></tr><tr><td align='left' width='150'>Progetto: </td><td align='left' width='100%'></td></tr><tr><td align='left' width='150'>Descrizione Progetto: </td><td align='left' width='100%'></td></tr>"
+				     tabella = tabella + "<tr><td align='left' width='150'>-</td><td align='left' width='100%'><p class='testo1'><font color='#fff'>"+$.base64.decode(result.messaggio)+"</font></p> </td></tr><tr><td align='left' width='150'><p class='testo1'><font color='#fff'>Progetto: </font></p></td><td align='left' width='100%'></td></tr><tr><td align='left' width='150'><p class='testo1'><font color='#fff'>Descrizione Progetto: </font></p></td><td align='left' width='100%'></td></tr>"
 				   
-				   tabella = tabella + "</table><br>";
+				     tabella = tabella + "</table><br>";
 				   
-				   $("#tutto").append(tabella);
+				     $("#tutto").append(tabella);
 				   }
 				   else{
 				   var tabella = "<table width='90%' align='center' border='0'>";
 				   
 				   if((result.messaggio=="TmVzc3VuIE1pY3JvdmVyYmEgdHJvdmF0bw==")||(result.messaggio=="TmVzc3VuYSBmb2dsaWEgZGlzcG9uaWJpbGU=")){
 				   
-				   tabella = tabella + "<tr><td align='left' width='150'>-</td><td align='left' width='100%'> "+$.base64.decode(result.messaggio)+" </td></tr><tr><td align='left' width='150'>Progetto: </td><td align='left' width='100%'></td></tr><tr><td align='left' width='150'>Descrizione Progetto: </td><td align='left' width='100%'></td></tr>"
+				    	tabella = tabella + "<tr><td align='left' width='150'>-</td><td align='left' width='100%'><p class='testo1'><font color='#fff'> "+$.base64.decode(result.messaggio)+"</font></p> </td></tr><tr><td align='left' width='150'><p class='testo1'><font color='#fff'>Progetto:</font></p> </td><td align='left' width='100%'></td></tr><tr><td align='left' width='150'><p class='testo1'><font color='#fff'>Descrizione Progetto: </font></p></td><td align='left' width='100%'></td></tr>"
 				   
-				   tabella = tabella + "</table><br>";
+				   		tabella = tabella + "</table><br>";
 				   
-				   $("#tutto").append(tabella);
+				  	 $("#tutto").append(tabella);
 				   }
 				   else{
 				   
@@ -1384,11 +1387,11 @@ var app = {
 				   
 				   var tabella = "<table width='90%' align='center' border='0'>";
 				   
-				   tabella = tabella + "<tr><td align='center' width='100%' colspan='2'>"+$.base64.decode(result.messaggio)+"</td></tr></tr>"
+				   		tabella = tabella + "<tr><td align='center' width='100%' colspan='2'><p class='testo1'><font color='#fff'>"+$.base64.decode(result.messaggio)+"</font></p></td></tr></tr>"
 				   
-				   tabella = tabella + "<tr><td align='center' width='80' colspan='2'><br><a id='pag_"+result.nextPaginationRootStart+"'>"+result.nextPaginationRootStart+"</a></td></tr></table><br>";
+				   		tabella = tabella + "<tr><td align='center' width='80' colspan='2'><br><a id='pag_"+result.nextPaginationRootStart+"'><p class='testo1'><font color='#fff'>"+result.nextPaginationRootStart+"</font></p></a></td></tr></table><br>";
 				   
-				   $("#tutto").append(tabella);
+				   		$("#tutto").append(tabella);
 				   
 				   $(document).on("touchstart", "#pag_"+ result.nextPaginationRootStart +"", function(e){
 								  var paginazione = this.id
@@ -1412,7 +1415,7 @@ var app = {
 				   
 				   var tabella = "<table width='90%' align='center' border='0'>";
 				   
-				   tabella = tabella + "<tr><td align='center' width='100%' colspan='2'><b>Suggerimento Foglie:</b><a id='root_"+a1[i]+"'> "+a1[i]+"</a></td></tr></tr>"
+				   tabella = tabella + "<tr><td align='center' width='100%' colspan='2'><p class='testo1'><font color='#fff'><b>Suggerimento Foglie:</font></p></b><a id='root_"+a1[i]+"'> <p class='testo1'><font color='#fff'>"+a1[i]+"</font></p></a></td></tr></tr>"
 				   
 				   tabella = tabella + "</table><br>";
 				   $("#tutto").append(tabella);
@@ -1444,9 +1447,9 @@ var app = {
 				   
 				   var tabella = "<table width='90%' align='center' border='0'>";
 				   
-				   tabella = tabella + "<tr><td align='center' width='100%' colspan='2'>"+$.base64.decode(result.messaggio)+"</td></tr></tr>"
+				   tabella = tabella + "<tr><td align='center' width='100%' colspan='2'><p class='testo1'><font color='#fff'>"+$.base64.decode(result.messaggio)+"</font></p></td></tr></tr>"
 				   
-				   tabella = tabella + "<tr><td align='center' width='80' colspan='2'><br><a id='pag_"+result.nextPaginationLeafStart+"'>"+result.nextPaginationLeafStart+"</a></td></tr></table><br>";
+				   tabella = tabella + "<tr><td align='center' width='80' colspan='2'><br><a id='pag_"+result.nextPaginationLeafStart+"'><p class='testo1'><font color='#fff'>"+result.nextPaginationLeafStart+"</font></p></a></td></tr></table><br>";
 				   
 				   $("#tutto").append(tabella);
 				   
@@ -1475,7 +1478,7 @@ var app = {
 				   var tabella = "<table width='90%' align='center' border='0'>";
 				   
 				   if(risultato!=a1[i]){
-				   tabella = tabella + "<tr><td align='center' width='100%' colspan='2'><b>Suggerimento Foglie:</b><a id='root_"+a1[i]+"'> "+a1[i]+"</a></td></tr></tr>"
+				   		tabella = tabella + "<tr><td align='center' width='100%' colspan='2'><p class='testo1'><font color='#fff'><b>Suggerimento Foglie:</font></p></b><a id='root_"+a1[i]+"'><p class='testo1'><font color='#fff'> "+a1[i]+"</font></p></a></td></tr></tr>"
 				   }
 				   
 				   
@@ -1519,51 +1522,85 @@ var app = {
 				   var tabella = "<table width='90%' align='center' border='0'>";
 				   
 				   if(result.pr_pric==""){
-				   //alert("1")
-				   if((result.project_lock=="")||(result.project_lock==$.base64.encode(pswp))){
-				   //alert("2")
-				   if(result.pric==""){
-				   //alert("3")
-				   if((result.lock=="")||(result.lock==$.base64.encode(pswm))){
-				   //alert("4")
 				   
-				   var lock="unlock.png";
+					   if((result.project_lock=="")||(result.project_lock==$.base64.encode(pswp))){
 				   
-				   tabella = tabella + "<tr><td align='left' width='150'><img src='img/"+lock+"' width='40'></td><td align='left' width='100%'> "+$.base64.decode(result.messaggio)+" </td></tr><tr><td align='left' width='150'>Progetto: </td><td align='left' width='100%'>"+$.base64.decode(result.project)+"</td></tr><tr><td align='left' width='150'>Descrizione Progetto: </td><td align='left' width='100%'>"+$.base64.decode(result.description_microverba)+"</td></tr>"
+						   if(result.pric==""){
+				   
+							   if((result.lock=="")||(result.lock==$.base64.encode(pswm))){
+				   
+							   		var lock="unlock.png";
+				   
+				   					tabella = tabella + "<tr><td align='left' width='150'><div class='titolo_div_contenuti'><span class='titolo_testo_albero'>"+$.base64.decode(result.project)+"</span><a id='vediinfo'><div class='ico_info'></div></a></div></td></tr>"
+				   
+				   
+				   					$("#_sblocca_mic").hide();
+									$("#_ident_prezzo_nome").hide();
+									$("#eurmic").hide();
+				   
+				   					$("#testoinfoprogetto").html($.base64.decode(result.project_description))
+				   					$("#testoinfomicro").html($.base64.decode(result.description_microverba))
+				   
+				   					//<img src='img/"+lock+"' width='40'></td><td align='left' width='100%'> "+$.base64.decode(result.messaggio)+" </td></tr><tr><td align='left' width='150'>Progetto: </td><td align='left' width='100%'>"+$.base64.decode(result.project)+"</td></tr><tr><td align='left' width='150'>Descrizione Progetto: </td><td align='left' width='100%'>"+$.base64.decode(result.description_microverba)+"
+							   }
+							   else{
+				   
+								var lock_microverba ="cart.png";
+				   
+								//PASSWORD MICROVERBA
+
+								//tabella = tabella + "<tr><td align='center' width='100%' colspan='2'><a id='_sblocca_prj'>SBLOCCA MICROVERBA</a></td><td align='left' width='100%'></td></tr>"
+				   
+				   				tabella = tabella + "<tr><td align='left' width='150'><div class='titolo_div_contenuti'><span class='titolo_testo_albero'>"+$.base64.decode(result.messaggio)+"</span><a id='vediinfo'><div class='ico_info'></div></a></div></td></tr>"
+				   
+				   				$("#_sblocca_mic").show();
+				   				$("#testoinfoprogetto").html($.base64.decode(result.project_description))
+				   				$("#testoinfomicro").html($.base64.decode(result.description_microverba))
+				   
+							   }
+				   
+						   }
+						   else{
+							   var lock_microverba ="cart.png";
+				   
+							   //tabella = tabella + "<tr><td align='left' width='150'><a id='_ident_prezzo_nome'> <img src='img/"+lock_microverba+"' width='40'></a></td><td align='left' width='100%'>"+$.base64.decode(result.messaggio)+"</td></tr><tr><td align='left' width='120'> Prezzo: </td><td align='left' width='100%'>"+$.base64.decode(result.pric)+" </td></tr><tr><td align='left' width='120'>Microverba: </td><td align='left' width='100%'>"+$.base64.decode(result.description_microverba)+"</td></tr>"
+				   
+				   				tabella = tabella + "<tr><td align='left' width='150'><div class='titolo_div_contenuti'><span class='titolo_testo_albero'>"+$.base64.decode(result.messaggio)+"</span><a id='vediinfo'><div class='ico_info'></div></a></div></td></tr>"
+				   
+				                //<a id='_ident_prezzo_nome'><div class='ico_buy'></div></a><br><div class='euro'>€ "+$.base64.decode(result.pric)+"</div>
+				   
+				   				$("#_ident_prezzo_nome").show();
+				   				$("#eurmic").show();
+				   				$("#eurmic").html("€ "+$.base64.decode(result.pric)+"");
+				   
+				   				$("#testoinfoprogetto").html($.base64.decode(result.project_description))
+				   				$("#testoinfomicro").html($.base64.decode(result.description_microverba))
+							}
+				   
+					   }
+					   else{
+						   var lock_progetto ="cart.png";
+						   //$("#prolock").show()
+				   
+						    //tabella = tabella + "<tr><td align='center' width='100%' colspan='2'><a id='_sblocca_prj'>SBLOCCA PROGETTO</a></td><td align='left' width='100%'></td></tr>"
+				   
+				   			tabella = tabella + "<tr><td align='left' width='150'><div class='titolo_div_contenuti'><span class='titolo_testo_albero'>"+$.base64.decode(result.project)+"</span><a id='vediinfo'><div class='ico_info'></div></a><a id='_sblocca_prj'><div class='ico_lock_microverba'></div></a></div></td></tr><tr><td align='left' width='150'></td></tr>"
+				   
+				   			$("#testoinfoprogetto").html($.base64.decode(result.project_description))
+				   			$("#testoinfomicro").html($.base64.decode(result.description_microverba))
+					   }
+				   
 				   }
 				   else{
-				   //alert($.base64.encode(pswm))
-				   var lock_microverba ="cart.png";
-				   //$("#microlock").html("<input type='text' data-role='none' name='pswm' id='pswm' placeholder='pswm' class='scrivo2' >");
+					   var lock_progetto ="cart.png";
 				   
-				   //$("#prolock").hide()
-				   //$("#miclock").show()
+					   //tabella = tabella + "<tr><td align='left' width='150'><a id='pr_ident_prezzo_nome'> <img src='img/"+lock_progetto+"' width='40'></a></td><td align='left' width='100%'></td></tr><tr><td align='left' width='120'> Prezzo: </td><td align='left' width='100%'>"+$.base64.decode(result.pr_pric)+" </td></tr><tr><td align='left' width='120'>Progetto: </td><td align='left' width='100%'>"+$.base64.decode(result.project_description)+"</td></tr>"
 				   
-				   tabella = tabella + "<tr><td align='center' width='100%' colspan='2'><a id='_sblocca_mic'>SBLOCCA MICROVERBA</a></td><td align='left' width='100%'></td></tr>"
-				   }
+					   tabella = tabella + "<tr><td align='left' width='150'><div class='titolo_div_contenuti'><span class='titolo_testo_albero'>"+$.base64.decode(result.project)+"</span><a id='vediinfo'><div class='ico_info'></div></a><a id='pr_ident_prezzo_nome'><div class='ico_buy'></div></a><br><div class='euro'>€ "+$.base64.decode(result.pr_pric)+"</div></div></td></tr>"
 				   
-				   }
-				   else{
-				   var lock_microverba ="cart.png";
+					   $("#testoinfoprogetto").html($.base64.decode(result.project_description))
+					   $("#testoinfomicro").html($.base64.decode(result.description_microverba))
 				   
-				   tabella = tabella + "<tr><td align='left' width='150'><a id='_ident_prezzo_nome'> <img src='img/"+lock_microverba+"' width='40'></a></td><td align='left' width='100%'>"+$.base64.decode(result.messaggio)+"</td></tr><tr><td align='left' width='120'> Prezzo: </td><td align='left' width='100%'>"+$.base64.decode(result.pric)+" </td></tr><tr><td align='left' width='120'>Microverba: </td><td align='left' width='100%'>"+$.base64.decode(result.description_microverba)+"</td></tr>"
-				   }
-				   
-				   }
-				   else{
-				   var lock_microverba ="cart.png";
-				   //$("#progettolock").html("<input type='text' data-role='none' name='pswp' id='pswp' placeholder='pswp' class='scrivo2' >");
-				   
-				   //$("#prolock").show()
-				   
-				   tabella = tabella + "<tr><td align='center' width='100%' colspan='2'><a id='_sblocca_prj'>SBLOCCA PROGETTO</a></td><td align='left' width='100%'></td></tr>"
-				   }
-				   
-				   }
-				   else{
-				   var lock_progetto ="cart.png";
-				   
-				   tabella = tabella + "<tr><td align='left' width='150'><a id='pr_ident_prezzo_nome'> <img src='img/"+lock_progetto+"' width='40'></a></td><td align='left' width='100%'></td></tr><tr><td align='left' width='120'> Prezzo: </td><td align='left' width='100%'>"+$.base64.decode(result.pr_pric)+" </td></tr><tr><td align='left' width='120'>Progetto: </td><td align='left' width='100%'>"+$.base64.decode(result.project_description)+"</td></tr>"
 				   }
 				   
 				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
@@ -1703,52 +1740,42 @@ var app = {
 				   pswYT = "YT_lock_"+i
 				   
 				   if(lock_progetto!="cart.png"){
-				   if(lock_microverba=="cart.png"){
+					   if(lock_microverba=="cart.png"){
 				   
-				   lock="lock.jpg";
+						   lock="cart.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descyt])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+						   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descyt])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
+					   }
+					   else{
 				   
-				   }
-				   else{
-				   
-				   if(result[prezzoYT] === null || typeof(result[prezzoYT]) == 'undefined' || result[prezzoYT]=="null" || result[prezzoYT]==""){
-				   
-				   
-				    if((result[pswYT]=="")||(result[pswYT]==$.base64.encode(pswYTT))){
-				   
-				     lock="unlock.png";
-				   
-				     tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descyt])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+						   if(result[prezzoYT] === null || typeof(result[prezzoYT]) == 'undefined' || result[prezzoYT]=="null" || result[prezzoYT]==""){
 
+								if((result[pswYT]=="")||(result[pswYT]==$.base64.encode(pswYTT))){
 				   
-				    }
-				    else{
-				     tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswYT+"'><img src='img/lock.jpg' width='40'></a></td><td align='left' width='100%'></td></tr>"
+									 lock="unlock.png";
 				   
-				    }
+									 tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descyt])+"</span></td><td align='right' width='40'></td></tr>"
+
+								}
+								else{
+								  tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'><input id='fff_"+pswYT+"' name='password' class='testo_contenuti_pw' placeholder='password' readonly></span></td><td align='right' width='40'></td></tr>"
+				                   //<a id='fff_"+pswYT+"'><div class='ico_lock_microverba'></div></a>
+
+								}
+						   }
+						   else{
+							   lock="cart.png";
 				   
+							   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+result[prezzoYT]+", "+$.base64.decode(result[descyt])+"</span></td><td align='right' width='40'><a id='piu"+ identYT +"piu"+ prezzoYT +"piu"+ nomeYT +"'> <div class='ico_cart'></div></a></td></tr>"
+						   }
+					  }
 				   }
 				   else{
+						   lock="cart.png";
 				   
-				   lock="cart.png";
-				   
-				   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoYT]+", "+$.base64.decode(result[descyt])+"</td><td align='right' width='40'><a id='piu"+ identYT +"piu"+ prezzoYT +"piu"+ nomeYT +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-				   
-				   }
+						   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descyt])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
 				   
 				   }
-				   }
-				   else{
-				   lock="lock.jpg";
-				   
-				   
-				   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_youtube.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descyt])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-				   
-				   }
-				   
-				   
-				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
 				   
 				   
 				   $("#testvideo").append(tabella);
@@ -1914,53 +1941,44 @@ var app = {
 				   
 				   pswVA = "VA_lock_"+i
 				   
+				  
+				  if(lock_progetto!="cart.png"){
+					   if(lock_microverba=="cart.png"){
 				   
-				   if(lock_progetto!="cart.png"){
-				   if(lock_microverba=="cart.png"){
+						   lock="cart.png";
 				   
-				   lock="lock.jpg";
+						   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descva])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
+					   }
+					   else{
 				   
-				   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_video.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descva])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
+						   if(result[prezzoVA] === null || typeof(result[prezzoVA]) == 'undefined' || result[prezzoVA]=="null" || result[prezzoVA]==""){
 				   
+							   if((result[pswVA]=="")||(result[pswVA]==$.base64.encode(pswVAA))){
+				   
+								   lock="unlock.png";
+				   
+								   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descva])+"</span></td><td align='right' width='40'></td></tr>"
+				   
+							   }
+							   else{
+							   	tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'><input id='fff_"+pswVA+"' name='password' class='testo_contenuti_pw' placeholder='password' readonly></span></td><td align='right' width='40'></td></tr>"
+				   
+							   }
+						   }
+						   else{
+						   lock="cart.png";
+				   
+						   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+result[prezzoVA]+", "+$.base64.decode(result[descva])+"</span></td><td align='right' width='40'><a id='piu"+ identVA +"piu"+ prezzoVA +"piu"+ nomeVA +"'> <div class='ico_cart'></div></a></td></tr>"
+						   }
+					   }
 				   }
 				   else{
+					   lock="cart.png";
 				   
-				   if(result[prezzoVA] === null || typeof(result[prezzoVA]) == 'undefined' || result[prezzoVA]=="null" || result[prezzoVA]==""){
-	   
-				    lock="unlock.png";
+					   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descva])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
 				   
-				    if((result[pswVA]=="")||(result[pswVA]==$.base64.encode(pswVAA))){
-				   
-				     lock="unlock.png";
-				   
-				     tabella = tabella + "<tr><td align='left' width='80'><a id='"+paperino+"'><img src='img/ico_video.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descva])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-				   
-				   
-				    }
-				    else{
-				     tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_video.png' width='80'></a></td><td align='left' width='100%'><font color='red'> Password</font></td><td align='right' width='120'><a id='fff_"+pswVA+"'><img src='img/lock.jpg' width='40'></a></td><td align='left' width='100%'></td></tr>"
-				   
-				    }
-				   
-				   }
-				   else{
-				    lock="cart.png";
-				   
-				    tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_video.png' width='65'></a></td><td align='left' width='100%'>"+result[prezzoVA]+", "+$.base64.decode(result[descva])+"</td><td align='right' width='40'><a id='piu"+ identVA +"piu"+ prezzoVA +"piu"+ nomeVA +"'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-				   
-				   }
-				   
-				   }
-				   }
-				   else{
-				   lock="lock.jpg";
-				   
-				   
-				   tabella = tabella + "<tr><td align='left' width='80'><a id='#'><img src='img/ico_video.png' width='65'></a></td><td align='left' width='100%'>"+$.base64.decode(result[descva])+"</td><td align='right' width='40'><a id='#'> <img src='img/"+lock+"' width='40'></a></td></tr>"
-				   
-				   }
-				   
-				   tabella = tabella + "<tr><td align='left' width='80' colspan='2'><br><br></td></tr></table><br>";
+				   } 
+				  
 				   
 				   $("#testvideo").append(tabella);
 				   
