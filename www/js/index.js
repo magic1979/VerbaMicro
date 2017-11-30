@@ -40,7 +40,16 @@ var app = {
 		
 		document.addEventListener('touchmove', function(e) { e.preventDefault(); }, false);
 		
-		//StatusBar.hide();
+		 $("input").focus(function(){
+			$("#footer").hide();
+        });
+        
+        $("input").blur(function(){
+			$("#footer").show();
+        });
+		
+		$("#miclock").hide()
+        $("#prolock").hide()
 		
 		$("#iddevice").html(localStorage.getItem("deviceid"))
 		
