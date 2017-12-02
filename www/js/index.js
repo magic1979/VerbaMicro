@@ -48,7 +48,7 @@ var app = {
 			$("#footer").show();
         });*/
 		
-		
+	
 		window.addEventListener('native.keyboardhide', keyboardHideHandler);
   
 		function keyboardHideHandler(e){
@@ -102,11 +102,10 @@ var app = {
 		var db;
         var dbCreated = false;
         var Badge10 = localStorage.getItem("Badge10");
-        $("#badde5").attr("data-badge", Badge10);
+        //$("#badde5").attr("data-badge", Badge10);
         
         if (Badge10 > 0){
-            $('#badde5').removeClass('badge2').addClass('badge1');
-            $("#badde5").html('<img id="carro3" src="img/CartW.png" width="20px">');
+            $("#prova").html(Badge10);
         }
         else{
             var Badge10 = 0;
@@ -263,9 +262,10 @@ var app = {
                        var Badge10 = localStorage.getItem("Badge10");
                        
                        
-                       $('#badde5').removeClass('badge2').addClass('badge1');
+                       /*$('#badde5').removeClass('badge2').addClass('badge1');
                        $("#badde5").attr("data-badge", Badge10);
-                       $("#badde5").html('<img id="carro3" src="img/CartW.png" width="20px">');
+                       $("#badde5").html('<img id="carro3" src="img/CartW.png" width="20px">');*/
+					   $("#prova").html(Badge10);
                        
         });
         
@@ -277,9 +277,10 @@ var app = {
                        var Badge10 = localStorage.getItem("Badge10");
                        
                        
-                       $('#badde5').removeClass('badge2').addClass('badge1');
+                       /*$('#badde5').removeClass('badge2').addClass('badge1');
                        $("#badde5").attr("data-badge", Badge10);
-                       $("#badde5").html('<img id="carro3" src="img/CartW.png" width="20px">');
+                       $("#badde5").html('<img id="carro3" src="img/CartW.png" width="20px">');*/
+					   $("#prova").html(Badge10);
                        
         });
 		
@@ -316,9 +317,10 @@ var app = {
                               var Badge10 = localStorage.getItem("Badge10");
                               
                               
-                              $('#badde5').removeClass('badge2').addClass('badge1');
+                              /*$('#badde5').removeClass('badge2').addClass('badge1');
                               $("#badde5").attr("data-badge", Badge10);
-                              $("#badde5").html('<img id="carro3" src="img/CartW.png" width="20px">');
+                              $("#badde5").html('<img id="carro3" src="img/CartW.png" width="20px">');*/
+							  $("#prova").html(Badge10);
                               
                               //alert("Insert")
                               seleziona()
@@ -416,23 +418,18 @@ var app = {
                                         
                                          var paperino2 = "_"+results.rows.item(i).id+"_"+results.rows.item(i).IdProdotto
 										 
-										// alert("paperino2:"+paperino2);
+										 tuttigliid = results.rows.item(i).IdProdotto;
+										 tuttigliid2 = results.rows.item(i).id;
                                          
                                          if(conta==0){
-                                           tuttigliid = results.rows.item(i).IdProdotto;
-										   tuttigliid2 = results.rows.item(i).id;
-                                         
-                                           $("#contenutoCart").append('<table class="tablesorter"><tr><td width="150"><font color="#000" size="2">ORDINE</font></td><td width="50"><font color="#000" size="2">QTA</font></td><td width="70"><font color="#000" size="2">COSTO</font></td><td width="40"><font color="#000" size="2"></font></td></tr><tr><td width="150"><font size="3">'+ results.rows.item(i).IdProdotto +'</font></td><td width="50"><font size="3">'+ results.rows.item(i).Qta +'<font color="#000" size="1"> x('+ Number(Punita).toFixed(2) +'&euro;)</font></td><td width="70"><font size="3">'+ Number(results.rows.item(i).Descrizione).toFixed(2) +'&euro;</font></td><td align="center" width="40"><a id="'+ paperino2 +'"><img src="img/minus.png" width="25"></a></td></tr></table>');
+                                            msg2 = msg2 + "<table cellpadding='5' cellspacing='0' border='0' align='center' class='tabella_ordine'><tr><td><span class='text_dati'>"+ results.rows.item(i).IdProdotto +" (descrizione)</span></td><td><span class='text_dati'><b>"+ Number(results.rows.item(i).Descrizione).toFixed(2)+"&euro;</b></span></td><td width='32'><a id="+ paperino2 +"><img src='img/delete.png'></a></td></tr></table>"
+
                                          }
                                          else{
-                                           tuttigliid = tuttigliid + "|" + results.rows.item(i).IdProdotto;
-										   tuttigliid2 = tuttigliid2 + results.rows.item(i).id;
-                                         
-                                           $("#contenutoCart").append('<table class="tablesorter"><tr><td width="160"><font size="3">'+ results.rows.item(i).IdProdotto +'</font></td><td width="50"><font size="3">'+ results.rows.item(i).Qta +'<font color="#000" size="1"> x('+ Number(Punita).toFixed(2) +'&euro;)</font></td><td width="70"><font size="3">'+ Number(results.rows.item(i).Descrizione).toFixed(2) +'&euro;</font></td width="40"><td align="center"><a id="'+ paperino2 +'"><img src="img/minus.png" width="25"></a></td></tr></table>');
+                                            msg2 = msg2 + "<table cellpadding='5' cellspacing='0' border='0' align='center' class='tabella_ordine'><tr><td><span class='text_dati'>"+ results.rows.item(i).IdProdotto +" (descrizione)</span></td><td><span class='text_dati'><b>"+ Number(results.rows.item(i).Descrizione).toFixed(2)+"&euro;</b></span></td><td width='32'><a id="+ paperino2 +"><img src='img/delete.png'></a></td></tr></table>"
+
                                          }
-                                         
-                                        
-										
+  
                                          
                                          $(document).on("touchstart", "#"+paperino2+"", function(e){
 														
@@ -463,10 +460,17 @@ var app = {
 										 
 										 document.getElementById("idordine").value = tuttigliid2;
                                          document.getElementById("products").value = tuttigliid;
+										 
+										 $("#contenutoCart").append(msg2);
                                          
                                         // $("#contenutoCart").append("jhdjahasj js djkas dsahkjsa kjash jkashdkjashdjkas <br><br>jhdjahasj js djkas dsahkjsa kjash jkashdkjashdjkas <br><br>jhdjahasj js djkas dsahkjsa kjash jkashdkjashdjkas <br><br>jhdjahasj js djkas dsahkjsa kjash jkashdkjashdjkas <br><br>jhdjahasj js djkas dsahkjsa kjash jkashdkjashdjkas <br><br>jhdjahasj js djkas dsahkjsa kjash jkashdkjashdjkas <br><br>jhdjahasj js djkas dsahkjsa kjash jkashdkjashdjkas <br><br>")
                                          
-                                         selPrezzo();
+                                         setTimeout (function(){
+										    myScroll2.refresh();
+										 
+										  }, 500);
+										 
+										 selPrezzo();
                                          
                                          
                                          }, null);
@@ -483,7 +487,7 @@ var app = {
                                          
                                          for (i = 0; i < len; i++){
                                          
-                                          $("#TOTCART").html(Number(results.rows.item(i).TOT).toFixed(2));
+                                          $("#TOTCART").html(Number(results.rows.item(i).TOT).toFixed(2) + "€");
                                           document.getElementById("totordine").value = Number(results.rows.item(i).TOT).toFixed(2);
                                          
                                          }
@@ -572,7 +576,8 @@ var app = {
                                                                          
                                                             Badge10 = localStorage.getItem("Badge10");
                                                                          
-                                                            $("#badde5").attr("data-badge", Badge10);
+                                                            //$("#badde5").attr("data-badge", Badge10);
+															$("#prova").html(Badge10);
                                                                          
                                                             seleziona()
                                                                                  
@@ -588,10 +593,11 @@ var app = {
                                                         localStorage.setItem("Badge10", parseInt(localStorage.getItem("Badge10"))-1)
                                                         Badge10 = localStorage.getItem("Badge10");
                                                                   
-                                                        $("#badde5").attr("data-badge", Badge10);
-                                                        $("#badde5").html('<img id="carro3" src="img/CartW.png" width="20px">');
+                                                        //$("#badde5").attr("data-badge", Badge10);
+                                                        //$("#badde5").html('<img id="carro3" src="img/CartW.png" width="20px">');
                                                                   
                                                         //$( "#carro5" ).effect( "bounce", "slow" );
+														$("#prova").html(Badge10);
                                                                   
                                                        }, null);
                                                     
@@ -632,7 +638,8 @@ var app = {
                        
                        Badge10 = localStorage.getItem("Badge10");
                        
-                       $("#badde5").attr("data-badge", Badge10);
+                       //$("#badde5").attr("data-badge", Badge10);
+					   $("#prova").html(Badge10);
                        
                        $("#spinner2").hide();
                        
@@ -744,15 +751,15 @@ var app = {
             //window.location.href = "#page";
                        
 		   var Badge10 = localStorage.getItem("Badge10");
-		   $("#badde5").attr("data-badge", Badge10);
+		   //$("#badde5").attr("data-badge", Badge10);
 		   
 		   if (Badge10 > 0){
-		   $('#badde5').removeClass('badge2').addClass('badge1');
-		   $("#badde5").html('<img id="carro3" src="img/CartW.png" width="20px">');
+		    $("#prova").html(Badge10);
 		   }
 		   else{
-		   var Badge10 = 0;
-		   localStorage.setItem("Badge10","0");
+		    var Badge10 = 0;
+		   	localStorage.setItem("Badge10","0");
+			$("#prova").html(Badge10);
 		   }
                        
             setTimeout (function(){
@@ -775,10 +782,7 @@ var app = {
 				"href" : "#page2"
 			});
                        
-            //window.location.href = "#page2";
-			
-			seleziona2()
-			
+
 			// SCROLL"
 			
 			var myScroll2
@@ -803,11 +807,12 @@ var app = {
 			
 			
 			setTimeout (function(){
+				
 				myScroll2.refresh();
 				
-				//alert("scroll 2")
+				seleziona2()
 						
-			}, 1500);
+			}, 500);
 					   
         });
 		
@@ -1191,7 +1196,7 @@ var app = {
 				navigator.notification.alert(
 											 'inserire una Radice o una Foglia',  // message
 											 alertDismissed,         // callback
-											 'Radice',            // title
+											 'Ricerca di un Microverba',            // title
 											 'OK'                  // buttonName
 											 );
 				return;
@@ -1355,7 +1360,7 @@ var app = {
 				navigator.notification.alert(
 											 'inserire una Radice o una Foglia',  // message
 											 alertDismissed,         // callback
-											 'Radice',            // title
+											 'Ricerca di un Microverba',            // title
 											 'OK'                  // buttonName
 											 );
 				return;
@@ -1423,7 +1428,7 @@ var app = {
 				   var tabella = "<table width='90%' align='center' border='0'>";
 				   
 				   if((result.radice!="")&&(result.foglia!="")){
-				     tabella = tabella + "<tr><td align='left' width='100%'><p class='testo1'><font color='#fff'>"+$.base64.decode(result.messaggio)+", vuoi acquistarlo?</font></p> </td></tr><tr><td align='center' width='100%'><a id='' name='button' class='bt_acquista' width='70%'><font color='#fff'>Aquista</font></a></td></tr><tr></tr>"
+				     tabella = tabella + "<tr><td align='left' width='100%'><p class='testo1'><font color='#fff'>"+$.base64.decode(result.messaggio)+", vuoi acquistarlo?</font></p> </td></tr><tr><td align='center' width='100%'><a id='' name='button' class='bt_acquista' width='70%'><font color='#fff'>acquista</font></a></td></tr><tr></tr>"
 				   
 				     tabella = tabella + "</table><br>";
 				   
@@ -1829,7 +1834,7 @@ var app = {
 						   else{
 							   lock="cart.png";
 				   
-							   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+result[prezzoYT]+", "+$.base64.decode(result[descyt])+"</span></td><td align='right' width='40'><a id='piu"+ identYT +"piu"+ prezzoYT +"piu"+ nomeYT +"'> <div class='ico_cart'></div></a></td></tr>"
+							   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'> "+$.base64.decode(result[descyt])+"</span></td><td align='center' width='40'><a id='piu"+ identYT +"piu"+ prezzoYT +"piu"+ nomeYT +"'> <div class='ico_cart'></div></a><br><span class='testo_contenuti'>"+result[prezzoYT]+"€</span></td></tr>"
 						   }
 					  }
 				   }
@@ -5262,6 +5267,33 @@ var app = {
 			//window.location.href = "indexFoto.html";
 				   
 		});
+		
+		$(document).on("touchend", "#scattalafoto", function(e){
+					   
+		   localStorage.setItem("modofoto","scatta")
+		   
+		   window.plugins.nativepagetransitions.fade({
+				"duration"       :  700, // in milliseconds (ms), default 400
+				"iosdelay"       :   50, // ms to wait for the iOS webview to update before animation kicks in, default 60
+				"androiddelay"   :  500,
+				"href" : "indexFoto.html"
+			});
+					   
+	   
+	   });
+		
+		$(document).on("touchend", "#prendilafoto", function(e){
+					   
+		  localStorage.setItem("modofoto","prendi")
+					   
+	       window.plugins.nativepagetransitions.fade({
+				"duration"       :  700, // in milliseconds (ms), default 400
+				"iosdelay"       :   50, // ms to wait for the iOS webview to update before animation kicks in, default 60
+				"androiddelay"   :  500,
+				"href" : "indexFoto.html"
+			});
+	   
+	   });
 		
 		
 		function ciccio() {

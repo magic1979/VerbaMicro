@@ -32,6 +32,7 @@
 	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
     <link rel="stylesheet" href="css/spinner.css" />
 	<link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="css/effects.css" rel="stylesheet" type="text/css">
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 	
     <title>Microverba - Login</title>
@@ -884,23 +885,23 @@
 	<div id="wrapper">
 		<div id="scroller">
 		
-		 <p align="center"><span class="titolo1">micro<b style="margin:0px 3px;">::</b>verba</span></p>
-	
-			  <p align="center" class="testo1">Inserisci le due chiavi di ricerca prima (foglia) e dopo (radice) il segno <b>: :</b> per visualizzare i contenuti</p>
-		  
+		 	  <p align="center"><span class="titolo1">micro<b style="margin:0px 3px;">::</b>verba</span></p>
+
+			  	  <p align="center" class="testo1">Inserisci le due chiavi di ricerca, <i>foglia</i> e <i>radice</i> ai lati del simbolo <b>: :</b> per visualizzare i contenuti del microverba</p>
+	  
 			  <div id="orizzontale" style="display:none" class="box1">
 
 				 <table width="90%" align="center" border="0">
 					    <tr>
                           <td align="center" width="100%">
-                            <input type="text" data-role="none" name="foglia" id="foglia" placeholder="Foglia" class="input_login_pre">
+                            <input type="text" data-role="none" name="foglia" id="foglia" placeholder="foglia" class="input_login_pre">
                                 <span class="doppiopunto">::</span>
-                            <input type="text" data-role="none" name="radice" id="radice" placeholder="Radice" class="input_login_suf">
+                            <input type="text" data-role="none" name="radice" id="radice" placeholder="radice" class="input_login_suf">
                           </td>
                       </tr>
                        <tr>
                           <td align="center" width="100%">
-                              <a id="richiedi" name="button" class="bt_login" width="70%"><font color="#fff">APRI</font></a>
+                              <a id="richiedi" name="button" class="bt_login" width="70%"><font color="#fff">apri</font></a>
                         </td>
                       </tr>
 				  </table>
@@ -911,25 +912,36 @@
                       
                       <tr>
                           <td align="center" width="100%">
-                            <input type="text" data-role="none" name="foglia2" id="foglia2" placeholder="Foglia" class="input_login_pre">
+                            <input type="text" data-role="none" name="foglia2" id="foglia2" placeholder="toglia" class="input_login_pre">
                                 <span class="doppiopunto">::</span>
-                            <input type="text" data-role="none" name="radice2" id="radice2" placeholder="Radice" class="input_login_suf">
+                            <input type="text" data-role="none" name="radice2" id="radice2" placeholder="radice" class="input_login_suf">
                           </td>
                       </tr>
                       <tr>
                           <td align="center" width="100%">
-                              <a id="richiedi" name="button" class="bt_login" width="70%"><font color="#fff">APRI</font></a>
+                              <a id="richiedi" name="button" class="bt_login" width="70%"><font color="#fff">apri</font></a>
                         </td>
                       </tr>
                       
                   </table>
 				  
 			  </div>
-	
+              
+                <div class="box3">
+	  				<p align="center" class="testo1">Inserisci immagine</p>
+	  					<div class="div_multimedia">
+	  						<div class="div_camera">
+	  							<a id="scattalafoto"><img src="img/ico_camera.png" class="icona_camera pulse"></a>
+	  							<br>Fotocamera</div>
+	  						<div class="div_gallery">
+	  							<a id="prendilafoto"><img src="img/ico_gallery.png" class="icona_gallery pulse"></a>
+	  							<br>Galleria</div>
+	  					</div>
+ 				 </div>
+                 
+	<div id="informazioni1" class="div_info"><a href="javascript:;" onclick="hide('informazioni1')"><div class="ico_close"></div></a><br><b>PROGETTO</b><br>sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</div>
 				</form>
 				
-				<br>
-                
                 <div id="informazioni1" class="div_info" style="display:none"><div id="informazioni1_close" class="ico_close"></div><br><b>PROGETTO</b><br><div id="testoinfoprogetto"></div></div>
 				
 				<div id="informazioni2" class="div_info" style="display:none"><div id="informazioni2_close" class="ico_close"></div><br><b><div id="ricercainfomicro"></div></b><br><div id="testoinfomicro"></div></div>
@@ -942,7 +954,6 @@
                     <div id="testvideo"></div>
                 </div>
 				
-				<br>
 						
 				<div id="TOTPrezzo" style="display:none"></div>
 				
@@ -963,15 +974,17 @@
 	</center>
 	
 	 <div id="footer" data-role="footer" data-theme="b" data-tap-toggle="false" class="div1">
-        <div data-role="navbar" class="nav" data-grid="d" data-theme="c" class="div1">
-            <ul>
-                <li><a id="avanti" data-icon="homehome" rel="external"><font size="1">Photo</font></a></li>
-                <li><a id="sbloccacell" data-icon="ristohome" rel="external"><font size="1">UnLock</font></a></li>
-                <li><a id="badde5" data-icon="taifun" rel="external"><font size="1">Cart</font></a></li>
-                <li><a id="messaggino2" data-icon="userhome" rel="external"><font size="1">Chat</font></a></li>
-                <li><a id="altro" data-icon="pinhome"><font size="1">Other</font></a></li>
-            </ul>
-        </div>
+        <div class="dock">
+			<table class="tabella_dock">
+				<tr>
+					<td class="td_dock"><a id="avanti" style="color:#fff;"><img src="img/ico_dock_gallery.png"><br>Foto</a></td>
+					<td class="td_dock"><a id="sbloccacell" style="color:#fff;"><img src="img/ico_dock_unlock.png"><br>Sblocca</td>
+					<td class="td_dock"><a id="badde5" style="color:#fff;"><div id="prova" class="quantity_cart">0</div><img src="img/ico_dock_cart.png"><br>Carrello</td>
+					<td class="td_dock"><a id="messaggino2" style="color:#fff;"><img src="img/ico_dock_chat.png"><br>Chat</td>
+					<td class="td_dock"><a id="altro" style="color:#fff;"><img src="img/ico_dock_other.png"><br>Altro</td>
+					<tr>
+			</table>
+		</div>
     </div>
 	
 	<div data-role="panel" id="mypanelH" style="overflow-y: scroll" data-position="right" data-display="overlay" width="100%" data-theme="c" class="div2">
@@ -996,21 +1009,15 @@
 	 <div id="page2" data-role="page" >
         
         <div data-role="header" data-theme="c" data-position="fixed" data-tap-toggle="false" class="div11" data-add-back-btn="true" >
-            <table align="center" width="100%" valign="center" border="0">
-                <tr>
-                    <td align="center" valign="center" width="40px">
-                        <img id="indietro" src="img/sinistra.png" width="40">
-                    </td>
-                    <td align="center" valign="center" width="240px">
-                        <img src="img/logo.png" width="70px">
-                    </td>
-                    <td align="center" valign="center" width="40px">
-                       .
-                    </td>
-                </tr>
-
-            </table>
-        </div>
+			<table class="tabella_logo div2" cellpadding="5" cellspacing="0" border="0" valign="center">
+				<tr>
+					<td width="20%" align="left" valign="center"><a id="ciccio2"><img src="img/back.png" height="20" style="margin:8px;"></a></td>
+					<td align="center" valign="center"><a href="javascript:;" style="color:#fff;"><span class="logo_centrale">micro<b style="margin:0px 3px;">::</b>verba</span></td>
+					<td width="20%" valign="center">&nbsp;</td>
+				<tr>
+			</table>
+		</div>
+       
         
         <div class="spinner" id="spinner2"></div>
         <a href="#mypanelH2" data-role=button id=btnpanel2 data-theme="b" style="display:none"></a>
@@ -1019,7 +1026,8 @@
         
             <div id="wrapper2">
                 <div id="scroller"><br><br><br><center><br>
-                    <b>IL TUO ORDINE</b>
+                    <p class="titolo_ordine"><b>IL TUO ORDINE</b></p>
+                    
                     <form name="formia9" action="entra2.asp" method="post">
                         <div id="contenutoCart" align="center"></div><br><br>
                         
@@ -1031,13 +1039,30 @@
                     </form>
                     
                     <br><br>
-                    <b><span id="IDCART"></span></b> - <b><span id="TOTCART">&euro;</span></b> - <b><span id="NOMEORD"></span></b> - <b><span id="QTA"></span></b>
+                    <b><span id="IDCART"></span></b> - <b><span id="NOMEORD"></span></b> - <b><span id="QTA"></span></b>
                     <br>
-                    <table align="center" width="90%">
-						<tr><td width="90%"><hr class='div3'></td></tr><tr><td colspan='3' align="center"><!--<a href='#page' onclick='javascript:compraccDemo();' class='zocial cart'></a>--><a id='mandaordine' nome='mandaordine' data-role='button' class='custom-btn' data-theme='b'>Paga con Carta di Credito</a></td></tr><tr><td colspan='3' align="center"><img src='img/paypal.png' width="200px"></td></tr>
-						<tr><td colspan='3' align='center'><a href="TerminiCondizioni.html" rel="external"><font size='1' color='#000'>Accetto i termini di vendita</font></a></td></tr><tr><td colspan='3' align='center'><a href="TerminiCondizioni.html" rel="external"><font size='1' color='#000'>Informativa sulla Privacy</font></a></td></tr>
+                    
+                   <table cellpadding="5" cellspacing="0" border="0" align="center" class="tabella_ordine"><tr><td class="titolo_ordine"><b>TOTALE</b></td><td class="titolo_ordine"><div id="totcassa"><b><div id="TOTCART"></div> </b></div></td><td width="3">&nbsp;</td></td></tr></table>
+					
+					<br><br><br>
+                    <table align="center" width="95%">
+
+						<tr>
+							<td  align="center"><a id='mandaordine' nome='mandaordine' name="button" class="bt_pagamento"><font color="#fff">Paga con PayPal o Carta di Credito</font></a></td>
+						</tr>
+						<tr>
+							<td ><hr class='div3'><br><br></td>
+						</tr>
+						<tr>
+							<td  align="center"><img src='img/paypal.png' width="200px"></td>
+						</tr>
+						<tr>
+							<td  align='center'><p align="center"><a href="javascript:;" class="privacy">Accetto i termini di vendita</a><br><br><a href="javascript:;" class="privacy">Informativa sulla Privacy</a></p></td>
+						</tr>
+						
                     </table>
-                    <br><br><br>
+                    
+                    <br><br>
                     <a id="cancella" href="">cancella</a>
                     
                 </div>
