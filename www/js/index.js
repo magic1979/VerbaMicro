@@ -1420,19 +1420,24 @@ var app = {
 				   
 				   $("#testvideo").html("");
 				   $("#tutto").html("");
+				    $("#paginazione").html("");
+				   $("#titoloricerca").html("");
+				   $("#contengo").show();
 				   
 				   //TUTTO
-				   //var tabella = "<table width='90%' align='center'>";
 				   
 				   if(result.Token==0){
-				   var tabella = "<table width='90%' align='center' border='0'>";
+				   
 				   
 				   if((result.radice!="")&&(result.foglia!="")){
-				     tabella = tabella + "<tr><td align='left' width='100%'><p class='testo1'><font color='#fff'>"+$.base64.decode(result.messaggio)+", vuoi acquistarlo?</font></p> </td></tr><tr><td align='center' width='100%'><a id='' name='button' class='bt_acquista' width='70%'><font color='#fff'>acquista</font></a></td></tr><tr></tr>"
+				     $("#compra1").show();
 				   
-				     tabella = tabella + "</table><br>";
-				   
-				     $("#tutto").append(tabella);
+				   		$(document).on("touchstart", "#acquistamicro", function(e){
+							window.open('  http://microverba.com/register_app.php?lang=it&root='+ radice3 +'', '_blank', 'location=no');
+								  
+						})
+					 
+					 
 				   }
 				   else{
 				   var tabella = "<table width='90%' align='center' border='0'>";
@@ -1443,66 +1448,105 @@ var app = {
 				   
 				   		tabella = tabella + "</table><br>";
 				   
-				  	 $("#tutto").append(tabella);
+				  	    $("#tutto").append(tabella);
+				   }
+				   else if(result.messaggio=="TGEgcmFkaWNlIG5vbiBlc2lzdGUuIFZ1b2kgYWNxdWlzdGFybGE\/"){
+				   
+				   	// La radice non esiste
+				   
+				     $("#compra1").show();
+				     $("#compra2").show();
+				     $("#contengo").hide();
+				   
+				     $(document).on("touchstart", "#acquistamicro", function(e){
+						window.open('  http://microverba.com/register_app.php?lang=it&root='+ radice3 +'', '_blank', 'location=no');
+								  
+					 })
+				   
+				   }
+				   else if(result.messaggio=="TGEgZm9nbGlhIG5vbiBlc2lzdGUu"){
+				   
+				   // La foglia non esiste
+				   $("#contengo").hide();
+				   
+				     navigator.notification.alert(
+					  'La Foglia non esiste',  // message
+					   alertDismissed,         // callback
+					   'Alert',            // title
+					   'OK'                  // buttonName
+					  );
+				   
 				   }
 				   else{
 				   
 				   if(result.foglia!=""){
 				   
 				   if(result.roots!=""){
+					   
+				   	if(result.totalRoot!="0"){
 				   
-				   var tabella = "<table width='90%' align='center' border='0'>";
+						  var tabella = "<div class='cart_page'><table cellpadding='5' cellspacing='0' border='0' align='center' class='tabella_ordine'>";
 				   
-				   		tabella = tabella + "<tr><td align='center' width='100%' colspan='2'><p class='testo1'><font color='#fff'>"+$.base64.decode(result.messaggio)+"</font></p></td></tr></tr>"
+				           var sono = result.nextPaginationRootStart - 1
 				   
-				   		tabella = tabella + "<tr><td align='center' width='80' colspan='2'><br><a id='pag_"+result.nextPaginationRootStart+"'><p class='testo1'><font color='#fff'>Go Pag --> "+result.nextPaginationRootStart+"</font></p></a></td></tr></table><br>";
+						   tabella = tabella + "<tr><td colspan='2' height='60' align='center'><span class='paginazione_off'>"+sono+"</span><a id='pag_"+result.nextPaginationRootStart+"'><span class='paginazione_on'>"+result.nextPaginationRootStart+"</span></a><a id='pag_"+result.nextPaginationRootStart+"'><div class='paginazione_next'></div></a></td></tr></table>";
 				   
-				   		$("#tutto").append(tabella);
+						   $("#paginazione").append(tabella + "</div>");
 				   
-				   $(document).on("touchstart", "#pag_"+ result.nextPaginationRootStart +"", function(e){
-								  var paginazione = this.id
-								  paginazione = paginazione.replace("pag_","")
-								  
-								  richiesta(paginazione,0)
-								  
-								  })
+				   			$(document).on("touchstart", "#pag_"+ result.nextPaginationRootStart +"", function(e){
+							  var paginazione = this.id
+							  paginazione = paginazione.replace("pag_","")
+							  
+							  richiesta(paginazione,0)
+							})
 				   
-				   var str = $.base64.decode(result.roots);
-				   //alert(str)
+				       }
 				   
-				   var a1 = new Array();
+					  $("#titoloricerca").html("<div class='cart_page'><table cellpadding='5' cellspacing='0' border='0' align='center' class='tabella_ordine'><p class='titolo_ordine'><b>MICROVERBA ESISTENTI</b></p></td></tr></table>");
 				   
-				   a1=str.split("|");
-				   //alert(a1.length)
+					   var str = $.base64.decode(result.roots);
+					   //alert(str)
 				   
-				   for (i=0;i<a1.length;i++)
+					   var a1 = new Array();
 				   
-				   {
+					   a1=str.split("|");
 				   
-				   var tabella = "<table width='90%' align='center' border='0'>";
+					   for (i=0;i<a1.length;i++)
 				   
-				   tabella = tabella + "<tr><td align='center' width='100%' colspan='2'><p class='testo1'><font color='#fff'><b>Suggerimento Foglie:</font></p></b><a id='root_"+a1[i]+"'> <p class='testo1'><font color='#fff'>"+a1[i]+"</font></p></a></td></tr></tr>"
+					   {
+					    var tabella = "<div class='cart_page'><table cellpadding='5' cellspacing='0' border='0' align='center' class='tabella_ordine'>";
 				   
-				   tabella = tabella + "</table><br>";
-				   $("#tutto").append(tabella);
+						tabella = tabella + "<tr><td><span class='text_dati'>"+foglia3+" :: "+a1[i]+"</span></td><td width='32'><a id='root_"+a1[i]+"'><img src='img/ico_arrow_dx.png'></a></td></tr>"
 				   
-				   
-				   $(document).on("touchstart", "#root_"+ a1[i] +"", function(e){
-								  
-								  var radicchio = this.id
-								  radicchio = radicchio.replace("root_","")
-								  
-								  if(self.document.form.foglia2.value != ""){
-								  document.getElementById("radice2").value = radicchio;
-								  }
-								  else{
-								  document.getElementById("radice").value = radicchio;
-								  }
-								  
-								  })
+						tabella = tabella + "</table></div><br>";
+						$("#tutto").append(tabella);
+
+						$(document).on("touchstart", "#root_"+ a1[i] +"", function(e){
+									  
+						  var radicchio = this.id
+						  radicchio = radicchio.replace("root_","")
+						  
+						  if(self.document.form.foglia2.value != ""){
+						     document.getElementById("radice2").value = radicchio;
+							 //$("#radice2").focus()
+							 myScroll.scrollToElement("#radice2", "1s");
+						  }
+						  else{
+						     document.getElementById("radice").value = radicchio;
+							 //$("#radice").focus()
+							 myScroll.scrollToElement("#radice", "1s");
+						  }
+						  
+						  })
+					   }
 				   
 				   }
-				   }// end nuovo controllo
+				   else{
+				   	 alert("paginazione massima, ritorno alla ricerca 1")
+				     richiesta(0,0)
+				   }
+				   
+				   // end nuovo controllo
 				   
 				   }
 				   
@@ -1511,65 +1555,78 @@ var app = {
 				   
 				   if(result.leafs!=""){
 				   
-				   var tabella = "<table width='90%' align='center' border='0'>";
+				   		if(result.totalLeaf!="0"){
 				   
-				   tabella = tabella + "<tr><td align='center' width='100%' colspan='2'><p class='testo1'><font color='#fff'>"+$.base64.decode(result.messaggio)+"</font></p></td></tr></tr>"
+						   var tabella = "<div class='cart_page'><table cellpadding='5' cellspacing='0' border='0' align='center' class='tabella_ordine'>";
 				   
-				   tabella = tabella + "<tr><td align='center' width='80' colspan='2'><br><a id='pag_"+result.nextPaginationLeafStart+"'><p class='testo1'><font color='#fff'>Go Pag --> "+result.nextPaginationLeafStart+"</font></p></a></td></tr></table><br>";
+						   //alert("NEXT:" + result.nextPaginationLeafStart)
 				   
-				   $("#tutto").append(tabella);
+						   var sono = result.nextPaginationLeafStart - 1
 				   
-				   $(document).on("touchstart", "#pag_"+ result.nextPaginationLeafStart +"", function(e){
-								  var paginazione = this.id
-								  paginazione = paginazione.replace("pag_","")
-								  
-								  richiesta(0,paginazione)
-								  
-								  })
+						   tabella = tabella + "<tr><td colspan='2' height='60' align='center'><span class='paginazione_off'>"+sono+"</span><a id='pag_"+result.nextPaginationLeafStart+"'><span class='paginazione_on'>"+result.nextPaginationLeafStart+"</span></a><a id='pag_"+result.nextPaginationLeafStart+"'><div class='paginazione_next'></div></a></td></tr></table>";
 				   
-				   var risultato = ""
+						   $("#paginazione").append(tabella + "</div>");
 				   
-				   var str=$.base64.decode(result.leafs);
-				   ////alert(str)
+						   $(document).on("touchstart", "#pag_"+ result.nextPaginationLeafStart +"", function(e){
+										  
+							 alert(this.id)
+										  
+							  var paginazione = this.id
+							  paginazione = paginazione.replace("pag_","")
+							  
+							  richiesta(0,paginazione)
+							})
+					   }
 				   
-				   var a1 = new Array();
+					   var risultato = ""
 				   
-				   a1=str.split("|");
-				   //alert(a1.length)
+					   var str=$.base64.decode(result.leafs);
+					   //alert(str)
 				   
-				   for (i=0;i<a1.length;i++)
+					   var a1 = new Array();
 				   
-				   {
+					   a1=str.split("|");
 				   
-				   var tabella = "<table width='90%' align='center' border='0'>";
+					   $("#titoloricerca").html("<div class='cart_page'><table cellpadding='5' cellspacing='0' border='0' align='center' class='tabella_ordine'><p class='titolo_ordine'><b>MICROVERBA ESISTENTI</b></p></td></tr></table>");
 				   
-				   if(risultato!=a1[i]){
-				   		tabella = tabella + "<tr><td align='center' width='100%' colspan='2'><p class='testo1'><font color='#fff'><b>Suggerimento Foglie:</font></p></b><a id='root_"+a1[i]+"'><p class='testo1'><font color='#fff'> "+a1[i]+"</font></p></a></td></tr></tr>"
+					   for (i=0;i<a1.length;i++)
+				   
+					   {
+							var tabella = "<div class='cart_page'><table cellpadding='5' cellspacing='0' border='0' align='center' class='tabella_ordine'>";
+				   
+						   if(risultato!=a1[i]){
+				   
+							  tabella = tabella + "<tr><td><span class='text_dati'>"+a1[i]+" :: "+radice3+"</span></td><td width='32'><a id='root_"+a1[i]+"'><img src='img/ico_arrow_dx.png'></a></td></tr>"
+						   }
+
+						   tabella = tabella + "</table></div><br>";
+						   $("#tutto").append(tabella);
+				   
+						   $(document).on("touchstart", "#root_"+ a1[i] +"", function(e){
+										  
+							  var radicchio = this.id
+							  radicchio = radicchio.replace("root_","")
+							  
+							  if(self.document.form.radice2.value != ""){
+								document.getElementById("foglia2").value = radicchio;
+								myScroll.scrollToElement("#foglia2", "1s");
+							  }
+							  else{
+								document.getElementById("foglia").value = radicchio;
+								myScroll.scrollToElement("#foglia", "1s");
+							  }
+							  
+							})
+				   
+						   risultato = a1[i]
+					   }
+				   
 				   }
-				   
-				   
-				   tabella = tabella + "</table><br>";
-				   $("#tutto").append(tabella);
-				   
-				   $(document).on("touchstart", "#root_"+ a1[i] +"", function(e){
-								  
-								  var radicchio = this.id
-								  radicchio = radicchio.replace("root_","")
-								  
-								  if(self.document.form.radice2.value != ""){
-								  document.getElementById("foglia2").value = radicchio;
-								  }
-								  else{
-								  document.getElementById("foglia").value = radicchio;
-								  }
-								  
-								  })
-				   
-				   risultato = a1[i]
-				   
+				   else{
+				    alert("paginazione massima, ritorno alla ricerca 1")
+				    richiesta(0,0)
 				   }
-				   
-				   }// end se 0
+				   // end se 0
 				   
 				   }
 				   
