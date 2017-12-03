@@ -1483,6 +1483,10 @@ var app = {
 				   
 				   if(result.roots!=""){
 					   
+				   	$("#compra1").hide();
+				   	$("#compra2").hide();
+				   	$("#contengo").show();
+					   
 				   	if(result.totalRoot!="0"){
 				   
 						  var tabella = "<div class='cart_page'><table cellpadding='5' cellspacing='0' border='0' align='center' class='tabella_ordine'>";
@@ -1554,6 +1558,10 @@ var app = {
 				   if(result.radice!=""){
 				   
 				   if(result.leafs!=""){
+					   
+				   	$("#compra1").hide();
+				   	$("#compra2").hide();
+				   	$("#contengo").show();
 				   
 				   		if(result.totalLeaf!="0"){
 				   
