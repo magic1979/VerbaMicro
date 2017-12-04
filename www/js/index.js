@@ -258,14 +258,14 @@ var app = {
         
         $(document).on("touchstart", "#piu3", function(e){
                        
-                       localStorage.setItem("Badge10", parseInt(localStorage.getItem("Badge10"))+1)
-                       var Badge10 = localStorage.getItem("Badge10");
-                       
-                       
-                       /*$('#badde5').removeClass('badge2').addClass('badge1');
-                       $("#badde5").attr("data-badge", Badge10);
-                       $("#badde5").html('<img id="carro3" src="img/CartW.png" width="20px">');*/
-					   $("#prova").html(Badge10);
+		   localStorage.setItem("Badge10", parseInt(localStorage.getItem("Badge10"))+1)
+		   var Badge10 = localStorage.getItem("Badge10");
+		   
+		   
+		   /*$('#badde5').removeClass('badge2').addClass('badge1');
+		   $("#badde5").attr("data-badge", Badge10);
+		   $("#badde5").html('<img id="carro3" src="img/CartW.png" width="20px">');*/
+		   $("#prova").html(Badge10);
                        
         });
         
@@ -273,14 +273,14 @@ var app = {
         
         $(document).on("touchstart", "#meno3", function(e){
                        
-                       localStorage.setItem("Badge10", parseInt(localStorage.getItem("Badge10"))-1)
-                       var Badge10 = localStorage.getItem("Badge10");
-                       
-                       
-                       /*$('#badde5').removeClass('badge2').addClass('badge1');
-                       $("#badde5").attr("data-badge", Badge10);
-                       $("#badde5").html('<img id="carro3" src="img/CartW.png" width="20px">');*/
-					   $("#prova").html(Badge10);
+		   localStorage.setItem("Badge10", parseInt(localStorage.getItem("Badge10"))-1)
+		   var Badge10 = localStorage.getItem("Badge10");
+		   
+		   
+		   /*$('#badde5').removeClass('badge2').addClass('badge1');
+		   $("#badde5").attr("data-badge", Badge10);
+		   $("#badde5").html('<img id="carro3" src="img/CartW.png" width="20px">');*/
+		   $("#prova").html(Badge10);
                        
         });
 		
@@ -323,7 +323,7 @@ var app = {
 							  $("#prova").html(Badge10);
                               
                               //alert("Insert")
-                              seleziona()
+                              //seleziona()
                     }
                     else{
                        /* tx.executeSql('UPDATE Ordine set Qta=Qta+1, Descrizione=Descrizione + '+ prezzo +' where id='+ prod +'', [], function (tx, results) {
@@ -664,11 +664,11 @@ var app = {
 		$(document).on("touchstart", "#fotomia", function(e){
 					   
 			navigator.camera.getPicture(uploadPhoto, onFail, { quality: 50,
-												   //allowEdit: true,
-												   destinationType: Camera.DestinationType.FILE_URI,
-												   sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-												   targetWidth: 400,
-												   targetHeight: 400
+			   //allowEdit: true,
+			   destinationType: Camera.DestinationType.FILE_URI,
+			   sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+			   targetWidth: 400,
+			   targetHeight: 400
 			});
 	   
 					   
@@ -678,11 +678,11 @@ var app = {
 		$(document).on("touchstart", "#scatta", function(e){
 					   
 			navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 30,
-												   //allowEdit: true,
-												   destinationType: Camera.DestinationType.DATA_URL,
-												   encodingType: Camera.EncodingType.PNG,
-												   targetWidth: 400,
-												   targetHeight: 400
+			   //allowEdit: true,
+			   destinationType: Camera.DestinationType.DATA_URL,
+			   encodingType: Camera.EncodingType.PNG,
+			   targetWidth: 400,
+			   targetHeight: 400
 			});
    
 		});
@@ -806,12 +806,13 @@ var app = {
 			});
 			
 			
+			seleziona2()
+			
+			
 			setTimeout (function(){
 				
 				myScroll2.refresh();
 				
-				seleziona2()
-						
 			}, 500);
 					   
         });
@@ -858,7 +859,7 @@ var app = {
 		   
 			var email2 = self.document.form.emailphone.value;
 			
-			alert("email: "+email2)
+			//alert("email: "+email2)
 		   
 		   
 			if (email2 == "") {
@@ -1037,7 +1038,7 @@ var app = {
 					   
 			$("#celllock").show()
 			
-			$("#emailphone").focus()
+			//$("#emailphone").focus()
 			
 					   
 		})

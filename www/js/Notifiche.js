@@ -87,36 +87,36 @@ function onDeviceReady() {
 		$("#spinner").hide();
 		
 		
-		if(localStorage.getItem("modofoto")=="prendi"){
-		
-		$("#spinner").show();
-		
-		navigator.camera.getPicture(uploadPhoto, onFail, { quality: 50,
-		
-		destinationType: Camera.DestinationType.FILE_URI,
-		sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-		targetWidth: 320,
-		targetHeight: 460
-	 
-	 });
-		
-		
-	}
+		/*if(localStorage.getItem("modofoto")=="prendi"){
+			
+			$("#spinner").show();
+			
+			navigator.camera.getPicture(uploadPhoto, onFail, { quality: 50,
+			
+			destinationType: Camera.DestinationType.FILE_URI,
+			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+			targetWidth: 320,
+			targetHeight: 460
+		 
+			});
+			
+			
+		}*/
 	
 	
-	if(localStorage.getItem("modofoto")=="scatta"){
-		
-		$("#spinner").show();
-		
-		navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 30,
-		
-		destinationType: Camera.DestinationType.DATA_URL,
-		encodingType: Camera.EncodingType.PNG,
-		targetWidth: 400,
-		targetHeight: 400
-	 
-	 });
-	}
+		/*if(localStorage.getItem("modofoto")=="scatta"){
+			
+			$("#spinner").show();
+			
+			navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 30,
+			
+			destinationType: Camera.DestinationType.DATA_URL,
+			encodingType: Camera.EncodingType.PNG,
+			targetWidth: 400,
+			targetHeight: 400
+		 
+		 });
+		}*/
 		
 		
 		// START CODE //
