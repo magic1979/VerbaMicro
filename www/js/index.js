@@ -295,7 +295,6 @@ var app = {
             var nome = nomi;
 			var nomeprod = dove+prod
 			
-			//alert(nomeprod)
             
             db.transaction(function (tx) {
                 tx.executeSql('SELECT * FROM Ordine where id='+ prod +' and IdProdotto="'+ nomeprod +'"', [], function (tx, results) {
@@ -313,33 +312,21 @@ var app = {
                     if(results.rows.length==0){
                       tx.executeSql('INSERT INTO Ordine (id, IdProdotto, Qta, Descrizione, Nome) VALUES ('+ prod +', "'+nomeprod+'", 1, "'+ prezzo +'", "'+ nome +'")');
                               
-                              localStorage.setItem("Badge10", parseInt(localStorage.getItem("Badge10"))+1)
-                              var Badge10 = localStorage.getItem("Badge10");
-                              
-                              
-                              /*$('#badde5').removeClass('badge2').addClass('badge1');
-                              $("#badde5").attr("data-badge", Badge10);
-                              $("#badde5").html('<img id="carro3" src="img/CartW.png" width="20px">');*/
-							  $("#prova").html(Badge10);
-                              
-                              //alert("Insert")
-                              //seleziona()
+						  localStorage.setItem("Badge10", parseInt(localStorage.getItem("Badge10"))+1)
+						  var Badge10 = localStorage.getItem("Badge10");
+						  
+						  
+						  /*$('#badde5').removeClass('badge2').addClass('badge1');
+						  $("#badde5").attr("data-badge", Badge10);
+						  $("#badde5").html('<img id="carro3" src="img/CartW.png" width="20px">');*/
+						  $("#prova").html(Badge10);
+						  
+						  return;
+						  e.preventDefault();
                     }
                     else{
-                       /* tx.executeSql('UPDATE Ordine set Qta=Qta+1, Descrizione=Descrizione + '+ prezzo +' where id='+ prod +'', [], function (tx, results) {
-                                      
-                            localStorage.setItem("Badge10", parseInt(localStorage.getItem("Badge10"))+1)
-                            var Badge10 = localStorage.getItem("Badge10");
-                                      
-                                      
-                            $('#badde5').removeClass('badge2').addClass('badge1');
-                            $("#badde5").attr("data-badge", Badge10);
-                            $("#badde5").html('<img id="carro3" src="img/CartW.png" width="20px">');
-                                      
-                            alert("Update")
-                            seleziona()
-
-                        }, null);*/
+						return;
+						e.preventDefault();
                     }
                               
                 })
@@ -389,15 +376,19 @@ var app = {
 			
 			//alert("enter")
             
-            $("#contenutoCart").html('');
+            $("#contenutoCart").html("");
             
             var tuttigliid = "";
 			var tuttigliid2 = "";
             var conta = 0;
+			$("#IDCART").html("");
+			$("#NOMEORD").html("");
+			
+			if(localStorage.getItem("Badge10")!="0"){
             
             
-            db.transaction(function (tx) {
-                           tx.executeSql('SELECT * FROM Ordine', [], function (tx, results) {
+					db.transaction(function (tx) {
+                         tx.executeSql('SELECT * FROM Ordine', [], function (tx, results) {
                                          var len = results.rows.length, i;
                                          var Punita;
                                          //alert("len:"+len);
@@ -471,10 +462,16 @@ var app = {
 										  }, 500);
 										 
 										 selPrezzo();
+										 
+											return;
+											e.preventDefault();
                                          
                                          
                                          }, null);
                            });
+						   
+						   
+				}
         }
   
         function selPrezzo(){
@@ -482,21 +479,21 @@ var app = {
 			//alert("prezzo")
 			
             db.transaction(function (tx) {
-                           tx.executeSql('SELECT SUM(Descrizione) as TOT FROM Ordine', [], function (tx, results) {
-                                         var len = results.rows.length, i;
-                                         
-                                         for (i = 0; i < len; i++){
-                                         
-                                          $("#TOTCART").html(Number(results.rows.item(i).TOT).toFixed(2) + "€");
-                                          document.getElementById("totordine").value = Number(results.rows.item(i).TOT).toFixed(2);
-                                         
-                                         }
-										 
-										 selQta();
-                                         
-                                         
-                                         }, null);
-                           });
+				   tx.executeSql('SELECT SUM(Descrizione) as TOT FROM Ordine', [], function (tx, results) {
+					 var len = results.rows.length, i;
+					 
+					 for (i = 0; i < len; i++){
+					 
+					  $("#TOTCART").html(Number(results.rows.item(i).TOT).toFixed(2) + "€");
+					  document.getElementById("totordine").value = Number(results.rows.item(i).TOT).toFixed(2);
+					 
+					 }
+					 
+					 selQta();
+					 
+					 
+					 }, null);
+				   });
             
         }
 	
@@ -510,6 +507,11 @@ var app = {
 							 
 						 $("#QTA").html(Number(results.rows.item(i).TOT));
 						 document.getElementById("qta").value = Number(results.rows.item(i).TOT);
+						 
+						  setTimeout (function(){
+							myScroll2.refresh();
+										 
+						  }, 500);
 						 
 						 return;
 							 
@@ -538,15 +540,18 @@ var app = {
 				
 					if(results.rows.length==0){
 						$("#prova").html("0");
+						$("#contenutoCart").html("");
 						
-                        tx.executeSql('DELETE FROM Ordine', [], function (tx, results) {
-                        }, null);
+                        tx.executeSql('DELETE FROM Ordine where id='+prod+' and IdProdotto="'+ vedo +'"', [], function (tx, results) {
+						}, null);
 						
 						seleziona2()
+						$("#contenutoCart").html("");
+						 
 						return;
 						e.preventDefault();
 					}
-					else{                        
+					else{
 						tx.executeSql('DELETE FROM Ordine where id='+prod+' and IdProdotto="'+ vedo +'"', [], function (tx, results) {
 						}, null);
 								   
