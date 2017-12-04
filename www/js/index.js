@@ -541,6 +541,10 @@ var app = {
 					if(results.rows.length==0){
 						$("#prova").html("0");
 						$("#contenutoCart").html("");
+						$("#IDCART").html("");
+						$("#NOMEORD").html("");
+						$("#QTA").html("");
+						
 						
                         tx.executeSql('DELETE FROM Ordine where id='+prod+' and IdProdotto="'+ vedo +'"', [], function (tx, results) {
 						}, null);
@@ -1804,7 +1808,7 @@ var app = {
 					  }, false);
 					  
 					  
-					   $("#pswp").focus()
+					   //$("#pswp").focus()
 
 					});
 					
@@ -1824,7 +1828,7 @@ var app = {
 					  }, false);
 					  
 					  
-					  $("#pswm").focus()
+					  //$("#pswm").focus()
 		   
 					  
 					});
@@ -1981,7 +1985,7 @@ var app = {
 					   localStorage.setItem("pagina1",pagina1);
 							  
 					   
-					   $("#pswYTT").focus()
+					   //$("#pswYTT").focus()
 								  
  				  });
 				   
@@ -2183,7 +2187,7 @@ var app = {
 						  localStorage.setItem("pagina1",pagina1);
 								  
 								  
-						  $("#pswVAA").focus()
+						  //$("#pswVAA").focus()
 								  
 								  
 					  });
@@ -2369,7 +2373,7 @@ var app = {
 								  localStorage.setItem("pagina",pagina);
 								  localStorage.setItem("pagina1",pagina1);
 								  
-								  $("#pswFAA").focus()
+								  //$("#pswFAA").focus()
 								  
 								  
 								  });
@@ -2557,7 +2561,7 @@ var app = {
 								  localStorage.setItem("pagina1",pagina1);
 								  
 								  
-								  $("#pswPWW").focus()
+								  //$("#pswPWW").focus()
 								  
 					});
 					
@@ -2739,7 +2743,7 @@ var app = {
 								  localStorage.setItem("pagina1",pagina1);
 								  
 								  
-								  $("#pswFBB").focus()
+								  //$("#pswFBB").focus()
 								  
 								  
 								  });
@@ -2922,7 +2926,7 @@ var app = {
 								  localStorage.setItem("pagina1",pagina1);
 								  
 								  
-								  $("#pswTFF").focus()
+								  //$("#pswTFF").focus()
 								  
 								  
 								  });			  
@@ -3099,7 +3103,7 @@ var app = {
 						  localStorage.setItem("pagina1",pagina1);
 						  
 						  
-						  $("#pswTWW").focus()
+						  //$("#pswTWW").focus()
 								  
 								  
 					});			  
@@ -3276,7 +3280,7 @@ var app = {
 					  localStorage.setItem("pagina1",pagina1);
 					  
 					  
-					  $("#pswIGG").focus()
+					  //$("#pswIGG").focus()
 								  
  
 					});
@@ -3458,7 +3462,7 @@ var app = {
 						  localStorage.setItem("pagina1",pagina1);
 						  
 						  
-						  $("#pswUSS").focus()
+						  //$("#pswUSS").focus()
 								  
  
 					});
@@ -3637,7 +3641,7 @@ var app = {
 						  localStorage.setItem("pagina1",pagina1);
 						  
 						  
-						  $("#pswSVV").focus()
+						  //$("#pswSVV").focus()
 								  
 								  
 					 });
@@ -3818,7 +3822,7 @@ var app = {
 						  localStorage.setItem("pagina1",pagina1);
 						  
 						  
-						  $("#pswSAA").focus()
+						  //$("#pswSAA").focus()
 								  
 								  
 					 });
@@ -4002,7 +4006,7 @@ var app = {
 					  localStorage.setItem("pagina1",pagina1);
 								  
 								  
-					  $("#pswTMM").focus()
+					  //$("#pswTMM").focus()
 								  
 								  
 					});
@@ -4186,7 +4190,7 @@ var app = {
 						  localStorage.setItem("pagina1",pagina1);
 						  
 						  
-						  $("#pswEMM").focus()
+						  //$("#pswEMM").focus()
 								  
 					});
 								  
@@ -4369,7 +4373,7 @@ var app = {
 						  localStorage.setItem("pagina1",pagina1);
 						  
 						  
-						  $("#pswUII").focus()
+						  //$("#pswUII").focus()
 								  
 					});
 								  
@@ -4546,7 +4550,7 @@ var app = {
 					  localStorage.setItem("pagina1",pagina1);
 					  
 					  
-					  $("#pswUDD").focus()
+					  //$("#pswUDD").focus()
 								  
 					});
 								  
@@ -4723,7 +4727,7 @@ var app = {
 						  localStorage.setItem("pagina1",pagina1);
 						  
 						  
-						  $("#pswUAA").focus()
+						  //$("#pswUAA").focus()
 								  
 					});
 								  
@@ -4899,7 +4903,7 @@ var app = {
 						  localStorage.setItem("pagina1",pagina1);
 						  
 						  
-						  $("#pswUVV").focus()
+						  //$("#pswUVV").focus()
 								  
 					});
 								  
