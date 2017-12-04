@@ -441,7 +441,7 @@ var app = {
 														
 											a1=codice.split("_");
 														
-											//alert(a1[1]+" "+a1[2])
+											alert(a1[1]+" "+a1[2])
        
                                             //codice = codice.replace("cod_","")
                                                         
@@ -531,6 +531,8 @@ var app = {
 			db.transaction(function (tx) {
             tx.executeSql('SELECT * FROM Ordine where id='+ prod +' and IdProdotto="'+ vedo +'"', [], function (tx, results) {
 					var len = results.rows.length, i;
+					
+					alert("len:" + len)
 				
 					if(results.rows.length==0){
 						return;
@@ -1619,11 +1621,13 @@ var app = {
 							  
 							  if(self.document.form.radice2.value != ""){
 								document.getElementById("foglia2").value = radicchio;
-								myScroll.scrollToElement("#foglia2", "1s");
+								
+								richiesta(0,0)
 							  }
 							  else{
 								document.getElementById("foglia").value = radicchio;
-								myScroll.scrollToElement("#foglia", "1s");
+								
+								richiesta(0,0)
 							  }
 							  
 							})
