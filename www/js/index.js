@@ -535,6 +535,9 @@ var app = {
 					alert("len:" + len)
 				
 					if(results.rows.length==0){
+						$("#prova").html("0");
+						
+						seleziona2()
 						return;
 					}
 					else{                        
@@ -542,6 +545,9 @@ var app = {
 						}, null);
 								   
 						localStorage.setItem("Badge10", parseInt(localStorage.getItem("Badge10"))-1)
+						
+						$("#prova").html(localStorage.getItem("Badge10"));
+								   
 								   
 						seleziona2()
 						
@@ -1537,12 +1543,14 @@ var app = {
 						  if(self.document.form.foglia2.value != ""){
 						     document.getElementById("radice2").value = radicchio;
 							 //$("#radice2").focus()
-							 myScroll.scrollToElement("#radice2", "1s");
+							 //myScroll.scrollToElement("#radice2", "1s");
+							 richiesta(0,0)
 						  }
 						  else{
 						     document.getElementById("radice").value = radicchio;
 							 //$("#radice").focus()
-							 myScroll.scrollToElement("#radice", "1s");
+							 //myScroll.scrollToElement("#radice", "1s");
+							 richiesta(0,0)
 						  }
 						  
 						  })
