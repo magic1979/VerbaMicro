@@ -422,7 +422,7 @@ var app = {
 										 tuttigliid2 = results.rows.item(i).id;
                                          
                                          if(conta==0){
-                                            msg2 = msg2 + "<table cellpadding='5' cellspacing='0' border='0' align='center' class='tabella_ordine'><tr><td><span class='text_dati'>"+ results.rows.item(i).IdProdotto +" (descrizione)</span></td><td><span class='text_dati'><b>"+ Number(results.rows.item(i).Descrizione).toFixed(2)+"&euro;</b></span></td><td width='32'><a id="+ paperino2 +"><img src='img/delete.png'></a></td></tr></table>"
+                                            msg2 = "<table cellpadding='5' cellspacing='0' border='0' align='center' class='tabella_ordine'><tr><td><span class='text_dati'>"+ results.rows.item(i).IdProdotto +" (descrizione)</span></td><td><span class='text_dati'><b>"+ Number(results.rows.item(i).Descrizione).toFixed(2)+"&euro;</b></span></td><td width='32'><a id="+ paperino2 +"><img src='img/delete.png'></a></td></tr></table>"
 
                                          }
                                          else{
@@ -1651,6 +1651,7 @@ var app = {
 				   if(result.Token==1){
 					   
 					$("#ricerca").show()
+					$("#contengo").hide();
 				   
 				   //PROGETTO
 				   
@@ -5324,7 +5325,7 @@ var app = {
 		
 		$(document).on("touchstart", "#avanti", function(e){
 			
-			localStorage.setItem("")
+			localStorage.setItem("modofoto","")
 			
 			window.plugins.nativepagetransitions.fade({
 				"duration"       :  700, // in milliseconds (ms), default 400

@@ -87,7 +87,7 @@ function onDeviceReady() {
 		$("#spinner").hide();
 		
 		
-		/*if(localStorage.getItem("modofoto")=="prendi"){
+		if(localStorage.getItem("modofoto")=="prendi"){
 			
 			$("#spinner").show();
 			
@@ -101,10 +101,10 @@ function onDeviceReady() {
 			});
 			
 			
-		}*/
+		}
 	
 	
-		/*if(localStorage.getItem("modofoto")=="scatta"){
+		if(localStorage.getItem("modofoto")=="scatta"){
 			
 			$("#spinner").show();
 			
@@ -116,7 +116,7 @@ function onDeviceReady() {
 			targetHeight: 400
 		 
 		 });
-		}*/
+		}
 		
 		
 		// START CODE //
