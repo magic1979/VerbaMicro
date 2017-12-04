@@ -441,7 +441,7 @@ var app = {
 														
 											a1=codice.split("_");
 														
-											alert(a1[1]+" "+a1[2])
+											//alert(a1[1]+" "+a1[2])
        
                                             //codice = codice.replace("cod_","")
                                                         
@@ -510,6 +510,8 @@ var app = {
 							 
 						 $("#QTA").html(Number(results.rows.item(i).TOT));
 						 document.getElementById("qta").value = Number(results.rows.item(i).TOT);
+						 
+						 return;
 							 
 					 }
 							 
@@ -525,20 +527,24 @@ var app = {
 		}
   
   
+  
         function sottprod(prod,vedo){
-			
 			
 			db.transaction(function (tx) {
             tx.executeSql('SELECT * FROM Ordine where id='+ prod +' and IdProdotto="'+ vedo +'"', [], function (tx, results) {
 					var len = results.rows.length, i;
 					
-					alert("len:" + len)
+					//alert("len:" + len)
 				
 					if(results.rows.length==0){
 						$("#prova").html("0");
 						
+                        tx.executeSql('DELETE FROM Ordine', [], function (tx, results) {
+                        }, null);
+						
 						seleziona2()
 						return;
+						e.preventDefault();
 					}
 					else{                        
 						tx.executeSql('DELETE FROM Ordine where id='+prod+' and IdProdotto="'+ vedo +'"', [], function (tx, results) {
@@ -550,15 +556,15 @@ var app = {
 								   
 								   
 						seleziona2()
-						
+						return;
+						e.preventDefault();
 					}
                                                           
                 }, null);
             });
 			
             //alert(prod)
- 
-        }
+         }
  
   
 		$(document).on("touchstart", "#meno", function(e){
@@ -5659,9 +5665,7 @@ var app = {
 			
 			
 			$("#lati").html(ciao +", "+ ciao1);
-			
-			
-			
+
 		}
 		
 		
