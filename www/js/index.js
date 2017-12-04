@@ -55,7 +55,7 @@ var app = {
 		  $("#footer").show();
 		}
 	  
-	  window.addEventListener('native.keyboardshow', keyboardShowHandler);
+	    window.addEventListener('native.keyboardshow', keyboardShowHandler);
   
 		function keyboardShowHandler(e){
 			$("#footer").hide();
@@ -739,7 +739,7 @@ var app = {
         });
 		
 	
-		$(document).on("touchstart", "#indietro", function(e){
+		$(document).on("touchstart", "#ciccio2", function(e){
 			
 			window.plugins.nativepagetransitions.fade({
 				"duration"       :  600, // in milliseconds (ms), default 400
@@ -1358,11 +1358,11 @@ var app = {
 			if ((radice3 == "") && (foglia3 == "")) {
 				
 				navigator.notification.alert(
-											 'inserire una Radice o una Foglia',  // message
-											 alertDismissed,         // callback
-											 'Ricerca di un Microverba',            // title
-											 'OK'                  // buttonName
-											 );
+				 'inserire una Radice o una Foglia',  // message
+				 alertDismissed,         // callback
+				 'Ricerca di un Microverba',            // title
+				 'OK'                  // buttonName
+				 );
 				return;
 				
 			}
@@ -1422,11 +1422,12 @@ var app = {
 				   $("#tutto").html("");
 				    $("#paginazione").html("");
 				   $("#titoloricerca").html("");
-				   $("#contengo").show();
+				  
 				   
 				   //TUTTO
 				   
 				   if(result.Token==0){
+				      $("#contengo").show();
 				   
 				   
 				   if((result.radice!="")&&(result.foglia!="")){
@@ -1861,7 +1862,7 @@ var app = {
 				   }
 				   else{
 				   
-				   var tabella = "<table width='90%' align='center'>";
+				   var tabella = "<table width='90%' align='center' class='tabella_contenuti'>";
 				   
 				   paperino = "YT_cont_"+i
 				   descyt = "YT_desc_"+i
@@ -2064,7 +2065,7 @@ var app = {
 				   }
 				   else{
 				   
-				   var tabella = "<table width='90%' align='center'>";
+				   var tabella = "<table width='90%' align='center' class='tabella_contenuti'>";
 				   
 				   paperino = "VA_cont_"+i
 				   descva = "VA_desc_"+i
@@ -2255,7 +2256,7 @@ var app = {
 				   }
 				   else{
 				   
-				   var tabella = "<table width='90%' align='center'>";
+				   var tabella = "<table width='90%' align='center' class='tabella_contenuti'>";
 				   
 				   paperino = "FA_cont_"+i
 				   descfa = "FA_desc_"+i
@@ -2437,7 +2438,7 @@ var app = {
 				   }
 				   else{
 				   
-				   var tabella = "<table width='90%' align='center'>";
+				   var tabella = "<table width='90%' align='center' class='tabella_contenuti'>";
 				   
 				   paperino = "PW_cont_"+i
 				   descpw = "PW_desc_"+i
@@ -2622,7 +2623,7 @@ var app = {
 				   }
 				   else{
 				   
-				   var tabella = "<table width='90%' align='center'>";
+				   var tabella = "<table width='90%' align='center' class='tabella_contenuti'>";
 				   
 				   paperino = "FB_cont_"+i
 				   descfb = "FB_desc_"+i
@@ -2805,7 +2806,7 @@ var app = {
 				   }
 				   else{
 				   
-				   var tabella = "<table width='90%' align='center'>";
+				   var tabella = "<table width='90%' align='center' class='tabella_contenuti'>";
 				   
 				   paperino = "TF_cont_"+i
 				   desctf = "TF_desc_"+i
@@ -2983,7 +2984,7 @@ var app = {
 				   }
 				   else{
 				   
-				   var tabella = "<table width='90%' align='center'>";
+				   var tabella = "<table width='90%' align='center' class='tabella_contenuti'>";
 				   
 				   paperino = "TW_cont_"+i
 				   desctw = "TW_desc_"+i
@@ -3160,7 +3161,7 @@ var app = {
 				   }
 				   else{
 				   
-				   var tabella = "<table width='90%' align='center'>";
+				   var tabella = "<table width='90%' align='center' class='tabella_contenuti'>";
 				   
 				   paperino = "IG_cont_"+i
 				   descig = "IG_desc_"+i
@@ -3336,7 +3337,7 @@ var app = {
 				   }
 				   else{
 				   
-				   var tabella = "<table width='90%' align='center'>";
+				   var tabella = "<table width='90%' align='center' class='tabella_contenuti'>";
 				   
 				   paperino = "US_cont_"+i
 				   descus = "US_desc_"+i
@@ -3519,7 +3520,7 @@ var app = {
 				   }
 				   else{
 				   
-				   var tabella = "<table width='90%' align='center'>";
+				   var tabella = "<table width='90%' align='center' class='tabella_contenuti'>";
 				   
 				   paperino = "SV_cont_"+i
 				   descsv = "SV_desc_"+i
@@ -3700,7 +3701,7 @@ var app = {
 				   }
 				   else{
 				   
-				   var tabella = "<table width='90%' align='center'>";
+				   var tabella = "<table width='90%' align='center' class='tabella_contenuti'>";
 				   
 				   paperino = "SA_cont_"+i
 				   descsa = "SA_desc_"+i
@@ -3884,7 +3885,7 @@ var app = {
 				   }
 				   else{
 				   
-				   var tabella = "<table width='90%' align='center'>";
+				   var tabella = "<table width='90%' align='center' class='tabella_contenuti'>";
 				   
 				   paperino = "TM_cont_"+i
 				   desctm = "TM_desc_"+i
@@ -4069,7 +4070,7 @@ var app = {
 				   }
 				   else{
 				   
-				   var tabella = "<table width='90%' align='center'>";
+				   var tabella = "<table width='90%' align='center' class='tabella_contenuti'>";
 				   
 				   paperino = "EM_cont_"+i
 				   descem = "EM_desc_"+i
@@ -4252,7 +4253,7 @@ var app = {
 				   }
 				   else{
 				   
-				   var tabella = "<table width='90%' align='center'>";
+				   var tabella = "<table width='90%' align='center' class='tabella_contenuti'>";
 				   
 				   paperino = "UI_cont_"+i
 				   descui = "UI_desc_"+i
@@ -4429,7 +4430,7 @@ var app = {
 				   }
 				   else{
 				   
-				   var tabella = "<table width='90%' align='center'>";
+				   var tabella = "<table width='90%' align='center' class='tabella_contenuti'>";
 				   
 				   paperino = "UD_cont_"+i
 				   descud = "UD_desc_"+i
@@ -4606,7 +4607,7 @@ var app = {
 				   }
 				   else{
 				   
-				   var tabella = "<table width='90%' align='center'>";
+				   var tabella = "<table width='90%' align='center' class='tabella_contenuti'>";
 				   
 				   paperino = "UA_cont_"+i
 				   descua = "UA_desc_"+i
@@ -4782,7 +4783,7 @@ var app = {
 				   }
 				   else{
 				   
-				   var tabella = "<table width='90%' align='center'>";
+				   var tabella = "<table width='90%' align='center' class='tabella_contenuti'>";
 				   
 				   paperino = "UV_cont_"+i
 				   descuv = "UV_desc_"+i
@@ -5321,6 +5322,8 @@ var app = {
 		
 		
 		$(document).on("touchstart", "#avanti", function(e){
+			
+			localStorage.setItem("")
 			
 			window.plugins.nativepagetransitions.fade({
 				"duration"       :  700, // in milliseconds (ms), default 400
