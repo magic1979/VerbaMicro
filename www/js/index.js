@@ -549,7 +549,9 @@ var app = {
                         tx.executeSql('DELETE FROM Ordine where id='+prod+' and IdProdotto="'+ vedo +'"', [], function (tx, results) {
 						}, null);
 						
-						seleziona2()
+						//seleziona2()
+						document.getElementById("idordine").value = "";
+                        document.getElementById("products").value = "";
 						$("#contenutoCart").html("");
 						 
 						return;
@@ -3529,7 +3531,7 @@ var app = {
 				   }
 				   else{
 				   
-				   for (var i=0, l=10; i<l; i++) {
+				   for (var i=0, l=30; i<l; i++) {
 				   
 				   if(i==1){
 				   i="01"
@@ -3710,7 +3712,7 @@ var app = {
 				   }
 				   else{
 				   
-				   for (var i=0, l=10; i<l; i++) {
+				   for (var i=0, l=30; i<l; i++) {
 				   
 				   if(i==1){
 				   i="01"
@@ -3889,7 +3891,7 @@ var app = {
 				   }
 				   else{
 				   
-				   for (var i=0, l=10; i<l; i++) {
+				   for (var i=0, l=30; i<l; i++) {
 				   
 				   if(i==1){
 				   i="01"
@@ -4074,7 +4076,7 @@ var app = {
 				   }
 				   else{
 				   
-				   for (var i=0, l=10; i<l; i++) {
+				   for (var i=0, l=30; i<l; i++) {
 				   
 				   if(i==1){
 				   i="01"
@@ -4262,7 +4264,7 @@ var app = {
 				   }
 				   else{
 				   
-				   for (var i=0, l=10; i<l; i++) {
+				   for (var i=0, l=30; i<l; i++) {
 				   
 				   if(i==1){
 				   i="01"
@@ -4439,7 +4441,7 @@ var app = {
 				   }
 				   else{
 				   
-				   for (var i=0, l=10; i<l; i++) {
+				   for (var i=0, l=30; i<l; i++) {
 				   
 				   if(i==1){
 				   i="01"
@@ -4616,7 +4618,7 @@ var app = {
 				   }
 				   else{
 				   
-				   for (var i=0, l=10; i<l; i++) {
+				   for (var i=0, l=30; i<l; i++) {
 				   
 				   if(i==1){
 				   i="01"
@@ -4792,7 +4794,7 @@ var app = {
 				   }
 				   else{
 				   
-				   for (var i=0, l=10; i<l; i++) {
+				   for (var i=0, l=30; i<l; i++) {
 				   
 				   if(i==1){
 				   i="01"
