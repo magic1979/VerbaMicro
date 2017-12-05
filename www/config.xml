@@ -124,12 +124,30 @@
 		<gap:splash src="res/screen/ios/screen-iphone-portrait-568h-2x.png" gap:platform="ios" width="640" height="1136" />
 		<gap:splash src="res/screen/ios/screen-ipad-portrait.png" gap:platform="ios" width="768" height="1024 " />
 		<gap:splash src="res/screen/ios/screen-ipad-landscape.png" gap:platform="ios" width="1024" height="768" />
-		<gap:splash src="LDPI.png" gap:platform="android" gap:density="ldpi" />
+		
+		<!--
+		gap:density="ldpi"
+		<gap:splash src="LDPI.png" gap:platform="android" gap:qualifier="port-ldpi" />
 		<gap:splash src="MDPI.png" gap:platform="android" gap:density="mdpi" />
 		<gap:splash src="HDPI.png" gap:platform="android" gap:density="hdpi" />
 		<gap:splash src="XHDPI.png" gap:platform="android" gap:density="xhdpi" />
 		<gap:splash src="XXHDPI.png" gap:platform="android" gap:density="xxhdpi" />
 		<gap:splash src="XXXHDPI.png" gap:platform="android" gap:density="xxxhdpi" />
+		-->
+		<gap:splash src="LDPI.png" gap:platform="android" gap:qualifier="port-ldpi" />
+		<gap:splash src="MDPI.png" gap:platform="android" gap:qualifier="port-mdpi" />
+		<gap:splash src="HDPI.png" gap:platform="android" gap:qualifier="port-hdpi" />
+		<gap:splash src="XHDPI.png" gap:platform="android" gap:qualifier="port-xhdpi" />
+		<gap:splash src="XXHDPI.png" gap:platform="android" gap:qualifier="port-xxhdpi" />
+		<gap:splash src="XXXHDPI.png" gap:platform="android" gap:qualifier="port-xxxhdpi" />
+		
+		<gap:splash src="LDPIv2.png" gap:platform="android" gap:qualifier="land-ldpi" />
+		<gap:splash src="MDPIv2.png" gap:platform="android" gap:qualifier="land-mdpi" />
+		<gap:splash src="HDPIv2.png" gap:platform="android" gap:qualifier="land-hdpi" />
+		<gap:splash src="XHDPIv2.png" gap:platform="android" gap:qualifier="land-xhdpi" />
+		<gap:splash src="XXHDPIv2.png" gap:platform="android" gap:qualifier="land-xxhdpi" />
+		<gap:splash src="XXXHDPIv2.png" gap:platform="android" gap:qualifier="land-xxxhdpi" />
+		
 		<gap:splash src="res/screen/blackberry/screen-225.png" gap:platform="blackberry" />
 		<gap:splash src="res/screen/windows-phone/screen-portrait.jpg" gap:platform="winphone" />
 		<gap:splash src="splash.png" />
