@@ -1394,6 +1394,10 @@ var app = {
 				 'Ricerca di un Microverba',            // title
 				 'OK'                  // buttonName
 				 );
+				 
+				
+				$("#contengo").hide();
+				 
 				return;
 				
 			}
@@ -1860,7 +1864,7 @@ var app = {
 				   else{
 				   
 				   
-				   for (var i=0, l=10; i<l; i++) {
+				   for (var i=0, l=30; i<l; i++) {
 				   
 				   if(i==1){
 				   i="01"
@@ -1936,7 +1940,7 @@ var app = {
 				   
 									 lock="unlock.png";
 				   
-									 tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descyt])+"</span></td><td align='right' width='40'></td></tr>"
+									 tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td colspan='2'><span class='testo_contenuti'>"+$.base64.decode(result[descyt])+"</span></td></tr>"
 
 								}
 								else{
@@ -2064,7 +2068,7 @@ var app = {
 				   }
 				   else{
 				   
-				   for (var i=0, l=10; i<l; i++) {
+				   for (var i=0, l=30; i<l; i++) {
 				   
 				   if(i==1){
 				   i="01"
@@ -2140,7 +2144,7 @@ var app = {
 				   
 								   lock="unlock.png";
 				   
-								   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_video.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descva])+"</span></td><td align='right' width='40'></td></tr>"
+								   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_video.png' class='icona_contenuti'></a></td><td colspan='2'><span class='testo_contenuti'>"+$.base64.decode(result[descva])+"</span></td></tr>"
 				   
 							   }
 							   else{
@@ -2259,7 +2263,7 @@ var app = {
 				   }
 				   else{
 				   
-				   for (var i=0, l=10; i<l; i++) {
+				   for (var i=0, l=30; i<l; i++) {
 				   
 				   if(i==1){
 				   i="01"
@@ -2331,7 +2335,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_audio.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descfa])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_audio.png' class='icona_contenuti'></a></td><td colspan='2'><span class='testo_contenuti'>"+$.base64.decode(result[descfa])+"</span></td></tr>"
 				   
 				   }
 				   else{
@@ -2441,7 +2445,7 @@ var app = {
 				   }
 				   else{
 				   
-				   for (var i=0, l=10; i<l; i++) {
+				   for (var i=0, l=30; i<l; i++) {
 				   
 				   if(i==1){
 				   i="01"
@@ -2515,7 +2519,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_www.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descpw])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_www.png' class='icona_contenuti'></a></td><td colspan='2'><span class='testo_contenuti'>"+$.base64.decode(result[descpw])+"</span></td></tr>"
 				   
 				   }
 				   else{
@@ -2629,7 +2633,7 @@ var app = {
 				   }
 				   else{
 				   
-				   for (var i=0, l=10; i<l; i++) {
+				   for (var i=0, l=30; i<l; i++) {
 				   
 				   if(i==1){
 				   i="01"
@@ -2700,7 +2704,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_facebook.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descfb])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_facebook.png' class='icona_contenuti'></a></td><td colspan='2'><span class='testo_contenuti'>"+$.base64.decode(result[descfb])+"</span></td></tr>"
 				   
 				   }
 				   else{
@@ -2812,7 +2816,7 @@ var app = {
 				   }
 				   else{
 				   
-				   for (var i=0, l=10; i<l; i++) {
+				   for (var i=0, l=30; i<l; i++) {
 				   
 				   if(i==1){
 				   i="01"
@@ -2882,7 +2886,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_telephone.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[desctf])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_telephone.png' class='icona_contenuti'></a></td><td colspan='2'><span class='testo_contenuti'>"+$.base64.decode(result[desctf])+"</span></td></tr>"
 				   
 				   }
 				   else{
@@ -2995,7 +2999,7 @@ var app = {
 				   }
 				   else{
 				   
-				   for (var i=0, l=10; i<l; i++) {
+				   for (var i=0, l=30; i<l; i++) {
 				   
 				   if(i==1){
 				   i="01"
@@ -3061,7 +3065,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_twitter.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[desctw])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_twitter.png' class='icona_contenuti'></a></td><td colspan='2'><span class='testo_contenuti'>"+$.base64.decode(result[desctw])+"</span></td></tr>"
 				   
 				   }
 				   else{
@@ -3172,7 +3176,7 @@ var app = {
 				   }
 				   else{
 				   
-				   for (var i=0, l=10; i<l; i++) {
+				   for (var i=0, l=30; i<l; i++) {
 				   
 				   if(i==1){
 				   i="01"
@@ -3237,7 +3241,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_instagram.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descig])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_instagram.png' class='icona_contenuti'></a></td><td colspan='2'><span class='testo_contenuti'>"+$.base64.decode(result[descig])+"</span></td></tr>"
 				   
 				   }
 				   else{
@@ -3348,7 +3352,7 @@ var app = {
 				   }
 				   else{
 				   
-				   for (var i=0, l=10; i<l; i++) {
+				   for (var i=0, l=30; i<l; i++) {
 				   
 				   if(i==1){
 				   i="01"
@@ -3415,7 +3419,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_social.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descig])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_social.png' class='icona_contenuti'></a></td><td colspan='2'><span class='testo_contenuti'>"+$.base64.decode(result[descig])+"</span></td></tr>"
 				   
 				   }
 				   else{
@@ -3597,7 +3601,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descsv])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td colspan='2'><span class='testo_contenuti'>"+$.base64.decode(result[descsv])+"</span></td></tr>"
 				   
 				   }
 				   else{
@@ -3778,7 +3782,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_audio_live.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descsa])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_audio_live.png' class='icona_contenuti'></a></td><td colspan='2'><span class='testo_contenuti'>"+$.base64.decode(result[descsa])+"</span></td></tr>"
 				   
 				   }
 				   else{
@@ -3962,7 +3966,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_smartphone.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[desctm])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_smartphone.png' class='icona_contenuti'></a></td><td colspan='2'><span class='testo_contenuti'>"+$.base64.decode(result[desctm])+"</span></td></tr>"
 				   
 				   }
 				   else{
@@ -4146,7 +4150,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_smartphone.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descem])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_smartphone.png' class='icona_contenuti'></a></td><td colspan='2'><span class='testo_contenuti'>"+$.base64.decode(result[descem])+"</span></td></tr>"
 				   
 				   }
 				   else{
@@ -4329,7 +4333,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_photo.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descui])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_photo.png' class='icona_contenuti'></a></td><td colspan='2'><span class='testo_contenuti'>"+$.base64.decode(result[descui])+"</span></td></tr>"
 				   
 				   }
 				   else{
@@ -4506,7 +4510,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_document.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descud])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_document.png' class='icona_contenuti'></a></td><td colspan='2'><span class='testo_contenuti'>"+$.base64.decode(result[descud])+"</span></td></tr>"
 				   
 				   }
 				   else{
@@ -4683,7 +4687,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_audio.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descua])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_audio.png' class='icona_contenuti'></a></td><td colspan='2'><span class='testo_contenuti'>"+$.base64.decode(result[descua])+"</span></td></tr>"
 				   
 				   }
 				   else{
@@ -4853,13 +4857,13 @@ var app = {
 				   }
 				   else{
 				   
-				   if(result[prezzoUV] === null || typeof(result[prezzoUV]) == 'undefined' || result[prezzoUV]=="null" || result[prezzoUVV]==""){
+				   if(result[prezzoUV] === null || typeof(result[prezzoUV]) == 'undefined' || result[prezzoUV]=="null" || result[prezzoUV]==""){
 				   
 				   if((result[pswUV]=="")||(result[pswUV]==$.base64.encode(pswUVV))){
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descuv])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td colspan='2'><span class='testo_contenuti'>"+$.base64.decode(result[descuv])+"</span></td></tr>"
 				   
 				   }
 				   else{
