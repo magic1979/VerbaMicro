@@ -1457,6 +1457,7 @@ var app = {
 				   $("#tutto").html("");
 				    $("#paginazione").html("");
 				   $("#titoloricerca").html("");
+				   $("#contengo").show();
 				  
 				   
 				   //TUTTO
@@ -1522,10 +1523,10 @@ var app = {
 				   if(result.roots!=""){
 					   
 				   	$("#compra1").hide();
-				   	$("#compra2").hide();
-				   	$("#contengo").show();
-					   
-				   	if(result.totalRoot!="0"){
+				     $("#compra2").hide();
+				     $("#contengo").show();
+				   
+				      if(result.totalRoot!="0"){
 				   
 						 var pagina = parseInt(localStorage.getItem("pagina"))
 						 var totale = result.totalRoot
@@ -1533,12 +1534,13 @@ var app = {
 						 var nextPagina = 4
 				         var schema2 = 4
 				   
-						 var pag = ""
+						 var pag = "0"
 				   
 				         var next = totale/nextPagina
 				   
+				   		  //alert(next)
 				   
-				   		$("#paginazione").html("<div class='cart_page'><table cellpadding='5' cellspacing='0' border='1' align='center' class='tabella_ordine'><tr><td colspan='2' height='30' align='center'><p id='test'></p></td></tr></table></div>")
+				   		$("#paginazione").html("<div class='cart_page'><table cellpadding='5' cellspacing='0' border='0' align='center' class='tabella_ordine'><tr><td colspan='2' height='30' align='center'><p id='test'></p></td></tr></table></div>")
 				   
 						   for (var i=0, l=next; i<l; i++) {
 				   
@@ -1639,15 +1641,15 @@ var app = {
 						  
 						  if(self.document.form.foglia2.value != ""){
 						     document.getElementById("radice2").value = radicchio;
+                             document.getElementById("radice").value = "";
 							 //$("#radice2").focus()
-							 //myScroll.scrollToElement("#radice2", "1s");
-							 richiesta(0,0)
+							 myScroll.scrollToElement("#radice2", "1s");
 						  }
 						  else{
 						     document.getElementById("radice").value = radicchio;
+                             document.getElementById("radice2").value = "";
 							 //$("#radice").focus()
-							 //myScroll.scrollToElement("#radice", "1s");
-							 richiesta(0,0)
+							 myScroll.scrollToElement("#radice", "1s");
 						  }
 						  
 						  })
@@ -1669,134 +1671,143 @@ var app = {
 				   if(result.leafs!=""){
 					   
 				   	 $("#compra1").hide();
-				     $("#compra2").hide();
-				     $("#contengo").show();
+				   $("#compra2").hide();
+				   $("#contengo").show();
 				   
-				      if(result.totalLeaf!="0"){
-				   
-						 var pagina = parseInt(localStorage.getItem("pagina"))
-						 var totale = result.totalLeaf
-				   
-						 var nextPagina = 4
-				         var schema2 = 4
-				   
-						 var pag = ""
-				   
-				         var next = totale/nextPagina
-				   
-				   		  //alert(next)
-				   
-				   		$("#paginazione").html("<div class='cart_page'><table cellpadding='5' cellspacing='0' border='1' align='center' class='tabella_ordine'><tr><td colspan='2' height='30' align='center'><p id='test'></p></td></tr></table></div>")
-				   
-						   for (var i=0, l=next; i<l; i++) {
-				   
-							   pag = i+1
-				   
-							   if (pag==1){
-				   
-								   nextPagina = 0
-				   
-								   if(pagina!=nextPagina){
-									   $("#test").append("<a id='pag_"+nextPagina+"'><span class='paginazione_on'>"+pag+"</span></a>")
-				   
-									   $(document).on("touchstart", "#pag_"+ nextPagina +"", function(e){
-										  var paginazione = this.id
-										  paginazione = paginazione.replace("pag_","")
-													  
-										  //alert(paginazione)
-										  localStorage.setItem("pagina",paginazione);
-										  
-										  richiesta(0,paginazione)
-										  e.stopImmediatePropagation()
-										  return
-										  
-										})
-								   }
-								   else{
-								  		$("#test").append("<span class='paginazione_off'>"+pag+"</span>")
-								   }
-				   
-							   }
-				   
-							   else{
-				   
-								   nextPagina = schema2 + nextPagina
-				   
-								   if(pagina!=nextPagina){
-									   $("#test").append("<a id='pag_"+nextPagina+"'><span class='paginazione_on'>"+pag+"</span></a>")
-				   
-									   $(document).on("touchstart", "#pag_"+ nextPagina +"", function(e){
-										  var paginazione = this.id
-										  paginazione = paginazione.replace("pag_","")
-													  
-										  //alert(paginazione)
-										  localStorage.setItem("pagina",paginazione);
-										  
-										  richiesta(0,paginazione)
-										  e.stopImmediatePropagation()
-										  return
-										})
-								   }
-								   else{
-								   	 $("#test").append("<span class='paginazione_off'>"+pag+"</span>")
-								   }
-				   
-							   }
-						   }
-				   
-						   $("#test").append("<a id='pag2_"+nextPagina+"'><div class='paginazione_next'></div></a>")
-				   
-						   $(document).on("touchstart", "#pag2_"+ nextPagina +"", function(e){
-							  var paginazione = this.id
-							  paginazione = paginazione.replace("pag2_","")
-							  
-							  //alert(paginazione)
-							  localStorage.setItem("pagina",paginazione);
-							  
-							  richiesta(0,paginazione)
-							  e.stopImmediatePropagation()
-							  return
-								  
-							})
 
-				       }
+                   if(result.totalRoot!="0"){
+                   
+                    var pagina = parseInt(localStorage.getItem("pagina"))
+                    var totale = result.totalLeaf
+                   
+                    var nextPagina = 4
+                    var schema2 = 4
+                   
+                    var pag = "0"
+                   
+                    var next = totale/nextPagina
+                   
+                    //alert(next)
+                   
+                    $("#paginazione").html("<div class='cart_page'><table cellpadding='5' cellspacing='0' border='0' align='center' class='tabella_ordine'><tr><td colspan='2' height='30' align='center'><p id='test'></p></td></tr></table></div>")
+                   
+                   for (var i=0, l=next; i<l; i++) {
+                   
+                    pag = i+1
+                   
+                    if (pag==1){
+                   
+                        nextPagina = 0
+                   
+                       if(pagina!=nextPagina){
+                           $("#test").append("<a id='pag_"+nextPagina+"'><span class='paginazione_on'>"+pag+"</span></a>")
+                   
+                           $(document).on("touchstart", "#pag_"+ nextPagina +"", function(e){
+                              var paginazione = this.id
+                              paginazione = paginazione.replace("pag_","")
+                              
+                              //alert(paginazione)
+                              localStorage.setItem("pagina",paginazione);
+                              
+                              richiesta(0,paginazione)
+                              e.stopImmediatePropagation()
+                              return
+                              
+                              })
+                       }
+                       else{
+                        $("#test").append("<span class='paginazione_off'>"+pag+"</span>")
+                       }
+                   
+                   }
+                   
+                   else{
+                   
+                       nextPagina = schema2 + nextPagina
+                   
+                       if(pagina!=nextPagina){
+                       $("#test").append("<a id='pag_"+nextPagina+"'><span class='paginazione_on'>"+pag+"</span></a>")
+                   
+                       $(document).on("touchstart", "#pag_"+ nextPagina +"", function(e){
+                          var paginazione = this.id
+                          paginazione = paginazione.replace("pag_","")
+                          
+                          //alert(paginazione)
+                          localStorage.setItem("pagina",paginazione);
+                          
+                          richiesta(0,paginazione)
+                          e.stopImmediatePropagation()
+                          return
+                          })
+                       }
+                       else{
+                       $("#test").append("<span class='paginazione_off'>"+pag+"</span>")
+                       }
+                   
+                   }
+                   }
+                   
+                   $("#test").append("<a id='pag2_"+nextPagina+"'><div class='paginazione_next'></div></a>")
+                   
+                   $(document).on("touchstart", "#pag2_"+ nextPagina +"", function(e){
+                      var paginazione = this.id
+                      paginazione = paginazione.replace("pag2_","")
+                      
+                      //alert(paginazione)
+                      localStorage.setItem("pagina",paginazione);
+                      
+                      richiesta(0,paginazione)
+                      e.stopImmediatePropagation()
+                      return
+                      
+                      })
+                   
+                   }
+					   
 				   
-					  $("#titoloricerca").html("<div class='cart_page'><table cellpadding='5' cellspacing='0' border='0' align='center' class='tabella_ordine'><p class='titolo_ordine'><b>MICROVERBA ESISTENTI</b></p></td></tr></table>");
+					   var risultato = ""
 				   
-					   var str = $.base64.decode(result.leafs);
+					   var str=$.base64.decode(result.leafs);
 					   //alert(str)
 				   
 					   var a1 = new Array();
 				   
 					   a1=str.split("|");
 				   
+					   $("#titoloricerca").html("<div class='cart_page'><table cellpadding='5' cellspacing='0' border='0' align='center' class='tabella_ordine'><p class='titolo_ordine'><b>MICROVERBA ESISTENTI</b></p></td></tr></table>");
+				   
 					   for (i=0;i<a1.length;i++)
 				   
 					   {
-					    var tabella = "<div class='cart_page'><table cellpadding='5' cellspacing='0' border='0' align='center' class='tabella_ordine'>";
+							var tabella = "<div class='cart_page'><table cellpadding='5' cellspacing='0' border='0' align='center' class='tabella_ordine'>";
 				   
-						tabella = tabella + "<tr><td><span class='text_dati'>"+a1[i]+" :: "+radice3+"</span></td><td width='32'><a id='root_"+a1[i]+"'><img src='img/ico_arrow_dx.png'></a></td></tr>"
+						   if(risultato!=a1[i]){
 				   
-						tabella = tabella + "</table></div><br>";
-						$("#tutto").append(tabella);
+							  tabella = tabella + "<tr><td><span class='text_dati'>"+a1[i]+" :: "+radice3+"</span></td><td width='32'><a id='root_"+a1[i]+"'><img src='img/ico_arrow_dx.png'></a></td></tr>"
+						   }
 
-						$(document).on("touchstart", "#root_"+ a1[i] +"", function(e){
-									  
-						  var radicchio = this.id
-						  radicchio = radicchio.replace("root_","")
-						  
-						  if(self.document.form.foglia2.value != ""){
-						     document.getElementById("foglia2").value = radicchio;
-							 //$("#radice2").focus()
-							 richiesta(0,0)
-						  }
-						  else{
-						     document.getElementById("foglia").value = radicchio;
-							 //$("#radice").focus()
-							 richiesta(0,0)
-						  }
-						  
-						  })
+						   tabella = tabella + "</table></div><br>";
+						   $("#tutto").append(tabella);
+				   
+						   $(document).on("touchstart", "#root_"+ a1[i] +"", function(e){
+										  
+							  var radicchio = this.id
+							  radicchio = radicchio.replace("root_","")
+							  
+							  if(self.document.form.radice2.value != ""){
+								document.getElementById("foglia2").value = radicchio;
+                                document.getElementById("foglia").value = "";
+								myScroll.scrollToElement("#foglia2", "1s");
+							  }
+							  else{
+								document.getElementById("foglia").value = radicchio;
+                                document.getElementById("foglia2").value = "";
+								myScroll.scrollToElement("#foglia", "1s");
+							  }
+							  
+							})
+				   
+						   risultato = a1[i]
 					   }
 				   
 				   }
