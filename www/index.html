@@ -1052,7 +1052,7 @@
 					    <input type="hidden" nome="products" id="products" value="0">
                         <input type="hidden" nome="nomeordine" id="nomeordine" value="Ordine MicroVerba">
 						<input type="hidden" nome="qta" id="qta" value="qta">
-                    </form>
+                    
                     
                     <br><br>
                     <b><span id="IDCART" style="display:none"></span></b> - <b><span id="NOMEORD" style="display:none"></span></b> - <b><span id="QTA" style="display:none"></span></b>
@@ -1063,16 +1063,20 @@
                     <table align="center" width="95%">
 
 						<tr>
-							<td  align="center"><a id='mandaordine' nome='mandaordine' name="button" class="bt_pagamento"><font color="#fff">Paga con PayPal o Carta di Credito</font></a></td>
+							<td  align="center" colspan="2"><a id='mandaordine' nome='mandaordine' name="button" class="bt_pagamento"><font color="#fff">Paga con PayPal o Carta di Credito</font></a></td>
 						</tr>
 						<tr>
-							<td ><hr class='div3'><br><br></td>
+							<td colspan="2"><hr class='div3'><br><br></td>
 						</tr>
 						<tr>
-							<td  align="center"><img src='img/paypal.png' width="200px"></td>
+							<td colspan="2" align="center"><img src='img/paypal.png' width="200px"></td>
 						</tr>
 						<tr>
-							<td  align='center'><p align="center"><a href="javascript:;" class="privacy">Accetto i termini di vendita</a><br><br><a href="javascript:;" class="privacy">Informativa sulla Privacy</a></p></td>
+							<td align='right'><input type="checkbox" name="privacybtn" id="privacybtn"><label for="privacybtn"></label></td>
+							<td width="100%" align='left'><p align="center"><a  class="privacy">Accetto i termini di vendita</a><br><br><a id="privacy2" class="privacy">Informativa sulla Privacy</a></p></td>
+						</tr>
+                        <tr>
+							<td colspan="2"><br></td>
 						</tr>
 						
                     </table>
@@ -1080,6 +1084,7 @@
                     <br><br><br><br><br><br>
                     <a id="cancella" href="">cancella</a>
                     
+                    </form>
                 </div>
             </div>
             

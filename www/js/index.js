@@ -253,6 +253,20 @@ var app = {
             agg2(2, "2.00", "Test 2","p")
                        
         });
+		
+		
+		$(document).on("touchstart", "#privacy", function(e){
+					   
+			window.open('http://microverba.com/privacy.php?lang=it', '_system', 'location=no');
+					   
+		});
+		
+		
+		$(document).on("touchstart", "#privacy2", function(e){
+					   
+		   window.open('http://microverba.com/privacy.php?lang=it', '_system', 'location=no');
+					   
+		});
         
         
         
@@ -383,6 +397,8 @@ var app = {
             var conta = 0;
 			$("#IDCART").html("");
 			$("#NOMEORD").html("");
+			$("#TOTCART").html("");
+			
 			
 			if(localStorage.getItem("Badge10")!="0"){
             
@@ -446,37 +462,26 @@ var app = {
 
                                          }
                                          
-                                         //$("#contenutoCart").append('</table>');
-                                         //$('#contenutoCart').html(landmark);
 										 
 										 document.getElementById("idordine").value = tuttigliid2;
                                          document.getElementById("products").value = tuttigliid;
 										 
 										 $("#contenutoCart").append(msg2);
-                                         
-                                        // $("#contenutoCart").append("jhdjahasj js djkas dsahkjsa kjash jkashdkjashdjkas <br><br>jhdjahasj js djkas dsahkjsa kjash jkashdkjashdjkas <br><br>jhdjahasj js djkas dsahkjsa kjash jkashdkjashdjkas <br><br>jhdjahasj js djkas dsahkjsa kjash jkashdkjashdjkas <br><br>jhdjahasj js djkas dsahkjsa kjash jkashdkjashdjkas <br><br>jhdjahasj js djkas dsahkjsa kjash jkashdkjashdjkas <br><br>jhdjahasj js djkas dsahkjsa kjash jkashdkjashdjkas <br><br>")
-                                         
-                                         setTimeout (function(){
-										    myScroll2.refresh();
-										 
-										  }, 500);
+                                                                                                         
 										 
 										 selPrezzo();
 										 
-											return;
-											e.preventDefault();
-                                         
-                                         
-                                         }, null);
+
+                                      }, null);
                            });
 						   
 						   
 				}
         }
   
+  
         function selPrezzo(){
 			
-			//alert("prezzo")
 			
             db.transaction(function (tx) {
 				   tx.executeSql('SELECT SUM(Descrizione) as TOT FROM Ordine', [], function (tx, results) {
@@ -499,6 +504,7 @@ var app = {
 	
   
 		function selQta(){
+			
 			db.transaction(function (tx) {
 			   tx.executeSql('SELECT SUM(Qta) as TOT FROM Ordine', [], function (tx, results) {
 							 var len = results.rows.length, i;
@@ -507,25 +513,38 @@ var app = {
 							 
 						 $("#QTA").html(Number(results.rows.item(i).TOT));
 						 document.getElementById("qta").value = Number(results.rows.item(i).TOT);
-						 
-						  setTimeout (function(){
-							myScroll2.refresh();
-										 
-						  }, 500);
-						 
-						 return;
-							 
+						  
 					 }
 							 
 					 }, null);
 			   });
+			   
+			   
+			 myScroll2 = new iScroll('wrapper2', {
+				click: true,
+				useTransform: false,
+				//bounce: false,
+				onBeforeScrollStart: function (e)
+				{
+				var target = e.target;
+				while (target.nodeType != 1) {
+				target = target.parentNode;
+				}
+				
+				if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA' && target.tagName != 'OPTION') {
+				e.preventDefault();
+				}
+			 }
+
+			});
 			
-			
+				
 			setTimeout (function(){
+				
 				myScroll2.refresh();
 				
-				return;
 			}, 500);
+			
 		}
   
   
@@ -810,7 +829,7 @@ var app = {
 
 			// SCROLL"
 			
-			var myScroll2
+			/*var myScroll2
 			
 			myScroll2 = new iScroll('wrapper2', {
 								click: true,
@@ -828,17 +847,17 @@ var app = {
 								}
 								}
 
-			});
+			});*/
 			
 			
 			seleziona2()
 			
 			
-			setTimeout (function(){
+			/*setTimeout (function(){
 				
 				myScroll2.refresh();
 				
-			}, 500);
+			}, 500);*/
 					   
         });
 		
@@ -1084,21 +1103,35 @@ var app = {
         }
 		
 		$(document).on("touchstart", "#mandaordine", function(e){
+			
+			if (document.getElementById('privacybtn').checked) {
 					   
-		     if (localStorage.getItem("email") === null || typeof(localStorage.getItem("email")) == 'undefined' || localStorage.getItem("email")=="null" || localStorage.getItem("email")==""){
-					   
-			   navigator.notification.prompt(
-				 'Inserisci il tuo indirizzo email',  // message
-				  onPrompt,                  // callback to invoke
-				 'Recupera la Password',            // title
-				 ['Invia','Annulla'],             // buttonLabels
-				 ''                 // defaultText
-			   );
-			   
-		     }
-		   else{
-			 compraCarta()
-		   }
+				 if (localStorage.getItem("email") === null || typeof(localStorage.getItem("email")) == 'undefined' || localStorage.getItem("email")=="null" || localStorage.getItem("email")==""){
+						   
+				   navigator.notification.prompt(
+					 'Inserisci il tuo indirizzo email',  // message
+					  onPrompt,                  // callback to invoke
+					 'Recupera la Password',            // title
+					 ['Invia','Annulla'],             // buttonLabels
+					 ''                 // defaultText
+				   );
+				   
+				 }
+			   else{
+				 compraCarta()
+			   }
+		   
+		 	}
+			else{
+				
+				navigator.notification.alert(
+				'Devi Accettare i termini per proseguire',  // message
+				alertDismissed,         // callback
+				'Privacy',            // title
+				'OK'                  // buttonName
+				);
+				
+			}
             
 
         });
@@ -1531,8 +1564,8 @@ var app = {
 						 var pagina = parseInt(localStorage.getItem("pagina"))
 						 var totale = result.totalRoot
 				   
-						 var nextPagina = 4
-				         var schema2 = 4
+						 var nextPagina = result.pagination
+				         var schema2 = result.pagination
 				   
 						 var pag = "0"
 				   
@@ -1551,11 +1584,11 @@ var app = {
 								   nextPagina = 0
 				   
 								   if(pagina!=nextPagina){
-									   $("#test").append("<a id='pag_"+nextPagina+"'><span class='paginazione_on'>"+pag+"</span></a>")
+									   $("#test").append("<a id='pagr_"+nextPagina+"'><span class='paginazione_on'>"+pag+"</span></a>")
 				   
-									   $(document).on("touchstart", "#pag_"+ nextPagina +"", function(e){
+									   $(document).on("touchstart", "#pagr_"+ nextPagina +"", function(e){
 										  var paginazione = this.id
-										  paginazione = paginazione.replace("pag_","")
+										  paginazione = paginazione.replace("pagr_","")
 													  
 										  //alert(paginazione)
 										  localStorage.setItem("pagina",paginazione);
@@ -1577,11 +1610,11 @@ var app = {
 								   nextPagina = schema2 + nextPagina
 				   
 								   if(pagina!=nextPagina){
-									   $("#test").append("<a id='pag_"+nextPagina+"'><span class='paginazione_on'>"+pag+"</span></a>")
+									   $("#test").append("<a id='pagr_"+nextPagina+"'><span class='paginazione_on'>"+pag+"</span></a>")
 				   
-									   $(document).on("touchstart", "#pag_"+ nextPagina +"", function(e){
+									   $(document).on("touchstart", "#pagr_"+ nextPagina +"", function(e){
 										  var paginazione = this.id
-										  paginazione = paginazione.replace("pag_","")
+										  paginazione = paginazione.replace("pagr_","")
 													  
 										  //alert(paginazione)
 										  localStorage.setItem("pagina",paginazione);
@@ -1643,13 +1676,15 @@ var app = {
 						     document.getElementById("radice2").value = radicchio;
                              document.getElementById("radice").value = "";
 							 //$("#radice2").focus()
-							 myScroll.scrollToElement("#radice2", "1s");
+							 
+							 richiesta(0,0)
 						  }
 						  else{
 						     document.getElementById("radice").value = radicchio;
                              document.getElementById("radice2").value = "";
 							 //$("#radice").focus()
-							 myScroll.scrollToElement("#radice", "1s");
+							 
+							 richiesta(0,0)
 						  }
 						  
 						  })
@@ -1670,7 +1705,7 @@ var app = {
 				   
 				   if(result.leafs!=""){
 					   
-				   	 $("#compra1").hide();
+				   $("#compra1").hide();
 				   $("#compra2").hide();
 				   $("#contengo").show();
 				   
@@ -1680,8 +1715,8 @@ var app = {
                     var pagina = parseInt(localStorage.getItem("pagina"))
                     var totale = result.totalLeaf
                    
-                    var nextPagina = 4
-                    var schema2 = 4
+                    var nextPagina = result.pagination
+                    var schema2 = result.pagination
                    
                     var pag = "0"
                    
@@ -1700,11 +1735,11 @@ var app = {
                         nextPagina = 0
                    
                        if(pagina!=nextPagina){
-                           $("#test").append("<a id='pag_"+nextPagina+"'><span class='paginazione_on'>"+pag+"</span></a>")
+                           $("#test").append("<a id='pagl_"+nextPagina+"'><span class='paginazione_on'>"+pag+"</span></a>")
                    
-                           $(document).on("touchstart", "#pag_"+ nextPagina +"", function(e){
+                           $(document).on("touchstart", "#pagl_"+ nextPagina +"", function(e){
                               var paginazione = this.id
-                              paginazione = paginazione.replace("pag_","")
+                              paginazione = paginazione.replace("pagl_","")
                               
                               //alert(paginazione)
                               localStorage.setItem("pagina",paginazione);
@@ -1797,12 +1832,14 @@ var app = {
 							  if(self.document.form.radice2.value != ""){
 								document.getElementById("foglia2").value = radicchio;
                                 document.getElementById("foglia").value = "";
-								myScroll.scrollToElement("#foglia2", "1s");
+								
+								richiesta(0,0)
 							  }
 							  else{
 								document.getElementById("foglia").value = radicchio;
                                 document.getElementById("foglia2").value = "";
-								myScroll.scrollToElement("#foglia", "1s");
+								
+								richiesta(0,0)
 							  }
 							  
 							})
