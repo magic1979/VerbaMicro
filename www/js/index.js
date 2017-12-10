@@ -397,7 +397,7 @@ var app = {
             var conta = 0;
 			$("#IDCART").html("");
 			$("#NOMEORD").html("");
-			$("#TOTCART").html("");
+			$("#TOTCART").html("0.00");
 			
 			
 			if(localStorage.getItem("Badge10")!="0"){
