@@ -1330,6 +1330,9 @@ var app = {
 		
 		function richiesta(pagina,pagina1){
 			
+			localStorage.setItem("pagina", pagina)
+            localStorage.setItem("pagina1", pagina1)
+			
 			$("#radice").blur()
             $("#radice2").blur()
             $("#foglia").blur()
@@ -1442,6 +1445,12 @@ var app = {
 				var radice4 = "";
 				var foglia4 = foglia3.toLowerCase();
 				
+				foglia4 = foglia4.replace(" ","")
+				foglia4 = foglia4.replace("  ","")
+				foglia4 = foglia4.replace("   ","")
+				foglia4 = foglia4.replace(" ","")
+				foglia4 = foglia4.replace(" ","")
+				
 				var radice = "";
 				var foglia = $.base64.encode(foglia4);
 				
@@ -1453,6 +1462,12 @@ var app = {
 				var radice4 = radice3.toLowerCase();
 				var foglia4 = "";
 				
+				radice4 = radice4.replace(" ","")
+				radice4 = radice4.replace("  ","")
+				radice4 = radice4.replace("   ","")
+				radice4 = radice4.replace(" ","")
+				radice4 = radice4.replace(" ","")
+				
 				var radice = $.base64.encode(radice4);
 				var foglia = "";
 				
@@ -1462,6 +1477,19 @@ var app = {
 			else{
 				var radice4 = radice3.toLowerCase();
 				var foglia4 = foglia3.toLowerCase();
+				
+				radice4 = radice4.replace(" ","")
+				radice4 = radice4.replace("  ","")
+				radice4 = radice4.replace("   ","")
+				radice4 = radice4.replace(" ","")
+				radice4 = radice4.replace(" ","")
+				
+				
+				foglia4 = foglia4.replace(" ","")
+				foglia4 = foglia4.replace("  ","")
+				foglia4 = foglia4.replace("   ","")
+				foglia4 = foglia4.replace(" ","")
+				foglia4 = foglia4.replace(" ","")
 				
 				var radice = $.base64.encode(radice4);
 				var foglia = $.base64.encode(foglia4);
@@ -1491,7 +1519,7 @@ var app = {
 				    $("#paginazione").html("");
 				   $("#titoloricerca").html("");
 				   $("#contengo").show();
-				  
+				   $("#progettoinfo").html();
 				   
 				   //TUTTO
 				   
@@ -1591,7 +1619,7 @@ var app = {
 										  paginazione = paginazione.replace("pagr_","")
 													  
 										  //alert(paginazione)
-										  localStorage.setItem("pagina",paginazione);
+										  //localStorage.setItem("pagina",paginazione);
 										  
 										  richiesta(paginazione,0)
 										  e.stopImmediatePropagation()
@@ -1614,7 +1642,7 @@ var app = {
 				   
 									   $(document).on("touchstart", "#pagr_"+ nextPagina +"", function(e){
 										  var paginazione = this.id
-										  paginazione = paginazione.replace("pagr_","")
+										  //paginazione = paginazione.replace("pagr_","")
 													  
 										  //alert(paginazione)
 										  localStorage.setItem("pagina",paginazione);
@@ -1638,7 +1666,7 @@ var app = {
 								  paginazione = paginazione.replace("pag2_","")
 								  
 								  //alert(paginazione)
-								  localStorage.setItem("pagina",paginazione);
+								  //localStorage.setItem("pagina",paginazione);
 								  
 								  richiesta(paginazione,0)
 								  e.stopImmediatePropagation()
@@ -1712,7 +1740,7 @@ var app = {
 
                    if(result.totalRoot!="0"){
                    
-                    var pagina = parseInt(localStorage.getItem("pagina"))
+                     var pagina = parseInt(localStorage.getItem("pagina1"))
                     var totale = result.totalLeaf
                    
                     var nextPagina = result.pagination
@@ -1742,7 +1770,7 @@ var app = {
                               paginazione = paginazione.replace("pagl_","")
                               
                               //alert(paginazione)
-                              localStorage.setItem("pagina",paginazione);
+                              //localStorage.setItem("pagina",paginazione);
                               
                               richiesta(0,paginazione)
                               e.stopImmediatePropagation()
@@ -1768,7 +1796,7 @@ var app = {
                           paginazione = paginazione.replace("pag_","")
                           
                           //alert(paginazione)
-                          localStorage.setItem("pagina",paginazione);
+                          //localStorage.setItem("pagina",paginazione);
                           
                           richiesta(0,paginazione)
                           e.stopImmediatePropagation()
@@ -1789,7 +1817,7 @@ var app = {
                       paginazione = paginazione.replace("pag2_","")
                       
                       //alert(paginazione)
-                      localStorage.setItem("pagina",paginazione);
+                      //localStorage.setItem("pagina",paginazione);
                       
                       richiesta(0,paginazione)
                       e.stopImmediatePropagation()
@@ -1898,7 +1926,7 @@ var app = {
 				   					$("#testoinfoprogetto").html($.base64.decode(result.project_description))
 				   					$("#testoinfomicro").html($.base64.decode(result.description_microverba))
 				   
-				   					//<img src='img/"+lock+"' width='40'></td><td align='left' width='100%'> "+$.base64.decode(result.messaggio)+" </td></tr><tr><td align='left' width='150'>Progetto: </td><td align='left' width='100%'>"+$.base64.decode(result.project)+"</td></tr><tr><td align='left' width='150'>Descrizione Progetto: </td><td align='left' width='100%'>"+$.base64.decode(result.description_microverba)+"
+				   					$("#progettoinfo").html(tabella);
 							   }
 							   else{
 				   
@@ -1913,6 +1941,8 @@ var app = {
 				   				$("#_sblocca_mic").show();
 				   				$("#testoinfoprogetto").html($.base64.decode(result.project_description))
 				   				$("#testoinfomicro").html($.base64.decode(result.description_microverba))
+								
+								$("#progettoinfo").html(tabella);
 				   
 							   }
 				   
@@ -1932,6 +1962,8 @@ var app = {
 				   
 				   				$("#testoinfoprogetto").html($.base64.decode(result.project_description))
 				   				$("#testoinfomicro").html($.base64.decode(result.description_microverba))
+								
+								$("#progettoinfo").html(tabella);
 							}
 				   
 					   }
@@ -1945,6 +1977,8 @@ var app = {
 				   
 				   			$("#testoinfoprogetto").html($.base64.decode(result.project_description))
 				   			$("#testoinfomicro").html($.base64.decode(result.description_microverba))
+							
+							$("#progettoinfo").html(tabella);
 					   }
 				   
 				   }
@@ -1957,6 +1991,8 @@ var app = {
 				   
 					   $("#testoinfoprogetto").html($.base64.decode(result.project_description))
 					   $("#testoinfomicro").html($.base64.decode(result.description_microverba))
+					   
+					   $("#progettoinfo").html(tabella);
 				   
 				   }
 				   
