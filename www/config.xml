@@ -70,7 +70,9 @@
 		<plugin name="cordova-plugin-inappbrowser"        source="npm" />
 		<plugin name="cordova-plugin-media"               source="npm" />
 		<plugin name="cordova-plugin-network-information" source="npm" />
-		<plugin name="cordova-plugin-splashscreen"        source="npm" />
+		<plugin name="cordova-plugin-splashscreen"        source="npm">
+			<preference name="ShowSplashScreenSpinner"    value="false" />
+		</plugin>
 		<plugin name="cordova-plugin-statusbar"           source="npm" />
 		<plugin name="cordova-plugin-vibration"           source="npm" />
 		<plugin name="cordova-plugin-whitelist"           source="npm" />

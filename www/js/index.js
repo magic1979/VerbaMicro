@@ -40,6 +40,10 @@ var app = {
 		
 		document.addEventListener('touchmove', function(e) { e.preventDefault(); }, false);
 		
+		$("#spinner").hide();
+		$("#spinner2").hide();
+		
+		
 		 /*$("input").focus(function(){
 			$("#footer").hide();
         });
@@ -1445,7 +1449,7 @@ var app = {
 				var radice4 = "";
 				var foglia4 = foglia3.toLowerCase();
 				
-				//foglia4 = foglia4.replace(" ","")
+				foglia4 = foglia4.replace(" ","")
 								
 				var radice = "";
 				var foglia = $.base64.encode(foglia4);
@@ -1458,7 +1462,7 @@ var app = {
 				var radice4 = radice3.toLowerCase();
 				var foglia4 = "";
 				
-				//radice4 = radice4.replace(" ","")
+				radice4 = radice4.replace(" ","")
 								
 				var radice = $.base64.encode(radice4);
 				var foglia = "";
@@ -1470,11 +1474,8 @@ var app = {
 				var radice4 = radice3.toLowerCase();
 				var foglia4 = foglia3.toLowerCase();
 				
-				//radice4 = radice4.replace(" ","")
-				
-				
-				
-				//foglia4 = foglia4.replace(" ","")
+				radice4 = radice4.replace(" ","")
+				foglia4 = foglia4.replace(" ","")
 				
 				
 				var radice = $.base64.encode(radice4);
@@ -1505,13 +1506,13 @@ var app = {
 				    $("#paginazione").html("");
 				   $("#titoloricerca").html("");
 				   $("#contengo").show();
-				   //$("#progettoinfo").html("");
+				   $("#progettoinfo").html("");
 				   
 				   //TUTTO
 				   
 				   if(result.Token==0){
 					   
-				   //$("#progettoinfo").html("");
+				   $("#progettoinfo").html("");
 					   
 				   $("#contengo").hide();
 				   
@@ -1914,7 +1915,7 @@ var app = {
 				   					$("#testoinfoprogetto").html($.base64.decode(result.project_description))
 				   					$("#testoinfomicro").html($.base64.decode(result.description_microverba))
 				   
-				   					//////$("#progettoinfo").html(tabella);
+				   					$("#progettoinfo").html(tabella);
 							   }
 							   else{
 				   
@@ -1930,7 +1931,7 @@ var app = {
 				   				$("#testoinfoprogetto").html($.base64.decode(result.project_description))
 				   				$("#testoinfomicro").html($.base64.decode(result.description_microverba))
 								
-								//$("#progettoinfo").html(tabella);
+								$("#progettoinfo").html(tabella);
 				   
 							   }
 				   
@@ -1951,7 +1952,7 @@ var app = {
 				   				$("#testoinfoprogetto").html($.base64.decode(result.project_description))
 				   				$("#testoinfomicro").html($.base64.decode(result.description_microverba))
 								
-								//$("#progettoinfo").html(tabella);
+								$("#progettoinfo").html(tabella);
 							}
 				   
 					   }
@@ -1966,7 +1967,7 @@ var app = {
 				   			$("#testoinfoprogetto").html($.base64.decode(result.project_description))
 				   			$("#testoinfomicro").html($.base64.decode(result.description_microverba))
 							
-							//$("#progettoinfo").html(tabella);
+							$("#progettoinfo").html(tabella);
 					   }
 				   
 				   }
@@ -1980,7 +1981,7 @@ var app = {
 					   $("#testoinfoprogetto").html($.base64.decode(result.project_description))
 					   $("#testoinfomicro").html($.base64.decode(result.description_microverba))
 					   
-					   //$("#progettoinfo").html(tabella);
+					   $("#progettoinfo").html(tabella);
 				   
 				   }
 				   
