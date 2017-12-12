@@ -1446,11 +1446,7 @@ var app = {
 				var foglia4 = foglia3.toLowerCase();
 				
 				foglia4 = foglia4.replace(" ","")
-				foglia4 = foglia4.replace("  ","")
-				foglia4 = foglia4.replace("   ","")
-				foglia4 = foglia4.replace(" ","")
-				foglia4 = foglia4.replace(" ","")
-				
+								
 				var radice = "";
 				var foglia = $.base64.encode(foglia4);
 				
@@ -1463,11 +1459,7 @@ var app = {
 				var foglia4 = "";
 				
 				radice4 = radice4.replace(" ","")
-				radice4 = radice4.replace("  ","")
-				radice4 = radice4.replace("   ","")
-				radice4 = radice4.replace(" ","")
-				radice4 = radice4.replace(" ","")
-				
+								
 				var radice = $.base64.encode(radice4);
 				var foglia = "";
 				
@@ -1479,17 +1471,11 @@ var app = {
 				var foglia4 = foglia3.toLowerCase();
 				
 				radice4 = radice4.replace(" ","")
-				radice4 = radice4.replace("  ","")
-				radice4 = radice4.replace("   ","")
-				radice4 = radice4.replace(" ","")
-				radice4 = radice4.replace(" ","")
+				
 				
 				
 				foglia4 = foglia4.replace(" ","")
-				foglia4 = foglia4.replace("  ","")
-				foglia4 = foglia4.replace("   ","")
-				foglia4 = foglia4.replace(" ","")
-				foglia4 = foglia4.replace(" ","")
+				
 				
 				var radice = $.base64.encode(radice4);
 				var foglia = $.base64.encode(foglia4);
