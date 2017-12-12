@@ -1519,11 +1519,13 @@ var app = {
 				    $("#paginazione").html("");
 				   $("#titoloricerca").html("");
 				   $("#contengo").show();
-				   $("#progettoinfo").html();
+				   $("#progettoinfo").html("");
 				   
 				   //TUTTO
 				   
 				   if(result.Token==0){
+					   
+				   $("#progettoinfo").html("");
 					   
 				   $("#contengo").hide();
 				   
