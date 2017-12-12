@@ -118,7 +118,7 @@ var app = {
 		
 		
 		window.sqlitePlugin.selfTest(function() {
-			alert('DataBase WORK');
+			//alert('DataBase WORK');
 		});
 		
 		
@@ -163,7 +163,7 @@ var app = {
 			}, 500);
 			
 			
-			alert('Se arriva qui ok');
+			//alert('Se arriva qui ok');
 		
 			var selectField = document.getElementById('radice');
 			selectField.addEventListener('touchstart', function(e)
@@ -674,31 +674,31 @@ var app = {
         
 		$(document).on("touchstart", "#cancella", function(e){
                        
-                      //var  db = window.openDatabase('mydb', '1.0', 'TestDB', 2 * 1024 * 1024);
-                       
-                      	db.transaction(function (tx) {
-                            tx.executeSql('DELETE FROM Ordine', [], function (tx, results) {
-                                                     }, null);
-                        });
-                       
-                       
-                       localStorage.setItem("Badge10", 0)
-                       
-                       Badge10 = localStorage.getItem("Badge10");
-                       
-                       //$("#badde5").attr("data-badge", Badge10);
-					   $("#prova").html(Badge10);
-                       
-                       $("#spinner2").hide();
-                       
-                       //window.location.href = "#page2";
-                       
-                       seleziona2()
-                       
-                       
-                      /* setTimeout (function(){
-                            myScroll2.refresh();
-                        }, 500);*/
+			  //var  db = window.openDatabase('mydb', '1.0', 'TestDB', 2 * 1024 * 1024);
+			   
+				db.transaction(function (tx) {
+					tx.executeSql('DELETE FROM Ordine', [], function (tx, results) {
+											 }, null);
+				});
+			   
+			   
+			   localStorage.setItem("Badge10", 0)
+			   
+			   Badge10 = localStorage.getItem("Badge10");
+			   
+			   //$("#badde5").attr("data-badge", Badge10);
+			   $("#prova").html(Badge10);
+			   
+			   $("#spinner2").hide();
+			   
+			   //window.location.href = "#page2";
+			   
+			   seleziona2()
+			   
+			   
+			  /* setTimeout (function(){
+					myScroll2.refresh();
+				}, 500);*/
                        
         });
 	
@@ -881,7 +881,8 @@ var app = {
 		  
 		})
 		
-				$(document).on("touchstart", "#richiediB", function(e){
+		
+		$(document).on("touchstart", "#richiediB", function(e){
 			   
 	      richiesta(0,0)
 		  
