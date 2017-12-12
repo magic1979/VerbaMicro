@@ -1058,9 +1058,9 @@
                     
                     
                     <br><br>
-                    <b><span id="IDCART" style="display:none"></span></b> - <b><span id="NOMEORD" style="display:none"></span></b> - <b><span id="QTA" style="display:none"></span></b>
+                    <b><span id="IDCART" style="display:none"></span></b> <b><span id="NOMEORD" style="display:none"></span></b> <b><span id="QTA" style="display:none"></span></b><b><span id="vuoto" style="display:none">CARRELLO VUOTO</span>
                     
-                   <table cellpadding="5" cellspacing="0" border="0" align="center" class="tabella_ordine"><tr><td class="titolo_ordine"><b>TOTALE</b></td><td class="titolo_ordine"><div id="totcassa"><b><div id="TOTCART"></div> </b></div></td><td width="3">&nbsp;</td></td></tr></table>
+                   <table id="tbl_totale" cellpadding="5" cellspacing="0" border="0" align="center" class="tabella_ordine"><tr><td class="titolo_ordine"><b>TOTALE</b></td><td class="titolo_ordine"><div id="totcassa"><b><div id="TOTCART"></div> </b></div></td><td width="3">&nbsp;</td></td></tr></table>
 					
 					<br><br><br>
                     <table align="center" width="95%">
@@ -1075,11 +1075,11 @@
 							<td colspan="2" align="center"><img src='img/paypal.png' width="200px"></td>
 						</tr>
 						<tr>
-							<td align='right'><input type="checkbox" name="privacybtn" id="privacybtn"><label for="privacybtn"></label></td>
-							<td width="100%" align='left'><p align="center"><a  class="privacy">Accetto i termini di vendita</a><br><br><a id="privacy2" class="privacy">Informativa sulla Privacy</a></p></td>
+							<td align='right' valign="center"><input type="checkbox" name="privacybtn" id="privacybtn"><label for="privacybtn"></label></td>
+							<td width="100%" align='left' valign="center"><p align="center"><a  class="privacy">Accetto i termini di vendita</a></p></td>
 						</tr>
                         <tr>
-							<td colspan="2"><br></td>
+							<td colspan="2"><a id="privacy2" class="privacy">Informativa sulla Privacy</a><br></td>
 						</tr>
 						
                     </table>
