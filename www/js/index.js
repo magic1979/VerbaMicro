@@ -1633,7 +1633,7 @@ var app = {
 										  //paginazione = paginazione.replace("pagr_","")
 													  
 										  //alert(paginazione)
-										  localStorage.setItem("pagina",paginazione);
+										  //localStorage.setItem("pagina",paginazione);
 										  
 										  richiesta(paginazione,0)
 										  e.stopImmediatePropagation()
