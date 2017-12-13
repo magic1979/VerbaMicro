@@ -303,7 +303,7 @@ var app = {
         });
 		
 		
-		function agg2(prod,prezz,nomi,dove){
+		function agg2(prod,prezz,nomi,dove,tipo){
             
             var aggiornamento = 0;
             var msg;
@@ -328,15 +328,11 @@ var app = {
                     }
                               
                     if(results.rows.length==0){
-                      tx.executeSql('INSERT INTO Ordine (id, IdProdotto, Qta, Descrizione, Nome) VALUES ('+ prod +', "'+nomeprod+'", 1, "'+ prezzo +'", "'+ nome +'")');
+                      tx.executeSql('INSERT INTO Ordine (id, IdProdotto, Qta, Descrizione, Nome, Tipo) VALUES ('+ prod +', "'+nomeprod+'", 1, "'+ prezzo +'", "'+ nome +'", "'+ tipo +'")');
                               
 						  localStorage.setItem("Badge10", parseInt(localStorage.getItem("Badge10"))+1)
 						  var Badge10 = localStorage.getItem("Badge10");
 						  
-						  
-						  /*$('#badde5').removeClass('badge2').addClass('badge1');
-						  $("#badde5").attr("data-badge", Badge10);
-						  $("#badde5").html('<img id="carro3" src="img/CartW.png" width="20px">');*/
 						  $("#prova").html(Badge10);
 						  
 						  return;
@@ -357,7 +353,6 @@ var app = {
         function seleziona(){
             var msg=""
             
-           //var db = window.openDatabase('mydb', '1.0', 'TestDB', 2 * 1024 * 1024);
             
             db.transaction(function (tx) {
             tx.executeSql('SELECT * FROM Ordine', [], function (tx, results) {
@@ -435,11 +430,11 @@ var app = {
 										 tuttigliid2 = results.rows.item(i).id;
                                          
                                          if(conta==0){
-                                            msg2 = "<table cellpadding='5' cellspacing='0' border='0' align='center' class='tabella_ordine'><tr><td><span class='text_dati'>"+ results.rows.item(i).IdProdotto +" (descrizione)</span></td><td><span class='text_dati'><b>"+ Number(results.rows.item(i).Descrizione).toFixed(2)+"&euro;</b></span></td><td width='32'><a id="+ paperino2 +"><img src='img/delete.png'></a></td></tr></table>"
+                                            msg2 = "<table cellpadding='5' cellspacing='0' border='0' align='center' class='tabella_ordine'><tr><td><span class='text_dati'>"+ results.rows.item(i).Tipo +" ("+ results.rows.item(i).IdProdotto +")</span></td><td><span class='text_dati'><b>"+ Number(results.rows.item(i).Descrizione).toFixed(2)+"&euro;</b></span></td><td width='32'><a id="+ paperino2 +"><img src='img/delete.png'></a></td></tr></table>"
 
                                          }
                                          else{
-                                            msg2 = msg2 + "<table cellpadding='5' cellspacing='0' border='0' align='center' class='tabella_ordine'><tr><td><span class='text_dati'>"+ results.rows.item(i).IdProdotto +" (descrizione)</span></td><td><span class='text_dati'><b>"+ Number(results.rows.item(i).Descrizione).toFixed(2)+"&euro;</b></span></td><td width='32'><a id="+ paperino2 +"><img src='img/delete.png'></a></td></tr></table>"
+                                            msg2 = msg2 + "<table cellpadding='5' cellspacing='0' border='0' align='center' class='tabella_ordine'><tr><td><span class='text_dati'>"+ results.rows.item(i).IdProdotto +" ("+ results.rows.item(i).IdProdotto +")</span></td><td><span class='text_dati'><b>"+ Number(results.rows.item(i).Descrizione).toFixed(2)+"&euro;</b></span></td><td width='32'><a id="+ paperino2 +"><img src='img/delete.png'></a></td></tr></table>"
 
                                          }
   
@@ -2011,7 +2006,7 @@ var app = {
 								  
 								  //alert(ident + " " + prezzo + " " + nome)
 								  
-								  agg2(ident,prezzo,nome,"m")
+								  agg2(ident,prezzo,nome,"m","MicroVerba")
 								  
 				  });
 				   
@@ -2023,7 +2018,7 @@ var app = {
 								  
 								  //alert(ident + " " + prezzo + " " + nome)
 								  
-								  agg2(ident,prezzo,nome,"p")
+								  agg2(ident,prezzo,nome,"p","Progetto")
 								  
 				  });
 				   
@@ -2119,6 +2114,7 @@ var app = {
 				   nomeYT = "YT_nome_"+i
 				   identYT = "YT_iden_"+i
 				   prezzoYT = "YT_pric_"+i
+				   tipoYT = "YT_tipo_"+i
 				   
 				   var descrizioneyt = $.base64.decode(result[descyt])
 				   descrizioneyt = descrizioneyt.replace("à","a")
@@ -2155,7 +2151,7 @@ var app = {
 						   else{
 							   lock="cart.png";
 				   
-							   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'> "+descrizioneyt+"</span></td><td align='center' width='40'><a id='piu"+ identYT +"piu"+ prezzoYT +"piu"+ nomeYT +"'> <div class='ico_cart'></div></a><br><span class='testo_contenuti'>"+result[prezzoYT]+"€</span></td></tr>"
+							   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'> "+descrizioneyt+"</span></td><td align='center' width='40'><a id='piu"+ identYT +"piu"+ prezzoYT +"piu"+ nomeYT +"piu"+ tipoYT +"'> <div class='ico_cart'></div></a><br><span class='testo_contenuti'>"+result[prezzoYT]+"€</span></td></tr>"
 							   
 						   }
 					  }
@@ -2228,7 +2224,7 @@ var app = {
 								  
 								  a1=str.split("piu");
 								  
-								  agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]),"c")
+								  agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]),"c",$.base64.decode(result[a1[4]]))
 								  
 								  /*for (i=0;i<a1.length;i++)
 								   {
