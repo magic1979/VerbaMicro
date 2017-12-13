@@ -434,7 +434,7 @@ var app = {
 
                                          }
                                          else{
-                                            msg2 = msg2 + "<table cellpadding='5' cellspacing='0' border='0' align='center' class='tabella_ordine'><tr><td><span class='text_dati'>"+ results.rows.item(i).IdProdotto +" ("+ results.rows.item(i).IdProdotto +")</span></td><td><span class='text_dati'><b>"+ Number(results.rows.item(i).Descrizione).toFixed(2)+"&euro;</b></span></td><td width='32'><a id="+ paperino2 +"><img src='img/delete.png'></a></td></tr></table>"
+                                            msg2 = msg2 + "<table cellpadding='5' cellspacing='0' border='0' align='center' class='tabella_ordine'><tr><td><span class='text_dati'>"+ results.rows.item(i).Tipo +" ("+ results.rows.item(i).IdProdotto +")</span></td><td><span class='text_dati'><b>"+ Number(results.rows.item(i).Descrizione).toFixed(2)+"&euro;</b></span></td><td width='32'><a id="+ paperino2 +"><img src='img/delete.png'></a></td></tr></table>"
 
                                          }
   
@@ -2213,7 +2213,7 @@ var app = {
  				  });
 				   
 				   
-				   $(document).on("touchstart", "#piu"+ identYT +"piu"+ prezzoYT +"piu"+ nomeYT +"", function(e){
+				   $(document).on("touchstart", "#piu"+ identYT +"piu"+ prezzoYT +"piu"+ nomeYT +"piu"+ tipoYT +"", function(e){
 								  
 								  //alert(this.id)
 								  
