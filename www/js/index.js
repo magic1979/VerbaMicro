@@ -3764,8 +3764,10 @@ var app = {
 				   if(result.roots!=""){
 					   
 				   	$("#compra1").hide();
-				     $("#compra2").hide();
-				     $("#contengo").show();
+				    $("#compra2").hide();
+					
+					$("#box2").show()
+				    $("#contengo").show();
 				   
 				      if(result.totalRoot!="0"){
 				   
@@ -3915,6 +3917,8 @@ var app = {
 					   
 				   $("#compra1").hide();
 				   $("#compra2").hide();
+				   
+				   $("#box2").show()
 				   $("#contengo").show();
 				   
 
