@@ -1331,16 +1331,14 @@ var app = {
 		   
 		  function impagina(descrizione22,lock_progetto,lock_microverba,psw2,variabile){
 			  
-			 alert("impagina")
-			 
-			 alert(descrizione22)
-            
             var result = JSON.parse(localStorage.getItem("resultjsn"));
 			
 			$("#spinner").hide()
+			$("#box2").show()
 			
-            
             if(descrizione22=="Video YouTube"){
+				
+				alert("video ok")
                 
                 var tabella = "<table width='90%' align='center' class='tabella_contenuti'>";
                 
@@ -1365,6 +1363,8 @@ var app = {
                         if(result[prezzoYT] === null || typeof(result[prezzoYT]) == 'undefined' || result[prezzoYT]=="null" || result[prezzoYT]==""){
                             
                             if((result[pswYT]=="")||(result[pswYT]==$.base64.encode(psw2))){
+								
+								alert("sono qui ok")
                                 
                                 lock="unlock.png";
                                 
@@ -1394,10 +1394,16 @@ var app = {
                 
                 $("#testvideo").append(tabella);
 				
+				alert("appendo ok 1")
+				
 				setTimeout (function(){
 					myScroll.refresh();
 				 }, 300);
                 
+				
+				alert("appendo ok 2")
+				
+				
                 $(document).on("touchstart", "#"+paperino+"", function(e){
                                
 					passo(this.id)
