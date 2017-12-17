@@ -1330,6 +1330,10 @@ var app = {
 		   
 		   
 		  function impagina(descrizione22,lock_progetto,lock_microverba,psw2,variabile){
+			  
+			 alert("impagina")
+			 
+			 alert(descrizione22)
             
             var result = JSON.parse(localStorage.getItem("resultjsn"));
 			
@@ -4377,6 +4381,8 @@ var app = {
                    }
 				   
 				   
+				   alert(conteggio)
+				   
 				   
 				   // FINE CONTEGGIO
                    
@@ -5042,6 +5048,8 @@ var app = {
 				   
 				   
 				   // FINE IF TOKEN
+				   
+				   alert("fine")
 				   
 				   }
 				   else {
