@@ -3702,6 +3702,8 @@ var app = {
 				   $("#contengo").show();
 				   $("#progettoinfo").html("");
 				   
+				   localStorage.setItem("resultjsn", JSON.stringify(result))
+				   
 				   //TUTTO
 				   
 				   if(result.Token==0){
