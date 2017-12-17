@@ -1337,8 +1337,6 @@ var app = {
 			$("#box2").show()
 			
             if(descrizione22=="Video YouTube"){
-				
-				alert("video ok")
                 
                 var tabella = "<table width='90%' align='center' class='tabella_contenuti'>";
                 
@@ -1363,8 +1361,6 @@ var app = {
                         if(result[prezzoYT] === null || typeof(result[prezzoYT]) == 'undefined' || result[prezzoYT]=="null" || result[prezzoYT]==""){
                             
                             if((result[pswYT]=="")||(result[pswYT]==$.base64.encode(psw2))){
-								
-								alert("sono qui ok")
                                 
                                 lock="unlock.png";
                                 
@@ -1394,15 +1390,11 @@ var app = {
                 
                 $("#testvideo").append(tabella);
 				
-				alert("appendo ok 1")
 				
 				setTimeout (function(){
 					myScroll.refresh();
 				 }, 300);
                 
-				
-				alert("appendo ok 2")
-				
 				
                 $(document).on("touchstart", "#"+paperino+"", function(e){
                                
@@ -3571,6 +3563,8 @@ var app = {
 			var pswUAA = self.document.form.pswUAA.value;
 			var pswUVV = self.document.form.pswUVV.value;
 			
+			var pswXX = ""
+			
 			document.getElementById("pswYTT").value = ""
 			document.getElementById("pswVAA").value = ""
 			document.getElementById("pswFAA").value = ""
@@ -4385,9 +4379,6 @@ var app = {
                    else{
                    conteggio = (conteggio + parseInt(result.PN))
                    }
-				   
-				   
-				   alert(conteggio)
 				   
 				   
 				   // FINE CONTEGGIO
