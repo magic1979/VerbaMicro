@@ -948,7 +948,7 @@ var app = {
 			
 			$.ajax({
 				   type: "POST",
-				   url: "http://www.microverba.com/change_device.php",
+				   url: "http://www.microverba.com/mv/change_device.php",
 				   data: {email3:posta2,device_id:device2,submit_change_device:"1"},
 				   cache: false,
 				   crossDomain: true,
@@ -1013,7 +1013,7 @@ var app = {
 			
 			$.ajax({
 				   type: "GET",
-				   url: "http://www.microverba.com/activate_change_device.php?em="+posta3+"&dvid="+device3+"?ac="+codsblocco+"",
+				   url: "http://www.microverba.com/mv/activate_change_device.php?em="+posta3+"&dvid="+device3+"?ac="+codsblocco+"",
 				   cache: false,
 				   crossDomain: true,
 				   contentType: "application/x-www-form-urlencoded",
@@ -1067,11 +1067,20 @@ var app = {
 					   
 	   })
 	   
-	   		$(document).on("touchstart", "#annullaB", function(e){
+	   	
+	    $(document).on("touchstart", "#annullaB", function(e){
 					   
 			$("#miclock").hide()
 					   
 	   })
+	   
+	   
+	   $(document).on("touchstart", "#annullaL", function(e){
+					   
+			$("#sceglilingua").hide()
+					   
+	   })
+		
 		
 		$(document).on("touchstart", "#annulla22", function(e){
 					   
@@ -3688,7 +3697,7 @@ var app = {
 			
 			$.ajax({
 				   type: "POST",
-				   url: "http://www.microverba.com/leaf_root_request.php",
+				   url: "http://www.microverba.com/mv/leaf_root_request.php",
 				   data: {email:posta,leaf:foglia,root:radice,device_id:DevId,latitudine:lati,longitudine:longi,nextPaginationRootStart:pag1,nextPaginationLeafStart:pag2},
 				   cache: false,
 				   crossDomain: true,
@@ -5161,7 +5170,7 @@ var app = {
 
 			$.ajax({
 				   type: "GET",
-				   url: "http://www.microverba.com/Check_Transaction.php?email="+localStorage.getItem("email")+"&transazionemia="+transazionemia+"&id_prodotto="+self.document.formia9.products.value+"&tot="+self.document.formia9.totordine.value+"&NomeProdotto=Microverba&qta="+self.document.formia9.qta.value+"&Ordine=Ordine&Note=Nessuna&did="+localStorage.getItem("deviceid")+"",
+				   url: "http://www.microverba.com/mv/Check_Transaction.php?email="+localStorage.getItem("email")+"&transazionemia="+transazionemia+"&id_prodotto="+self.document.formia9.products.value+"&tot="+self.document.formia9.totordine.value+"&NomeProdotto=Microverba&qta="+self.document.formia9.qta.value+"&Ordine=Ordine&Note=Nessuna&did="+localStorage.getItem("deviceid")+"",
 				   cache: false,
 				   crossDomain: true,
 				   contentType: "application/x-www-form-urlencoded",
@@ -5457,14 +5466,16 @@ var app = {
 		
 		$(document).on("touchstart", "#avanti", function(e){
 			
-			localStorage.setItem("modofoto","")
+			$("#sceglilingua").show()
+			
+			/*localStorage.setItem("modofoto","")
 			
 			window.plugins.nativepagetransitions.fade({
 				"duration"       :  700, // in milliseconds (ms), default 400
 				"iosdelay"       :   50, // ms to wait for the iOS webview to update before animation kicks in, default 60
 				"androiddelay"   :  500,
 				"href" : "indexFoto.html"
-			});
+			});*/
 			
 			//window.location.href = "indexFoto.html";
 				   
@@ -5559,7 +5570,7 @@ var app = {
 			
 			$.ajax({
 				   type: "POST",
-				   url: "http://microverba.com/picture.php",
+				   url: "http://microverba.com/mv/picture.php",
 				   data: {imgdata:localStorage.getItem("imgutente3")},
 				   cache: false,
 				   crossDomain: true,

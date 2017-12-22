@@ -225,7 +225,7 @@ function onDeviceReady() {
 				 
 				$.ajax({
 						type: "POST",
-						url: "http://www.microverba.com/leaf_root_request.php",
+						url: "http://www.microverba.com/mv/leaf_root_request.php",
 					    data: {email:posta,leaf:foglia,root:radice,latitudine:lati,longitudine:longi},
 						cache: false,
 						crossDomain: true,
@@ -1209,7 +1209,7 @@ function onDeviceReady() {
 			
 			$.ajax({
 				   type: "POST",
-				   url: "http://microverba.com/picture.php",
+				   url: "http://microverba.com/mv/picture.php",
 				   data: {imgdata:localStorage.getItem("imgutente3")},
 				   cache: false,
 				   crossDomain: true,
