@@ -303,48 +303,6 @@ var app = {
         });
 		
 		
-		// PRENDO LINGUA E TRADUZIONI
-        
-        $.ajax({
-               type: "POST",
-               url: "http://www.microverba.it/mv/translations.php",
-               //data: {email:ciccio,password:pluto},
-               cache: false,
-               crossDomain: true,
-               contentType: "application/x-www-form-urlencoded",
-               success: function (result) {
-               
-                   //alert("OK")
-               
-                   var jsonstring = result;
-               
-                   localStorage.setItem("traduzione", jsonstring)
-                   localStorage.setItem("progetto","Progetto")
-                   localStorage.setItem("descprogetto","Descrizione Progetto")
-                   localStorage.setItem("nofoglia","La Foglia non esiste")
-                   localStorage.setItem("vuoti","Inserire una radice o una foglia")
-               
-                   //var o3 = JSON.parse(jsonstring);
-               
-                   //alert(o3.sbloccamic.ita);
-               
-               },
-               error: function(){
-               
-                    navigator.notification.alert(
-                    'Errore carca json',  // message
-                    alertDismissed,         // callback
-                    'Errore',            // title
-                    'OK'                  // buttonName
-                    );
-               
-               }
-               
-        });
-        
-        ///// FINE //////
-		
-		
 		function agg2(prod,prezz,nomi,dove,tipo){
             
             var aggiornamento = 0;
@@ -1141,113 +1099,6 @@ var app = {
 		})
 		
 		
-		
-		$(document).on("touchstart", "#ita", function(e){
-                       
-           localStorage.setItem("parlo","ita")
-
-           var o3 = JSON.parse(localStorage.getItem("traduzione"));
-                       
-           //localStorage.setItem("sbloccamic",o3.sbloccamic.ita)
-           //localStorage.setItem("sblocca",o3.sblocca.ita)
-           //localStorage.setItem("annulla",o3.annulla.ita)
-                       
-            $("#sbloccamic2").html(o3.sbloccamic.ita)
-            $("#sblocca2").html(o3.sblocca.ita)
-            $("#sblocca3").html(o3.sblocca.ita)
-            $("#sblocca4").html(o3.sblocca.ita)
-            $("#sblocca5").html(o3.sblocca.ita)
-            $("#sblocca6").html(o3.sblocca.ita)
-            $("#sblocca7").html(o3.sblocca.ita)
-            $("#sblocca8").html(o3.sblocca.ita)
-            $("#sbloccacont2").html(o3.sbloccacont.ita)
-            $("#annulla2").html(o3.annulla.ita)
-            $("#annulla3").html(o3.annulla.ita)
-            $("#annulla4").html(o3.annulla.ita)
-            $("#lingua").html(o3.lingua.ita)
-            $("#avanti2").html(o3.lingua.ita)
-            $("#apri").html(o3.apri.ita)
-            $("#apri2").html(o3.apri.ita)
-            $("#nomicroverba").html(o3.nomicroverba.ita)
-            $("#nomicroverba2").html(o3.nomicroverba.ita)
-            $("#acquista").html(o3.acquista.ita)
-            $("#acquista2").html(o3.acquista.ita)
-            $("#insimmagine").html(o3.insimmagine.ita)
-            $("#fotocamera").html(o3.fotocamera.ita)
-            $("#galleria").html(o3.galleria.ita)
-            $("#progetto").html(o3.progetto.ita)
-            localStorage.setItem("progetto",o3.progetto.ita)
-            localStorage.setItem("descprogetto",o3.descrprogetto.ita)
-            localStorage.setItem("nofoglia",o3.nofoglia.ita)
-            localStorage.setItem("vuoti","Inserire una radice o una foglia")
-            $("#altro2").html(o3.altro.ita)
-            $("#tuoordine").html(o3.tuoordine.ita)
-            $("#totale").html(o3.totale.ita)
-            $("#paga").html(o3.paga.ita)
-            $("#accetto").html(o3.accetto.ita)
-            $("#privacy").html(o3.privacy.ita)
-                       
-            $("#intestazione").html("Inserisci le due chiavi di ricerca, <i>foglia</i> e <i>radice</i> ai lati del simbolo <b>: :</b> per visualizzare i contenuti del microverba")
-                       
-            $("#carrello").html("Carrello")
-                       
-           //{"sbloccamic":{"ita":"SBLOCCA MICROVERBA","eng":"UNLOCK MICROVERBA"},"sblocca":{"ita":"SBLOCCA","eng":"UNLOCK"},"annulla":{"ita":"ANNULLA","eng":"CANCEL"},"sbloccacont":{"ita":"SBLOCCA CONTENUTO","eng":"UNLOCK CONTENT"},"intestazione":{"ita":"Inserisci le due chiavi di ricerca, foglia?e?radice,?ai lati del simbolo : :?per visualizzare i contenuti del microverba","eng":"Enter the leaf and the root on the left and on the right of : : to view the contents"},"apri":{"ita":"apri","eng":"open"},"nomicroverba":{"ita":"Nessun microverba trovato. Vuoi acquistarlo?","eng":"No microverba found. Do you want to buy it?"},"acquista":{"ita":"acquista","eng":"buy"},"noradice":{"ita":"Nessuna radice trovata, vuoi acquistarla?","eng":"No root found. Do you want to buy it?"},"insimmagine":{"ita":"Inserisci immagine","eng":"Enter the image"},"fotocamera":{"ita":"Fotocamera","eng":"Camera"},"galleria":{"ita":"Galleria","eng":"Gallery"},"foto":{"ita":"Foto","eng":"Picture"},"chat":{"ita":"Chat","eng":"Chat"},"altro":{"ita":"Altro","eng":"More"},"tuoordine":{"ita":"IL TUO ORDINE","eng":"YOUR ORDER"},"totale":{"ita":"TOTALE","eng":"TOTAL"},"paga":{"ita":"Paga con PayPal o Carta di Credito","eng":"Pay using PayPal or Credit Card"},"accetto":{"ita":"Accetto i termini di vendita","eng":"I accept selling terms"},"privacy":{"ita":"Informativa sulla Privacy","eng":"Privacy"},"lingua":{"ita":"Lingua","eng":"Language"},"nofoglia":{"ita":"La Foglia non esiste","eng":"The leaf does not exist"},"errore":{"ita":"Errore Imprevisto, contatta il provider","eng":"Error, please contact your provider"},"accetta":{"ita":"Devi accettare i termini per proseguire","eng":"Please accept the conditions"},"email":{"ita":"Inserire indirizzo email","eng":"Enter your email"},"nocaremail":{"ita":"Caratteri email non consentiti","eng":"Character not allowed"},"noprodcar":{"ita":"Non hai prodotti nel carrello","eng":"No product in the cart"},"progetto":{"ita":"Progetto","eng":"Project"},"descrprogetto":{"ita":"Descrizione Progetto","eng":"Project description"}}
-
-            $("#sblocca3").html("SBLOCCA PHONE")
-                       
-        })
-        
-        $(document).on("touchstart", "#ing", function(e){
-                       
-           localStorage.setItem("parlo","ing")
-                       
-            var o3 = JSON.parse(localStorage.getItem("traduzione"));
-                       
-               $("#sbloccamic2").html(o3.sbloccamic.eng)
-               $("#sblocca2").html(o3.sblocca.eng)
-               $("#sblocca3").html(o3.sblocca.eng)
-               $("#sblocca4").html(o3.sblocca.eng)
-               $("#sblocca5").html(o3.sblocca.eng)
-               $("#sblocca6").html(o3.sblocca.eng)
-               $("#sblocca7").html(o3.sblocca.eng)
-               $("#sblocca8").html(o3.sblocca.eng)
-               $("#sbloccacont2").html(o3.sbloccacont.eng)
-               $("#annulla2").html(o3.annulla.eng)
-               $("#annulla3").html(o3.annulla.eng)
-               $("#annulla4").html(o3.annulla.eng)
-               $("#lingua").html(o3.lingua.eng)
-               $("#avanti2").html(o3.lingua.eng)
-               $("#apri").html(o3.apri.eng)
-               $("#apri2").html(o3.apri.eng)
-               $("#nomicroverba").html(o3.nomicroverba.eng)
-               $("#nomicroverba2").html(o3.nomicroverba.eng)
-               $("#acquista").html(o3.acquista.eng)
-               $("#acquista2").html(o3.acquista.eng)
-               $("#insimmagine").html(o3.insimmagine.eng)
-               $("#fotocamera").html(o3.fotocamera.eng)
-               $("#galleria").html(o3.galleria.eng)
-               $("#progetto").html(o3.progetto.eng)
-               localStorage.setItem("progetto",o3.progetto.eng)
-               localStorage.setItem("descprogetto",o3.descrprogetto.eng)
-               localStorage.setItem("nofoglia",o3.nofoglia.eng)
-               localStorage.setItem("vuoti","Enter one leaf o root")
-               $("#altro2").html(o3.altro.eng)
-               $("#tuoordine").html(o3.tuoordine.eng)
-               $("#totale").html(o3.totale.eng)
-               $("#paga").html(o3.paga.eng)
-               $("#accetto").html(o3.accetto.eng)
-               $("#privacy").html(o3.privacy.eng)
-                       
-               $("#intestazione").html("Enter the <i>leaf</i> and the <i>root</i> on the left and on the right of <b>: :</b> to view the contents")
-                       
-               $("#carrello").html("Cart")
-            
-            $("#sblocca3").html("UNLOCK PHONE")
-                       
-        })
-		
-		
-	
 		 function agg(){
             var db = window.openDatabase('mydb', '1.0', 'TestDB', 2 * 1024 * 1024);
             var msg;
@@ -1412,14 +1263,12 @@ var app = {
 			
 			if ((radice3 == "") && (foglia3 == "")) {
 				
-				var allerta = localStorage.getItem("vuoti")
-				
 				navigator.notification.alert(
-					 allerta,  // message
-					 alertDismissed,         // callback
-					 'Ricerca di un Microverba',            // title
-					 'OK'                  // buttonName
-					 );
+											 'inserire una Radice o una Foglia',  // message
+											 alertDismissed,         // callback
+											 'Ricerca di un Microverba',            // title
+											 'OK'                  // buttonName
+											 );
 				return;
 				
 			}
@@ -3889,7 +3738,7 @@ var app = {
 				   
 				   if((result.messaggio=="TmVzc3VuIE1pY3JvdmVyYmEgdHJvdmF0bw==")||(result.messaggio=="TmVzc3VuYSBmb2dsaWEgZGlzcG9uaWJpbGU=")){
 				   
-				    	tabella = tabella + "<tr><td align='left' width='150'>-</td><td align='left' width='100%'><p class='testo1'><font color='#fff'> "+$.base64.decode(result.messaggio)+"</font></p> </td></tr><tr><td align='left' width='150'><p class='testo1'><font color='#fff'>"+localStorage.getItem("progetto")+":</font></p> </td><td align='left' width='100%'></td></tr><tr><td align='left' width='150'><p class='testo1'><font color='#fff'>"+localStorage.getItem("descprogetto")+": </font></p></td><td align='left' width='100%'></td></tr>"
+				    	tabella = tabella + "<tr><td align='left' width='150'>-</td><td align='left' width='100%'><p class='testo1'><font color='#fff'> "+$.base64.decode(result.messaggio)+"</font></p> </td></tr><tr><td align='left' width='150'><p class='testo1'><font color='#fff'>Progetto:</font></p> </td><td align='left' width='100%'></td></tr><tr><td align='left' width='150'><p class='testo1'><font color='#fff'>Descrizione Progetto: </font></p></td><td align='left' width='100%'></td></tr>"
 				   
 				   		tabella = tabella + "</table><br>";
 				   
@@ -3915,13 +3764,11 @@ var app = {
 				   $("#compra2").hide();
 				   $("#contengo").hide();
 				   
-				    var traduz = localStorage.getItem("nofoglia")
-				   
 				     navigator.notification.alert(
-					  traduz,  // message
-					  alertDismissed,         // callback
-					  'Alert',            // title
-					  'OK'                  // buttonName
+					  'La Foglia non esiste',  // message
+					   alertDismissed,         // callback
+					   'Alert',            // title
+					   'OK'                  // buttonName
 					  );
 				   
 				   }
