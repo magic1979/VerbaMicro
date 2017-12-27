@@ -261,7 +261,7 @@ var app = {
 		
 		$(document).on("touchstart", "#privacy", function(e){
 					   
-			window.open('http://microverba.com/privacy.php?lang=it', '_system', 'location=no');
+			window.open('http://microverba.com/mv/privacy.php?lang=it', '_system', 'location=no');
 					   
 		});
 		
@@ -1269,9 +1269,9 @@ var app = {
 				 if (localStorage.getItem("email") === null || typeof(localStorage.getItem("email")) == 'undefined' || localStorage.getItem("email")=="null" || localStorage.getItem("email")==""){
 						   
 				   navigator.notification.prompt(
-					 'Inserisci il tuo indirizzo email',  // message
+					 'Inserisci il tuo indirizzo email per proseguire',  // message
 					  onPrompt,                  // callback to invoke
-					 'Recupera la Password',            // title
+					 'Email Richiesta',            // title
 					 ['Invia','Annulla'],             // buttonLabels
 					 ''                 // defaultText
 				   );
@@ -3878,7 +3878,7 @@ var app = {
 				     $("#compra1").show();
 				   
 				   		$(document).on("touchstart", "#acquistamicro", function(e){
-							window.open('  http://microverba.com/register.php?lang=it&root='+ radice3 +'', '_blank', 'location=no');
+							window.open('  http://microverba.com/mv/register.php?lang=it&root='+ radice3 +'', '_blank', 'location=no');
 								  
 						})
 					 
@@ -3900,11 +3900,10 @@ var app = {
 				   	// La radice non esiste
 				   
 				     $("#compra1").show();
-				     //$("#compra2").show();
-				     $("#contengo").hide();
+					 $("#box2").hide();
 				   
 				     $(document).on("touchstart", "#acquistamicro", function(e){
-						window.open('  http://microverba.com/register.php?lang=it&root='+ radice3 +'', '_blank', 'location=no');
+						window.open('  http://microverba.com/mv/register.php?lang=it&root='+ radice3 +'', '_blank', 'location=no');
 								  
 					 })
 				   
