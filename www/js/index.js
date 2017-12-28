@@ -3932,6 +3932,7 @@ var app = {
 				   
 				   if(result.roots!=""){
 				   
+				   	 $("#box2").show()
 				     $("#compra1").hide();
 				     $("#compra2").hide();
 				     $("#contengo").show();
@@ -4017,7 +4018,7 @@ var app = {
 								  var paginazione = this.id
 								  paginazione = paginazione.replace("pag2_","")
 								  
-								  alert(paginazione)
+								  //alert(paginazione)
 								  //localStorage.setItem("pagina",paginazione);
 								  
 								  richiesta(paginazione,0)
@@ -4087,6 +4088,7 @@ var app = {
 				   
 				   if(result.leafs!=""){
 				   
+				   $("#box2").show()
 				   $("#compra1").hide();
 				   $("#compra2").hide();
 				   $("#contengo").show();
@@ -4188,7 +4190,7 @@ var app = {
 					   var risultato = ""
 				   
 					   var str=$.base64.decode(result.leafs);
-					   alert(str)
+					   //alert(str)
 				   
 					   var a1 = new Array();
 				   
