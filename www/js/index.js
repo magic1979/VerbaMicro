@@ -3925,21 +3925,24 @@ var app = {
 				   
 				   }
 				   else{
+					   
+				   //// UNO ////////
 				   
 				   if(result.foglia!=""){
 				   
 				   if(result.roots!=""){
-					   
-				   	$("#compra1").hide();
-				    $("#compra2").hide();
-					
-					$("#box2").show()
-				    $("#contengo").show();
+				   
+				     $("#compra1").hide();
+				     $("#compra2").hide();
+				     $("#contengo").show();
 				   
 				      if(result.totalRoot!="0"){
 				   
 						 var pagina = parseInt(localStorage.getItem("pagina"))
-						 var totale = result.totalRoot
+                   
+                         //alert("pagina:" + pagina)
+                   
+                         var totale = result.totalRoot
 				   
 						 var nextPagina = result.pagination
 				         var schema2 = result.pagination
@@ -3948,7 +3951,7 @@ var app = {
 				   
 				         var next = totale/nextPagina
 				   
-				   		  //alert(next)
+						 //alert(pagina)
 				   
 				   		$("#paginazione").html("<div class='cart_page'><table cellpadding='5' cellspacing='0' border='0' align='center' class='tabella_ordine'><tr><td colspan='2' height='30' align='center'><p id='test'></p></td></tr></table></div>")
 				   
@@ -3991,7 +3994,7 @@ var app = {
 				   
 									   $(document).on("touchstart", "#pagr_"+ nextPagina +"", function(e){
 										  var paginazione = this.id
-										  //paginazione = paginazione.replace("pagr_","")
+										  paginazione = paginazione.replace("pagr_","")
 													  
 										  //alert(paginazione)
 										  //localStorage.setItem("pagina",paginazione);
@@ -4014,7 +4017,7 @@ var app = {
 								  var paginazione = this.id
 								  paginazione = paginazione.replace("pag2_","")
 								  
-								  //alert(paginazione)
+								  alert(paginazione)
 								  //localStorage.setItem("pagina",paginazione);
 								  
 								  richiesta(paginazione,0)
@@ -4025,7 +4028,7 @@ var app = {
 
 				       }
 				   
-					  $("#titoloricerca").html("<div class='cart_page'><table cellpadding='5' cellspacing='0' border='0' align='center' class='tabella_ordine'><p class='titolo_ordine'><b>MICROVERBA ESISTENTI</b></p></td></tr></table>");
+					  $("#titoloricerca").html("<div class='cart_page'><table cellpadding='5' cellspacing='0' border='0' align='center' class='tabella_ordine'><p class='titolo_ordine'><b>MICROVERBA</b></p></td></tr></table>");
 				   
 					   var str = $.base64.decode(result.roots);
 					   //alert(str)
@@ -4053,15 +4056,17 @@ var app = {
 						     document.getElementById("radice2").value = radicchio;
                              document.getElementById("radice").value = "";
 							 //$("#radice2").focus()
-							 
-							 richiesta(0,0)
+							 //myScroll.scrollToElement("#radice2", "1s");
+                                       
+                             richiesta(0,0)
 						  }
 						  else{
 						     document.getElementById("radice").value = radicchio;
                              document.getElementById("radice2").value = "";
 							 //$("#radice").focus()
-							 
-							 richiesta(0,0)
+							 //myScroll.scrollToElement("#radice", "1s");
+                                       
+                             richiesta(0,0)
 						  }
 						  
 						  })
@@ -4072,26 +4077,27 @@ var app = {
 				   	 alert("paginazione massima, ritorno alla ricerca 1")
 				     richiesta(0,0)
 				   }
-				   
 				   // end nuovo controllo
 				   
 				   }
 				   
+                   //// FINE 1 /////////
 				   
 				   if(result.radice!=""){
 				   
 				   if(result.leafs!=""){
-					   
+				   
 				   $("#compra1").hide();
 				   $("#compra2").hide();
-				   
-				   $("#box2").show()
 				   $("#contengo").show();
 				   
 
                    if(result.totalRoot!="0"){
                    
-                     var pagina = parseInt(localStorage.getItem("pagina1"))
+                    var pagina = parseInt(localStorage.getItem("pagina1"))
+                   
+                    //alert("pagina1:" + pagina)
+                   
                     var totale = result.totalLeaf
                    
                     var nextPagina = result.pagination
@@ -4101,7 +4107,7 @@ var app = {
                    
                     var next = totale/nextPagina
                    
-                    //alert(next)
+                    //alert(pagina)
                    
                     $("#paginazione").html("<div class='cart_page'><table cellpadding='5' cellspacing='0' border='0' align='center' class='tabella_ordine'><tr><td colspan='2' height='30' align='center'><p id='test'></p></td></tr></table></div>")
                    
@@ -4123,7 +4129,7 @@ var app = {
                               //alert(paginazione)
                               //localStorage.setItem("pagina",paginazione);
                               
-                              richiesta(paginazione,0)
+                              richiesta(0,paginazione)
                               e.stopImmediatePropagation()
                               return
                               
@@ -4140,16 +4146,16 @@ var app = {
                        nextPagina = schema2 + nextPagina
                    
                        if(pagina!=nextPagina){
-                       $("#test").append("<a id='pag_"+nextPagina+"'><span class='paginazione_on'>"+pag+"</span></a>")
+                       $("#test").append("<a id='pagl_"+nextPagina+"'><span class='paginazione_on'>"+pag+"</span></a>")
                    
-                       $(document).on("touchstart", "#pag_"+ nextPagina +"", function(e){
+                       $(document).on("touchstart", "#pagl_"+ nextPagina +"", function(e){
                           var paginazione = this.id
-                          paginazione = paginazione.replace("pag_","")
+                          paginazione = paginazione.replace("pagl_","")
                           
                           //alert(paginazione)
                           //localStorage.setItem("pagina",paginazione);
                           
-                          richiesta(paginazione,0)
+                          richiesta(0,paginazione)
                           e.stopImmediatePropagation()
                           return
                           })
@@ -4170,7 +4176,7 @@ var app = {
                       //alert(paginazione)
                       //localStorage.setItem("pagina",paginazione);
                       
-                      richiesta(paginazione,0)
+                      richiesta(0,paginazione)
                       e.stopImmediatePropagation()
                       return
                       
@@ -4182,13 +4188,13 @@ var app = {
 					   var risultato = ""
 				   
 					   var str=$.base64.decode(result.leafs);
-					   //alert(str)
+					   alert(str)
 				   
 					   var a1 = new Array();
 				   
 					   a1=str.split("|");
 				   
-					   $("#titoloricerca").html("<div class='cart_page'><table cellpadding='5' cellspacing='0' border='0' align='center' class='tabella_ordine'><p class='titolo_ordine'><b>MICROVERBA ESISTENTI</b></p></td></tr></table>");
+					   $("#titoloricerca").html("<div class='cart_page'><table cellpadding='5' cellspacing='0' border='0' align='center' class='tabella_ordine'><p class='titolo_ordine'><b>MICROVERBA</b></p></td></tr></table>");
 				   
 					   for (i=0;i<a1.length;i++)
 				   
@@ -4211,14 +4217,16 @@ var app = {
 							  if(self.document.form.radice2.value != ""){
 								document.getElementById("foglia2").value = radicchio;
                                 document.getElementById("foglia").value = "";
-								
-								richiesta(0,0)
+								//myScroll.scrollToElement("#foglia2", "1s");
+                                          
+                                richiesta(0,0)
 							  }
 							  else{
 								document.getElementById("foglia").value = radicchio;
                                 document.getElementById("foglia2").value = "";
-								
-								richiesta(0,0)
+								//myScroll.scrollToElement("#foglia", "1s");
+                                          
+                                richiesta(0,0)
 							  }
 							  
 							})
@@ -4231,6 +4239,7 @@ var app = {
 				    alert("paginazione massima, ritorno alla ricerca 1")
 				    richiesta(0,0)
 				   }
+				   
 				   // end se 0
 				   
 				   }
@@ -4241,6 +4250,8 @@ var app = {
 				   
 				   
 				   }
+				   
+				   /// FINE UNO ////
 				   
 				   
 				   if(result.Token==1){
