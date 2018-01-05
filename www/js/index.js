@@ -43,6 +43,7 @@ var app = {
 		$("#spinner").hide();
 		$("#spinner2").hide();
 		
+		document.addEventListener("touchstart", function(){}, true);
 		
 		 /*$("input").focus(function(){
 			$("#footer").hide();
@@ -64,6 +65,8 @@ var app = {
 		function keyboardShowHandler(e){
 			$("#footer").hide();
 		}
+		
+		
 		
 		
 		$("#miclock").hide()
@@ -4277,6 +4280,22 @@ var app = {
 				   
 				   /// FINE UNO ////
 				   
+				   if(result.Token==3){
+					 //alert("vuoto")
+				   
+				     $("#box2").hide();
+				     $("#compra1").hide();
+				     $("#compra2").hide();
+				   }
+				   
+				   if(result.Token === null || typeof(result.Token) == 'undefined' || result.Token=="null" || result.Token==""){
+					//alert("empty")
+				   
+					$("#box2").hide();
+					$("#compra1").hide();
+					$("#compra2").hide();
+				   }
+				   
 				   
 				   if(result.Token==1){
 					   
@@ -4302,7 +4321,7 @@ var app = {
 				   
 							   		var lock="unlock.png";
 				   
-				   					tabella = tabella + "<tr><td align='left' width='150'><div class='titolo_div_contenuti'><span class='titolo_testo_albero'>"+$.base64.decode(result.project)+"</span><a id='vediinfo'><div class='ico_info'></div></a></div></td></tr>"
+				   					tabella = tabella + "<tr><td align='left' width='150'><div class='titolo_div_contenuti'><span class='titolo_testo_albero'>"+$.base64.decode(result.project)+"</span><a id='vediinfo'><div class='ico_info pulse'></div></a></div></td></tr>"
 				   
 				   
 				   					$("#_sblocca_mic").hide();
@@ -4322,7 +4341,7 @@ var app = {
 
 								//tabella = tabella + "<tr><td align='center' width='100%' colspan='2'><a id='_sblocca_prj'>SBLOCCA MICROVERBA</a></td><td align='left' width='100%'></td></tr>"
 				   
-				   				tabella = tabella + "<tr><td align='left' width='150'><div class='titolo_div_contenuti'><span class='titolo_testo_albero'>"+$.base64.decode(result.messaggio)+"</span><a id='vediinfo'><div class='ico_info'></div></a></div></td></tr>"
+				   				tabella = tabella + "<tr><td align='left' width='150'><div class='titolo_div_contenuti'><span class='titolo_testo_albero'>"+$.base64.decode(result.messaggio)+"</span><a id='vediinfo'><div class='ico_info pulse'></div></a></div></td></tr>"
 				   
 				   				$("#_sblocca_mic").show();
 				   				$("#testoinfoprogetto").html($.base64.decode(result.project_description))
@@ -4338,7 +4357,7 @@ var app = {
 				   
 							   //tabella = tabella + "<tr><td align='left' width='150'><a id='_ident_prezzo_nome'> <img src='img/"+lock_microverba+"' width='40'></a></td><td align='left' width='100%'>"+$.base64.decode(result.messaggio)+"</td></tr><tr><td align='left' width='120'> Prezzo: </td><td align='left' width='100%'>"+$.base64.decode(result.pric)+" </td></tr><tr><td align='left' width='120'>Microverba: </td><td align='left' width='100%'>"+$.base64.decode(result.description_microverba)+"</td></tr>"
 				   
-				   				tabella = tabella + "<tr><td align='left' width='150'><div class='titolo_div_contenuti'><span class='titolo_testo_albero'>"+$.base64.decode(result.messaggio)+"</span><a id='vediinfo'><div class='ico_info'></div></a></div></td></tr>"
+				   				tabella = tabella + "<tr><td align='left' width='150'><div class='titolo_div_contenuti'><span class='titolo_testo_albero'>"+$.base64.decode(result.messaggio)+"</span><a id='vediinfo'><div class='ico_info pulse'></div></a></div></td></tr>"
 				   
 				                //<a id='_ident_prezzo_nome'><div class='ico_buy'></div></a><br><div class='euro'>€ "+$.base64.decode(result.pric)+"</div>
 				   
@@ -4359,7 +4378,7 @@ var app = {
 				   
 						    //tabella = tabella + "<tr><td align='center' width='100%' colspan='2'><a id='_sblocca_prj'>SBLOCCA PROGETTO</a></td><td align='left' width='100%'></td></tr>"
 				   
-				   			tabella = tabella + "<tr><td align='left' width='150'><div class='titolo_div_contenuti'><span class='titolo_testo_albero'>"+$.base64.decode(result.project)+"</span><a id='vediinfo'><div class='ico_info'></div></a><a id='_sblocca_prj'><div class='ico_lock_microverba'></div></a></div></td></tr><tr><td align='left' width='150'></td></tr>"
+				   			tabella = tabella + "<tr><td align='left' width='150'><div class='titolo_div_contenuti'><span class='titolo_testo_albero'>"+$.base64.decode(result.project)+"</span><a id='vediinfo'><div class='ico_info pulse'></div></a><a id='_sblocca_prj'><div class='ico_lock_microverba'></div></a></div></td></tr><tr><td align='left' width='150'></td></tr>"
 				   
 				   			$("#testoinfoprogetto").html($.base64.decode(result.project_description))
 				   			$("#testoinfomicro").html($.base64.decode(result.description_microverba))
@@ -4373,7 +4392,7 @@ var app = {
 				   
 					   //tabella = tabella + "<tr><td align='left' width='150'><a id='pr_ident_prezzo_nome'> <img src='img/"+lock_progetto+"' width='40'></a></td><td align='left' width='100%'></td></tr><tr><td align='left' width='120'> Prezzo: </td><td align='left' width='100%'>"+$.base64.decode(result.pr_pric)+" </td></tr><tr><td align='left' width='120'>Progetto: </td><td align='left' width='100%'>"+$.base64.decode(result.project_description)+"</td></tr>"
 				   
-					   tabella = tabella + "<tr><td align='left' width='150'><div class='titolo_div_contenuti'><span class='titolo_testo_albero'>"+$.base64.decode(result.project)+"</span><a id='vediinfo'><div class='ico_info'></div></a><a id='pr_ident_prezzo_nome'><div class='ico_buy'></div></a><br><div class='euro'>€ "+$.base64.decode(result.pr_pric)+"</div></div></td></tr>"
+					   tabella = tabella + "<tr><td align='left' width='150'><div class='titolo_div_contenuti'><span class='titolo_testo_albero'>"+$.base64.decode(result.project)+"</span><a id='vediinfo'><div class='ico_info pulse'></div></a><a id='pr_ident_prezzo_nome'><div class='ico_buy'></div></a><br><div class='euro'>€ "+$.base64.decode(result.pr_pric)+"</div></div></td></tr>"
 				   
 					   $("#testoinfoprogetto").html($.base64.decode(result.project_description))
 					   $("#testoinfomicro").html($.base64.decode(result.description_microverba))

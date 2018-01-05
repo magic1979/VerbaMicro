@@ -11,7 +11,7 @@
 }
 
 body {
-	background: url('../img/background.jpg');
+  background: url('background.jpg');
   background-attachment: fixed;
   background-position: center;
   margin:0;
@@ -151,6 +151,40 @@ a {
 	box-shadow:         2px 2px 5px 0px rgba(50, 50, 50, 0.75);
 }
 
+.bt_sblocca {
+	font-family: 'space-age', sans-serif;
+  color:#fff;
+  font-size:24px;
+  border-radius:22px;
+  border:0px;
+  background:#4588d6;
+  padding:3px 20px;
+  cursor:pointer;
+  text-align:center;
+  width:auto;
+	text-shadow: 1px 1px 1px rgba(50, 50, 50, 1);
+	-webkit-box-shadow: 2px 2px 5px 0px rgba(50, 50, 50, 0.75);
+	-moz-box-shadow:    2px 2px 5px 0px rgba(50, 50, 50, 0.75);
+	box-shadow:         2px 2px 5px 0px rgba(50, 50, 50, 0.75);
+}
+
+.bt_lingua {
+	font-family: 'space-age', sans-serif;
+  color:#fff;
+  font-size:24px;
+  border-radius:22px;
+  border:0px;
+  background:#4588d6;
+  padding:3px 20px;
+  cursor:pointer;
+  text-align:center;
+  width:auto;
+	text-shadow: 1px 1px 1px rgba(50, 50, 50, 1);
+	-webkit-box-shadow: 2px 2px 5px 0px rgba(50, 50, 50, 0.75);
+	-moz-box-shadow:    2px 2px 5px 0px rgba(50, 50, 50, 0.75);
+	box-shadow:         2px 2px 5px 0px rgba(50, 50, 50, 0.75);
+}
+
 .bt_acquista {
 	font-family: 'space-age', sans-serif;
   color:#fff;
@@ -166,6 +200,15 @@ a {
 	-webkit-box-shadow: 2px 2px 5px 0px rgba(50, 50, 50, 0.75);
 	-moz-box-shadow:    2px 2px 5px 0px rgba(50, 50, 50, 0.75);
 	box-shadow:         2px 2px 5px 0px rgba(50, 50, 50, 0.75);
+}
+
+
+.testo_sblocca_contenuto {
+	margin-left:20px;
+	font-family: 'Ubuntu', sans-serif;
+	font-size:15px;
+	font-weight:bold;
+	color:#1C5DA0;
 }
 
 .titolo_div_inserimenti {
@@ -225,7 +268,7 @@ a {
 }
 
 .ico_info {
-	background: url('../img/ico_info.png');
+	background: url('ico_info.png');
   background-size:100%;
   width:32px;
   height:32px;
@@ -239,7 +282,7 @@ a {
 }
 
 .ico_info_microverba {
-	background: url('../img/ico_info.png');
+	background: url('ico_info.png');
   background-size:100%;
   width:40px;
   height:40px;
@@ -253,7 +296,7 @@ a {
 }
 
 .ico_buy {
-	background: url('../img/ico_buy.png');
+	background: url('ico_buy.png');
   background-size:100%;
   width:32px;
   height:32px;
@@ -267,7 +310,7 @@ a {
 }
 
 .ico_lock {
-	background: url('../img/ico_lock.png');
+	background: url('ico_lock.png');
   background-size:100%;
   height:40px;
   width:40px;
@@ -295,7 +338,7 @@ a {
 }
 
 .ico_lock_microverba {
-	background: url('../img/ico_lock.png');
+	background: url('ico_lock.png');
   background-size:100%;
   height:40px;
   width:40px;
@@ -309,7 +352,7 @@ a {
 }
 
 .ico_cart {
-	background: url('../img/ico_buy.png');
+	background: url('ico_buy.png');
   background-size:100%;
   width:40px;
   height:40px;
@@ -320,7 +363,7 @@ a {
 }
 
 .ico_close {
-	background: url('../img/ico_close.png');
+	background: url('ico_close.png');
   background-size:100%;
   width:26px;
   height:26px;
@@ -383,31 +426,31 @@ a {
 }
 
 .barra1a {
-	background: url('../img/barra1a.png');
+	background: url('barra1a.png');
   height:105px;
   width:122px;
 }
 
 .barra1b {
-	background: url('../img/barra3b.png');
+	background: url('barra3b.png');
   height:105px;
   width:38px;
 }
 
 .barra2 {
-	background: url('../img/barra2.png');
+	background: url('barra2.png');
   height:85px;
   padding-top:20px !important;  
 }
 
 .barra3a {
-	background: url('../img/barra3a.png');
+	background: url('barra3a.png');
   height:105px;
   width:38px;
 }
 
 .barra3b {
-	background: url('../img/barra1b.png');
+	background: url('barra1b.png');
   height:105px;
   width:122px;
 }
@@ -550,6 +593,18 @@ a {
   border:2px solid #1C5DA0;
 }
 
+.input_sblocca {
+	font-family: 'Ubuntu', sans-serif;
+  color:#333;
+  font-size:16px;
+  background:#fff;
+  border-radius:10px;
+  padding:3px 10px;
+  height:28px;
+  max-width:150px;
+  border:2px solid #1C5DA0;
+}
+
 .testo_contenuti {
 	font-family: 'Ubuntu', sans-serif;
   color:#fff;
@@ -596,6 +651,94 @@ a {
 	background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(217,217,217,1) 100%);
 	background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(217,217,217,1) 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#d9d9d9', GradientType=0 );
+}
+
+.div_sblocca {
+  font-family: 'Ubuntu', sans-serif;
+  color:#333;
+  font-size:14px;
+
+  width:300px;
+  height:auto;
+
+  background:#fc0;
+  position:absolute;
+
+  border:2px solid #959595;
+  border-radius:15px;
+  display:none;
+  z-index:3;
+	
+  top: 50%;
+  left: 50%;
+  margin: -100px 0 0 -150px;
+	
+  text-align:center;
+	
+  -webkit-box-shadow: 5px 5px 19px 0px rgba(0,0,0,0.54);
+  -moz-box-shadow: 5px 5px 19px 0px rgba(0,0,0,0.54);
+  box-shadow: 5px 5px 19px 0px rgba(0,0,0,0.54);
+	background: rgba(255,255,255,1);
+	background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(217,217,217,1) 100%);
+	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(47%, rgba(246,246,246,1)), color-stop(100%, rgba(217,217,217,1)));
+	background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(217,217,217,1) 100%);
+	background: -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(217,217,217,1) 100%);
+	background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(217,217,217,1) 100%);
+	background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(217,217,217,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#d9d9d9', GradientType=0 );
+}
+
+
+text-align: center;
+
+.div_lingua {
+	font-family: 'Ubuntu', sans-serif;
+  color:#333;
+  font-size:14px;
+	left:5%;
+  width:80%;
+	height:auto;
+	background:#fc0;
+	position:fixed;
+	bottom:80px;
+	padding:20px;
+	border:2px solid #959595;
+	border-radius:15px;
+	display:none;
+	z-index:3;
+	text-align:center;
+	-webkit-box-shadow: 5px 5px 19px 0px rgba(0,0,0,0.54);
+  -moz-box-shadow: 5px 5px 19px 0px rgba(0,0,0,0.54);
+  box-shadow: 5px 5px 19px 0px rgba(0,0,0,0.54);
+	background: rgba(255,255,255,1);
+	background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(217,217,217,1) 100%);
+	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(47%, rgba(246,246,246,1)), color-stop(100%, rgba(217,217,217,1)));
+	background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(217,217,217,1) 100%);
+	background: -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(217,217,217,1) 100%);
+	background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(217,217,217,1) 100%);
+	background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(217,217,217,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#d9d9d9', GradientType=0 );
+}
+
+.table_flags {
+	position:relative;
+	left:10px;
+	margin-top:10px;
+}
+
+.flags {
+	border:3px solid #fff;
+	border-radius:30px;
+	margin:0px 5px;
+	-webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.33);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.33);
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.33);
+}
+
+.flags:hover, .flags:active {
+	-webkit-box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.61);
+	-moz-box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.61);
+	box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.61);
 }
 
 .dock {
@@ -728,7 +871,7 @@ a {
 }
 
 .paginazione_next {
-	background-image: url('../img/ico_arrow_dx.png');
+	background-image: url('ico_arrow_dx.png');
 	background-size:100%;
   width:32px;
   height:32px;
@@ -736,4 +879,52 @@ a {
   display:inline-block;
   position:relative;
   top:8px;
+}
+
+/*.spinner {
+  margin:20px auto 0;
+  width:170px;
+  text-align:center;
+  padding-right:30px;
+}
+
+.spinner > div {
+  width: 18px;
+  height: 18px;
+  background-color: #fff;
+
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+
+.spinner .bounce0 {
+  -webkit-animation-delay: -0.64s;
+  animation-delay: -0.64s;
+}
+
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}*/
+
+@-webkit-keyframes sk-bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(0) }
+  40% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bouncedelay {
+  0%, 80%, 100% { 
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  } 40% { 
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+  }
 }
