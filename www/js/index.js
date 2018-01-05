@@ -1534,7 +1534,7 @@ var app = {
                                 
                                 lock="unlock.png";
                                 
-                                tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td colspan='2'><a id='"+paperino+"'><span class='testo_contenuti'>"+$.base64.decode(result[descyt])+"</span></a></td></tr>"
+                                tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td colspan='2'><span id='"+paperino+"' class='testo_contenuti'>"+$.base64.decode(result[descyt])+"</span></td></tr>"
                                 
                             }
                             else{
@@ -1602,7 +1602,7 @@ var app = {
 				   
 				   $("#pswYTT").attr("type","text")
 				   
-				   $("#pswYTT").focus()
+				   //$("#pswYTT").focus()
 				   
 				   
 				});
@@ -1665,7 +1665,7 @@ var app = {
                                 
                                 lock="unlock.png";
                                 
-                                tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_video.png' class='icona_contenuti'></a></td><td><a id='"+paperino+"'><span class='testo_contenuti'>"+$.base64.decode(result[descva])+"</span></a></td><td align='right' width='40'></td></tr>"
+                                tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_video.png' class='icona_contenuti'></a></td><td><span id='"+paperino+"' class='testo_contenuti'>"+$.base64.decode(result[descva])+"</span></td><td align='right' width='40'></td></tr>"
                                 
                             }
                             else{
@@ -1733,7 +1733,7 @@ var app = {
                        $("#pswVAA").attr("type","text")
                        
                        
-                       $("#pswVAA").focus()
+                      // $("#pswVAA").focus()
                                
                   });
                 
@@ -1794,7 +1794,7 @@ var app = {
                                 
                                 lock="unlock.png";
                                 
-                                tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_audio.png' class='icona_contenuti'></a></td><td><a id='"+paperino+"'><span class='testo_contenuti'>"+$.base64.decode(result[descfa])+"</span></a></td><td align='right' width='40'></td></tr>"
+                                tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_audio.png' class='icona_contenuti'></a></td><td><span id='"+paperino+"' class='testo_contenuti'>"+$.base64.decode(result[descfa])+"</span></td><td align='right' width='40'></td></tr>"
                                 
                             }
                             else{
@@ -1860,7 +1860,7 @@ var app = {
                                localStorage.setItem("pagina",pagina);
                                localStorage.setItem("pagina1",pagina1);
                                
-                               $("#pswFAA").focus()
+                               //$("#pswFAA").focus()
                                
                                
                                });
@@ -1922,7 +1922,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_www.png' class='icona_contenuti'></a></td><td><a id='"+paperino+"'><span class='testo_contenuti'>"+$.base64.decode(result[descpw])+"</span></a></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_www.png' class='icona_contenuti'></a></td><td><span id='"+paperino+"' class='testo_contenuti'>"+$.base64.decode(result[descpw])+"</span></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -1988,7 +1988,7 @@ var app = {
 					  
 					  
 					  
-					  $("#pswPWW").focus()
+					  //$("#pswPWW").focus()
 					  
 					  });
 				   
@@ -2050,7 +2050,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_facebook.png' class='icona_contenuti'></a></td><td><a id='"+paperino+"'><span class='testo_contenuti'>"+$.base64.decode(result[descfb])+"</span></a></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_facebook.png' class='icona_contenuti'></a></td><td><span id='"+paperino+"' class='testo_contenuti'>"+$.base64.decode(result[descfb])+"</span></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -2115,7 +2115,7 @@ var app = {
 						  $("#pswFBB").attr("type","text")
 						  
 
-						  $("#pswFBB").focus()
+						  //$("#pswFBB").focus()
 								  
 								  
 						});
@@ -2180,7 +2180,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_telephone.png' class='icona_contenuti'></a></td><td><a id='"+paperino+"'><span class='testo_contenuti'>"+$.base64.decode(result[desctf])+"</span></a></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_telephone.png' class='icona_contenuti'></a></td><td><span id='"+paperino+"' class='testo_contenuti'>"+$.base64.decode(result[desctf])+"</span></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -2246,7 +2246,7 @@ var app = {
 					  
 				  
 					  
-					  $("#pswTFF").focus()
+					  //$("#pswTFF").focus()
 					  
 					  
 					  });
@@ -2308,7 +2308,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_twitter.png' class='icona_contenuti'></a></td><td><a id='"+paperino+"'><span class='testo_contenuti'>"+$.base64.decode(result[desctw])+"</span></a></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_twitter.png' class='icona_contenuti'></a></td><td><span id='"+paperino+"' class='testo_contenuti'>"+$.base64.decode(result[desctw])+"</span></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -2371,7 +2371,7 @@ var app = {
 					  $("#pswTWW").attr("type","text")
 					  
 					  
-					  $("#pswTWW").focus()
+					  //$("#pswTWW").focus()
 					  
 					  
 					  });
@@ -2433,7 +2433,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_instagram.png' class='icona_contenuti'></a></td><td><a id='"+paperino+"'><span class='testo_contenuti'>"+$.base64.decode(result[descig])+"</span></a></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_instagram.png' class='icona_contenuti'></a></td><td><span id='"+paperino+"' class='testo_contenuti'>"+$.base64.decode(result[descig])+"</span></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -2501,7 +2501,7 @@ var app = {
 					  localStorage.setItem("pagina1",pagina1);
 					  
 					  
-					  $("#pswIGG").focus()
+					  //$("#pswIGG").focus()
 					  
 					  
 					  });
@@ -2561,7 +2561,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_social.png' class='icona_contenuti'></a></td><td><a id='"+paperino+"'><span class='testo_contenuti'>"+$.base64.decode(result[descus])+"</span></a></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_social.png' class='icona_contenuti'></a></td><td><span id='"+paperino+"' class='testo_contenuti'>"+$.base64.decode(result[descus])+"</span></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -2625,7 +2625,7 @@ var app = {
 					  $("#pswUSS").attr("type","text")
 					  
 
-					  $("#pswUSS").focus()
+					  //$("#pswUSS").focus()
 					  
 					  
 					  });
@@ -2689,7 +2689,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><a id='"+paperino+"'><span class='testo_contenuti'>"+$.base64.decode(result[descsv])+"</span></a></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><span id='"+paperino+"' class='testo_contenuti'>"+$.base64.decode(result[descsv])+"</span></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -2754,7 +2754,7 @@ var app = {
 					  
 					    
 					  
-					  $("#pswSVV").focus()
+					  //$("#pswSVV").focus()
 					  
 					  
 					  });
@@ -2815,7 +2815,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_audio_live.png' class='icona_contenuti'></a></td><td><a id='"+paperino+"'><span class='testo_contenuti'>"+$.base64.decode(result[descsa])+"</span></a></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_audio_live.png' class='icona_contenuti'></a></td><td><span id='"+paperino+"' class='testo_contenuti'>"+$.base64.decode(result[descsa])+"</span></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -2879,7 +2879,7 @@ var app = {
 					  $("#pswSAA").attr("type","text")
 					  
 
-					  $("#pswSAA").focus()
+					  //$("#pswSAA").focus()
 					  
 					  
 					  });
@@ -2942,7 +2942,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_smartphone.png' class='icona_contenuti'></a></td><td><a id='"+paperino+"'><span class='testo_contenuti'>"+$.base64.decode(result[desctm])+"</span></a></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_smartphone.png' class='icona_contenuti'></a></td><td><span id='"+paperino+"' class='testo_contenuti'>"+$.base64.decode(result[desctm])+"</span></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -3007,7 +3007,7 @@ var app = {
 					  $("#pswTMM").attr("type","text")
 					  
 
-					  $("#pswTMM").focus()
+					  //$("#pswTMM").focus()
 					  
 					  
 					  });
@@ -3068,7 +3068,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_email.png' class='icona_contenuti'></a></td><td><a id='"+paperino+"'><span class='testo_contenuti'>"+$.base64.decode(result[descem])+"</span></a></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_email.png' class='icona_contenuti'></a></td><td><span id='"+paperino+"' class='testo_contenuti'>"+$.base64.decode(result[descem])+"</span></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -3132,7 +3132,7 @@ var app = {
 					  $("#pswEMM").attr("type","text")
 
 					  
-					  $("#pswEMM").focus()
+					  //$("#pswEMM").focus()
 					  
 					  });
 				   
@@ -3196,7 +3196,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_gallery.png' class='icona_contenuti'></a></td><td><a id='"+paperino+"'><span class='testo_contenuti'>"+$.base64.decode(result[descui])+"</span></a></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_gallery.png' class='icona_contenuti'></a></td><td><span id='"+paperino+"' class='testo_contenuti'>"+$.base64.decode(result[descui])+"</span></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -3262,7 +3262,7 @@ var app = {
 								  
 								  
 								  
-								  $("#pswUII").focus()
+								  //$("#pswUII").focus()
 								  
 								  });
 				   
@@ -3322,7 +3322,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_document.png' class='icona_contenuti'></a></td><td><a id='"+paperino+"'><span class='testo_contenuti'>"+$.base64.decode(result[descud])+"</span></a></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_document.png' class='icona_contenuti'></a></td><td><span id='"+paperino+"' class='testo_contenuti'>"+$.base64.decode(result[descud])+"</span></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -3387,7 +3387,7 @@ var app = {
 								  $("#pswUDD").attr("type","text")
 								  
 
-								  $("#pswUDD").focus()
+								  //$("#pswUDD").focus()
 								  
 								  });
 				   
@@ -3446,7 +3446,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_audio.png' class='icona_contenuti'></a></td><td><a id='"+paperino+"'><span class='testo_contenuti'>"+$.base64.decode(result[descua])+"</span></a></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_audio.png' class='icona_contenuti'></a></td><td><span id='"+paperino+"' class='testo_contenuti'>"+$.base64.decode(result[descua])+"</span></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -3512,7 +3512,7 @@ var app = {
 								  
 								  
 								  
-								  $("#pswUAA").focus()
+								  //$("#pswUAA").focus()
 								  
 								  });
 				   
@@ -3573,7 +3573,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><a id='"+paperino+"'><span class='testo_contenuti'>"+$.base64.decode(result[descuv])+"</span></a></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><span id='"+paperino+"' class='testo_contenuti'>"+$.base64.decode(result[descuv])+"</span></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -3643,7 +3643,7 @@ var app = {
 								  localStorage.setItem("pagina1",pagina1);
 								  
 								  
-								  $("#pswUVV").focus()
+								  //$("#pswUVV").focus()
 								  
 								  });
 				   
