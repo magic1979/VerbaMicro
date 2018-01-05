@@ -1534,7 +1534,7 @@ var app = {
                                 
                                 lock="unlock.png";
                                 
-                                tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td colspan='2'><span id='"+paperino+"' class='testo_contenuti'>"+$.base64.decode(result[descyt])+"</span></td></tr>"
+                                tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td colspan='2'><div class='testo_contenuti'><a id='"+paperino+"'>"+$.base64.decode(result[descyt])+"</a></div></td></tr>"
                                 
                             }
                             else{
@@ -1665,7 +1665,7 @@ var app = {
                                 
                                 lock="unlock.png";
                                 
-                                tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_video.png' class='icona_contenuti'></a></td><td><span id='"+paperino+"' class='testo_contenuti'>"+$.base64.decode(result[descva])+"</span></td><td align='right' width='40'></td></tr>"
+                                tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_video.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'>"+$.base64.decode(result[descva])+"</a></div></td><td align='right' width='40'></td></tr>"
                                 
                             }
                             else{
@@ -1794,7 +1794,7 @@ var app = {
                                 
                                 lock="unlock.png";
                                 
-                                tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_audio.png' class='icona_contenuti'></a></td><td><span id='"+paperino+"' class='testo_contenuti'>"+$.base64.decode(result[descfa])+"</span></td><td align='right' width='40'></td></tr>"
+                                tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_audio.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'>"+$.base64.decode(result[descfa])+"</a></div></td><td align='right' width='40'></td></tr>"
                                 
                             }
                             else{
@@ -1922,7 +1922,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_www.png' class='icona_contenuti'></a></td><td><span id='"+paperino+"' class='testo_contenuti'>"+$.base64.decode(result[descpw])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_www.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'>"+$.base64.decode(result[descpw])+"</a></div></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -2050,7 +2050,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_facebook.png' class='icona_contenuti'></a></td><td><span id='"+paperino+"' class='testo_contenuti'>"+$.base64.decode(result[descfb])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_facebook.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'>"+$.base64.decode(result[descfb])+"</a></div></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -2180,7 +2180,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_telephone.png' class='icona_contenuti'></a></td><td><span id='"+paperino+"' class='testo_contenuti'>"+$.base64.decode(result[desctf])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_telephone.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'>"+$.base64.decode(result[desctf])+"</a></div></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -2271,7 +2271,7 @@ var app = {
 				   
 					   var pageNumber = 1;
 					   eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-					   alert(link1);
+					   //alert(link1);
 					   
 					   window.location.href = "tel:"+link1+"";
 				   
@@ -2308,7 +2308,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_twitter.png' class='icona_contenuti'></a></td><td><span id='"+paperino+"' class='testo_contenuti'>"+$.base64.decode(result[desctw])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_twitter.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'>"+$.base64.decode(result[desctw])+"</a></div></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -2396,7 +2396,7 @@ var app = {
 				   
 					   var pageNumber = 1;
 					   eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-					   alert(link1);
+					   //alert(link1);
 					   
 					   var ref = window.open(link1, '_blank', 'location=no');
 				   
@@ -2433,7 +2433,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_instagram.png' class='icona_contenuti'></a></td><td><span id='"+paperino+"' class='testo_contenuti'>"+$.base64.decode(result[descig])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_instagram.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'>"+$.base64.decode(result[descig])+"</a></div></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -2525,7 +2525,7 @@ var app = {
 				   
 					   var pageNumber = 1;
 					   eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-					   alert(link1);
+					   //alert(link1);
 					   
 					   var ref = window.open(link1, '_blank', 'location=no');
 					   
@@ -2561,7 +2561,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_social.png' class='icona_contenuti'></a></td><td><span id='"+paperino+"' class='testo_contenuti'>"+$.base64.decode(result[descus])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_social.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'>"+$.base64.decode(result[descus])+"</a></div></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -2652,7 +2652,7 @@ var app = {
 				   
 				   var pageNumber = 1;
 				   eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-				   alert(link1);
+				   //alert(link1);
 				   
 				   var ref = window.open(link1, '_blank', 'location=no');
 				   
@@ -2689,7 +2689,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><span id='"+paperino+"' class='testo_contenuti'>"+$.base64.decode(result[descsv])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'>"+$.base64.decode(result[descsv])+"</a></div></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -2778,7 +2778,7 @@ var app = {
 				   
 					   var pageNumber = 1;
 					   eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-					   alert(link1);
+					   //alert(link1);
 					   
 					   var ref = window.open(link1, '_blank', 'location=no');
 					   
@@ -2815,7 +2815,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_audio_live.png' class='icona_contenuti'></a></td><td><span id='"+paperino+"' class='testo_contenuti'>"+$.base64.decode(result[descsa])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_audio_live.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'>"+$.base64.decode(result[descsa])+"</a></div></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -2903,7 +2903,7 @@ var app = {
 				   
 					   var pageNumber = 1;
 					   eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-					   alert(link1);
+					   //alert(link1);
 					   
 					   var ref = window.open(link1, '_blank', 'location=no');
 					   
@@ -2942,7 +2942,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_smartphone.png' class='icona_contenuti'></a></td><td><span id='"+paperino+"' class='testo_contenuti'>"+$.base64.decode(result[desctm])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_smartphone.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'>"+$.base64.decode(result[desctm])+"</a></div></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -3031,7 +3031,7 @@ var app = {
 				   
 					   var pageNumber = 1;
 					   eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-					   alert(link1);
+					   //alert(link1);
 					   
 					   window.location.href = "tel:"+link1+"";
 					   
@@ -3068,7 +3068,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_email.png' class='icona_contenuti'></a></td><td><span id='"+paperino+"' class='testo_contenuti'>"+$.base64.decode(result[descem])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_email.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'>"+$.base64.decode(result[descem])+"</a></div></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -3155,7 +3155,7 @@ var app = {
 				   
 					   var pageNumber = 1;
 					   eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
-					   alert(link1);
+					   //alert(link1);
 					   
 					   window.plugin.email.open({
 												to:      link1,
@@ -3196,7 +3196,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_gallery.png' class='icona_contenuti'></a></td><td><span id='"+paperino+"' class='testo_contenuti'>"+$.base64.decode(result[descui])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_gallery.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'>"+$.base64.decode(result[descui])+"</a></div></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -3322,7 +3322,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_document.png' class='icona_contenuti'></a></td><td><span id='"+paperino+"' class='testo_contenuti'>"+$.base64.decode(result[descud])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_document.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'>"+$.base64.decode(result[descud])+"</a></div></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -3446,7 +3446,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_audio.png' class='icona_contenuti'></a></td><td><span id='"+paperino+"' class='testo_contenuti'>"+$.base64.decode(result[descua])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_audio.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'>"+$.base64.decode(result[descua])+"</a></div></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -3573,7 +3573,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><span id='"+paperino+"' class='testo_contenuti'>"+$.base64.decode(result[descuv])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'>"+$.base64.decode(result[descuv])+"</a></div></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
