@@ -323,6 +323,9 @@ var app = {
                    localStorage.setItem("descprogetto","Descrizione Progetto")
                    localStorage.setItem("nofoglia","La Foglia non esiste")
                    localStorage.setItem("vuoti","Inserire una radice o una foglia")
+				   
+				   localStorage.setItem("noemail","EMAIL RICHIESTA")
+				   localStorage.setItem("noemailrichiesta","Inserisci il tuo indirizzo PayPal per proseguire")
                
                    //var o3 = JSON.parse(jsonstring);
                
@@ -1180,6 +1183,8 @@ var app = {
             localStorage.setItem("descprogetto",o3.descrprogetto.ita)
             localStorage.setItem("nofoglia",o3.nofoglia.ita)
             localStorage.setItem("vuoti","Inserire una radice o una foglia")
+			localStorage.setItem("noemail",o3.emailrichiesta.ita)
+			localStorage.setItem("noemailrichiesta",o3.testoemailrichiesta.ita)
             $("#altro2").html(o3.altro.ita)
             $("#tuoordine").html(o3.tuoordine.ita)
             $("#totale").html(o3.totale.ita)
@@ -1231,6 +1236,8 @@ var app = {
                localStorage.setItem("descprogetto",o3.descrprogetto.eng)
                localStorage.setItem("nofoglia",o3.nofoglia.eng)
                localStorage.setItem("vuoti","Enter one leaf o root")
+			   localStorage.setItem("noemail",o3.emailrichiesta.eng)
+			   localStorage.setItem("noemailrichiesta",o3.testoemailrichiesta.eng)
                $("#altro2").html(o3.altro.eng)
                $("#tuoordine").html(o3.tuoordine.eng)
                $("#totale").html(o3.totale.eng)
@@ -1267,11 +1274,11 @@ var app = {
 			if (document.getElementById('privacybtn').checked) {
 					   
 				 if (localStorage.getItem("email") === null || typeof(localStorage.getItem("email")) == 'undefined' || localStorage.getItem("email")=="null" || localStorage.getItem("email")==""){
-						   
+	   
 				   navigator.notification.prompt(
-					 'Inserisci il tuo indirizzo email per proseguire',  // message
+					 localStorage.getItem("noemailrichiesta"),  // message
 					  onPrompt,                  // callback to invoke
-					 'Email Richiesta',            // title
+					  localStorage.getItem("noemail"),            // title
 					 ['Invia','Annulla'],             // buttonLabels
 					 ''                 // defaultText
 				   );
@@ -1301,7 +1308,7 @@ var app = {
 			if(results.buttonIndex==1){
 				if (results.input1 == "") {
 					navigator.notification.alert(
-												 'inserire indirizzo email',  // message
+												 localStorage.getItem("noemail"),  // message
 												 alertDismissed,         // callback
 												 'Email',            // title
 												 'OK'                  // buttonName
@@ -1524,7 +1531,7 @@ var app = {
                                 
                                 lock="unlock.png";
                                 
-                                tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td colspan='2'><span class='testo_contenuti'>"+$.base64.decode(result[descyt])+"</span></td></tr>"
+                                tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td colspan='2'><a id='"+paperino+"'><span class='testo_contenuti'>"+$.base64.decode(result[descyt])+"</span></a></td></tr>"
                                 
                             }
                             else{
@@ -1655,7 +1662,7 @@ var app = {
                                 
                                 lock="unlock.png";
                                 
-                                tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_video.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descva])+"</span></td><td align='right' width='40'></td></tr>"
+                                tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_video.png' class='icona_contenuti'></a></td><td><a id='"+paperino+"'><span class='testo_contenuti'>"+$.base64.decode(result[descva])+"</span></a></td><td align='right' width='40'></td></tr>"
                                 
                             }
                             else{
@@ -1784,7 +1791,7 @@ var app = {
                                 
                                 lock="unlock.png";
                                 
-                                tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_audio.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descfa])+"</span></td><td align='right' width='40'></td></tr>"
+                                tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_audio.png' class='icona_contenuti'></a></td><td><a id='"+paperino+"'><span class='testo_contenuti'>"+$.base64.decode(result[descfa])+"</span></a></td><td align='right' width='40'></td></tr>"
                                 
                             }
                             else{
@@ -1912,7 +1919,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_www.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descpw])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_www.png' class='icona_contenuti'></a></td><td><a id='"+paperino+"'><span class='testo_contenuti'>"+$.base64.decode(result[descpw])+"</span></a></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -1923,7 +1930,7 @@ var app = {
 				   else{
 				   lock="cart.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'> "+$.base64.decode(result[descpw])+"</span></td><td align='center' width='40'><a id='piu"+ identPW +"piu"+ prezzoPW +"piu"+ nomePW +"piu"+ tipoPW +"'> <div class='ico_cart'></div></a><br><span class='testo_contenuti'>"+result[prezzoPW]+"€</span></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_www.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'> "+$.base64.decode(result[descpw])+"</span></td><td align='center' width='40'><a id='piu"+ identPW +"piu"+ prezzoPW +"piu"+ nomePW +"piu"+ tipoPW +"'> <div class='ico_cart'></div></a><br><span class='testo_contenuti'>"+result[prezzoPW]+"€</span></td></tr>"
 				   }
 				   }
 				   }
@@ -2040,7 +2047,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_facebook.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descfb])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_facebook.png' class='icona_contenuti'></a></td><td><a id='"+paperino+"'><span class='testo_contenuti'>"+$.base64.decode(result[descfb])+"</span></a></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -2051,7 +2058,7 @@ var app = {
 				   else{
 				   lock="cart.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'> "+$.base64.decode(result[descfb])+"</span></td><td align='center' width='40'><a id='piu"+ identFB +"piu"+ prezzoFB +"piu"+ nomeFB +"piu"+ tipoFB +"'> <div class='ico_cart'></div></a><br><span class='testo_contenuti'>"+result[prezzoFB]+"€</span></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_facebook.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'> "+$.base64.decode(result[descfb])+"</span></td><td align='center' width='40'><a id='piu"+ identFB +"piu"+ prezzoFB +"piu"+ nomeFB +"piu"+ tipoFB +"'> <div class='ico_cart'></div></a><br><span class='testo_contenuti'>"+result[prezzoFB]+"€</span></td></tr>"
 				   }
 				   }
 				   }
@@ -2170,7 +2177,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_telephone.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[desctf])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_telephone.png' class='icona_contenuti'></a></td><td><a id='"+paperino+"'><span class='testo_contenuti'>"+$.base64.decode(result[desctf])+"</span></a></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -2181,7 +2188,7 @@ var app = {
 				   else{
 				   lock="cart.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'> "+$.base64.decode(result[desctf])+"</span></td><td align='center' width='40'><a id='piu"+ identTF +"piu"+ prezzoTF +"piu"+ nomeTF +"piu"+ tipoTF +"'> <div class='ico_cart'></div></a><br><span class='testo_contenuti'>"+result[prezzoTF]+"€</span></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_telephone.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'> "+$.base64.decode(result[desctf])+"</span></td><td align='center' width='40'><a id='piu"+ identTF +"piu"+ prezzoTF +"piu"+ nomeTF +"piu"+ tipoTF +"'> <div class='ico_cart'></div></a><br><span class='testo_contenuti'>"+result[prezzoTF]+"€</span></td></tr>"
 				   }
 				   }
 				   }
@@ -2298,7 +2305,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_twitter.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[desctw])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_twitter.png' class='icona_contenuti'></a></td><td><a id='"+paperino+"'><span class='testo_contenuti'>"+$.base64.decode(result[desctw])+"</span></a></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -2309,7 +2316,7 @@ var app = {
 				   else{
 				   lock="cart.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'> "+$.base64.decode(result[desctw])+"</span></td><td align='center' width='40'><a id='piu"+ identTW +"piu"+ prezzoTW +"piu"+ nomeTW +"piu"+ tipoTW +"'> <div class='ico_cart'></div></a><br><span class='testo_contenuti'>"+result[prezzoTW]+"€</span></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_twitter.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'> "+$.base64.decode(result[desctw])+"</span></td><td align='center' width='40'><a id='piu"+ identTW +"piu"+ prezzoTW +"piu"+ nomeTW +"piu"+ tipoTW +"'> <div class='ico_cart'></div></a><br><span class='testo_contenuti'>"+result[prezzoTW]+"€</span></td></tr>"
 				   }
 				   }
 				   }
@@ -2423,7 +2430,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_instagram.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descig])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_instagram.png' class='icona_contenuti'></a></td><td><a id='"+paperino+"'><span class='testo_contenuti'>"+$.base64.decode(result[descig])+"</span></a></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -2434,7 +2441,7 @@ var app = {
 				   else{
 				   lock="cart.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'> "+$.base64.decode(result[descig])+"</span></td><td align='center' width='40'><a id='piu"+ identIG +"piu"+ prezzoIG +"piu"+ nomeIG +"piu"+ tipoIG +"'> <div class='ico_cart'></div></a><br><span class='testo_contenuti'>"+result[prezzoIG]+"€</span></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_instagram.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'> "+$.base64.decode(result[descig])+"</span></td><td align='center' width='40'><a id='piu"+ identIG +"piu"+ prezzoIG +"piu"+ nomeIG +"piu"+ tipoIG +"'> <div class='ico_cart'></div></a><br><span class='testo_contenuti'>"+result[prezzoIG]+"€</span></td></tr>"
 				   }
 				   }
 				   }
@@ -2551,7 +2558,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_social.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descus])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_social.png' class='icona_contenuti'></a></td><td><a id='"+paperino+"'><span class='testo_contenuti'>"+$.base64.decode(result[descus])+"</span></a></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -2562,7 +2569,7 @@ var app = {
 				   else{
 				   lock="cart.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'> "+$.base64.decode(result[descus])+"</span></td><td align='center' width='40'><a id='piu"+ identUS +"piu"+ prezzoUS +"piu"+ nomeUS +"piu"+ tipoUS +"'> <div class='ico_cart'></div></a><br><span class='testo_contenuti'>"+result[prezzoUS]+"€</span></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_social.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'> "+$.base64.decode(result[descus])+"</span></td><td align='center' width='40'><a id='piu"+ identUS +"piu"+ prezzoUS +"piu"+ nomeUS +"piu"+ tipoUS +"'> <div class='ico_cart'></div></a><br><span class='testo_contenuti'>"+result[prezzoUS]+"€</span></td></tr>"
 				   }
 				   }
 				   }
@@ -2679,7 +2686,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descsv])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><a id='"+paperino+"'><span class='testo_contenuti'>"+$.base64.decode(result[descsv])+"</span></a></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -2690,7 +2697,7 @@ var app = {
 				   else{
 				   lock="cart.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'> "+$.base64.decode(result[descsv])+"</span></td><td align='center' width='40'><a id='piu"+ identSV +"piu"+ prezzoSV +"piu"+ nomeSV +"piu"+ tipoSV +"'> <div class='ico_cart'></div></a><br><span class='testo_contenuti'>"+result[prezzoSV]+"€</span></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'> "+$.base64.decode(result[descsv])+"</span></td><td align='center' width='40'><a id='piu"+ identSV +"piu"+ prezzoSV +"piu"+ nomeSV +"piu"+ tipoSV +"'> <div class='ico_cart'></div></a><br><span class='testo_contenuti'>"+result[prezzoSV]+"€</span></td></tr>"
 				   }
 				   }
 				   }
@@ -2787,8 +2794,8 @@ var app = {
 				   nomeSA = "SA_nome_"+variabile
 				   identSA = "SA_iden_"+variabile
 				   
-				   pswSA = "FB_lock_"+variabile
-				   tipoSA = "FB_tipo_"+variabile
+				   pswSA = "SA_lock_"+variabile
+				   tipoSA = "SA_tipo_"+variabile
 				   
 				   if(lock_progetto!="cart.png"){
 				   if(lock_microverba=="cart.png"){
@@ -2805,7 +2812,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_audio_live.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descsa])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_audio_live.png' class='icona_contenuti'></a></td><td><a id='"+paperino+"'><span class='testo_contenuti'>"+$.base64.decode(result[descsa])+"</span></a></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -2816,7 +2823,7 @@ var app = {
 				   else{
 				   lock="cart.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'> "+$.base64.decode(result[descsa])+"</span></td><td align='center' width='40'><a id='piu"+ identSA +"piu"+ prezzoSA +"piu"+ nomeSA +"piu"+ tipoSA +"'> <div class='ico_cart'></div></a><br><span class='testo_contenuti'>"+result[prezzoSA]+"€</span></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_audio_live.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'> "+$.base64.decode(result[descsa])+"</span></td><td align='center' width='40'><a id='piu"+ identSA +"piu"+ prezzoSA +"piu"+ nomeSA +"piu"+ tipoSA +"'> <div class='ico_cart'></div></a><br><span class='testo_contenuti'>"+result[prezzoSA]+"€</span></td></tr>"
 				   }
 				   }
 				   }
@@ -2932,7 +2939,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_smartphone.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[desctm])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_smartphone.png' class='icona_contenuti'></a></td><td><a id='"+paperino+"'><span class='testo_contenuti'>"+$.base64.decode(result[desctm])+"</span></a></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -2943,7 +2950,7 @@ var app = {
 				   else{
 				   lock="cart.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'> "+$.base64.decode(result[desctm])+"</span></td><td align='center' width='40'><a id='piu"+ identTM +"piu"+ prezzoTM +"piu"+ nomeTM +"piu"+ tipoTM +"'> <div class='ico_cart'></div></a><br><span class='testo_contenuti'>"+result[prezzoTM]+"€</span></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_smartphone.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'> "+$.base64.decode(result[desctm])+"</span></td><td align='center' width='40'><a id='piu"+ identTM +"piu"+ prezzoTM +"piu"+ nomeTM +"piu"+ tipoTM +"'> <div class='ico_cart'></div></a><br><span class='testo_contenuti'>"+result[prezzoTM]+"€</span></td></tr>"
 				   }
 				   }
 				   }
@@ -3058,7 +3065,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_email.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descem])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_email.png' class='icona_contenuti'></a></td><td><a id='"+paperino+"'><span class='testo_contenuti'>"+$.base64.decode(result[descem])+"</span></a></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -3069,7 +3076,7 @@ var app = {
 				   else{
 				   lock="cart.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'> "+$.base64.decode(result[descem])+"</span></td><td align='center' width='40'><a id='piu"+ identEM +"piu"+ prezzoEM +"piu"+ nomeEM +"piu"+ tipoEM +"'> <div class='ico_cart'></div></a><br><span class='testo_contenuti'>"+result[prezzoEM]+"€</span></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_email.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'> "+$.base64.decode(result[descem])+"</span></td><td align='center' width='40'><a id='piu"+ identEM +"piu"+ prezzoEM +"piu"+ nomeEM +"piu"+ tipoEM +"'> <div class='ico_cart'></div></a><br><span class='testo_contenuti'>"+result[prezzoEM]+"€</span></td></tr>"
 				   }
 				   }
 				   }
@@ -3176,7 +3183,7 @@ var app = {
 				   
 				   lock="cart.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_photo.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descui])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_gallery.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descui])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
 				   }
 				   else{
 				   
@@ -3186,25 +3193,25 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_photo.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descui])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_gallery.png' class='icona_contenuti'></a></td><td><a id='"+paperino+"'><span class='testo_contenuti'>"+$.base64.decode(result[descui])+"</span></a></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_photo.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'><input id='fff_"+pswUI+"' name='password' class='testo_contenuti_pw' placeholder='password' readonly></span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_gallery.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'><input id='fff_"+pswUI+"' name='password' class='testo_contenuti_pw' placeholder='password' readonly></span></td><td align='right' width='40'></td></tr>"
 				   
-				   }
-				   }
-				   else{
-				   lock="cart.png";
-				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'> "+$.base64.decode(result[descui])+"</span></td><td align='center' width='40'><a id='piu"+ identUI +"piu"+ prezzoUI +"piu"+ nomeUI +"piu"+ tipoUI +"'> <div class='ico_cart'></div></a><br><span class='testo_contenuti'>"+result[prezzoUI]+"€</span></td></tr>"
-				   }
 				   }
 				   }
 				   else{
 				   lock="cart.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_photo.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descui])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_gallery.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'> "+$.base64.decode(result[descui])+"</span></td><td align='center' width='40'><a id='piu"+ identUI +"piu"+ prezzoUI +"piu"+ nomeUI +"piu"+ tipoUI +"'> <div class='ico_cart'></div></a><br><span class='testo_contenuti'>"+result[prezzoUI]+"€</span></td></tr>"
+				   }
+				   }
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_gallery.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descui])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
 				   
 				   }
 				   
@@ -3312,7 +3319,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_document.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descud])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_document.png' class='icona_contenuti'></a></td><td><a id='"+paperino+"'><span class='testo_contenuti'>"+$.base64.decode(result[descud])+"</span></a></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -3323,7 +3330,7 @@ var app = {
 				   else{
 				   lock="cart.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'> "+$.base64.decode(result[descud])+"</span></td><td align='center' width='40'><a id='piu"+ identUD +"piu"+ prezzoUD +"piu"+ nomeUD +"piu"+ tipoUD +"'> <div class='ico_cart'></div></a><br><span class='testo_contenuti'>"+result[prezzoUD]+"€</span></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_document.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'> "+$.base64.decode(result[descud])+"</span></td><td align='center' width='40'><a id='piu"+ identUD +"piu"+ prezzoUD +"piu"+ nomeUD +"piu"+ tipoUD +"'> <div class='ico_cart'></div></a><br><span class='testo_contenuti'>"+result[prezzoUD]+"€</span></td></tr>"
 				   }
 				   }
 				   }
@@ -3436,7 +3443,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_audio.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descua])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_audio.png' class='icona_contenuti'></a></td><td><a id='"+paperino+"'><span class='testo_contenuti'>"+$.base64.decode(result[descua])+"</span></a></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -3447,7 +3454,7 @@ var app = {
 				   else{
 				   lock="cart.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'> "+$.base64.decode(result[descua])+"</span></td><td align='center' width='40'><a id='piu"+ identUA +"piu"+ prezzoUA +"piu"+ nomeUA +"piu"+ tipoUA +"'> <div class='ico_cart'></div></a><br><span class='testo_contenuti'>"+result[prezzoYT]+"€</span></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_audio.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'> "+$.base64.decode(result[descua])+"</span></td><td align='center' width='40'><a id='piu"+ identUA +"piu"+ prezzoUA +"piu"+ nomeUA +"piu"+ tipoUA +"'> <div class='ico_cart'></div></a><br><span class='testo_contenuti'>"+result[prezzoYT]+"€</span></td></tr>"
 				   }
 				   }
 				   }
@@ -3559,11 +3566,11 @@ var app = {
 				   
 				   if(result[prezzoUV] === null || typeof(result[prezzoUV]) == 'undefined' || result[prezzoUV]=="null" || result[prezzoUV]==""){
 				   
-				   if((result[pswUV]=="")||(result[pswUV]==$.base64.encode(pswUVV))){
+				   if((result[pswUV]=="")||(result[pswUV]==$.base64.encode(psw2))){
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descuv])+"</span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><a id='"+paperino+"'><span class='testo_contenuti'>"+$.base64.decode(result[descuv])+"</span></a></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -3574,7 +3581,7 @@ var app = {
 				   else{
 				   lock="cart.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'> "+$.base64.decode(result[descuv])+"</span></td><td align='center' width='40'><a id='piu"+ identUV +"piu"+ prezzoUV +"piu"+ nomeUV +"piu"+ tipoUV +"'> <div class='ico_cart'></div></a><br><span class='testo_contenuti'>"+result[prezzoUV]+"€</span></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'> "+$.base64.decode(result[descuv])+"</span></td><td align='center' width='40'><a id='piu"+ identUV +"piu"+ prezzoUV +"piu"+ nomeUV +"piu"+ tipoUV +"'> <div class='ico_cart'></div></a><br><span class='testo_contenuti'>"+result[prezzoUV]+"€</span></td></tr>"
 				   }
 				   }
 				   }
@@ -3865,6 +3872,11 @@ var app = {
 				   localStorage.setItem("resultjsn", JSON.stringify(result))
 				   
 				   //TUTTO
+				    if(result.Token === null || typeof(result.Token) == 'undefined' || result.Token=="null" ||result.Token==""){
+						$("#box2").hide();
+						$("#spinner").hide();
+						return;
+                   }
 				   
 				   if(result.Token==0){
 					   
@@ -3936,6 +3948,7 @@ var app = {
 				     $("#compra1").hide();
 				     $("#compra2").hide();
 				     $("#contengo").show();
+					 $("#ricerca").show();
 				   
 				      if(result.totalRoot!="0"){
 				   
@@ -4011,21 +4024,26 @@ var app = {
 				   
 							   }
 						   }
+						   
+						   
+						   if (result.nextPaginationRootStart!=0){
 				   
-						   $("#test").append("<a id='pag2_"+nextPagina+"'><div class='paginazione_next'></div></a>")
-				   
-						   $(document).on("touchstart", "#pag2_"+ nextPagina +"", function(e){
-								  var paginazione = this.id
-								  paginazione = paginazione.replace("pag2_","")
-								  
-								  //alert(paginazione)
-								  //localStorage.setItem("pagina",paginazione);
-								  
-								  richiesta(paginazione,0)
-								  e.stopImmediatePropagation()
-								  return
-								  
-							})
+							   $("#test").append("<a id='pag2_"+nextPagina+"'><div class='paginazione_next'></div></a>")
+					   
+							   $(document).on("touchstart", "#pag2_"+ nextPagina +"", function(e){
+									  var paginazione = this.id
+									  paginazione = paginazione.replace("pag2_","")
+									  
+									  //alert(paginazione)
+									  //localStorage.setItem("pagina",paginazione);
+									  
+									  richiesta(paginazione,0)
+									  e.stopImmediatePropagation()
+									  return
+									  
+								})
+							
+						   }
 
 				       }
 				   
@@ -4168,21 +4186,25 @@ var app = {
                    
                    }
                    }
-                   
-                   $("#test").append("<a id='pag2_"+nextPagina+"'><div class='paginazione_next'></div></a>")
-                   
-                   $(document).on("touchstart", "#pag2_"+ nextPagina +"", function(e){
-                      var paginazione = this.id
-                      paginazione = paginazione.replace("pag2_","")
-                      
-                      //alert(paginazione)
-                      //localStorage.setItem("pagina",paginazione);
-                      
-                      richiesta(0,paginazione)
-                      e.stopImmediatePropagation()
-                      return
-                      
-                      })
+				   
+					   if (result.nextPaginationLeafStart!=0){
+					   
+						   $("#test").append("<a id='pag2_"+nextPagina+"'><div class='paginazione_next'></div></a>")
+						   
+						   $(document).on("touchstart", "#pag2_"+ nextPagina +"", function(e){
+							  var paginazione = this.id
+							  paginazione = paginazione.replace("pag2_","")
+							  
+							  //alert(paginazione)
+							  //localStorage.setItem("pagina",paginazione);
+							  
+							  richiesta(0,paginazione)
+							  e.stopImmediatePropagation()
+							  return
+							  
+							 })
+						  
+					   }
                    
                    }
 					   
@@ -5342,7 +5364,7 @@ var app = {
 				   success: function (result) {
 					   
   
-					var ref = window.open('http://microverba.com/wbspaypal.php?Transprodotto='+ transazionemia +'&did='+ localStorage.getItem("deviceid") +'', '_blank', 'location=no');
+					var ref = window.open('http://microverba.com/mv/wbspaypal.php?Transprodotto='+ transazionemia +'&did='+ localStorage.getItem("deviceid") +'', '_blank', 'location=no');
 					 
 					ref.addEventListener('loadstop', function(event) { 
 					 if (event.url.match("mobile/close")) { 
@@ -5525,7 +5547,7 @@ var app = {
 				name = mediaFile.name;
 				
 				ft.upload(path,
-						  "http://microverba.com/filesu.php",
+						  "http://microverba.com/mv/filesu.php",
 						  function(result) {
 							  
 					        $("#spinner").hide();
@@ -5590,7 +5612,7 @@ var app = {
 					    name = mediaFile.name;
 					   
 					   ft.upload(path,
-								 "http://microverba.com/filesu.php",
+								 "http://microverba.com/mv/filesu.php",
 								 function(result) {
 									 
 									 $("#spinner").hide();
