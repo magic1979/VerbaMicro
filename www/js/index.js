@@ -1534,7 +1534,7 @@ var app = {
                                 
                                 lock="unlock.png";
                                 
-                                tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td colspan='2'><div class='testo_contenuti'><a id='"+paperino+"'>"+$.base64.decode(result[descyt])+"</a></div></td></tr>"
+                                tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_youtube.png' class='icona_contenuti'></a></td><td colspan='2'><div class='testo_contenuti'><a id='"+paperino+"'><font color='#fff'>"+$.base64.decode(result[descyt])+"</font></a></div></td></tr>"
                                 
                             }
                             else{
@@ -1566,7 +1566,7 @@ var app = {
 				 }, 300);
                 
 				
-                $(document).on("touchstart", "#"+paperino+"", function(e){
+                $(document).on("tap", "#"+paperino+"", function(e){
                                
 					passo(this.id)
                                
@@ -1665,7 +1665,7 @@ var app = {
                                 
                                 lock="unlock.png";
                                 
-                                tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_video.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'>"+$.base64.decode(result[descva])+"</a></div></td><td align='right' width='40'></td></tr>"
+                                tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_video.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'><font color='#fff'>"+$.base64.decode(result[descva])+"</font></a></div></td><td align='right' width='40'></td></tr>"
                                 
                             }
                             else{
@@ -1695,7 +1695,7 @@ var app = {
 							}, 300);
                 
                 
-                $(document).on("touchstart", "#"+paperino+"", function(e){
+                $(document).on("tap", "#"+paperino+"", function(e){
                                
 				   passo2(this.id) // passare la variabile in una nuova funzione
 				   
@@ -1823,7 +1823,7 @@ var app = {
 							}, 300);
                 
                 
-                $(document).on("touchstart", "#"+paperino+"", function(e){
+                $(document).on("tap", "#"+paperino+"", function(e){
                                
                                passo3(this.id) // passare la variabile in una nuova funzione
                                
@@ -1922,7 +1922,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_www.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'>"+$.base64.decode(result[descpw])+"</a></div></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_www.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'><font color='#fff'>"+$.base64.decode(result[descpw])+"</font></a></div></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -1952,7 +1952,7 @@ var app = {
 							}, 300);
 				   
 				   
-				   $(document).on("touchstart", "#"+paperino+"", function(e){
+				   $(document).on("tap", "#"+paperino+"", function(e){
 								  
 					  passo4(this.id) // passare la variabile in una nuova funzione
 					  
@@ -2050,7 +2050,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_facebook.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'>"+$.base64.decode(result[descfb])+"</a></div></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_facebook.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'><font color='#fff'>"+$.base64.decode(result[descfb])+"</font></a></div></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -2079,7 +2079,7 @@ var app = {
 							}, 300);
 				   
 				   
-				   $(document).on("touchstart", "#"+paperino+"", function(e){
+				   $(document).on("tap", "#"+paperino+"", function(e){
 								  
 					  passo5(this.id) // passare la variabile in una nuova funzione
 					  
@@ -2180,7 +2180,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_telephone.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'>"+$.base64.decode(result[desctf])+"</a></div></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_telephone.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'><font color='#fff'>"+$.base64.decode(result[desctf])+"</font></a></div></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -2209,7 +2209,7 @@ var app = {
 							myScroll.refresh();
 							}, 300);
 				   
-				   $(document).on("touchstart", "#"+paperino+"", function(e){
+				   $(document).on("tap", "#"+paperino+"", function(e){
 								  
 					  passo6(this.id) // passare la variabile in una nuova funzione
 					  
@@ -2308,7 +2308,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_twitter.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'>"+$.base64.decode(result[desctw])+"</a></div></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_twitter.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'><font color='#fff'>"+$.base64.decode(result[desctw])+"</font></a></div></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -2336,7 +2336,7 @@ var app = {
 							myScroll.refresh();
 							}, 300);
 				   
-				   $(document).on("touchstart", "#"+paperino+"", function(e){
+				   $(document).on("tap", "#"+paperino+"", function(e){
 								  
 								  passo7(this.id) // passare la variabile in una nuova funzione
 								  
@@ -2433,7 +2433,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_instagram.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'>"+$.base64.decode(result[descig])+"</a></div></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_instagram.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'><font color='#fff'>"+$.base64.decode(result[descig])+"</font></a></div></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -2462,7 +2462,7 @@ var app = {
 							}, 300);
 				   
 				   
-				   $(document).on("touchstart", "#"+paperino+"", function(e){
+				   $(document).on("tap", "#"+paperino+"", function(e){
 								  
 								  passo8(this.id) // passare la variabile in una nuova funzione
 								  
@@ -2561,7 +2561,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_social.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'>"+$.base64.decode(result[descus])+"</a></div></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_social.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'><font color='#fff'>"+$.base64.decode(result[descus])+"</font></a></div></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -2590,7 +2590,7 @@ var app = {
 							}, 300);
 				   
 				   
-				   $(document).on("touchstart", "#"+paperino+"", function(e){
+				   $(document).on("tap", "#"+paperino+"", function(e){
 								  
 					  passo9(this.id) // passare la variabile in una nuova funzione
 					  
@@ -2689,7 +2689,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'>"+$.base64.decode(result[descsv])+"</a></div></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'><font color='#fff'>"+$.base64.decode(result[descsv])+"</font></a></div></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -2718,11 +2718,11 @@ var app = {
 							}, 300);
 				   
 				   
-				   $(document).on("touchstart", "#"+paperino+"", function(e){
+				   $(document).on("tap", "#"+paperino+"", function(e){
 								  
-								  passo10(this.id) // passare la variabile in una nuova funzione
-								  
-								  });
+						  passo10(this.id) // passare la variabile in una nuova funzione
+						  
+						  });
 				   
 				   $(document).on("touchstart", "#fff_"+pswSV+"", function(e){
 								  
@@ -2815,7 +2815,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_audio_live.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'>"+$.base64.decode(result[descsa])+"</a></div></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_audio_live.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'><font color='#fff'>"+$.base64.decode(result[descsa])+"</font></a></div></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -2844,7 +2844,7 @@ var app = {
 							}, 300);
 				   
 				   
-				   $(document).on("touchstart", "#"+paperino+"", function(e){
+				   $(document).on("tap", "#"+paperino+"", function(e){
 								  
 					  passo11(this.id) // passare la variabile in una nuova funzione
 					  
@@ -2942,7 +2942,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_smartphone.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'>"+$.base64.decode(result[desctm])+"</a></div></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_smartphone.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'><font color='#fff'>"+$.base64.decode(result[desctm])+"</font></a></div></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -2971,7 +2971,7 @@ var app = {
 							}, 300);
 				   
 				   
-				   $(document).on("touchstart", "#"+paperino+"", function(e){
+				   $(document).on("tap", "#"+paperino+"", function(e){
 								  
 						passo12(this.id) // passare la variabile in una nuova funzione
 								  
@@ -3068,7 +3068,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_email.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'>"+$.base64.decode(result[descem])+"</a></div></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_email.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'><font color='#fff'>"+$.base64.decode(result[descem])+"</font></a></div></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -3097,7 +3097,7 @@ var app = {
 							}, 300);
 				   
 				   
-				   $(document).on("touchstart", "#"+paperino+"", function(e){
+				   $(document).on("tap", "#"+paperino+"", function(e){
 								  
 					  passo13(this.id) // passare la variabile in una nuova funzione
 					  
@@ -3196,7 +3196,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_gallery.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'>"+$.base64.decode(result[descui])+"</a></div></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_gallery.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'><font color='#fff'>"+$.base64.decode(result[descui])+"</font></a></div></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -3225,7 +3225,7 @@ var app = {
 							}, 300);
 				   
 				   
-				   $(document).on("touchstart", "#"+paperino+"", function(e){
+				   $(document).on("tap", "#"+paperino+"", function(e){
 								  
 					  passo14(this.id) // passare la variabile in una nuova funzione
 					  
@@ -3322,7 +3322,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_document.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'>"+$.base64.decode(result[descud])+"</a></div></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_document.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'><font color='#fff'>"+$.base64.decode(result[descud])+"</font></a></div></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -3351,7 +3351,7 @@ var app = {
 							}, 300);
 				   
 				   
-				   $(document).on("touchstart", "#"+paperino+"", function(e){
+				   $(document).on("tap", "#"+paperino+"", function(e){
 								  
 								  passo15(this.id) // passare la variabile in una nuova funzione
 								  
@@ -3446,7 +3446,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_audio.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'>"+$.base64.decode(result[descua])+"</a></div></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_audio.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'><font color='#fff'>"+$.base64.decode(result[descua])+"</font></a></div></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -3475,11 +3475,11 @@ var app = {
 							}, 300);
 				   
 				   
-				   $(document).on("touchstart", "#"+paperino+"", function(e){
+				   $(document).on("tap", "#"+paperino+"", function(e){
 								  
-								  passo16(this.id) // passare la variabile in una nuova funzione
+					 passo16(this.id) // passare la variabile in una nuova funzione
 								  
-								  });
+					});
 				   
 				   
 				   $(document).on("touchstart", "#fff_"+pswUA+"", function(e){
@@ -3520,16 +3520,16 @@ var app = {
 				   $(document).on("touchstart", "#piu"+ identUA +"piu"+ prezzoUA +"piu"+ nomeUA +"piu"+ tipoUA +"", function(e){
 								  
 								  
-								  //SPLIT
-								  var str=this.id;
-								  
-								  var a1 = new Array();
-								  
-								  a1=str.split("piu");
-								  
-								  agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]),"c", $.base64.decode(result[a1[4]]))
-								  
-								  });
+					  //SPLIT
+					  var str=this.id;
+					  
+					  var a1 = new Array();
+					  
+					  a1=str.split("piu");
+					  
+					  agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]),"c", $.base64.decode(result[a1[4]]))
+					  
+					  });
 								  
 								  
 					function passo16(eccola){
@@ -3573,7 +3573,7 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'>"+$.base64.decode(result[descuv])+"</a></div></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'><font color='#fff'>"+$.base64.decode(result[descuv])+"</font></a></div></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
@@ -3603,7 +3603,7 @@ var app = {
 							}, 300);
 				   
 				   
-				   $(document).on("touchstart", "#"+paperino+"", function(e){
+				   $(document).on("tap", "#"+paperino+"", function(e){
 								  
 								  passo17(this.id) // passare la variabile in una nuova funzione
 								  
@@ -4288,13 +4288,6 @@ var app = {
 				     $("#compra2").hide();
 				   }
 				   
-				   if(result.Token === null || typeof(result.Token) == 'undefined' || result.Token=="null" || result.Token==""){
-					//alert("empty")
-				   
-					$("#box2").hide();
-					$("#compra1").hide();
-					$("#compra2").hide();
-				   }
 				   
 				   
 				   if(result.Token==1){

@@ -606,10 +606,14 @@ a {
 }
 
 .testo_contenuti {
-	font-family: 'Ubuntu', sans-serif;
+  font-family: 'Ubuntu', sans-serif;
   color:#fff;
   font-size:12px;
   line-height:14px;
+  
+  text-decoration: none;
+  text-shadow:0 0 0;
+  
 }
 
 .testo_acquista {
