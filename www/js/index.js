@@ -3875,11 +3875,11 @@ var app = {
 				   localStorage.setItem("resultjsn", JSON.stringify(result))
 				   
 				   //TUTTO
-				    if(result.Token === null || typeof(result.Token) == 'undefined' || result.Token=="null" ||result.Token==""){
+				   /* if(result.Token === null || typeof(result.Token) == 'undefined' || result.Token=="null" ||result.Token==""){
 						//$("#box2").hide();
 						$("#spinner").hide();
 						return;
-                   }
+                   }*/
 				   
 				   if(result.Token==0){
 					   
@@ -3891,6 +3891,7 @@ var app = {
 				   
 				   if((result.radice!="")&&(result.foglia!="")){
 				     $("#compra1").show();
+					 //$("#box2").hide();
 				   
 				   		$(document).on("touchstart", "#acquistamicro", function(e){
 							window.open('  http://microverba.com/mv/register.php?lang=it&root='+ radice3 +'', '_blank', 'location=no');
@@ -3915,7 +3916,7 @@ var app = {
 				   	// La radice non esiste
 				   
 				     $("#compra1").show();
-					 $("#box2").hide();
+					 //$("#box2").hide();
 				   
 				     $(document).on("touchstart", "#acquistamicro", function(e){
 						window.open('  http://microverba.com/mv/register.php?lang=it&root='+ radice3 +'', '_blank', 'location=no');
@@ -4109,10 +4110,11 @@ var app = {
 				   
 				   if(result.leafs!=""){
 				   
-				   $("#box2").show()
+				   $("#box2").show();
 				   $("#compra1").hide();
 				   $("#compra2").hide();
 				   $("#contengo").show();
+				   $("#ricerca").show();
 				   
 
                    if(result.totalRoot!="0"){
