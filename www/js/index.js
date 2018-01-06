@@ -3876,7 +3876,7 @@ var app = {
 				   
 				   //TUTTO
 				    if(result.Token === null || typeof(result.Token) == 'undefined' || result.Token=="null" ||result.Token==""){
-						$("#box2").hide();
+						//$("#box2").hide();
 						$("#spinner").hide();
 						return;
                    }
@@ -3886,7 +3886,7 @@ var app = {
 				   $("#progettoinfo").html("");
 					   
 				   $("#contengo").hide();
-				   $("#box2").hide()
+				   //$("#box2").hide()
 				   
 				   
 				   if((result.radice!="")&&(result.foglia!="")){
@@ -4283,7 +4283,7 @@ var app = {
 				   if(result.Token==3){
 					 //alert("vuoto")
 				   
-				     $("#box2").hide();
+				     //$("#box2").hide();
 				     $("#compra1").hide();
 				     $("#compra2").hide();
 				   }
