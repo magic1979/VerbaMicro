@@ -4289,7 +4289,6 @@ var app = {
 				   }
 				   
 				   
-				   
 				   if(result.Token==1){
 					   
 					$("#ricerca").show()
