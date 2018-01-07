@@ -3886,7 +3886,7 @@ var app = {
 				   $("#progettoinfo").html("");
 					   
 				   $("#contengo").hide();
-				   //$("#box2").hide()
+				   $("#box2").hide()
 				   
 				   
 				   if((result.radice!="")&&(result.foglia!="")){
@@ -3901,6 +3901,8 @@ var app = {
 					 
 				   }
 				   else{
+				   $("#box2").hide()
+				   
 				   var tabella = "<table width='90%' align='center' border='0'>";
 				   
 				   if((result.messaggio=="TmVzc3VuIE1pY3JvdmVyYmEgdHJvdmF0bw==")||(result.messaggio=="TmVzc3VuYSBmb2dsaWEgZGlzcG9uaWJpbGU=")){
@@ -3913,7 +3915,7 @@ var app = {
 				   }
 				   else if(result.messaggio=="TGEgcmFkaWNlIG5vbiBlc2lzdGUuIFZ1b2kgYWNxdWlzdGFybGE\/"){
 				   
-				   	// La radice non esiste
+				   	 $("#box2").hide()
 				   
 				     $("#compra1").show();
 					 //$("#box2").hide();
@@ -3925,6 +3927,8 @@ var app = {
 				   
 				   }
 				   else if(result.messaggio=="TGEgZm9nbGlhIG5vbiBlc2lzdGUu"){
+				   
+				   $("#box2").hide()
 				   
 				   $("#compra1").hide();
 				   $("#compra2").hide();
@@ -3949,6 +3953,7 @@ var app = {
 				   if(result.roots!=""){
 				   
 				   	 $("#box2").show()
+					 
 				     $("#compra1").hide();
 				     $("#compra2").hide();
 				     $("#contengo").show();
@@ -4111,6 +4116,7 @@ var app = {
 				   if(result.leafs!=""){
 				   
 				   $("#box2").show();
+				   
 				   $("#compra1").hide();
 				   $("#compra2").hide();
 				   $("#contengo").show();
@@ -4285,13 +4291,15 @@ var app = {
 				   if(result.Token==3){
 					 //alert("vuoto")
 				   
-				     //$("#box2").hide();
+				     $("#box2").hide();
 				     $("#compra1").hide();
 				     $("#compra2").hide();
 				   }
 				   
 				   
 				   if(result.Token==1){
+					   
+					$("#box2").show()
 					   
 					$("#ricerca").show()
 					$("#compra1").hide();
