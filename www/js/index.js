@@ -327,7 +327,7 @@ var app = {
                    localStorage.setItem("nofoglia","La Foglia non esiste")
                    localStorage.setItem("vuoti","Inserire una radice o una foglia")
 				   
-				   localStorage.setItem("noemail","EMAIL RICHIESTA")
+				   localStorage.setItem("noemail","email richiesta")
 				   localStorage.setItem("noemailrichiesta","Inserisci il tuo indirizzo PayPal per proseguire")
                
                    //var o3 = JSON.parse(jsonstring);
@@ -1194,14 +1194,26 @@ var app = {
             $("#paga").html(o3.paga.ita)
             $("#accetto").html(o3.accetto.ita)
             $("#privacy").html(o3.privacy.ita)
+			
+			 var intesta = o3.intestazione.ita
+           
+            intesta = intesta.replace("?","")
+            intesta = intesta.replace("?","")
+            intesta = intesta.replace("?","")
+            intesta = intesta.replace("?","")
+            intesta = intesta.replace("foglia","<i>foglia</i>")
+            intesta = intesta.replace("radice","<i>radice</i>")
+            intesta = intesta.replace("::","<b>::</b>")
+           
+            $("#intestazione").html(intesta)
                        
-            $("#intestazione").html("Inserisci le due chiavi di ricerca, <i>foglia</i> e <i>radice</i> ai lati del simbolo <b>: :</b> per visualizzare i contenuti del microverba")
+            $("#intestazione").html(intesta)
                        
             $("#carrello").html("Carrello")
                        
            //{"sbloccamic":{"ita":"SBLOCCA MICROVERBA","eng":"UNLOCK MICROVERBA"},"sblocca":{"ita":"SBLOCCA","eng":"UNLOCK"},"annulla":{"ita":"ANNULLA","eng":"CANCEL"},"sbloccacont":{"ita":"SBLOCCA CONTENUTO","eng":"UNLOCK CONTENT"},"intestazione":{"ita":"Inserisci le due chiavi di ricerca, foglia?e?radice,?ai lati del simbolo : :?per visualizzare i contenuti del microverba","eng":"Enter the leaf and the root on the left and on the right of : : to view the contents"},"apri":{"ita":"apri","eng":"open"},"nomicroverba":{"ita":"Nessun microverba trovato. Vuoi acquistarlo?","eng":"No microverba found. Do you want to buy it?"},"acquista":{"ita":"acquista","eng":"buy"},"noradice":{"ita":"Nessuna radice trovata, vuoi acquistarla?","eng":"No root found. Do you want to buy it?"},"insimmagine":{"ita":"Inserisci immagine","eng":"Enter the image"},"fotocamera":{"ita":"Fotocamera","eng":"Camera"},"galleria":{"ita":"Galleria","eng":"Gallery"},"foto":{"ita":"Foto","eng":"Picture"},"chat":{"ita":"Chat","eng":"Chat"},"altro":{"ita":"Altro","eng":"More"},"tuoordine":{"ita":"IL TUO ORDINE","eng":"YOUR ORDER"},"totale":{"ita":"TOTALE","eng":"TOTAL"},"paga":{"ita":"Paga con PayPal o Carta di Credito","eng":"Pay using PayPal or Credit Card"},"accetto":{"ita":"Accetto i termini di vendita","eng":"I accept selling terms"},"privacy":{"ita":"Informativa sulla Privacy","eng":"Privacy"},"lingua":{"ita":"Lingua","eng":"Language"},"nofoglia":{"ita":"La Foglia non esiste","eng":"The leaf does not exist"},"errore":{"ita":"Errore Imprevisto, contatta il provider","eng":"Error, please contact your provider"},"accetta":{"ita":"Devi accettare i termini per proseguire","eng":"Please accept the conditions"},"email":{"ita":"Inserire indirizzo email","eng":"Enter your email"},"nocaremail":{"ita":"Caratteri email non consentiti","eng":"Character not allowed"},"noprodcar":{"ita":"Non hai prodotti nel carrello","eng":"No product in the cart"},"progetto":{"ita":"Progetto","eng":"Project"},"descrprogetto":{"ita":"Descrizione Progetto","eng":"Project description"}}
 
-            $("#sblocca3").html("SBLOCCA PHONE")
+            $("#sblocca3").html("sblocca phone")
                        
         })
         
@@ -1248,11 +1260,21 @@ var app = {
                $("#accetto").html(o3.accetto.eng)
                $("#privacy").html(o3.privacy.eng)
                        
-               $("#intestazione").html("Enter the <i>leaf</i> and the <i>root</i> on the left and on the right of <b>: :</b> to view the contents")
+                var intesta = o3.intestazione.eng
+                       
+                intesta = intesta.replace("?","")
+                intesta = intesta.replace("?","")
+                intesta = intesta.replace("?","")
+                intesta = intesta.replace("?","")
+                intesta = intesta.replace("left","<i>left</i>")
+                intesta = intesta.replace("root","<i>root</i>")
+                intesta = intesta.replace("::","<b>::</b>")
+                       
+               $("#intestazione").html(intesta)
                        
                $("#carrello").html("Cart")
             
-            $("#sblocca3").html("UNLOCK PHONE")
+            $("#sblocca3").html("unlock phone")
                        
         })
 		
@@ -1794,7 +1816,7 @@ var app = {
                                 
                                 lock="unlock.png";
                                 
-                                tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_audio.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'>"+$.base64.decode(result[descfa])+"</a></div></td><td align='right' width='40'></td></tr>"
+                                tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_audio.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'><font color='#fff'>"+$.base64.decode(result[descfa])+"</font></a></div></td><td align='right' width='40'></td></tr>"
                                 
                             }
                             else{
@@ -3848,6 +3870,14 @@ var app = {
 				//alert("R" + radice + "F" + foglia)
 			}
 			
+			foglia3 = foglia3.replace(" ","")
+            foglia3 = foglia3.replace(" ","")
+            foglia3 = foglia3.replace(" ","")
+            
+            radice3 = radice3.replace(" ","")
+            radice3 = radice3.replace(" ","")
+            radice3 = radice3.replace(" ","")
+			
 			$("#ricerca").html(foglia3 + " :: " + radice3);
 			$("#ricercainfomicro").html(foglia3 + " :: " + radice3);
 			
@@ -4294,6 +4324,28 @@ var app = {
 				     $("#box2").hide();
 				     $("#compra1").hide();
 				     $("#compra2").hide();
+				   }
+				   
+				   if(result.Token==4){
+					 //alert("vuoto")
+					 
+					 $("#box2").hide()
+				   
+				     $("#compra1").hide();
+				     $("#compra2").hide();
+				     $("#contengo").hide();
+				   
+					  var traduz = localStorage.getItem("nofoglia")
+				   
+				     navigator.notification.alert(
+					  traduz,  // message
+					  alertDismissed,         // callback
+					  'Alert',            // title
+					  'OK'                  // buttonName
+					  );
+					 
+					 
+					 
 				   }
 				   
 				   
