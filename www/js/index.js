@@ -325,6 +325,7 @@ var app = {
                    localStorage.setItem("progetto","Progetto")
                    localStorage.setItem("descprogetto","Descrizione Progetto")
                    localStorage.setItem("nofoglia","La Foglia non esiste")
+				   localStorage.setItem("noradice","La Radice non esiste")
                    localStorage.setItem("vuoti","Inserire una radice o una foglia")
 				   
 				   localStorage.setItem("noemail","email richiesta")
@@ -1185,6 +1186,7 @@ var app = {
             localStorage.setItem("progetto",o3.progetto.ita)
             localStorage.setItem("descprogetto",o3.descrprogetto.ita)
             localStorage.setItem("nofoglia",o3.nofoglia.ita)
+			localStorage.setItem("nofoglia",o3.noradice.ita)
             localStorage.setItem("vuoti","Inserire una radice o una foglia")
 			localStorage.setItem("noemail",o3.emailrichiesta.ita)
 			localStorage.setItem("noemailrichiesta",o3.testoemailrichiesta.ita)
@@ -1250,6 +1252,7 @@ var app = {
                localStorage.setItem("progetto",o3.progetto.eng)
                localStorage.setItem("descprogetto",o3.descrprogetto.eng)
                localStorage.setItem("nofoglia",o3.nofoglia.eng)
+			   localStorage.setItem("noradice",o3.noradice.eng)
                localStorage.setItem("vuoti","Enter one leaf o root")
 			   localStorage.setItem("noemail",o3.emailrichiesta.eng)
 			   localStorage.setItem("noemailrichiesta",o3.testoemailrichiesta.eng)
@@ -4335,10 +4338,10 @@ var app = {
 				     $("#compra2").hide();
 				     $("#contengo").hide();
 				   
-					  var traduz = localStorage.getItem("nofoglia")
+					  var traduz2 = localStorage.getItem("nofoglia")
 				   
 				     navigator.notification.alert(
-					  traduz,  // message
+					  traduz2,  // message
 					  alertDismissed,         // callback
 					  'Alert',            // title
 					  'OK'                  // buttonName
@@ -4375,7 +4378,7 @@ var app = {
 				   
 							   		var lock="unlock.png";
 				   
-				   					tabella = tabella + "<tr><td align='left' width='150'><div class='titolo_div_contenuti'><span class='titolo_testo_albero'>"+$.base64.decode(result.project)+"</span><a id='vediinfo'><div class='ico_info pulse'></div></a></div></td></tr>"
+				   					tabella = tabella + "<tr><td align='left' width='150'><div class='titolo_div_contenuti'><span class='titolo_testo_albero'>"+$.base64.decode(result.project)+"</span><a id='vediinfo'><div class='ico_info pulse'></div></a>&nbsp; <a id='ident_"+result.pr_iden+"'>MOSTRA</a></div></td></tr>"
 				   
 				   
 				   					$("#_sblocca_mic").hide();
@@ -4386,6 +4389,21 @@ var app = {
 				   					$("#testoinfomicro").html($.base64.decode(result.description_microverba))
 				   
 				   					$("#progettoinfo").html(tabella);
+									
+									
+									$(document).on("tap", "#ident_"+result.pr_iden+"", function(e){
+													  
+										  var codice = this.id
+										  
+										  codice = codice.replace("ident_","")
+													  
+										  aprimicroverba(codice)
+                                                      
+                                          return;
+                                          e.preventDefault();
+													  
+									  });
+									
 							   }
 							   else{
 				   
@@ -5382,6 +5400,103 @@ var app = {
 				   }
 				   
 				   });
+			
+		}
+		
+		
+		function aprimicroverba(id){
+			
+            $("#titoloricerca").html("<div class='cart_page'><table cellpadding='5' cellspacing='0' border='0' align='center' class='tabella_ordine'><p class='titolo_ordine'><b>MICROVERBA</b></p></td></tr></table>");
+            
+            $("#tutto").html("");
+            
+
+			$.ajax({
+				   type: "POST",
+				   url: "http://www.microverba.it/mv/project_microverba_json.php",
+				   data: {project_id:id},
+				   cache: false,
+				   crossDomain: true,
+				   contentType: "application/x-www-form-urlencoded",
+				   success: function (result) {
+                   
+						  //alert("OK")
+                   
+                           $("#contengo").show();
+                           $("#ricerca").show();
+                           var test = ""
+                   
+                           $("#tutto").html("");
+                   
+						  //var o3 = JSON.parse(result);
+
+                   
+                          for (i = 0; i < result.tot_mic; i++){
+                   
+                            var tabella = "<table cellpadding='5' cellspacing='0' border='0' align='center' class='tabella_ordine'>";
+                   
+                            var a = i+1;
+                   
+                            foglia = "fmic_"+a
+                            radice = "rmic_"+a
+                   
+                            //alert(result[foglia] + "::" + result[radice]);
+                   
+                            tabella = tabella + "<tr><td><span class='text_dati'>"+result[foglia]+" :: "+result[radice]+"</span></td><td width='32'><a id='root_"+result[foglia]+"root_"+result[radice]+"'><img src='img/ico_arrow_dx.png'></a></td></tr>"
+                   
+                           tabella = tabella + "</table>";
+                           $("#tutto").append(tabella);
+                   
+                           $(document).on("tap", "#root_"+result[foglia]+"root_"+result[radice]+"", function(e){
+                                          
+                              //SPLIT
+                              var str=this.id;
+                              
+                              var a1 = new Array();
+                               
+                               a1=str.split("root_");
+                               
+                               //alert(a1[1]+"::"+a1[2])
+                               
+                               document.getElementById("radice2").value = a1[2];
+                               document.getElementById("radice").value = a1[2];
+                               document.getElementById("foglia2").value = a1[1];
+                               document.getElementById("foglia").value = a1[1];
+                              
+                              richiesta(0,0)
+                                          
+                              return;
+                              e.preventDefault();
+                                          
+                            })
+
+                           }
+                   
+
+                            //alert(result.roma);
+				   
+                           //$("#box2").show();
+                   
+
+                       setTimeout (function(){
+                            myScroll.refresh();
+                                   
+                        }, 500);
+                   
+				   
+				   },
+				   error: function(){
+				   
+				   navigator.notification.alert(
+						'Errore carica json',  // message
+						alertDismissed,         // callback
+						'Errore',            // title
+						'OK'                  // buttonName
+						);
+				   
+				   }
+				   
+				  });
 			
 		}
   
