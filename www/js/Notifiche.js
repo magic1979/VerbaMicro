@@ -988,11 +988,13 @@ function onDeviceReady() {
 			
 			
 			navigator.notification.alert(
-										 'Nessuna foto caricata',  // message
-										 alertDismissed,         // callback
-										 'Foto',            // title
-										 'OK'                  // buttonName
-										 );
+				 'Nessuna foto caricata',  // message
+				 alertDismissed,         // callback
+				 'Foto',            // title
+				 'OK'                  // buttonName
+				 );
+				 
+			window.location.href = "index.html";
 										 
 			
 			setTimeout (function(){

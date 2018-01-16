@@ -150,7 +150,7 @@ var app = {
 					   navigator.notification.alert(
 						'Telefono abilitato',  // message
 						 alertDismissed,         // callback
-						'Errore',            // title
+						'Push',            // title
 						'OK'                 // buttonName
 						);
 
@@ -1326,6 +1326,12 @@ var app = {
 		$(document).on("touchstart", "#annulla22", function(e){
 					   
 			$("#celllock").hide()
+					   
+		})
+		
+		$(document).on("touchstart", "#annullapush", function(e){
+					   
+			$("#mandapush").hide()
 					   
 		})
 		
@@ -3925,7 +3931,7 @@ var app = {
 				   
 				   lock="cart.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descpn])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_push.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descpn])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
 				   }
 				   else{
 				   
@@ -3935,25 +3941,25 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'><font color='#fff'>"+$.base64.decode(result[descpn])+"</font></a></div></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_push.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'><font color='#fff'>"+$.base64.decode(result[descpn])+"</font></a></div></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'><input id='fff_"+pswPN+"' name='password' class='testo_contenuti_pw' placeholder='password' readonly></span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_push.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'><input id='fff_"+pswPN+"' name='password' class='testo_contenuti_pw' placeholder='password' readonly></span></td><td align='right' width='40'></td></tr>"
 				   
-				   }
-				   }
-				   else{
-				   lock="cart.png";
-				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'> "+$.base64.decode(result[descpn])+"</span></td><td align='center' width='40'><a id='piu"+ identPN +"piu"+ prezzoPN +"piu"+ nomePN +"piu"+ tipoUV +"'> <div class='ico_cart'></div></a><br><span class='testo_contenuti'>"+result[prezzoPN]+"€</span></td></tr>"
-				   }
 				   }
 				   }
 				   else{
 				   lock="cart.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descpn])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_push.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'> "+$.base64.decode(result[descpn])+"</span></td><td align='center' width='40'><a id='piu"+ identPN +"piu"+ prezzoPN +"piu"+ nomePN +"piu"+ tipoPN +"'> <div class='ico_cart'></div></a><br><span class='testo_contenuti'>"+result[prezzoPN]+"€</span></td></tr>"
+				   }
+				   }
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_push.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descpn])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
 				   
 				   }
 				   
@@ -4348,13 +4354,12 @@ var app = {
 				         var schema2 = result.pagination
 				   
 						 var pag = "0"
+						 var min = ""
+					     var max = ""
 						 var sono = 0
 				   
 				         var next = Math.ceil(totale/nextPagina)
 						 
-						 var nextPaginationRootStart = result.nextPaginationRootStart
-				   
-						var paginazione = nextPaginationRootStart/nextPagina;
 				   
 				   		$("#paginazione").html("<div class='cart_page'><table cellpadding='5' cellspacing='0' border='0' align='center' class='tabella_ordine'><tr><td colspan='2' height='30' align='center'><p id='test'></p></td></tr></table></div>")
 						
@@ -4574,6 +4579,8 @@ var app = {
                     var schema2 = result.pagination
                    
                     var pag = "0"
+					var min = ""
+					var max = ""
 					var sono = 0
                    
                     var next = Math.ceil(totale/nextPagina)
