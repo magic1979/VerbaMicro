@@ -885,6 +885,17 @@ text-align: center;
   top:8px;
 }
 
+.paginazione_before {
+	background-image: url('ico_arrow_pag_sx.png');
+	background-size:100%;
+  width:32px;
+  height:32px;
+  margin-left:10px;
+  display:inline-block;
+  position:relative;
+  top:8px;
+}
+
 /*.spinner {
   margin:20px auto 0;
   width:170px;

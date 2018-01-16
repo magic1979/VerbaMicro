@@ -849,7 +849,6 @@
 
 	</div>
 	
-    
     <div id="sceglilingua" class="div_sblocca" style="display:none" >
         <a id="annullaL"><div class="ico_close "></div></a>
 		
@@ -861,6 +860,20 @@
         <br><br>
         <!--<a id="annullaL"><font color="#000" size="4">OK</font></a>-->
     </div>
+
+	
+	<div id="mandapush" class="div_sblocca" style="display:none">
+		<a id="annullapush"><div class="ico_close pulse"></div></a>
+		
+		<br><span class="testo_sblocca_contenuto">Push Notification</span>
+		<br><br>
+		
+		<input type="text" data-role="none" name="pushn" id="pushn" placeholder="Send Push" class="testo_contenuti_pw" >
+		<br><br>
+		
+		<a id="sendpush" name="sendpush" class="bt_login" width="40%"><font color="#fff"><span id="sblocca3">SEND</span></font></a><br><br>
+		<!--<a id="annullaB"><font color="#000"><span id="annulla3">ANNULLA</span></font></a>-->
+	</div>
 	
 	
 	<div id="contlock" class="div_sblocca" style="display:none" >
@@ -887,6 +900,7 @@
 		<input type="hidden" data-role="none" name="pswUDD" id="pswUDD" placeholder="File" class="input_sblocca">
 		<input type="hidden" data-role="none" name="pswUAA" id="pswUAA" placeholder="Audio" class="input_sblocca">
 		<input type="hidden" data-role="none" name="pswUVV" id="pswUVV" placeholder="Video" class="input_sblocca">
+		<input type="hidden" data-role="none" name="pswPNN" id="pswPNN" placeholder="Push" class="input_sblocca">
 		
 		<input type="hidden" data-role="none" name="pswYTTBLOC" id="pswYTTBLOC" placeholder="pswp" class="input_sblocca">
 		<br><br>
@@ -1042,6 +1056,7 @@
             <br><br>
             
             <ul data-role="listview" data-inset="true">
+				 <li><a id="abilita" href="#">Abilita Push</a></li>
                 <li><a id="Come Funzione" href="#">Come Funziona</a></li>
                 <li><a id="programma2" href="#">Termini de Condizioni</a></li>
             </ul>

@@ -43,6 +43,142 @@ var app = {
 		$("#spinner").hide();
 		$("#spinner2").hide();
 		
+		
+		// PUSH NOTIFICATION //
+		
+		
+		var pushNotification;
+			var token
+
+			
+			pushNotification = window.plugins.pushNotification;
+			
+			
+			pushNotification.register(
+			successHandler,
+			errorHandler,
+			{
+				"senderID":"145490520893",
+				"ecb":"onNotification"
+			});
+			
+			function tokenHandler (result) {
+			
+				//testa(result);
+				localStorage.setItem("Testa", result);
+
+			}
+			
+			
+			function successHandler (result) {
+
+				//testa(result);
+				localStorage.setItem("Testa", result);
+			}
+			
+			function errorHandler (error) {
+
+			}
+			
+			
+			function onNotification(e) {
+					   
+				switch( e.event )
+				{
+					case 'registered':
+					if ( e.regid.length > 0 )
+					{
+
+						alert("regID = " + e.regid);
+					}
+					break;
+					case 'message':
+
+						if (e.foreground)
+						{
+							alert('INLINE NOTIFICATION');
+
+								   
+						}
+						else
+						{	
+							if (e.coldstart)
+								alert('<li>--COLDSTART NOTIFICATION--');
+							else
+								alert('<li>--BACKGROUND NOTIFICATION--');
+						}
+						   
+						   alert('<li>MESSAGE -> MSG: ' + e.payload.message + '</li>');
+						
+						   alert('<li>MESSAGE -> MSGCNT: ' + e.payload.msgcnt + '</li>');
+
+					break;
+					case 'error':
+						alert('<li>ERROR -> MSG:' + e.msg + '</li>');
+					break;
+					default:
+						alert('<li>EVENT -> Unknown, an event was received and we do not know what it is</li>');
+					break;
+				}
+			}
+		
+		
+		//// FINE ///////
+		
+
+		function testa (testo) {
+					
+			if (localStorage.getItem("Token") === null || localStorage.getItem("Token")=="null" || typeof(localStorage.getItem("Token")) == 'undefined' || localStorage.getItem("Token")==0 || localStorage.getItem("Token")=="") {
+			
+				setTimeout (function(){
+							
+
+				$.ajax({
+					   type: "POST",
+					   url: "http://microverba.com/mv/push.php",
+					   data: {idtel:testo,device:"android",phone:localStorage.getItem("phoneowener")},
+					   cache: false,
+					   crossDomain: true,
+					   contentType: "application/x-www-form-urlencoded",
+					   success: function (result) {
+						   
+						setTimeout (function(){
+							localStorage.setItem("Token", testo);
+						}, 500);
+						   
+						   
+					   navigator.notification.alert(
+						'Telefono abilitato',  // message
+						 alertDismissed,         // callback
+						'Errore',            // title
+						'OK'                 // buttonName
+						);
+
+					   
+					   },
+					   error: function(){
+					   
+					   navigator.notification.alert(
+						'Errore Imprevisto, contatta il fornitore',  // message
+						alertDismissed,         // callback
+						'Errore',            // title
+						'OK'                  // buttonName
+						);
+					   
+					   }
+					   
+				});
+
+						
+			}, 500);
+		
+			
+			}
+				
+		}
+			
+		
+		
 		document.addEventListener("touchstart", function(){}, true);
 		
 		 /*$("input").focus(function(){
@@ -246,6 +382,62 @@ var app = {
 			   threshold:0
 			   });
           });
+		  
+		  
+		
+		$(document).on("touchstart", "#abilita", function(e){
+                       
+            testa(localStorage.getItem("phoneowener"))
+                       
+                       
+        });
+		
+		
+		$(document).on("touchstart", "#sendpush", function(e){
+			
+			var pushnot = self.document.form.pushn.value;
+			
+                       
+            $.ajax({
+				   type: "POST",
+				   url: "http://microverba.com/mv/push_in.php",
+				   data: {messaggio:pushnot,phone:localStorage.getItem("phoneowener")},
+				   cache: false,
+				   crossDomain: true,
+				   contentType: "application/x-www-form-urlencoded",
+				   success: function (result) {
+					   
+					//setTimeout (function(){
+						//localStorage.setItem("Token", testo);
+					//}, 500);
+					   
+					   
+				   navigator.notification.alert(
+					'Send Message OK',  // message
+					 alertDismissed,         // callback
+					'Send Message',            // title
+					'OK'                 // buttonName
+					);
+					
+					
+					$("#mandapush").hide()
+				   
+				   },
+				   error: function(){
+				   
+				   navigator.notification.alert(
+					'Errore Imprevisto, contatta il fornitore',  // message
+					alertDismissed,         // callback
+					'Errore',            // title
+					'OK'                  // buttonName
+					);
+				   
+				   }
+				   
+			});
+                       
+                       
+        });
 		
 		
 		$(document).on("touchstart", "#piu", function(e){
@@ -1624,6 +1816,7 @@ var app = {
 				   $("#pswUDD").attr("type","hidden")
 				   $("#pswUAA").attr("type","hidden")
 				   $("#pswUVV").attr("type","hidden")
+				   $("#pswPNN").attr("type","hidden")
 				   
 				   $("#pswYTT").attr("type","text")
 				   
@@ -1754,6 +1947,7 @@ var app = {
                        $("#pswUDD").attr("type","hidden")
                        $("#pswUAA").attr("type","hidden")
                        $("#pswUVV").attr("type","hidden")
+					   $("#pswPNN").attr("type","hidden")
                        
                        $("#pswVAA").attr("type","text")
                        
@@ -1764,16 +1958,16 @@ var app = {
                 
                 $(document).on("touchstart", "#piu"+ identVA +"piu"+ prezzoVA +"piu"+ nomeVA +"piu"+ tipoVA +"", function(e){
                                
-                       // alert(this.id)
-                       
-                       //SPLIT
-                       var str=this.id;
-                       
-                       var a1 = new Array();
-                       
-                       a1=str.split("piu");
-                       
-                       agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]),"c",$.base64.decode(result[a1[4]]))
+				   // alert(this.id)
+				   
+				   //SPLIT
+				   var str=this.id;
+				   
+				   var a1 = new Array();
+				   
+				   a1=str.split("piu");
+				   
+				   agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]),"c",$.base64.decode(result[a1[4]]))
                        
                 });
                 
@@ -1879,6 +2073,7 @@ var app = {
                                $("#pswUDD").attr("type","hidden")
                                $("#pswUAA").attr("type","hidden")
                                $("#pswUVV").attr("type","hidden")
+							   $("#pswPNN").attr("type","hidden")
                                
                                $("#pswFAA").attr("type","text")
                                
@@ -2008,6 +2203,7 @@ var app = {
 					  $("#pswUDD").attr("type","hidden")
 					  $("#pswUAA").attr("type","hidden")
 					  $("#pswUVV").attr("type","hidden")
+					  $("#pswPNN").attr("type","hidden")
 					  
 					  $("#pswPWW").attr("type","text")
 					  
@@ -2136,6 +2332,7 @@ var app = {
 						  $("#pswUDD").attr("type","hidden")
 						  $("#pswUAA").attr("type","hidden")
 						  $("#pswUVV").attr("type","hidden")
+						  $("#pswPNN").attr("type","hidden")
 						  
 						  $("#pswFBB").attr("type","text")
 						  
@@ -2266,6 +2463,7 @@ var app = {
 					  $("#pswUDD").attr("type","hidden")
 					  $("#pswUAA").attr("type","hidden")
 					  $("#pswUVV").attr("type","hidden")
+					  $("#pswPNN").attr("type","hidden")
 					  
 					  $("#pswTFF").attr("type","text")
 					  
@@ -2392,6 +2590,7 @@ var app = {
 					  $("#pswUDD").attr("type","hidden")
 					  $("#pswUAA").attr("type","hidden")
 					  $("#pswUVV").attr("type","hidden")
+					  $("#pswPNN").attr("type","hidden")
 					  
 					  $("#pswTWW").attr("type","text")
 					  
@@ -2519,6 +2718,7 @@ var app = {
 					  $("#pswUDD").attr("type","hidden")
 					  $("#pswUAA").attr("type","hidden")
 					  $("#pswUVV").attr("type","hidden")
+					  $("#pswPNN").attr("type","hidden")
 					  
 					  $("#pswIGG").attr("type","text")
 					  
@@ -2646,6 +2846,7 @@ var app = {
 					  $("#pswUDD").attr("type","hidden")
 					  $("#pswUAA").attr("type","hidden")
 					  $("#pswUVV").attr("type","hidden")
+					  $("#pswPNN").attr("type","hidden")
 					  
 					  $("#pswUSS").attr("type","text")
 					  
@@ -2774,6 +2975,7 @@ var app = {
 					  $("#pswUDD").attr("type","hidden")
 					  $("#pswUAA").attr("type","hidden")
 					  $("#pswUVV").attr("type","hidden")
+					  $("#pswPNN").attr("type","hidden")
 					  
 					  $("#pswSVVpswSVV").attr("type","text")
 					  
@@ -2900,6 +3102,7 @@ var app = {
 					  $("#pswUDD").attr("type","hidden")
 					  $("#pswUAA").attr("type","hidden")
 					  $("#pswUVV").attr("type","hidden")
+					  $("#pswPNN").attr("type","hidden")
 					  
 					  $("#pswSAA").attr("type","text")
 					  
@@ -3027,6 +3230,7 @@ var app = {
 					  $("#pswUDD").attr("type","hidden")
 					  $("#pswUAA").attr("type","hidden")
 					  $("#pswUVV").attr("type","hidden")
+					  $("#pswPNN").attr("type","hidden")
 					  
 					  
 					  $("#pswTMM").attr("type","text")
@@ -3153,6 +3357,7 @@ var app = {
 					  $("#pswUAA").attr("type","hidden")
 					  $("#pswUDD").attr("type","hidden")
 					  $("#pswUII").attr("type","hidden")
+					  $("#pswPNN").attr("type","hidden")
 					  
 					  $("#pswEMM").attr("type","text")
 
@@ -3282,6 +3487,7 @@ var app = {
 								  $("#pswUVV").attr("type","hidden")
 								  $("#pswUAA").attr("type","hidden")
 								  $("#pswUDD").attr("type","hidden")
+								  $("#pswPNN").attr("type","hidden")
 								  
 								  $("#pswUII").attr("type","text")
 								  
@@ -3408,6 +3614,7 @@ var app = {
 								  $("#pswUII").attr("type","hidden")
 								  $("#pswUVV").attr("type","hidden")
 								  $("#pswUAA").attr("type","hidden")
+								  $("#pswPNN").attr("type","hidden")
 								  
 								  $("#pswUDD").attr("type","text")
 								  
@@ -3532,6 +3739,7 @@ var app = {
 								  $("#pswUII").attr("type","hidden")
 								  $("#pswUDD").attr("type","hidden")
 								  $("#pswUVV").attr("type","hidden")
+								  $("#pswPNN").attr("type","hidden")
 								  
 								  $("#pswUAA").attr("type","text")
 								  
@@ -3698,6 +3906,140 @@ var app = {
 					  }
 			}
 			
+			else if(descrizione22=="Notifica Push"){
+				
+				var tabella = "<table width='90%' align='center' class='tabella_contenuti'>";
+				   
+				   paperino = "PN_cont_"+variabile
+				   descpn = "PN_desc_"+variabile
+				   
+				   prezzoPN = "PN_pric_"+variabile
+				   nomePN = "PN_nome_"+variabile
+				   identPN = "PN_iden_"+variabile
+				   
+				   pswPN = "PN_lock_"+variabile
+				   tipoPN = "PN_tipo_"+variabile
+				   
+				   if(lock_progetto!="cart.png"){
+				   if(lock_microverba=="cart.png"){
+				   
+				   lock="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descpn])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
+				   }
+				   else{
+				   
+				   if(result[prezzoPN] === null || typeof(result[prezzoPN]) == 'undefined' || result[prezzoPN]=="null" || result[prezzoPN]==""){
+				   
+				   if((result[pswPN]=="")||(result[pswPN]==$.base64.encode(psw2))){
+				   
+				   lock="unlock.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'><font color='#fff'>"+$.base64.decode(result[descpn])+"</font></a></div></td><td align='right' width='40'></td></tr>"
+				   
+				   }
+				   else{
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'><input id='fff_"+pswPN+"' name='password' class='testo_contenuti_pw' placeholder='password' readonly></span></td><td align='right' width='40'></td></tr>"
+				   
+				   }
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'> "+$.base64.decode(result[descpn])+"</span></td><td align='center' width='40'><a id='piu"+ identPN +"piu"+ prezzoPN +"piu"+ nomePN +"piu"+ tipoUV +"'> <div class='ico_cart'></div></a><br><span class='testo_contenuti'>"+result[prezzoPN]+"€</span></td></tr>"
+				   }
+				   }
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_video_live.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descpn])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
+				   
+				   }
+				   
+				   $("#testvideo").append(tabella);
+				
+				
+				setTimeout (function(){
+					myScroll.refresh();
+					}, 300);
+				   
+				   
+				   $(document).on("tap", "#"+paperino+"", function(e){
+								  
+					  passo18(this.id) // passare la variabile in una nuova funzione
+					  
+					  });
+				   
+				   
+				   $(document).on("touchstart", "#fff_"+pswPN+"", function(e){
+								  
+						  var nomefun = this.id
+						  nomefun = nomefun.replace("fff_","")
+						  
+						  $("#prolock").hide()
+						  $("#miclock").hide()
+						  $("#contlock").show()
+						  
+						  $("#pswVAA").attr("type","hidden")
+						  $("#pswYTT").attr("type","hidden")
+						  $("#pswFAA").attr("type","hidden")
+						  $("#pswPWW").attr("type","hidden")
+						  $("#pswFBB").attr("type","hidden")
+						  $("#pswTFF").attr("type","hidden")
+						  $("#pswTWW").attr("type","hidden")
+						  $("#pswIGG").attr("type","hidden")
+						  $("#pswUSS").attr("type","hidden")
+						  $("#pswSVV").attr("type","hidden")
+						  $("#pswSAA").attr("type","hidden")
+						  $("#pswTMM").attr("type","hidden")
+						  $("#pswEMM").attr("type","hidden")
+						  $("#pswUII").attr("type","hidden")
+						  $("#pswUDD").attr("type","hidden")
+						  $("#pswUAA").attr("type","hidden")
+						  
+						  $("#pswUVV").attr("type","hidden")
+						  
+						  $("#pswPNN").attr("type","text")
+						  
+						  
+						  localStorage.setItem("pagina",pagina);
+						  localStorage.setItem("pagina1",pagina1);
+						  
+						  
+						  //$("#pswUVV").focus()
+								  
+					});
+				   
+				   
+				   $(document).on("touchstart", "#piu"+ identPN +"piu"+ prezzoPN +"piu"+ nomePN +"piu"+ tipoPN +"", function(e){
+								  
+						  //SPLIT
+						  var str=this.id;
+						  
+						  var a1 = new Array();
+						  
+						  a1=str.split("piu");
+						  
+						  agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]),"c", $.base64.decode(result[a1[4]]))
+								  
+					});
+								  
+								  
+					function passo18(eccola){
+				   
+					   //var pageNumber = 1;
+					   //eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
+					   //alert(link1);
+					   
+					   //MANDARE LA PUSH OWENER
+					   //testa(localStorage.getItem("phoneowener"))
+					   
+					   $("#mandapush").show()
+					   
+					  }
+			}
+			
 			else{
 				
 				$("#spinner").hide();
@@ -3707,6 +4049,9 @@ var app = {
 			}
             
         } 
+		
+		
+		
 		
 
 		
@@ -3778,6 +4123,7 @@ var app = {
 			document.getElementById("pswUDD").value = ""
 			document.getElementById("pswUAA").value = ""
 			document.getElementById("pswUVV").value = ""
+			document.getElementById("pswPNN").value = ""
 			
 			document.getElementById("pswYTTBLOC").value = ""
 			
@@ -3995,22 +4341,65 @@ var app = {
 				      if(result.totalRoot!="0"){
 				   
 						 var pagina = parseInt(localStorage.getItem("pagina"))
-                   
-                         //alert("pagina:" + pagina)
-                   
+                                  
                          var totale = result.totalRoot
 				   
 						 var nextPagina = result.pagination
 				         var schema2 = result.pagination
 				   
 						 var pag = "0"
+						 var sono = 0
 				   
-				         var next = totale/nextPagina
+				         var next = Math.ceil(totale/nextPagina)
+						 
+						 var nextPaginationRootStart = result.nextPaginationRootStart
 				   
-						 //alert(pagina)
+						var paginazione = nextPaginationRootStart/nextPagina;
 				   
 				   		$("#paginazione").html("<div class='cart_page'><table cellpadding='5' cellspacing='0' border='0' align='center' class='tabella_ordine'><tr><td colspan='2' height='30' align='center'><p id='test'></p></td></tr></table></div>")
-				   
+						
+						 
+						 for (var i=0, l=next; i<l; i++) {
+
+							pag = i+1
+						  
+							if (pag==1){
+							
+							   nextPagina = 0
+								 
+							   if(pagina!=nextPagina){
+							   
+								  min = 1
+
+								}
+								else{
+								
+								  max = pag+4
+
+								}
+							
+							}
+							else{
+										   
+							  nextPagina = schema2 + nextPagina
+
+							  if(pagina!=nextPagina){
+							  
+
+							  }
+							  else{
+							  
+								min = pag-2
+									
+								max = pag+2
+							  
+							  }
+
+							}
+						  
+						  }
+						
+						
 						   for (var i=0, l=next; i<l; i++) {
 				   
 							   pag = i+1
@@ -4020,24 +4409,34 @@ var app = {
 								   nextPagina = 0
 				   
 								   if(pagina!=nextPagina){
-									   $("#test").append("<a id='pagr_"+nextPagina+"'><span class='paginazione_on'>"+pag+"</span></a>")
-				   
-									   $(document).on("touchstart", "#pagr_"+ nextPagina +"", function(e){
-										  var paginazione = this.id
-										  paginazione = paginazione.replace("pagr_","")
-													  
-										  //alert(paginazione)
-										  //localStorage.setItem("pagina",paginazione);
-										  
-										  richiesta(paginazione,0)
-										  e.stopImmediatePropagation()
-										  return
-										  
-										})
+									   
+									   $("#test").append("<a id='pagr_"+nextPagina+"'><span class='paginazione_before'>("+pag+")</span></a>")
+									   
+									   if(pag>=min){
+									   
+										   $("#test").append("<a id='pagr_"+nextPagina+"'><span class='paginazione_on'>"+pag+"</span></a>")
+					   
+										   $(document).on("touchstart", "#pagr_"+ nextPagina +"", function(e){
+											  var paginazione = this.id
+											  paginazione = paginazione.replace("pagr_","")
+														  
+											  //alert(paginazione)
+											  //localStorage.setItem("pagina",paginazione);
+											  
+											  richiesta(paginazione,0)
+											  e.stopImmediatePropagation()
+											  return
+											  
+											})
+										
+									   }										
+
 								   }
 								   else{
 								  		$("#test").append("<span class='paginazione_off'>"+pag+"</span>")
 								   }
+								   
+								   var sono = pag
 				   
 							   }
 				   
@@ -4046,29 +4445,38 @@ var app = {
 								   nextPagina = schema2 + nextPagina
 				   
 								   if(pagina!=nextPagina){
-									   $("#test").append("<a id='pagr_"+nextPagina+"'><span class='paginazione_on'>"+pag+"</span></a>")
-				   
-									   $(document).on("touchstart", "#pagr_"+ nextPagina +"", function(e){
-										  var paginazione = this.id
-										  paginazione = paginazione.replace("pagr_","")
-													  
-										  //alert(paginazione)
-										  //localStorage.setItem("pagina",paginazione);
-										  
-										  richiesta(paginazione,0)
-										  e.stopImmediatePropagation()
-										  return
-										})
+									   
+									   
+									   if((pag>=min)&&(pag<=max)){
+									   
+										   $("#test").append("<a id='pagr_"+nextPagina+"'><span class='paginazione_on'>"+pag+"</span></a>")
+					   
+										   $(document).on("touchstart", "#pagr_"+ nextPagina +"", function(e){
+											  var paginazione = this.id
+											  paginazione = paginazione.replace("pagr_","")
+														  
+											  //alert(paginazione)
+											  //localStorage.setItem("pagina",paginazione);
+											  
+											  richiesta(paginazione,0)
+											  e.stopImmediatePropagation()
+											  return
+											})
+										
+									   }
+										
 								   }
 								   else{
 								   	 $("#test").append("<span class='paginazione_off'>"+pag+"</span>")
+									 
+									 var sono = pag
 								   }
 				   
 							   }
 						   }
 						   
 						   
-						   if (result.nextPaginationRootStart!=0){
+						   if (sono!=next){
 				   
 							   $("#test").append("<a id='pag2_"+nextPagina+"'><div class='paginazione_next'></div></a>")
 					   
@@ -4159,21 +4567,62 @@ var app = {
                    if(result.totalRoot!="0"){
                    
                     var pagina = parseInt(localStorage.getItem("pagina1"))
-                   
-                    //alert("pagina1:" + pagina)
-                   
+                                 
                     var totale = result.totalLeaf
                    
                     var nextPagina = result.pagination
                     var schema2 = result.pagination
                    
                     var pag = "0"
+					var sono = 0
                    
-                    var next = totale/nextPagina
+                    var next = Math.ceil(totale/nextPagina)
                    
-                    //alert(pagina)
-                   
+
                     $("#paginazione").html("<div class='cart_page'><table cellpadding='5' cellspacing='0' border='0' align='center' class='tabella_ordine'><tr><td colspan='2' height='30' align='center'><p id='test'></p></td></tr></table></div>")
+					
+					
+					for (var i=0, l=next; i<l; i++) {
+  
+						pag = i+1
+					  
+						if (pag==1){
+						
+						   nextPagina = 0
+							 
+						   if(pagina!=nextPagina){
+						   
+							  min = 1
+
+							}
+							else{
+							
+							  max = pag+4
+							  
+							}
+						
+						}
+						else{
+									   
+						  nextPagina = schema2 + nextPagina
+
+						  if(pagina!=nextPagina){
+						  
+
+						  }
+						  else{
+						  
+							min = pag-2
+								
+							max = pag+2
+						  
+						  }
+
+						}
+					  
+					  }
+					
+					
                    
                    for (var i=0, l=next; i<l; i++) {
                    
@@ -4184,24 +4633,34 @@ var app = {
                         nextPagina = 0
                    
                        if(pagina!=nextPagina){
-                           $("#test").append("<a id='pagl_"+nextPagina+"'><span class='paginazione_on'>"+pag+"</span></a>")
-                   
-                           $(document).on("touchstart", "#pagl_"+ nextPagina +"", function(e){
-                              var paginazione = this.id
-                              paginazione = paginazione.replace("pagl_","")
-                              
-                              //alert(paginazione)
-                              //localStorage.setItem("pagina",paginazione);
-                              
-                              richiesta(0,paginazione)
-                              e.stopImmediatePropagation()
-                              return
-                              
-                              })
+						   
+						   $("#test").append("<a id='pagl_"+nextPagina+"'><span class='paginazione_before'>("+pag+")</span></a>")
+						   
+                           if(pag>=min){
+						   
+							   $("#test").append("<a id='pagl_"+nextPagina+"'><span class='paginazione_on'>"+pag+"</span></a>")
+					   
+							   $(document).on("touchstart", "#pagl_"+ nextPagina +"", function(e){
+								  var paginazione = this.id
+								  paginazione = paginazione.replace("pagl_","")
+								  
+								  //alert(paginazione)
+								  //localStorage.setItem("pagina",paginazione);
+								  
+								  richiesta(0,paginazione)
+								  e.stopImmediatePropagation()
+								  return
+								  
+								  })
+							  
+						   }
+							  
                        }
                        else{
                         $("#test").append("<span class='paginazione_off'>"+pag+"</span>")
                        }
+					   
+					   var sono = pag
                    
                    }
                    
@@ -4210,28 +4669,37 @@ var app = {
                        nextPagina = schema2 + nextPagina
                    
                        if(pagina!=nextPagina){
-                       $("#test").append("<a id='pagl_"+nextPagina+"'><span class='paginazione_on'>"+pag+"</span></a>")
-                   
-                       $(document).on("touchstart", "#pagl_"+ nextPagina +"", function(e){
-                          var paginazione = this.id
-                          paginazione = paginazione.replace("pagl_","")
-                          
-                          //alert(paginazione)
-                          //localStorage.setItem("pagina",paginazione);
-                          
-                          richiesta(0,paginazione)
-                          e.stopImmediatePropagation()
-                          return
-                          })
+						   
+						  if((pag>=min)&&(pag<=max)){
+						   
+
+						   $("#test").append("<a id='pagl_"+nextPagina+"'><span class='paginazione_on'>"+pag+"</span></a>")
+					   
+						   $(document).on("touchstart", "#pagl_"+ nextPagina +"", function(e){
+							  var paginazione = this.id
+							  paginazione = paginazione.replace("pagl_","")
+							  
+							  //alert(paginazione)
+							  //localStorage.setItem("pagina",paginazione);
+							  
+							  richiesta(0,paginazione)
+							  e.stopImmediatePropagation()
+							  return
+							  })
+
+						  }
+						  
                        }
                        else{
-                       $("#test").append("<span class='paginazione_off'>"+pag+"</span>")
+                         $("#test").append("<span class='paginazione_off'>"+pag+"</span>")
+
+					     var sono = pag
                        }
-                   
+
                    }
                    }
 				   
-					   if (result.nextPaginationLeafStart!=0){
+					   if (sono!=next){
 					   
 						   $("#test").append("<a id='pag2_"+nextPagina+"'><div class='paginazione_next'></div></a>")
 						   
@@ -4363,7 +4831,18 @@ var app = {
 					if ((radice3 != "") && (foglia3 != "")) {
                       $("#contengo").hide();
                     }
+					
+				   // REGISTRA PUSH OWENER
 				   
+				   if(result.phone!=""){
+					   
+					   localStorage.setItem("phoneowener",result.phone)
+					   
+				   }
+				   
+				   
+				   // FINE //
+					
 				   //PROGETTO
 				   
 				   var tabella = "<table width='90%' align='center' border='0'>";
@@ -4480,25 +4959,25 @@ var app = {
 				   
 				   $(document).on("touchstart", "#_ident_prezzo_nome", function(e){
 								  
-						  var ident = result.iden
-						  var prezzo = $.base64.decode(result.pric)
-						  var nome = $.base64.decode(result.description_microverba)
-						  
-						  //alert(ident + " " + prezzo + " " + nome)
-						  
-						  agg2(ident,prezzo,nome,"m","MicroVerba")
+					  var ident = result.iden
+					  var prezzo = $.base64.decode(result.pric)
+					  var nome = $.base64.decode(result.description_microverba)
+					  
+					  //alert(ident + " " + prezzo + " " + nome)
+					  
+					  agg2(ident,prezzo,nome,"m","MicroVerba")
 								  
 				  });
 				   
 				   $(document).on("touchstart", "#pr_ident_prezzo_nome", function(e){
 								  
-						  var ident = result.pr_iden
-						  var prezzo = $.base64.decode(result.pr_pric)
-						  var nome = $.base64.decode(result.project_description)
-						  
-						  //alert(ident + " " + prezzo + " " + nome)
-						  
-						  agg2(ident,prezzo,nome,"p","Progetto")
+					  var ident = result.pr_iden
+					  var prezzo = $.base64.decode(result.pr_pric)
+					  var nome = $.base64.decode(result.project_description)
+					  
+					  //alert(ident + " " + prezzo + " " + nome)
+					  
+					  agg2(ident,prezzo,nome,"p","Progetto")
 								  
 				  });
 				   
@@ -4729,6 +5208,9 @@ var app = {
 						   else if($.base64.decode(result["tipo_"+i+""])=="Upload video"){
                            pswXX = pswUVV
                            }
+						    else if($.base64.decode(result["tipo_"+i+""])=="Notifica Push"){
+                           pswXX = pswNPP
+                           }
                            else{
                    
                            }
@@ -4796,6 +5278,9 @@ var app = {
 						   else if($.base64.decode(result["tipo_"+i+""])=="Upload video"){
 						   pswXX = pswUVV
 						   }
+						    else if($.base64.decode(result["tipo_"+i+""])=="Notifica Push"){
+                           pswXX = pswNPP
+                           }
 						   else{
 				   
 						   }
@@ -4863,6 +5348,9 @@ var app = {
 						   else if($.base64.decode(result["tipo_"+i+""])=="Upload video"){
 						   pswXX = pswUVV
 						   }
+						    else if($.base64.decode(result["tipo_"+i+""])=="Notifica Push"){
+                           pswXX = pswNPP
+                           }
 						   else{
 				   
 						   }
@@ -4935,6 +5423,9 @@ var app = {
 						   else if($.base64.decode(result["tipo_"+i+""])=="Upload video"){
 						   pswXX = pswUVV
 						   }
+						    else if($.base64.decode(result["tipo_"+i+""])=="Notifica Push"){
+                           pswXX = pswNPP
+                           }
 						   else{
 				   
 						   }
@@ -4999,6 +5490,9 @@ var app = {
 						   else if($.base64.decode(result["tipo_"+i+""])=="Upload video"){
 						   pswXX = pswUVV
 						   }
+						    else if($.base64.decode(result["tipo_"+i+""])=="Notifica Push"){
+                           pswXX = pswNPP
+                           }
 						   else{
 				   
 						   }
@@ -5063,6 +5557,9 @@ var app = {
 						   else if($.base64.decode(result["tipo_"+i+""])=="Upload video"){
 						   pswXX = pswUVV
 						   }
+						    else if($.base64.decode(result["tipo_"+i+""])=="Notifica Push"){
+                           pswXX = pswNPP
+                           }
 						   else{
 				   
 						   }
@@ -5127,6 +5624,9 @@ var app = {
 						   else if($.base64.decode(result["tipo_"+i+""])=="Upload video"){
 						   pswXX = pswUVV
 						   }
+						    else if($.base64.decode(result["tipo_"+i+""])=="Notifica Push"){
+                           pswXX = pswNPP
+                           }
 						   else{
 				   
 						   }
@@ -5192,6 +5692,9 @@ var app = {
 						   else if($.base64.decode(result["tipo_"+i+""])=="Upload video"){
 						   pswXX = pswUVV
 						   }
+						    else if($.base64.decode(result["tipo_"+i+""])=="Notifica Push"){
+                           pswXX = pswNPP
+                           }
 						   else{
 				   
 						   }
@@ -5256,6 +5759,9 @@ var app = {
 						   else if($.base64.decode(result["tipo_"+i+""])=="Upload video"){
 						   pswXX = pswUVV
 						   }
+						    else if($.base64.decode(result["tipo_"+i+""])=="Notifica Push"){
+                           pswXX = pswNPP
+                           }
 						   else{
 				   
 						   }
@@ -5320,6 +5826,9 @@ var app = {
 						   else if($.base64.decode(result["tipo_"+i+""])=="Upload video"){
 						   pswXX = pswUVV
 						   }
+						    else if($.base64.decode(result["tipo_"+i+""])=="Notifica Push"){
+                           pswXX = pswNPP
+                           }
 						   else{
 				   
 						   }
