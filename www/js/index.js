@@ -1823,6 +1823,7 @@ var app = {
 				   $("#pswUAA").attr("type","hidden")
 				   $("#pswUVV").attr("type","hidden")
 				   $("#pswPNN").attr("type","hidden")
+				   $("#pswWAA").attr("type","hidden")
 				   
 				   $("#pswYTT").attr("type","text")
 				   
@@ -1954,6 +1955,7 @@ var app = {
                        $("#pswUAA").attr("type","hidden")
                        $("#pswUVV").attr("type","hidden")
 					   $("#pswPNN").attr("type","hidden")
+					   $("#pswWAA").attr("type","hidden")
                        
                        $("#pswVAA").attr("type","text")
                        
@@ -2080,6 +2082,7 @@ var app = {
                                $("#pswUAA").attr("type","hidden")
                                $("#pswUVV").attr("type","hidden")
 							   $("#pswPNN").attr("type","hidden")
+							   $("#pswWAA").attr("type","hidden")
                                
                                $("#pswFAA").attr("type","text")
                                
@@ -2210,6 +2213,7 @@ var app = {
 					  $("#pswUAA").attr("type","hidden")
 					  $("#pswUVV").attr("type","hidden")
 					  $("#pswPNN").attr("type","hidden")
+					  $("#pswWAA").attr("type","hidden")
 					  
 					  $("#pswPWW").attr("type","text")
 					  
@@ -2339,6 +2343,7 @@ var app = {
 						  $("#pswUAA").attr("type","hidden")
 						  $("#pswUVV").attr("type","hidden")
 						  $("#pswPNN").attr("type","hidden")
+						  $("#pswWAA").attr("type","hidden")
 						  
 						  $("#pswFBB").attr("type","text")
 						  
@@ -2470,6 +2475,7 @@ var app = {
 					  $("#pswUAA").attr("type","hidden")
 					  $("#pswUVV").attr("type","hidden")
 					  $("#pswPNN").attr("type","hidden")
+					  $("#pswWAA").attr("type","hidden")
 					  
 					  $("#pswTFF").attr("type","text")
 					  
@@ -2597,6 +2603,7 @@ var app = {
 					  $("#pswUAA").attr("type","hidden")
 					  $("#pswUVV").attr("type","hidden")
 					  $("#pswPNN").attr("type","hidden")
+					  $("#pswWAA").attr("type","hidden")
 					  
 					  $("#pswTWW").attr("type","text")
 					  
@@ -2725,6 +2732,7 @@ var app = {
 					  $("#pswUAA").attr("type","hidden")
 					  $("#pswUVV").attr("type","hidden")
 					  $("#pswPNN").attr("type","hidden")
+					  $("#pswWAA").attr("type","hidden")
 					  
 					  $("#pswIGG").attr("type","text")
 					  
@@ -2853,6 +2861,7 @@ var app = {
 					  $("#pswUAA").attr("type","hidden")
 					  $("#pswUVV").attr("type","hidden")
 					  $("#pswPNN").attr("type","hidden")
+					  $("#pswWAA").attr("type","hidden")
 					  
 					  $("#pswUSS").attr("type","text")
 					  
@@ -2982,6 +2991,7 @@ var app = {
 					  $("#pswUAA").attr("type","hidden")
 					  $("#pswUVV").attr("type","hidden")
 					  $("#pswPNN").attr("type","hidden")
+					  $("#pswWAA").attr("type","hidden")
 					  
 					  $("#pswSVVpswSVV").attr("type","text")
 					  
@@ -3109,6 +3119,7 @@ var app = {
 					  $("#pswUAA").attr("type","hidden")
 					  $("#pswUVV").attr("type","hidden")
 					  $("#pswPNN").attr("type","hidden")
+					  $("#pswWAA").attr("type","hidden")
 					  
 					  $("#pswSAA").attr("type","text")
 					  
@@ -3237,6 +3248,7 @@ var app = {
 					  $("#pswUAA").attr("type","hidden")
 					  $("#pswUVV").attr("type","hidden")
 					  $("#pswPNN").attr("type","hidden")
+					  $("#pswWAA").attr("type","hidden")
 					  
 					  
 					  $("#pswTMM").attr("type","text")
@@ -3364,6 +3376,7 @@ var app = {
 					  $("#pswUDD").attr("type","hidden")
 					  $("#pswUII").attr("type","hidden")
 					  $("#pswPNN").attr("type","hidden")
+					  $("#pswWAA").attr("type","hidden")
 					  
 					  $("#pswEMM").attr("type","text")
 
@@ -3494,6 +3507,7 @@ var app = {
 								  $("#pswUAA").attr("type","hidden")
 								  $("#pswUDD").attr("type","hidden")
 								  $("#pswPNN").attr("type","hidden")
+								  $("#pswWAA").attr("type","hidden")
 								  
 								  $("#pswUII").attr("type","text")
 								  
@@ -3621,6 +3635,7 @@ var app = {
 								  $("#pswUVV").attr("type","hidden")
 								  $("#pswUAA").attr("type","hidden")
 								  $("#pswPNN").attr("type","hidden")
+								  $("#pswWAA").attr("type","hidden")
 								  
 								  $("#pswUDD").attr("type","text")
 								  
@@ -3746,6 +3761,7 @@ var app = {
 								  $("#pswUDD").attr("type","hidden")
 								  $("#pswUVV").attr("type","hidden")
 								  $("#pswPNN").attr("type","hidden")
+								  $("#pswWAA").attr("type","hidden")
 								  
 								  $("#pswUAA").attr("type","text")
 								  
@@ -4045,6 +4061,139 @@ var app = {
 					   
 					  }
 			}
+			else if(descrizione22=="Messaggio Whatsapp"){
+				
+				var tabella = "<table width='90%' align='center' class='tabella_contenuti'>";
+				   
+				   paperino = "WA_cont_"+variabile
+				   descwa = "WA_desc_"+variabile
+				   
+				   prezzoWA = "WA_pric_"+variabile
+				   nomeWA = "WA_nome_"+variabile
+				   identWA = "WA_iden_"+variabile
+				   
+				   pswWA = "WA_lock_"+variabile
+				   tipoWA = "WA_tipo_"+variabile
+				   
+				   if(lock_progetto!="cart.png"){
+				   if(lock_microverba=="cart.png"){
+				   
+				   lock="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_push.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descwa])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
+				   }
+				   else{
+				   
+				   if(result[prezzoWA] === null || typeof(result[prezzoWA]) == 'undefined' || result[prezzoWA]=="null" || result[prezzoWA]==""){
+				   
+				   if((result[pswWA]=="")||(result[pswWA]==$.base64.encode(psw2))){
+				   
+				   lock="unlock.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_push.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'><font color='#fff'>"+$.base64.decode(result[descwa])+"</font></a></div></td><td align='right' width='40'></td></tr>"
+				   
+				   }
+				   else{
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_push.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'><input id='fff_"+pswWA+"' name='password' class='testo_contenuti_pw' placeholder='password' readonly></span></td><td align='right' width='40'></td></tr>"
+				   
+				   }
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_push.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'> "+$.base64.decode(result[descwa])+"</span></td><td align='center' width='40'><a id='piu"+ identWA +"piu"+ prezzoWA +"piu"+ nomeWA +"piu"+ tipoWA +"'> <div class='ico_cart'></div></a><br><span class='testo_contenuti'>"+result[prezzoPN]+"€</span></td></tr>"
+				   }
+				   }
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_push.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descwa])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
+				   
+				   }
+				   
+				   $("#testvideo").append(tabella);
+				
+				
+				setTimeout (function(){
+					myScroll.refresh();
+					}, 300);
+				   
+				   
+				   $(document).on("tap", "#"+paperino+"", function(e){
+								  
+					  passo19(this.id) // passare la variabile in una nuova funzione
+					  
+					  });
+				   
+				   
+				   $(document).on("touchstart", "#fff_"+pswWA+"", function(e){
+								  
+						  var nomefun = this.id
+						  nomefun = nomefun.replace("fff_","")
+						  
+						  $("#prolock").hide()
+						  $("#miclock").hide()
+						  $("#contlock").show()
+						  
+						  $("#pswVAA").attr("type","hidden")
+						  $("#pswYTT").attr("type","hidden")
+						  $("#pswFAA").attr("type","hidden")
+						  $("#pswPWW").attr("type","hidden")
+						  $("#pswFBB").attr("type","hidden")
+						  $("#pswTFF").attr("type","hidden")
+						  $("#pswTWW").attr("type","hidden")
+						  $("#pswIGG").attr("type","hidden")
+						  $("#pswUSS").attr("type","hidden")
+						  $("#pswSVV").attr("type","hidden")
+						  $("#pswSAA").attr("type","hidden")
+						  $("#pswTMM").attr("type","hidden")
+						  $("#pswEMM").attr("type","hidden")
+						  $("#pswUII").attr("type","hidden")
+						  $("#pswUDD").attr("type","hidden")
+						  $("#pswUAA").attr("type","hidden")
+						  $("#pswUVV").attr("type","hidden")
+						  $("#pswPNN").attr("type","hidden")
+						  
+						  $("#pswWAA").attr("type","text")
+						  
+						  
+						  localStorage.setItem("pagina",pagina);
+						  localStorage.setItem("pagina1",pagina1);
+						  
+						  
+						  //$("#pswUVV").focus()
+								  
+					});
+				   
+				   
+				   $(document).on("touchstart", "#piu"+ identWA +"piu"+ prezzoWA +"piu"+ nomeWA +"piu"+ tipoWA +"", function(e){
+								  
+						  //SPLIT
+						  var str=this.id;
+						  
+						  var a1 = new Array();
+						  
+						  a1=str.split("piu");
+						  
+						  agg2(result[a1[1]],result[a1[2]],$.base64.decode(result[a1[3]]),"c", $.base64.decode(result[a1[4]]))
+								  
+					});
+								  
+								  
+					function passo19(eccola){
+				   
+					   //var pageNumber = 1;
+					   //eval("var link" + pageNumber + "='"+$.base64.decode(result[eccola])+"';");
+					   //alert(link1);
+					   
+					   //MANDARE LA PUSH OWENER
+					   //testa(localStorage.getItem("phoneowener"))
+					   
+					  window.plugins.socialsharing.shareViaWhatsAppToReceiver(''+eccola+'', 'Message via WhatsApp', null /* img */, null /* url */, function() {console.log('share ok')})
+					   
+					  }
+			}
 			
 			else{
 				
@@ -4130,6 +4279,7 @@ var app = {
 			document.getElementById("pswUAA").value = ""
 			document.getElementById("pswUVV").value = ""
 			document.getElementById("pswPNN").value = ""
+			document.getElementById("pswWAA").value = ""
 			
 			document.getElementById("pswYTTBLOC").value = ""
 			
@@ -4415,7 +4565,7 @@ var app = {
 				   
 								   if(pagina!=nextPagina){
 									   
-									   $("#test").append("<a id='pagr_"+nextPagina+"'><span class='paginazione_before'>("+pag+")</span></a>")
+									   $("#test").append("<a id='pagr_"+nextPagina+"'><span class='paginazione_before'></span></a>")
 									   
 									   if(pag>=min){
 									   
@@ -5154,6 +5304,12 @@ var app = {
                    else{
                    conteggio = (conteggio + parseInt(result.PN))
                    }
+				    if(result.WA === null || typeof(result.WA) == 'undefined' || result.WA=="null" || result.WA==""){
+                   
+                   }
+				   else{
+                   conteggio = (conteggio + parseInt(result.WA))
+                   }
 				   
 				   
 				   // FINE CONTEGGIO
@@ -5217,6 +5373,9 @@ var app = {
                            }
 						    else if($.base64.decode(result["tipo_"+i+""])=="Notifica Push"){
                            pswXX = pswNPP
+                           }
+						    else if($.base64.decode(result["tipo_"+i+""])=="Messaggio Whatsapp"){
+                           pswXX = pswWAA
                            }
                            else{
                    
@@ -5288,6 +5447,9 @@ var app = {
 						    else if($.base64.decode(result["tipo_"+i+""])=="Notifica Push"){
                            pswXX = pswNPP
                            }
+						    else if($.base64.decode(result["tipo_"+i+""])=="Messaggio Whatsapp"){
+                           pswXX = pswWAA
+                           }
 						   else{
 				   
 						   }
@@ -5357,6 +5519,9 @@ var app = {
 						   }
 						    else if($.base64.decode(result["tipo_"+i+""])=="Notifica Push"){
                            pswXX = pswNPP
+                           }
+						    else if($.base64.decode(result["tipo_"+i+""])=="Messaggio Whatsapp"){
+                           pswXX = pswWAA
                            }
 						   else{
 				   
@@ -5433,6 +5598,9 @@ var app = {
 						    else if($.base64.decode(result["tipo_"+i+""])=="Notifica Push"){
                            pswXX = pswNPP
                            }
+						    else if($.base64.decode(result["tipo_"+i+""])=="Messaggio Whatsapp"){
+                           pswXX = pswWAA
+                           }
 						   else{
 				   
 						   }
@@ -5499,6 +5667,9 @@ var app = {
 						   }
 						    else if($.base64.decode(result["tipo_"+i+""])=="Notifica Push"){
                            pswXX = pswNPP
+                           }
+						    else if($.base64.decode(result["tipo_"+i+""])=="Messaggio Whatsapp"){
+                           pswXX = pswWAA
                            }
 						   else{
 				   
@@ -5567,6 +5738,9 @@ var app = {
 						    else if($.base64.decode(result["tipo_"+i+""])=="Notifica Push"){
                            pswXX = pswNPP
                            }
+						    else if($.base64.decode(result["tipo_"+i+""])=="Messaggio Whatsapp"){
+                           pswXX = pswWAA
+                           }
 						   else{
 				   
 						   }
@@ -5633,6 +5807,9 @@ var app = {
 						   }
 						    else if($.base64.decode(result["tipo_"+i+""])=="Notifica Push"){
                            pswXX = pswNPP
+                           }
+						    else if($.base64.decode(result["tipo_"+i+""])=="Messaggio Whatsapp"){
+                           pswXX = pswWAA
                            }
 						   else{
 				   
@@ -5702,6 +5879,9 @@ var app = {
 						    else if($.base64.decode(result["tipo_"+i+""])=="Notifica Push"){
                            pswXX = pswNPP
                            }
+						    else if($.base64.decode(result["tipo_"+i+""])=="Messaggio Whatsapp"){
+                           pswXX = pswWAA
+                           }
 						   else{
 				   
 						   }
@@ -5769,6 +5949,9 @@ var app = {
 						    else if($.base64.decode(result["tipo_"+i+""])=="Notifica Push"){
                            pswXX = pswNPP
                            }
+						    else if($.base64.decode(result["tipo_"+i+""])=="Messaggio Whatsapp"){
+                           pswXX = pswWAA
+                           }
 						   else{
 				   
 						   }
@@ -5835,6 +6018,9 @@ var app = {
 						   }
 						    else if($.base64.decode(result["tipo_"+i+""])=="Notifica Push"){
                            pswXX = pswNPP
+                           }
+						    else if($.base64.decode(result["tipo_"+i+""])=="Messaggio Whatsapp"){
+                           pswXX = pswWAA
                            }
 						   else{
 				   

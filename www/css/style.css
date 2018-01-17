@@ -861,9 +861,9 @@ text-align: center;
 }
 
 .paginazione_off {
-	background:#89B2E5;
-	color:#fff;
-	font-family: 'Ubuntu', sans-serif;
+  background:#89B2E5;
+  color:#fff;
+  font-family: 'Ubuntu', sans-serif;
   font-size:24px;
   line-height:30px;
   text-align:center;
@@ -886,8 +886,8 @@ text-align: center;
 }
 
 .paginazione_before {
-	background-image: url('ico_arrow_pag_sx.png');
-	background-size:100%;
+  background-image: url('ico_arrow_pag_sx.png');
+  background-size:100%;
   width:32px;
   height:32px;
   margin-left:10px;
