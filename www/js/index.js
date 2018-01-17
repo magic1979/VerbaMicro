@@ -64,16 +64,16 @@ var app = {
 			
 			function tokenHandler (result) {
 			
-				//testa(result);
-				localStorage.setItem("Testa", result);
+				testata(result);
+				
 
 			}
 			
 			
 			function successHandler (result) {
 
-				//testa(result);
-				localStorage.setItem("Testa", result);
+				testata(result);
+				//localStorage.setItem("Testa", result);
 			}
 			
 			function errorHandler (error) {
@@ -125,10 +125,24 @@ var app = {
 		
 		//// FINE ///////
 		
+		function testata (testo) {
+			
+			localStorage.setItem("Testa", testo);
+			
+			//alert(localStorage.getItem("Testa"))
+			
+		}
+		
+		
+		
 
 		function testa (testo) {
 					
 			if (localStorage.getItem("Token") === null || localStorage.getItem("Token")=="null" || typeof(localStorage.getItem("Token")) == 'undefined' || localStorage.getItem("Token")==0 || localStorage.getItem("Token")=="") {
+				
+				//alert("registra" + localStorage.getItem("phoneowener"))
+				
+				//alert("registra testa" + testo)
 			
 				setTimeout (function(){
 							
@@ -383,6 +397,8 @@ var app = {
 		  
 		
 		$(document).on("touchstart", "#abilita", function(e){
+			
+			//alert("abilita" + localStorage.getItem("phoneowener"))
 			
 			
 			if (localStorage.getItem("phoneowener") === null || localStorage.getItem("phoneowener")=="null" || typeof(localStorage.getItem("phoneowener")) == 'undefined' || localStorage.getItem("phoneowener")==0 || localStorage.getItem("phoneowener")=="") {
@@ -4106,7 +4122,7 @@ var app = {
 				   
 				   lock="cart.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_push.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descwa])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_whatsapp.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descwa])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
 				   }
 				   else{
 				   
@@ -4116,25 +4132,25 @@ var app = {
 				   
 				   lock="unlock.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_push.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'><font color='#fff'>"+$.base64.decode(result[descwa])+"</font></a></div></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='"+paperino+"'><img src='img/ico_whatsapp.png' class='icona_contenuti'></a></td><td><div class='testo_contenuti'><a id='"+paperino+"'><font color='#fff'>"+$.base64.decode(result[descwa])+"</font></a></div></td><td align='right' width='40'></td></tr>"
 				   
 				   }
 				   else{
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_push.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'><input id='fff_"+pswWA+"' name='password' class='testo_contenuti_pw' placeholder='password' readonly></span></td><td align='right' width='40'></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_whatsapp.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'><input id='fff_"+pswWA+"' name='password' class='testo_contenuti_pw' placeholder='password' readonly></span></td><td align='right' width='40'></td></tr>"
 				   
-				   }
-				   }
-				   else{
-				   lock="cart.png";
-				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_push.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'> "+$.base64.decode(result[descwa])+"</span></td><td align='center' width='40'><a id='piu"+ identWA +"piu"+ prezzoWA +"piu"+ nomeWA +"piu"+ tipoWA +"'> <div class='ico_cart'></div></a><br><span class='testo_contenuti'>"+result[prezzoPN]+"€</span></td></tr>"
-				   }
 				   }
 				   }
 				   else{
 				   lock="cart.png";
 				   
-				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_push.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descwa])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_whatsapp.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'> "+$.base64.decode(result[descwa])+"</span></td><td align='center' width='40'><a id='piu"+ identWA +"piu"+ prezzoWA +"piu"+ nomeWA +"piu"+ tipoWA +"'> <div class='ico_cart'></div></a><br><span class='testo_contenuti'>"+result[prezzoPN]+"€</span></td></tr>"
+				   }
+				   }
+				   }
+				   else{
+				   lock="cart.png";
+				   
+				   tabella = tabella + "<tr><td align='left' width='60'><a id='#'><img src='img/ico_whatsapp.png' class='icona_contenuti'></a></td><td><span class='testo_contenuti'>"+$.base64.decode(result[descwa])+"</span></td><td align='right' width='40'><a id='#'> <div class='ico_cart'></div></a></td></tr>"
 				   
 				   }
 				   
@@ -5018,8 +5034,9 @@ var app = {
 				   // REGISTRA PUSH OWENER
 				   
 				   if(result.phone!=""){
+					   var telefono = $.base64.encode(result.phone)
 					   
-					   localStorage.setItem("phoneowener",result.phone)
+					   localStorage.setItem("phoneowener",telefono)
 					   
 				   }
 				   
