@@ -132,8 +132,7 @@ var app = {
 			
 				setTimeout (function(){
 							
-
-				$.ajax({
+					$.ajax({
 					   type: "POST",
 					   url: "http://microverba.com/mv/push.php",
 					   data: {idtel:testo,device:"android",phone:localStorage.getItem("phoneowener")},
@@ -166,13 +165,11 @@ var app = {
 						);
 					   
 					   }
-					   
-				});
+						   
+					});
 
-						
-			}, 500);
+				}, 500);
 		
-			
 			}
 				
 		}
@@ -386,8 +383,23 @@ var app = {
 		  
 		
 		$(document).on("touchstart", "#abilita", function(e){
-                       
-            testa(localStorage.getItem("phoneowener"))
+			
+			
+			if (localStorage.getItem("phoneowener") === null || localStorage.getItem("phoneowener")=="null" || typeof(localStorage.getItem("phoneowener")) == 'undefined' || localStorage.getItem("phoneowener")==0 || localStorage.getItem("phoneowener")=="") {
+				
+				 navigator.notification.alert(
+					'No Phone in Microverba Result',  // message
+					 alertDismissed,         // callback
+					'No Phone',            // title
+					'OK'                 // buttonName
+					);
+				
+			}
+			else{
+			
+				testa(localStorage.getItem("Testa"))
+			
+			}
                        
                        
         });
@@ -397,44 +409,58 @@ var app = {
 			
 			var pushnot = self.document.form.pushn.value;
 			
-                       
-            $.ajax({
-				   type: "POST",
-				   url: "http://microverba.com/mv/push_in.php",
-				   data: {messaggio:pushnot,phone:localStorage.getItem("phoneowener")},
-				   cache: false,
-				   crossDomain: true,
-				   contentType: "application/x-www-form-urlencoded",
-				   success: function (result) {
+			if (localStorage.getItem("phoneowener") === null || localStorage.getItem("phoneowener")=="null" || typeof(localStorage.getItem("phoneowener")) == 'undefined' || localStorage.getItem("phoneowener")==0 || localStorage.getItem("phoneowener")=="") {
+				
+				navigator.notification.alert(
+				'No Phone in Microverba Result',  // message
+				 alertDismissed,         // callback
+				'No Phone',            // title
+				'OK'                 // buttonName
+				);
+				
+				
+			}
+			else{
+			
+				$.ajax({
+					   type: "POST",
+					   url: "http://microverba.com/mv/push_in.php",
+					   data: {messaggio:pushnot,phone:localStorage.getItem("phoneowener")},
+					   cache: false,
+					   crossDomain: true,
+					   contentType: "application/x-www-form-urlencoded",
+					   success: function (result) {
+						   
+						//setTimeout (function(){
+							//localStorage.setItem("Token", testo);
+						//}, 500);
+						   
+						   
+					   navigator.notification.alert(
+						'Send Message OK',  // message
+						 alertDismissed,         // callback
+						'Send Message',            // title
+						'OK'                 // buttonName
+						);
+						
+						
+						$("#mandapush").hide()
 					   
-					//setTimeout (function(){
-						//localStorage.setItem("Token", testo);
-					//}, 500);
+					   },
+					   error: function(){
 					   
+					   navigator.notification.alert(
+						'Errore Imprevisto, contatta il fornitore',  // message
+						alertDismissed,         // callback
+						'Errore',            // title
+						'OK'                  // buttonName
+						);
 					   
-				   navigator.notification.alert(
-					'Send Message OK',  // message
-					 alertDismissed,         // callback
-					'Send Message',            // title
-					'OK'                 // buttonName
-					);
-					
-					
-					$("#mandapush").hide()
-				   
-				   },
-				   error: function(){
-				   
-				   navigator.notification.alert(
-					'Errore Imprevisto, contatta il fornitore',  // message
-					alertDismissed,         // callback
-					'Errore',            // title
-					'OK'                  // buttonName
-					);
-				   
-				   }
-				   
-			});
+					   }
+					   
+				});
+			
+			}
                        
                        
         });
@@ -5372,7 +5398,7 @@ var app = {
                            pswXX = pswUVV
                            }
 						    else if($.base64.decode(result["tipo_"+i+""])=="Notifica Push"){
-                           pswXX = pswNPP
+                           pswXX = pswPNN
                            }
 						    else if($.base64.decode(result["tipo_"+i+""])=="Messaggio Whatsapp"){
                            pswXX = pswWAA
@@ -5445,7 +5471,7 @@ var app = {
 						   pswXX = pswUVV
 						   }
 						    else if($.base64.decode(result["tipo_"+i+""])=="Notifica Push"){
-                           pswXX = pswNPP
+                           pswXX = pswPNN
                            }
 						    else if($.base64.decode(result["tipo_"+i+""])=="Messaggio Whatsapp"){
                            pswXX = pswWAA
@@ -5518,7 +5544,7 @@ var app = {
 						   pswXX = pswUVV
 						   }
 						    else if($.base64.decode(result["tipo_"+i+""])=="Notifica Push"){
-                           pswXX = pswNPP
+                           pswXX = pswPNN
                            }
 						    else if($.base64.decode(result["tipo_"+i+""])=="Messaggio Whatsapp"){
                            pswXX = pswWAA
@@ -5596,7 +5622,7 @@ var app = {
 						   pswXX = pswUVV
 						   }
 						    else if($.base64.decode(result["tipo_"+i+""])=="Notifica Push"){
-                           pswXX = pswNPP
+                           pswXX = pswPNN
                            }
 						    else if($.base64.decode(result["tipo_"+i+""])=="Messaggio Whatsapp"){
                            pswXX = pswWAA
@@ -5666,7 +5692,7 @@ var app = {
 						   pswXX = pswUVV
 						   }
 						    else if($.base64.decode(result["tipo_"+i+""])=="Notifica Push"){
-                           pswXX = pswNPP
+                           pswXX = pswPNN
                            }
 						    else if($.base64.decode(result["tipo_"+i+""])=="Messaggio Whatsapp"){
                            pswXX = pswWAA
@@ -5736,7 +5762,7 @@ var app = {
 						   pswXX = pswUVV
 						   }
 						    else if($.base64.decode(result["tipo_"+i+""])=="Notifica Push"){
-                           pswXX = pswNPP
+                           pswXX = pswPNN
                            }
 						    else if($.base64.decode(result["tipo_"+i+""])=="Messaggio Whatsapp"){
                            pswXX = pswWAA
@@ -5806,7 +5832,7 @@ var app = {
 						   pswXX = pswUVV
 						   }
 						    else if($.base64.decode(result["tipo_"+i+""])=="Notifica Push"){
-                           pswXX = pswNPP
+                           pswXX = pswPNN
                            }
 						    else if($.base64.decode(result["tipo_"+i+""])=="Messaggio Whatsapp"){
                            pswXX = pswWAA
@@ -5877,7 +5903,7 @@ var app = {
 						   pswXX = pswUVV
 						   }
 						    else if($.base64.decode(result["tipo_"+i+""])=="Notifica Push"){
-                           pswXX = pswNPP
+                           pswXX = pswPNN
                            }
 						    else if($.base64.decode(result["tipo_"+i+""])=="Messaggio Whatsapp"){
                            pswXX = pswWAA
@@ -5947,7 +5973,7 @@ var app = {
 						   pswXX = pswUVV
 						   }
 						    else if($.base64.decode(result["tipo_"+i+""])=="Notifica Push"){
-                           pswXX = pswNPP
+                           pswXX = pswPNN
                            }
 						    else if($.base64.decode(result["tipo_"+i+""])=="Messaggio Whatsapp"){
                            pswXX = pswWAA
@@ -6016,8 +6042,8 @@ var app = {
 						   else if($.base64.decode(result["tipo_"+i+""])=="Upload video"){
 						   pswXX = pswUVV
 						   }
-						    else if($.base64.decode(result["tipo_"+i+""])=="Notifica Push"){
-                           pswXX = pswNPP
+						   else if($.base64.decode(result["tipo_"+i+""])=="Notifica Push"){
+                           pswXX = pswPNN
                            }
 						    else if($.base64.decode(result["tipo_"+i+""])=="Messaggio Whatsapp"){
                            pswXX = pswWAA
@@ -6865,8 +6891,9 @@ var app = {
 			
 			localStorage.setItem("geostory", "SI")
 			
+			$("#lati").hide()
 			
-			$("#lati").html(ciao +", "+ ciao1);
+			//$("#lati").html(ciao +", "+ ciao1);
 
 		}
 		
@@ -6892,7 +6919,8 @@ var app = {
 			localStorage.setItem("geostory", "SI")
 			
 			
-			$("#lati").html(ciao +", "+ ciao1);
+			$("#lati").hide()
+			//$("#lati").html(ciao +", "+ ciao1);
 			
 			
 			
