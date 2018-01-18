@@ -129,7 +129,7 @@ var app = {
 			
 			localStorage.setItem("Testa", testo);
 			
-			alert(localStorage.getItem("Testa"))
+			//alert(localStorage.getItem("Testa"))
 			
 		}
 		
@@ -140,9 +140,9 @@ var app = {
 					
 			if (localStorage.getItem("Token") === null || localStorage.getItem("Token")=="null" || typeof(localStorage.getItem("Token")) == 'undefined' || localStorage.getItem("Token")==0 || localStorage.getItem("Token")=="") {
 				
-				alert("registra" + localStorage.getItem("phoneowener"))
+				//alert("registra" + localStorage.getItem("phoneowener"))
 				
-				alert("registra testa" + testo)
+				//alert("registra testa" + testo)
 			
 				setTimeout (function(){
 							
@@ -398,7 +398,7 @@ var app = {
 		
 		$(document).on("touchstart", "#abilita", function(e){
 			
-			alert("abilita" + localStorage.getItem("phoneowener"))
+			//alert("abilita" + localStorage.getItem("phoneowener"))
 			
 			
 			if (localStorage.getItem("phoneowener") === null || localStorage.getItem("phoneowener")=="null" || typeof(localStorage.getItem("phoneowener")) == 'undefined' || localStorage.getItem("phoneowener")==0 || localStorage.getItem("phoneowener")=="") {
@@ -5036,7 +5036,7 @@ var app = {
 				   // REGISTRA PUSH OWENER
 				   
 				   if(result.phone!=""){
-					   var telefono = $.base64.encode(result.phone)
+					   var telefono = $.base64.decode(result.phone)
 					   
 					   localStorage.setItem("phoneowener",telefono)
 					   
